@@ -21,7 +21,7 @@ public class ProductoVentaBO {
     }
 
     /**
-     * Constructor del prducto que se están vendiendo
+     * Constructor del producto que se está vendiendo de objecto negocio
      *
      * @param cantidad Cantidad de productos vendidos.
      * @param precio Precio unitario del producto.

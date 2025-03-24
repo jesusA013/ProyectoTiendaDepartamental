@@ -29,7 +29,7 @@ public class VentaBO {
     }
 
     /**
-     * Constructor de una venta realizada en el sistema
+     * Constructor de una venta realizada en el sistema de objecto negocio
      *
      * @param idVenta Identificador único de la venta.
      * @param listaProductos Lista de productos incluidos en la venta.
