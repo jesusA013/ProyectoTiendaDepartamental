@@ -1,40 +1,69 @@
 package BOs;
 
 /**
+ * PagoEfectivoBO.java
  *
- * @author Knocmare
+ * Esta clase representa el metodo de pago en efectivo de objecto negocio
+ *
+ * @author 
  */
 public class PagoEfectivoBO {
-    
-    private double efectivoEntrgado;
+
+    private double efectivoEntregado;
     private double cambio;
 
+    /**
+     * Constructor por omision
+     */
     public PagoEfectivoBO() {
     }
 
-    public PagoEfectivoBO(double efectivoEntrgado, double cambio) {
-        this.efectivoEntrgado = efectivoEntrgado;
+    /**
+     * Constructor del metodo de pago en efectivo de objecto negocio
+     *
+     * @param efectivoEntregado Cantidad pagada en efectivo
+     * @param cambio Cambio del pago
+     */
+    public PagoEfectivoBO(double efectivoEntregado, double cambio) {
+        this.efectivoEntregado = efectivoEntregado;
         this.cambio = cambio;
     }
 
-    public double getEfectivoEntrgado() {
-        return efectivoEntrgado;
+    /**
+     * Regresa la cantidad pagada en efectivo
+     *
+     * @return Cantidad pagada en efectivo
+     */
+    public double getEfectivoEntregado() {
+        return efectivoEntregado;
     }
 
-    public void setEfectivoEntrgado(double efectivoEntrgado) {
-        this.efectivoEntrgado = efectivoEntrgado;
+    /**
+     * Establece la cantidad pagada en efectivo
+     *
+     * @param efectivoEntregado Cantidad pagada en efectivo
+     */
+    public void setEfectivoEntregado(double efectivoEntregado) {
+        this.efectivoEntregado = efectivoEntregado;
     }
 
+    /**
+     * Regresa el cambio del pago
+     *
+     * @return Cambio del pago
+     */
     public double getCambio() {
         return cambio;
     }
 
+    /**
+     * Establece el cambio del pago
+     *
+     * @param cambio Cambio del pago
+     */
     public void setCambio(double cambio) {
         this.cambio = cambio;
     }
-    
+
     // ------------------------------------ //
-    
-    
-    
 }

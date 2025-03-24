@@ -6,12 +6,12 @@ package DTOs;
  */
 public class ProductoDTO {
     
-    public String nombre;
-    public String sku;
-    public double precio;
-    public String marca;
-    public String color;
-    public int stock;
+    private String nombre;
+    private String sku;
+    private double precio;
+    private String marca;
+    private String color;
+    private int stock;
 
     public ProductoDTO() {
     }
