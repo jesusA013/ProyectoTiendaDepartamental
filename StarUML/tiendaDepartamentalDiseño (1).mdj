@@ -42517,7 +42517,8 @@
 													"_parent": {
 														"$ref": "AAAAAAGVsKshy2cyxpw="
 													},
-													"name": "codigoPostal"
+													"name": "codigoPostal",
+													"type": ""
 												},
 												{
 													"_type": "UMLAttribute",
@@ -42702,7 +42703,8 @@
 													"_parent": {
 														"$ref": "AAAAAAGVsKZDyI3npig="
 													},
-													"name": "efectivoEntregado"
+													"name": "efectivoEntregado",
+													"type": ""
 												},
 												{
 													"_type": "UMLAttribute",
@@ -42957,7 +42959,8 @@
 															"_parent": {
 																"$ref": "AAAAAAGVsheS35fd4kg="
 															},
-															"name": "String nombre"
+															"name": "String nombre",
+															"type": ""
 														},
 														{
 															"_type": "UMLParameter",
@@ -42965,7 +42968,8 @@
 															"_parent": {
 																"$ref": "AAAAAAGVsheS35fd4kg="
 															},
-															"name": "String SKU"
+															"name": "String SKU",
+															"type": ""
 														},
 														{
 															"_type": "UMLParameter",
@@ -42973,7 +42977,8 @@
 															"_parent": {
 																"$ref": "AAAAAAGVsheS35fd4kg="
 															},
-															"name": "double precio"
+															"name": "double precio",
+															"type": ""
 														},
 														{
 															"_type": "UMLParameter",
@@ -42981,7 +42986,8 @@
 															"_parent": {
 																"$ref": "AAAAAAGVsheS35fd4kg="
 															},
-															"name": "String marca"
+															"name": "String marca",
+															"type": ""
 														},
 														{
 															"_type": "UMLParameter",
@@ -42989,7 +42995,8 @@
 															"_parent": {
 																"$ref": "AAAAAAGVsheS35fd4kg="
 															},
-															"name": "String color"
+															"name": "String color",
+															"type": ""
 														}
 													]
 												},
@@ -43193,7 +43200,8 @@
 														"$ref": "AAAAAAGVsf7UaEHn0ls="
 													},
 													"name": "efectivoEntregado",
-													"visibility": "private"
+													"visibility": "private",
+													"type": ""
 												},
 												{
 													"_type": "UMLAttribute",
@@ -43202,7 +43210,8 @@
 														"$ref": "AAAAAAGVsf7UaEHn0ls="
 													},
 													"name": "cambio",
-													"visibility": "private"
+													"visibility": "private",
+													"type": ""
 												}
 											]
 										},
