@@ -29,7 +29,7 @@ public class ProductoCarritoBO {
     public ProductoCarritoBO(ProductoBO producto, int cantidad, double importe) {
         this.producto = producto;
         this.cantidad = cantidad;
-        this.importe = importe;
+        this.importe = cantidad*producto.getPrecio();
     }
 
     /**

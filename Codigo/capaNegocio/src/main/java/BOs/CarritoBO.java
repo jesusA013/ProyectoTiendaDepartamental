@@ -7,15 +7,15 @@ import java.util.List;
  *
  * Esta clase representa un carrito de compra de objecto negocio
  *
- * @author 
+ * @author
  */
 public class CarritoBO {
 
     private List<ProductoCarritoBO> listaProductos;
     private int cantidadTotalProducots;
     private double subtotal;
-    private double impuestos;
-    private double total;
+    private double impuestos = subtotal * .16;
+    private double total = subtotal + impuestos;
 
     /**
      * Constructor por omision
@@ -28,16 +28,18 @@ public class CarritoBO {
      *
      * @param listaProductos Lista de productos del carrito
      * @param cantidadTotalProducots Cantidad total de productos del carrito
-     * @param subtotal Subtotal de los productos del carrito
-     * @param impuestos Impuestos de los productos del carrito
-     * @param total Total de los productos del carrito
+     *
+     *
+     *
      */
-    public CarritoBO(List<ProductoCarritoBO> listaProductos, int cantidadTotalProducots, double subtotal, double impuestos, double total) {
+    public CarritoBO(List<ProductoCarritoBO> listaProductos, int cantidadTotalProducots) {
         this.listaProductos = listaProductos;
         this.cantidadTotalProducots = cantidadTotalProducots;
-        this.subtotal = subtotal;
-        this.impuestos = impuestos;
-        this.total = total;
+        for (int i = 0; i < 10; i++) {
+            subtotal += listaProductos.get(i).getImporte();
+        }
+        impuestos = subtotal * .16;
+        total = subtotal + impuestos;
     }
 
     /**

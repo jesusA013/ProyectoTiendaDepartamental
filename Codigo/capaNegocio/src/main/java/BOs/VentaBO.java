@@ -20,10 +20,10 @@ public class VentaBO {
     private double impuestos;
     private double IVA;
     private int total;
-    private Vendedor vendedor;
+    //private Vendedor vendedor;
 
-    /**
-     * Constructor por omision
+    /** 
+    * Constructor por omision
      */
     public VentaBO() {
     }
@@ -40,7 +40,7 @@ public class VentaBO {
      * @param total Total final de la venta después de impuestos.
      * @param vendedor Vendedor responsable de la venta.
      */
-    public VentaBO(String idVenta, List<ProductoVentaBO> listaProductos, int cantidadProductos, int subtotal, double impuestos, double IVA, int total, Vendedor vendedor) {
+    public VentaBO(String idVenta, List<ProductoVentaBO> listaProductos, int cantidadProductos, int subtotal, double impuestos, double IVA, int total) {
         this.idVenta = idVenta;
         this.listaProductos = listaProductos;
         this.cantidadProductos = cantidadProductos;
@@ -48,7 +48,7 @@ public class VentaBO {
         this.impuestos = impuestos;
         this.IVA = IVA;
         this.total = total;
-        this.vendedor = vendedor;
+        //this.vendedor = vendedor;
     }
 
     /**
@@ -182,18 +182,18 @@ public class VentaBO {
      *
      * @return Vendedor que realizó la venta.
      */
-    public Vendedor getVendedor() {
-        return vendedor;
-    }
-
-    /**
-     * Establece el vendedor responsable de la venta.
-     *
-     * @param vendedor Nuevo vendedor responsable.
-     */
-    public void setVendedor(Vendedor vendedor) {
-        this.vendedor = vendedor;
-    }
+//    public Vendedor getVendedor() {
+//        return vendedor;
+//    }
+//
+//    /**
+//     * Establece el vendedor responsable de la venta.
+//     *
+//     * @param vendedor Nuevo vendedor responsable.
+//     */
+//    public void setVendedor(Vendedor vendedor) {
+//        this.vendedor = vendedor;
+//    }
 
     // ------------------------------------ //
 }
