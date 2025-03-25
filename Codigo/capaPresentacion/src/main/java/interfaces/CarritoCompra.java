@@ -39,7 +39,7 @@ public class CarritoCompra extends javax.swing.JFrame {
         panelResumen.add(botonProcederPago);
         JLabel resumenJLabel = new JLabel();
         resumenJLabel.setText("Resumen");
-        panelResumen.add(resumenJLabel);
+        panelResumen.add(resumenJLabel,CENTER_ALIGNMENT);
         
         JLabel totalJlabel = new JLabel();
         JLabel subtotalJlabel = new JLabel();
@@ -71,10 +71,10 @@ public class CarritoCompra extends javax.swing.JFrame {
         subtotalJLabel = new javax.swing.JLabel();
         impuestosJlabel = new javax.swing.JLabel();
         totalJlabel = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        cajaCantidad = new javax.swing.JTextField();
+        cajaSubtotal = new javax.swing.JTextField();
+        cajaImpuestos = new javax.swing.JTextField();
+        cajaTotal = new javax.swing.JTextField();
         panel = new javax.swing.JPanel();
         botonBuscarProducto = new javax.swing.JButton();
         idJLabel = new javax.swing.JLabel();
@@ -116,13 +116,17 @@ public class CarritoCompra extends javax.swing.JFrame {
         totalJlabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         totalJlabel.setText("Total a pagar");
 
-        jTextField1.setText("jTextField1");
+        cajaSubtotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajaSubtotalActionPerformed(evt);
+            }
+        });
 
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
+        cajaTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajaTotalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelResumenLayout = new javax.swing.GroupLayout(panelResumen);
         panelResumen.setLayout(panelResumenLayout);
@@ -134,7 +138,7 @@ public class CarritoCompra extends javax.swing.JFrame {
                     .addGroup(panelResumenLayout.createSequentialGroup()
                         .addComponent(cantidadJLabel)
                         .addGap(29, 29, 29)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cajaCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -143,45 +147,44 @@ public class CarritoCompra extends javax.swing.JFrame {
                             .addComponent(impuestosJlabel))
                         .addGap(29, 29, 29)
                         .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 72, Short.MAX_VALUE))
+                            .addComponent(cajaSubtotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cajaImpuestos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cajaTotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 95, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-                        .addComponent(resumenJLabel)
-                        .addGap(110, 110, 110))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
                         .addComponent(botonProcederPago)
                         .addGap(93, 93, 93))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
                         .addComponent(botonCancelar)
-                        .addGap(120, 120, 120))))
+                        .addGap(120, 120, 120))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
+                        .addComponent(resumenJLabel)
+                        .addGap(127, 127, 127))))
         );
         panelResumenLayout.setVerticalGroup(
             panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
+                .addComponent(resumenJLabel)
+                .addGap(80, 80, 80)
                 .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelResumenLayout.createSequentialGroup()
-                        .addComponent(resumenJLabel)
-                        .addGap(82, 82, 82)
-                        .addComponent(cantidadJLabel))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cantidadJLabel)
+                    .addComponent(cajaCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(subtotalJLabel)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cajaSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(impuestosJlabel)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cajaImpuestos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totalJlabel)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cajaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
                 .addComponent(botonCancelar)
                 .addGap(18, 18, 18)
@@ -254,6 +257,14 @@ public class CarritoCompra extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonBuscarProductoActionPerformed
 
+    private void cajaSubtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaSubtotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaSubtotalActionPerformed
+
+    private void cajaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaTotalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -293,13 +304,13 @@ public class CarritoCompra extends javax.swing.JFrame {
     private javax.swing.JButton botonBuscarProducto;
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonProcederPago;
+    private javax.swing.JTextField cajaCantidad;
+    private javax.swing.JTextField cajaImpuestos;
+    private javax.swing.JTextField cajaSubtotal;
+    private javax.swing.JTextField cajaTotal;
     private javax.swing.JLabel cantidadJLabel;
     private javax.swing.JLabel idJLabel;
     private javax.swing.JLabel impuestosJlabel;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel panel;
     private javax.swing.JPanel panelResumen;
     private javax.swing.JLabel resumenJLabel;
