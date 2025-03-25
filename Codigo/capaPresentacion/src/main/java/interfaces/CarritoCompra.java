@@ -24,35 +24,35 @@ public class CarritoCompra extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);//centar ventana
 
-        this.idJLabel.setText("ID: 12345 ");
-        JPanel panel = new JPanel();
-        this.panel.add(this.idJLabel);
-        JButton botonBuscarProducto = new JButton();
-        this.botonBuscarProducto.setText("Buscar producto");
-        panel.add(botonBuscarProducto);
-        add(panel, BorderLayout.LINE_START);
-
-        JPanel panelResumen = new JPanel();
-        JButton botonCancelar = new JButton();
-        this.botonCancelar.setText("Cancelar");
-        JButton botonProcederPago = new JButton();
-        this.botonProcederPago.setText("Proceder pago");
-        this.panelResumen.add(this.botonCancelar);
-        this.panelResumen.add(this.botonProcederPago);
-        JLabel resumenJLabel = new JLabel();
-       this.resumenJLabel.setText("Resumen");
-        this.panelResumen.add(this.resumenJLabel,CENTER_ALIGNMENT);
-        
-        JLabel totalJlabel = new JLabel();
-        JLabel subtotalJlabel = new JLabel();
-        JLabel impuestosJlabel = new JLabel();
-        JLabel cantidadJLabel = new JLabel();
-
-        panelResumen.add(this.cantidadJLabel);
-        panelResumen.add(this.subtotalJLabel);
-        panelResumen.add(this.impuestosJlabel);
-        panelResumen.add(this.totalJlabel);
-        
+//        this.idJLabel.setText("ID: 12345 ");
+//        JPanel panel = new JPanel();
+//        this.panel.add(this.idJLabel);
+//        JButton botonBuscarProducto = new JButton();
+//        this.botonBuscarProducto.setText("Buscar producto");
+//        panel.add(botonBuscarProducto);
+//        add(panel, BorderLayout.LINE_START);
+//
+//        JPanel panelResumen = new JPanel();
+//        JButton botonCancelar = new JButton();
+//        this.botonCancelar.setText("Cancelar");
+//        JButton botonProcederPago = new JButton();
+//        this.botonProcederPago.setText("Proceder pago");
+//        this.panelResumen.add(this.botonCancelar);
+//        this.panelResumen.add(this.botonProcederPago);
+//        JLabel resumenJLabel = new JLabel();
+//       this.resumenJLabel.setText("Resumen");
+//        this.panelResumen.add(this.resumenJLabel,CENTER_ALIGNMENT);
+//        
+//        JLabel totalJlabel = new JLabel();
+//        JLabel subtotalJlabel = new JLabel();
+//        JLabel impuestosJlabel = new JLabel();
+//        JLabel cantidadJLabel = new JLabel();
+//
+//        panelResumen.add(this.cantidadJLabel);
+//        panelResumen.add(this.subtotalJLabel);
+//        panelResumen.add(this.impuestosJlabel);
+//        panelResumen.add(this.totalJlabel);
+//        
         
     }
 
