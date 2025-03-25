@@ -6,6 +6,7 @@ package interfaces;
 
 import javax.swing.*;
 import java.awt.*;
+ 
 
 /**
  *
@@ -41,6 +42,7 @@ public class CarritoCompra extends javax.swing.JFrame {
         resumenJLabel.setText("Resumen");
         panelResumen.add(resumenJLabel);
         
+<<<<<<< Updated upstream
         JLabel totalJlabel = new JLabel();
         JLabel subtotalJlabel = new JLabel();
         JLabel impuestosJlabel = new JLabel();
@@ -50,6 +52,29 @@ public class CarritoCompra extends javax.swing.JFrame {
         panelResumen.add(subtotalJLabel);
         panelResumen.add(impuestosJlabel);
         panelResumen.add(totalJlabel);
+=======
+        idJLabel.setText("ID: ");
+        JPanel panel = new JPanel();
+        panel.add(idJLabel);
+        JButton botonBuscarProducto = new JButton();
+        botonBuscarProducto.setText("Buscar producto");
+        panel.add(botonBuscarProducto);
+        add(panel,BorderLayout.LINE_START);
+        
+        
+        JPanel panelResumen = new JPanel();
+        JButton botonCancelar = new JButton();
+        botonCancelar.setText("Cancelar");
+        JButton botonProcederPago = new JButton();
+        botonProcederPago.setText("Proceder pago");
+        panelResumen.add(botonCancelar);
+        panelResumen.add(botonProcederPago);
+        JLabel resumenJLabel = new JLabel();
+        resumenJLabel.setText("Resumen");
+       panelResumen.add(resumenJLabel);
+
+        
+>>>>>>> Stashed changes
         
         initComponents();
     }
@@ -67,6 +92,7 @@ public class CarritoCompra extends javax.swing.JFrame {
         botonProcederPago = new javax.swing.JButton();
         botonCancelar = new javax.swing.JButton();
         resumenJLabel = new javax.swing.JLabel();
+<<<<<<< Updated upstream
         cantidadJLabel = new javax.swing.JLabel();
         subtotalJLabel = new javax.swing.JLabel();
         impuestosJlabel = new javax.swing.JLabel();
@@ -75,6 +101,8 @@ public class CarritoCompra extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
+=======
+>>>>>>> Stashed changes
         panel = new javax.swing.JPanel();
         botonBuscarProducto = new javax.swing.JButton();
         idJLabel = new javax.swing.JLabel();
@@ -104,6 +132,7 @@ public class CarritoCompra extends javax.swing.JFrame {
         resumenJLabel.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         resumenJLabel.setText("Resumen");
 
+<<<<<<< Updated upstream
         cantidadJLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cantidadJLabel.setText("Cantidad Productos");
 
@@ -124,11 +153,14 @@ public class CarritoCompra extends javax.swing.JFrame {
 
         jTextField4.setText("jTextField4");
 
+=======
+>>>>>>> Stashed changes
         javax.swing.GroupLayout panelResumenLayout = new javax.swing.GroupLayout(panelResumen);
         panelResumen.setLayout(panelResumenLayout);
         panelResumenLayout.setHorizontalGroup(
             panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelResumenLayout.createSequentialGroup()
+<<<<<<< Updated upstream
                 .addGap(31, 31, 31)
                 .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelResumenLayout.createSequentialGroup()
@@ -159,10 +191,23 @@ public class CarritoCompra extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
                         .addComponent(botonCancelar)
                         .addGap(120, 120, 120))))
+=======
+                .addContainerGap(89, Short.MAX_VALUE)
+                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
+                        .addComponent(botonProcederPago)
+                        .addGap(63, 63, 63))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
+                        .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(botonCancelar)
+                            .addComponent(resumenJLabel))
+                        .addGap(83, 83, 83))))
+>>>>>>> Stashed changes
         );
         panelResumenLayout.setVerticalGroup(
             panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
+<<<<<<< Updated upstream
                 .addGap(20, 20, 20)
                 .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelResumenLayout.createSequentialGroup()
@@ -183,6 +228,11 @@ public class CarritoCompra extends javax.swing.JFrame {
                     .addComponent(totalJlabel)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+=======
+                .addGap(23, 23, 23)
+                .addComponent(resumenJLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 406, Short.MAX_VALUE)
+>>>>>>> Stashed changes
                 .addComponent(botonCancelar)
                 .addGap(18, 18, 18)
                 .addComponent(botonProcederPago)
@@ -208,7 +258,11 @@ public class CarritoCompra extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(idJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< Updated upstream
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 829, Short.MAX_VALUE)
+=======
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+>>>>>>> Stashed changes
                 .addComponent(botonBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -228,8 +282,14 @@ public class CarritoCompra extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+<<<<<<< Updated upstream
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(panelResumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
+                .addContainerGap(837, Short.MAX_VALUE)
+                .addComponent(panelResumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+>>>>>>> Stashed changes
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,6 +353,7 @@ public class CarritoCompra extends javax.swing.JFrame {
     private javax.swing.JButton botonBuscarProducto;
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonProcederPago;
+<<<<<<< Updated upstream
     private javax.swing.JLabel cantidadJLabel;
     private javax.swing.JLabel idJLabel;
     private javax.swing.JLabel impuestosJlabel;
@@ -305,5 +366,11 @@ public class CarritoCompra extends javax.swing.JFrame {
     private javax.swing.JLabel resumenJLabel;
     private javax.swing.JLabel subtotalJLabel;
     private javax.swing.JLabel totalJlabel;
+=======
+    private javax.swing.JLabel idJLabel;
+    private javax.swing.JPanel panel;
+    private javax.swing.JPanel panelResumen;
+    private javax.swing.JLabel resumenJLabel;
+>>>>>>> Stashed changes
     // End of variables declaration//GEN-END:variables
 }
