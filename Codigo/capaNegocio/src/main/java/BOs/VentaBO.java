@@ -20,10 +20,14 @@ public class VentaBO {
     private double impuestos;
     private double IVA;
     private int total;
+
+    //private Vendedor vendedor;
+
 //    private Vendedor vendedor;
 
-    /**
-     * Constructor por omision
+
+    /** 
+    * Constructor por omision
      */
     public VentaBO() {
     }
@@ -40,7 +44,10 @@ public class VentaBO {
      * @param total Total final de la venta después de impuestos.
      * @param vendedor Vendedor responsable de la venta.
      */
+
+
     public VentaBO(String idVenta, List<ProductoVentaBO> listaProductos, int cantidadProductos, int subtotal, double impuestos, double IVA, int total) { // Quitamos vendedor de momento
+
         this.idVenta = idVenta;
         this.listaProductos = listaProductos;
         this.cantidadProductos = cantidadProductos;
@@ -48,7 +55,11 @@ public class VentaBO {
         this.impuestos = impuestos;
         this.IVA = IVA;
         this.total = total;
+
+        //this.vendedor = vendedor;
+
 //        this.vendedor = vendedor;
+
     }
 
     /**
@@ -177,11 +188,19 @@ public class VentaBO {
         this.total = total;
     }
 
+
+    /**
+     * Obtiene el vendedor responsable de la venta.
+     *
+     * @return Vendedor que realizó la venta.
+     */
+
 //    /**
 //     * Obtiene el vendedor responsable de la venta.
 //     *
 //     * @return Vendedor que realizó la venta.
 //     */
+
 //    public Vendedor getVendedor() {
 //        return vendedor;
 //    }

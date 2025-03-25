@@ -11,7 +11,7 @@ public class Factura extends JFrame {
     private JTextField txtRfc, txtNombre, txtCalle, txtNumExterior, txtNumInterior, txtColonia, txtCodigoPostal,
                        txtDelegacion, txtCiudad, txtEstado, txtPais, txtCorreo;
     private JButton btnFacturar, btnCancelar;
-
+    
     public Factura() {
         // Configuración básica de la ventana
         setTitle("FacturaDatos");
