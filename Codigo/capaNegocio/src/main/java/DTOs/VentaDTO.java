@@ -1,39 +1,37 @@
-package BOs;
+package DTOs;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
- * VentaBO.java
+ * VentaDTO.java
  *
- * Esta clase representa una venta realizada en el sistema. Contiene información
- * sobre los productos vendidos, la cantidad, el subtotal, los impuestos, el
- * IVA, el total de la venta y el vendedor responsable.
+ * Esta clase representa una venta realizada en el sistema de objecto de
+ * transferencia de datos
  *
  * @author
  */
-public class VentaBO {
+public class VentaDTO {
 
     private String idVenta;
-    private List<ProductoVentaBO> listaProductos;
+    private List<ProductoVentaDTO> listaProductos;
     private int cantidadProductos;
     private int subtotal;
     private double impuestos;
     private double IVA;
     private int total;
-
-    //private Vendedor vendedor;
-
 //    private Vendedor vendedor;
+    private Calendar fecha;
 
-
-    /** 
-    * Constructor por omision
+    /**
+     * Constructor por omision
      */
-    public VentaBO() {
+    public VentaDTO() {
     }
 
     /**
-     * Constructor de una venta realizada en el sistema de objecto negocio
+     * Constructor de una venta realizada en el sistema de objecto de
+     * transferencia de datos
      *
      * @param idVenta Identificador único de la venta.
      * @param listaProductos Lista de productos incluidos en la venta.
@@ -43,11 +41,9 @@ public class VentaBO {
      * @param IVA Valor del IVA aplicado a la venta.
      * @param total Total final de la venta después de impuestos.
      * @param vendedor Vendedor responsable de la venta.
+     * @param fecha Fecha de la venta
      */
-
-
-    public VentaBO(String idVenta, List<ProductoVentaBO> listaProductos, int cantidadProductos, int subtotal, double impuestos, double IVA, int total) { // Quitamos vendedor de momento
-
+    public VentaDTO(String idVenta, List<ProductoVentaDTO> listaProductos, int cantidadProductos, int subtotal, double impuestos, double IVA, int total, Calendar fecha) { // Quitamos vendedor de momento
         this.idVenta = idVenta;
         this.listaProductos = listaProductos;
         this.cantidadProductos = cantidadProductos;
@@ -55,11 +51,8 @@ public class VentaBO {
         this.impuestos = impuestos;
         this.IVA = IVA;
         this.total = total;
-
-        //this.vendedor = vendedor;
-
 //        this.vendedor = vendedor;
-
+        this.fecha = fecha;
     }
 
     /**
@@ -85,7 +78,7 @@ public class VentaBO {
      *
      * @return Lista de productos de la venta.
      */
-    public List<ProductoVentaBO> getListaProductos() {
+    public List<ProductoVentaDTO> getListaProductos() {
         return listaProductos;
     }
 
@@ -94,7 +87,7 @@ public class VentaBO {
      *
      * @param listaProductos Nueva lista de productos.
      */
-    public void setListaProductos(List<ProductoVentaBO> listaProductos) {
+    public void setListaProductos(List<ProductoVentaDTO> listaProductos) {
         this.listaProductos = listaProductos;
     }
 
@@ -188,19 +181,11 @@ public class VentaBO {
         this.total = total;
     }
 
-
-    /**
-     * Obtiene el vendedor responsable de la venta.
-     *
-     * @return Vendedor que realizó la venta.
-     */
-
 //    /**
 //     * Obtiene el vendedor responsable de la venta.
 //     *
 //     * @return Vendedor que realizó la venta.
 //     */
-
 //    public Vendedor getVendedor() {
 //        return vendedor;
 //    }
@@ -213,6 +198,22 @@ public class VentaBO {
 //    public void setVendedor(Vendedor vendedor) {
 //        this.vendedor = vendedor;
 //    }
+    /**
+     * Obtiene la fecha de la venta
+     *
+     * @return Fecha de la venta
+     */
+    public Calendar getFecha() {
+        return fecha;
+    }
 
-    // ------------------------------------ //
+    /**
+     * Establece la fecha de la venta
+     *
+     * @param fecha Fecha de la venta
+     */
+    public void setFecha(Calendar fecha) {
+        this.fecha = fecha;
+    }
+
 }
