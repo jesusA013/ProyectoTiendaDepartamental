@@ -17,41 +17,43 @@ public class CarritoCompra extends javax.swing.JFrame {
      * Creates new form CarritoCompra
      */
     public CarritoCompra() {
+        initComponents();
+        
         setTitle("Carriro de compra"); // nombre venata
         setSize(800, 600); //tamaño ventana
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);//centar ventana
 
-        idJLabel.setText("ID: 12345 ");
+        this.idJLabel.setText("ID: 12345 ");
         JPanel panel = new JPanel();
-        panel.add(idJLabel);
+        this.panel.add(this.idJLabel);
         JButton botonBuscarProducto = new JButton();
-        botonBuscarProducto.setText("Buscar producto");
+        this.botonBuscarProducto.setText("Buscar producto");
         panel.add(botonBuscarProducto);
         add(panel, BorderLayout.LINE_START);
 
         JPanel panelResumen = new JPanel();
         JButton botonCancelar = new JButton();
-        botonCancelar.setText("Cancelar");
+        this.botonCancelar.setText("Cancelar");
         JButton botonProcederPago = new JButton();
-        botonProcederPago.setText("Proceder pago");
-        panelResumen.add(botonCancelar);
-        panelResumen.add(botonProcederPago);
+        this.botonProcederPago.setText("Proceder pago");
+        this.panelResumen.add(this.botonCancelar);
+        this.panelResumen.add(this.botonProcederPago);
         JLabel resumenJLabel = new JLabel();
-        resumenJLabel.setText("Resumen");
-        panelResumen.add(resumenJLabel,CENTER_ALIGNMENT);
+       this.resumenJLabel.setText("Resumen");
+        this.panelResumen.add(this.resumenJLabel,CENTER_ALIGNMENT);
         
         JLabel totalJlabel = new JLabel();
         JLabel subtotalJlabel = new JLabel();
         JLabel impuestosJlabel = new JLabel();
         JLabel cantidadJLabel = new JLabel();
 
-        panelResumen.add(cantidadJLabel);
-        panelResumen.add(subtotalJLabel);
-        panelResumen.add(impuestosJlabel);
-        panelResumen.add(totalJlabel);
+        panelResumen.add(this.cantidadJLabel);
+        panelResumen.add(this.subtotalJLabel);
+        panelResumen.add(this.impuestosJlabel);
+        panelResumen.add(this.totalJlabel);
         
-        initComponents();
+        
     }
 
     /**
@@ -63,207 +65,28 @@ public class CarritoCompra extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelResumen = new javax.swing.JPanel();
-        botonProcederPago = new javax.swing.JButton();
-        botonCancelar = new javax.swing.JButton();
-        resumenJLabel = new javax.swing.JLabel();
-        cantidadJLabel = new javax.swing.JLabel();
-        subtotalJLabel = new javax.swing.JLabel();
-        impuestosJlabel = new javax.swing.JLabel();
-        totalJlabel = new javax.swing.JLabel();
-        cajaCantidad = new javax.swing.JTextField();
-        cajaSubtotal = new javax.swing.JTextField();
-        cajaImpuestos = new javax.swing.JTextField();
-        cajaTotal = new javax.swing.JTextField();
-        panel = new javax.swing.JPanel();
-        botonBuscarProducto = new javax.swing.JButton();
-        idJLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
-
-        panelResumen.setBackground(new java.awt.Color(255, 255, 255));
-        panelResumen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        botonProcederPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        botonProcederPago.setText("Proceder pago");
-        botonProcederPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonProcederPagoActionPerformed(evt);
-            }
-        });
-
-        botonCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        botonCancelar.setText("Cancelar");
-        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCancelarActionPerformed(evt);
-            }
-        });
-
-        resumenJLabel.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        resumenJLabel.setText("Resumen");
-
-        cantidadJLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cantidadJLabel.setText("Cantidad Productos");
-
-        subtotalJLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        subtotalJLabel.setText("Subtotal");
-
-        impuestosJlabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        impuestosJlabel.setText("Impuestos");
-
-        totalJlabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        totalJlabel.setText("Total a pagar");
-
-        cajaSubtotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cajaSubtotalActionPerformed(evt);
-            }
-        });
-
-        cajaTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cajaTotalActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelResumenLayout = new javax.swing.GroupLayout(panelResumen);
-        panelResumen.setLayout(panelResumenLayout);
-        panelResumenLayout.setHorizontalGroup(
-            panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelResumenLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelResumenLayout.createSequentialGroup()
-                        .addComponent(cantidadJLabel)
-                        .addGap(29, 29, 29)
-                        .addComponent(cajaCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(totalJlabel)
-                            .addComponent(subtotalJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(impuestosJlabel))
-                        .addGap(29, 29, 29)
-                        .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cajaSubtotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cajaImpuestos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cajaTotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 95, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-                        .addComponent(botonProcederPago)
-                        .addGap(93, 93, 93))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-                        .addComponent(botonCancelar)
-                        .addGap(120, 120, 120))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-                        .addComponent(resumenJLabel)
-                        .addGap(127, 127, 127))))
-        );
-        panelResumenLayout.setVerticalGroup(
-            panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(resumenJLabel)
-                .addGap(80, 80, 80)
-                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cantidadJLabel)
-                    .addComponent(cajaCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(subtotalJLabel)
-                    .addComponent(cajaSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(impuestosJlabel)
-                    .addComponent(cajaImpuestos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(totalJlabel)
-                    .addComponent(cajaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
-                .addComponent(botonCancelar)
-                .addGap(18, 18, 18)
-                .addComponent(botonProcederPago)
-                .addGap(49, 49, 49))
-        );
-
-        panel.setBackground(java.awt.SystemColor.activeCaption);
-
-        botonBuscarProducto.setText("Buscar producto");
-        botonBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarProductoActionPerformed(evt);
-            }
-        });
-
-        idJLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        idJLabel.setText("ID:");
-
-        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
-        panel.setLayout(panelLayout);
-        panelLayout.setHorizontalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(idJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 829, Short.MAX_VALUE)
-                .addComponent(botonBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
-        );
-        panelLayout.setVerticalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBuscarProducto))
-                .addContainerGap())
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(panelResumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 700, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelResumen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonCancelarActionPerformed
-
-    private void botonProcederPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProcederPagoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonProcederPagoActionPerformed
-
-    private void botonBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonBuscarProductoActionPerformed
-
-    private void cajaSubtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaSubtotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cajaSubtotalActionPerformed
-
-    private void cajaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaTotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cajaTotalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,20 +124,6 @@ public class CarritoCompra extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonBuscarProducto;
-    private javax.swing.JButton botonCancelar;
-    private javax.swing.JButton botonProcederPago;
-    private javax.swing.JTextField cajaCantidad;
-    private javax.swing.JTextField cajaImpuestos;
-    private javax.swing.JTextField cajaSubtotal;
-    private javax.swing.JTextField cajaTotal;
-    private javax.swing.JLabel cantidadJLabel;
-    private javax.swing.JLabel idJLabel;
-    private javax.swing.JLabel impuestosJlabel;
-    private javax.swing.JPanel panel;
-    private javax.swing.JPanel panelResumen;
-    private javax.swing.JLabel resumenJLabel;
-    private javax.swing.JLabel subtotalJLabel;
-    private javax.swing.JLabel totalJlabel;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
