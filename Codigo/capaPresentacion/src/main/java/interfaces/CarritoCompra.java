@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import control.ControlNavegacion;
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,7 +13,7 @@ import java.awt.*;
  * @author Jesus
  */
 public class CarritoCompra extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form CarritoCompra
      */
@@ -90,10 +91,10 @@ public class CarritoCompra extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         panelCambiante = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        panelSuperior = new javax.swing.JPanel();
+        lbl_ID = new javax.swing.JLabel();
+        lblBuscarProducto = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,8 +124,9 @@ public class CarritoCompra extends javax.swing.JFrame {
         totalJlabel.setText("Total:");
 
         botonCanecelar.setBackground(new java.awt.Color(255, 186, 186));
-        botonCanecelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        botonCanecelar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         botonCanecelar.setText("Cancelar");
+        botonCanecelar.setPreferredSize(new java.awt.Dimension(196, 39));
         botonCanecelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCanecelarActionPerformed(evt);
@@ -135,9 +137,10 @@ public class CarritoCompra extends javax.swing.JFrame {
         jLabel1.setText("Resumen");
 
         jButton1.setBackground(new java.awt.Color(103, 80, 164));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Proceder Pago");
+        jButton1.setText("Proceder a Pago");
+        jButton1.setPreferredSize(new java.awt.Dimension(196, 39));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -160,20 +163,14 @@ public class CarritoCompra extends javax.swing.JFrame {
                                     .addComponent(totalJlabel)
                                     .addComponent(cantidadJLabel)
                                     .addComponent(subtotalJlabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(impuestosJLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(impuestosJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(botonCanecelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 334, Short.MAX_VALUE)))
                         .addGap(90, 90, 90))
                     .addGroup(panelResumenLayout.createSequentialGroup()
-                        .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelResumenLayout.createSequentialGroup()
-                                .addGap(107, 107, 107)
-                                .addComponent(jLabel1))
-                            .addGroup(panelResumenLayout.createSequentialGroup()
-                                .addGap(82, 82, 82)
-                                .addComponent(jButton1))
-                            .addGroup(panelResumenLayout.createSequentialGroup()
-                                .addGap(104, 104, 104)
-                                .addComponent(botonCanecelar)))
+                        .addGap(107, 107, 107)
+                        .addComponent(jLabel1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelResumenLayout.setVerticalGroup(
@@ -193,10 +190,10 @@ public class CarritoCompra extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(totalJlabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonCanecelar)
+                .addComponent(botonCanecelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(16, 16, 16))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
 
         panelCambiante.setBackground(new java.awt.Color(255, 255, 255));
@@ -205,67 +202,67 @@ public class CarritoCompra extends javax.swing.JFrame {
         panelCambiante.setLayout(panelCambianteLayout);
         panelCambianteLayout.setHorizontalGroup(
             panelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 492, Short.MAX_VALUE)
+            .addGap(0, 563, Short.MAX_VALUE)
         );
         panelCambianteLayout.setVerticalGroup(
             panelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 515, Short.MAX_VALUE)
+            .addGap(0, 520, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(103, 80, 164));
+        panelSuperior.setBackground(new java.awt.Color(103, 80, 164));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("ID:123456");
+        lbl_ID.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        lbl_ID.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_ID.setText("ID:123456");
 
-        jButton2.setBackground(new java.awt.Color(208, 188, 255));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Buscar Producto");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        lblBuscarProducto.setBackground(new java.awt.Color(208, 188, 255));
+        lblBuscarProducto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblBuscarProducto.setForeground(new java.awt.Color(102, 102, 102));
+        lblBuscarProducto.setText("Buscar Producto");
+        lblBuscarProducto.setPreferredSize(new java.awt.Dimension(130, 27));
+
+        btnBuscar.setBackground(new java.awt.Color(103, 80, 164));
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search (1).png"))); // NOI18N
+        btnBuscar.setPreferredSize(new java.awt.Dimension(30, 30));
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search (1).png"))); // NOI18N
-        jLabel2.setPreferredSize(new java.awt.Dimension(30, 30));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelSuperiorLayout = new javax.swing.GroupLayout(panelSuperior);
+        panelSuperior.setLayout(panelSuperiorLayout);
+        panelSuperiorLayout.setHorizontalGroup(
+            panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSuperiorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11)
+                .addComponent(lbl_ID)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addGap(397, 397, 397))
+                .addComponent(lblBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(425, 425, 425))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel11)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelSuperiorLayout.setVerticalGroup(
+            panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSuperiorLayout.createSequentialGroup()
+                .addComponent(lbl_ID)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(panelSuperiorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addComponent(lblBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSuperiorLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        jButton2.getAccessibleContext().setAccessibleName("botonBuscar");
 
         javax.swing.GroupLayout backgroundPanelLayout = new javax.swing.GroupLayout(backgroundPanel);
         backgroundPanel.setLayout(backgroundPanelLayout);
         backgroundPanelLayout.setHorizontalGroup(
             backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(backgroundPanelLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
                 .addComponent(panelCambiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelResumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,7 +271,7 @@ public class CarritoCompra extends javax.swing.JFrame {
         backgroundPanelLayout.setVerticalGroup(
             backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundPanelLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelResumen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -298,7 +295,7 @@ public class CarritoCompra extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(backgroundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         pack();
@@ -314,9 +311,9 @@ public class CarritoCompra extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+       ControlNavegacion.getInstance().irABusquedaProducto();
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -326,17 +323,17 @@ public class CarritoCompra extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JButton botonCanecelar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JLabel cantidadJLabel;
     private javax.swing.JLabel impuestosJLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField lblBuscarProducto;
+    private javax.swing.JLabel lbl_ID;
     private javax.swing.JPanel panelCambiante;
     private javax.swing.JPanel panelResumen;
+    private javax.swing.JPanel panelSuperior;
     private javax.swing.JSeparator separarTotal;
     private javax.swing.JLabel subtotalJlabel;
     private javax.swing.JLabel totalJlabel;

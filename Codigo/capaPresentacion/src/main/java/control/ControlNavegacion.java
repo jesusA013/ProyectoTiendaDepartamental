@@ -22,6 +22,7 @@ public class ControlNavegacion {
     private MenuPrincipal pantallaMenuPrincipal;
     private CarritoCompra pantallaCarritoCompra;
     private FacturaDatos pantallaFactura;
+    private BusquedaProducto pantallaBusquedaProducto;
 
     //Creacion de cada pantalla
     public ControlNavegacion() {
@@ -29,6 +30,7 @@ public class ControlNavegacion {
         this.pantallaMenuPrincipal = new MenuPrincipal();
         this.pantallaCarritoCompra = new CarritoCompra();
         this.pantallaFactura = new FacturaDatos();
+        this.pantallaBusquedaProducto= new BusquedaProducto();
 
     }
 
@@ -69,6 +71,10 @@ public class ControlNavegacion {
     
     public void irAFacturaDatos(){
         mostrarPantalla(pantallaFactura);
+    }
+    
+    public void irABusquedaProducto(){
+        mostrarPantalla(pantallaBusquedaProducto);
     }
     
   

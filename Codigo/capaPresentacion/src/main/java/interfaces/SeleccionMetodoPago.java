@@ -93,6 +93,7 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
 
         btnCancelar.setBackground(new java.awt.Color(255, 186, 186));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(51, 51, 51));
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,6 +103,7 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
 
         btnRegresar.setBackground(new java.awt.Color(208, 188, 255));
         btnRegresar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(102, 102, 102));
         btnRegresar.setText("Regresar al Carrito");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +113,7 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
 
         btnConfirmar.setBackground(new java.awt.Color(103, 80, 164));
         btnConfirmar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnConfirmar.setForeground(new java.awt.Color(0, 0, 0));
         btnConfirmar.setText("Confirmar Pago");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,11 +265,9 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
                 .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelCambiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(panelFondoLayout.createSequentialGroup()
-                            .addGap(24, 24, 24)
-                            .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(metodoEfectivo)
-                                .addComponent(metodoTarjeta)))
+                        .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(metodoEfectivo)
+                            .addComponent(metodoTarjeta))
                         .addComponent(lblSeleccioneMP)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelResumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -338,6 +339,7 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
      */
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
+        ControlNavegacion.getInstance().irACarritoCompra();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
