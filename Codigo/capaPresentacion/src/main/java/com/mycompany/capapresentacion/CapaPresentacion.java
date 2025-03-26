@@ -17,8 +17,8 @@ public class CapaPresentacion {
        
 //        navigator.irAMenuPrincipal();
         
-        navigator.irAInicioSesion();
-        
+//        navigator.irAInicioSesion();
+        navigator.irACarritoCompra();
         
     }
 }

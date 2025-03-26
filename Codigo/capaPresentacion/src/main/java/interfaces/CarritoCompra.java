@@ -6,6 +6,7 @@ package interfaces;
 
 import javax.swing.*;
 import java.awt.*;
+import DTOs.*;
 
 /**
  *
@@ -18,7 +19,7 @@ public class CarritoCompra extends javax.swing.JFrame {
      */
     public CarritoCompra() {
         initComponents();
-
+        
         setTitle("Carriro de compra"); // nombre venata
         setSize(800, 600); //tamaño ventana
 //        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,37 +33,53 @@ public class CarritoCompra extends javax.swing.JFrame {
         JPanel panelSuperior = new JPanel();
         panelSuperior.setLayout(new BorderLayout());
         panelSuperior.setPreferredSize(new Dimension(800, 50));
-        panelSuperior.setBackground(SystemColor.activeCaption);
-
-        JLabel idLabel = new JLabel("ID: 123456");
+        panelSuperior.setBackground(new Color(128, 0, 128));
+        
+        JLabel idLabel = new JLabel("  ID: 123456  ");
         idLabel.setHorizontalAlignment(SwingConstants.LEFT);
-
+        idLabel.setForeground(Color.WHITE);
+        idLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         JButton botonBuscar = new JButton("Buscar Producto");
-
+        botonBuscar.setFont(new Font("Times New Roman ", Font.PLAIN, 14));
         panelSuperior.add(idLabel, BorderLayout.WEST);
         panelSuperior.add(botonBuscar, BorderLayout.EAST);
 
         //Panel Resumen de compra en proceso
         JPanel panelResumen = new JPanel();
-        panelResumen.setLayout(new GridLayout(6, 1, 5, 5));
+        panelResumen.setLayout(new GridLayout(2, 1, 0, 10));
         panelResumen.setPreferredSize(new Dimension(250, 580));
+        JLabel resumen = new JLabel("Resumen");
         JLabel cantidadProductosJLabel = new JLabel("Cantidad productos:");
         JLabel subtotalJLabel = new JLabel("Subtotal:");
         JLabel impuestosJLabel = new JLabel("Impuestos:");
         JLabel totalJlabel = new JLabel("Total:");
-
-        JButton botonCnacelar = new JButton("Buscar Producto");
-        JButton botonProcederPago = new JButton("Buscar Producto");
-
+        panelResumen.setBackground(Color.WHITE);
+        JButton botonCnacelar = new JButton("Cancelar");
+        JButton botonProcederPago = new JButton("Proceder Pago");
+        
+        //panel para agregar botones cancelat y proceder pago
+        JPanel panelBotones = new JPanel();
+        panelBotones.setLayout(new GridLayout(2,1,0,10));
+        botonCnacelar.setPreferredSize(new Dimension(20, 20));
+        botonProcederPago.setPreferredSize(new Dimension(20, 20));
+        panelBotones.setPreferredSize(new Dimension(200, 100));
+        panelBotones.add(botonCnacelar);
+        panelBotones.add(botonProcederPago);
+        
+        panelResumen.add(panelBotones, BorderLayout.SOUTH);
+        
+        resumen.setHorizontalAlignment(SwingConstants.CENTER);
+        panelResumen.add(resumen, BorderLayout.NORTH);
+        
         panelResumen.add(cantidadProductosJLabel);
-                panelResumen.add(subtotalJLabel);
+        panelResumen.add(subtotalJLabel);
         panelResumen.add(totalJlabel);
         panelResumen.add(impuestosJLabel);
-                panelResumen.add(botonCnacelar);
+        panelResumen.add(botonCnacelar);
         panelResumen.add(botonProcederPago);
-
-        add(panelSuperior,BorderLayout.NORTH);
-        add(panelResumen,BorderLayout.EAST);
+        
+        add(panelSuperior, BorderLayout.NORTH);
+        add(panelResumen, BorderLayout.EAST);
         
     }
 
@@ -94,7 +111,6 @@ public class CarritoCompra extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
