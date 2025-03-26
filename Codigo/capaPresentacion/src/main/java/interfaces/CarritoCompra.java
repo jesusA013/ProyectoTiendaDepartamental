@@ -54,7 +54,15 @@ public class CarritoCompra extends javax.swing.JFrame {
         JButton botonCnacelar = new JButton("Buscar Producto");
         JButton botonProcederPago = new JButton("Buscar Producto");
 
-        
+        panelResumen.add(cantidadProductosJLabel);
+                panelResumen.add(subtotalJLabel);
+        panelResumen.add(totalJlabel);
+        panelResumen.add(impuestosJLabel);
+                panelResumen.add(botonCnacelar);
+        panelResumen.add(botonProcederPago);
+
+        add(panelSuperior,BorderLayout.NORTH);
+        add(panelResumen,BorderLayout.EAST);
         setVisible(true);
     }
 
