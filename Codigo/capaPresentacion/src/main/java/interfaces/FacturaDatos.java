@@ -9,12 +9,12 @@ import java.awt.event.*;
 import DTOs.FacturaDTO;
 
 
-public class Factura extends JFrame {
+public class FacturaDatos extends JFrame {
     private JTextField txtRfc, txtNombre, txtCalle, txtNumExterior, txtNumInterior, txtColonia, txtCodigoPostal,
                        txtDelegacion, txtCiudad, txtEstado, txtPais, txtCorreo;
     private JButton btnFacturar, btnCancelar;
 
-    public Factura() {
+    public FacturaDatos() {
         // Configuración básica de la ventana
         setTitle("FacturaDatos");
         setSize(800, 600);
@@ -90,7 +90,7 @@ public class Factura extends JFrame {
         // Panel inferior: botones
         JPanel panelBotones = new JPanel();
         btnFacturar = new JButton("Facturar");
-        btnFacturar.setBackground(new Color(128, 0, 128)); // Morado
+        btnFacturar.setBackground(new Color(103, 80, 164)); // Morado
         btnFacturar.setForeground(Color.WHITE);
         btnCancelar = new JButton("Cancelar");
         btnCancelar.setBackground(new Color(255, 182, 193)); // Rosa claro

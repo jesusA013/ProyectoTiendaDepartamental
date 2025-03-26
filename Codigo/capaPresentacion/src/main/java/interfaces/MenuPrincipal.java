@@ -61,7 +61,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         panelBotones.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnOpcionVendedor.setBackground(new java.awt.Color(128, 0, 128));
+        btnOpcionVendedor.setBackground(new java.awt.Color(103, 80, 144));
         btnOpcionVendedor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnOpcionVendedor.setForeground(new java.awt.Color(255, 255, 255));
         btnOpcionVendedor.setText("Vendedor");
@@ -71,7 +71,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnOpcionAlmacen.setBackground(new java.awt.Color(128, 0, 128));
+        btnOpcionAlmacen.setBackground(new java.awt.Color(103, 80, 144));
         btnOpcionAlmacen.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnOpcionAlmacen.setForeground(new java.awt.Color(255, 255, 255));
         btnOpcionAlmacen.setText("Almacen");
@@ -81,7 +81,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnOpcionAdministrador.setBackground(new java.awt.Color(128, 0, 128));
+        btnOpcionAdministrador.setBackground(new java.awt.Color(103, 80, 144));
         btnOpcionAdministrador.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnOpcionAdministrador.setForeground(new java.awt.Color(255, 255, 255));
         btnOpcionAdministrador.setText("Administrador");
@@ -136,7 +136,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGap(33, 33, 33))
         );
 
-        panelSuperior.setBackground(new java.awt.Color(128, 0, 128));
+        panelSuperior.setBackground(new java.awt.Color(103, 80, 144));
 
         lblBienvenido.setBackground(new java.awt.Color(255, 255, 255));
         lblBienvenido.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N

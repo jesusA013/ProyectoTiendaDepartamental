@@ -19,7 +19,7 @@ public class CarritoCompra extends javax.swing.JFrame {
     public CarritoCompra() {
         initComponents();
 
-        setTitle("Carriro de compra"); // nombre venata
+        setTitle("Carrito de compra"); // nombre venata
         setSize(800, 600); //tamaño ventana
 //        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);//centar ventana
