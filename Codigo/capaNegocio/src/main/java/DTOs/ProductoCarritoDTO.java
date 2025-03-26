@@ -9,9 +9,45 @@ package DTOs;
  * @author
  */
 public class ProductoCarritoDTO {
-
-    private int stock;
+    
+    private String nombre;
+    private String sku;
     private double precio;
+    private String marca;
+    private String color;
+    private int stock;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
     private double importe;
     private double impuesto;
 

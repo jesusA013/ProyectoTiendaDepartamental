@@ -220,6 +220,11 @@ public class CarritoCompra extends javax.swing.JFrame {
         lblBuscarProducto.setForeground(new java.awt.Color(102, 102, 102));
         lblBuscarProducto.setText("Buscar Producto");
         lblBuscarProducto.setPreferredSize(new java.awt.Dimension(130, 27));
+        lblBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblBuscarProductoActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setBackground(new java.awt.Color(103, 80, 164));
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search (1).png"))); // NOI18N
@@ -295,7 +300,7 @@ public class CarritoCompra extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(backgroundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -314,6 +319,13 @@ public class CarritoCompra extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
        ControlNavegacion.getInstance().irABusquedaProducto();
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void lblBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblBuscarProductoActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_lblBuscarProductoActionPerformed
 
     /**
      * @param args the command line arguments
