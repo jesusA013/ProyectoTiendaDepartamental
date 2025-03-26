@@ -45,10 +45,10 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lblCantidadProducto = new javax.swing.JLabel();
+        lblSubtotal = new javax.swing.JLabel();
+        lblImpuestos = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
         panelCambiante = new javax.swing.JPanel();
         panelSuperior = new javax.swing.JPanel();
         lblID = new javax.swing.JLabel();
@@ -113,7 +113,6 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
 
         btnConfirmar.setBackground(new java.awt.Color(103, 80, 164));
         btnConfirmar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        btnConfirmar.setForeground(new java.awt.Color(0, 0, 0));
         btnConfirmar.setText("Confirmar Pago");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,21 +120,21 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("0");
+        lblCantidadProducto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblCantidadProducto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCantidadProducto.setText("0");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("0");
+        lblSubtotal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblSubtotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblSubtotal.setText("0");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setText("0");
+        lblImpuestos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblImpuestos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblImpuestos.setText("0");
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel10.setText("0");
+        lblTotal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotal.setText("0");
 
         javax.swing.GroupLayout panelResumenLayout = new javax.swing.GroupLayout(panelResumen);
         panelResumen.setLayout(panelResumenLayout);
@@ -152,23 +151,23 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
                     .addComponent(btnConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelResumenLayout.createSequentialGroup()
                         .addComponent(labelTotal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelResumenLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panelResumenLayout.createSequentialGroup()
                                 .addComponent(labelCantidadProductos)
-                                .addGap(74, 74, 74)
-                                .addComponent(jLabel7))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelResumenLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addGap(165, 165, 165)
-                                .addComponent(jLabel8))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelResumenLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addGap(148, 148, 148)
-                                .addComponent(jLabel9)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblImpuestos, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(90, 90, 90))
         );
         panelResumenLayout.setVerticalGroup(
@@ -180,21 +179,21 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCantidadProductos)
-                    .addComponent(jLabel7))
+                    .addComponent(lblCantidadProducto))
                 .addGap(36, 36, 36)
                 .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel8))
+                    .addComponent(lblSubtotal))
                 .addGap(31, 31, 31)
                 .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel9))
+                    .addComponent(lblImpuestos))
                 .addGap(50, 50, 50)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTotal)
-                    .addComponent(jLabel10))
+                    .addComponent(lblTotal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(btnCancelar)
                 .addGap(18, 18, 18)
@@ -229,7 +228,7 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
             panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSuperiorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblID)
+                .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelSuperiorLayout.setVerticalGroup(
@@ -357,18 +356,18 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel labelCantidadProductos;
     private javax.swing.JLabel labelResumen;
     private javax.swing.JLabel labelTotal;
+    private javax.swing.JLabel lblCantidadProducto;
     private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblImpuestos;
     private javax.swing.JLabel lblSeleccioneMP;
+    private javax.swing.JLabel lblSubtotal;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JRadioButton metodoEfectivo;
     private javax.swing.JRadioButton metodoTarjeta;
     private javax.swing.JPanel panelCambiante;
