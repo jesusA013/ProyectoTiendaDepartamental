@@ -3,11 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package interfaces;
+
 import control.ControlNavegacion;
 import javax.swing.*;
 import java.awt.*;
 
 public class InicioSesion extends JFrame {
+
     private JTextField txtId;
     private JPasswordField txtContrasena;
     private JButton btnIngresar, btnCancelar;
@@ -17,14 +19,19 @@ public class InicioSesion extends JFrame {
         setTitle("Inicio de Sesión");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        
+
         setLayout(new BorderLayout());
 
         // Panel superior: Título y borde morado
         JPanel panelTitulo = new JPanel();
-        panelTitulo.setBackground(new Color(128, 0, 128)); // Morado
+        panelTitulo.setBackground(new Color(103,80, 164)); // Morado
         panelTitulo.setPreferredSize(new Dimension(400, 40));
         add(panelTitulo, BorderLayout.NORTH);
+        
+        JLabel labelInicioSesion = new JLabel("Inicio de Sesion");
+        panelTitulo.setLayout(new BorderLayout());
+        panelTitulo.add(labelInicioSesion,BorderLayout.WEST);
+        labelInicioSesion.setFont(new Font("Segoe UI",Font.PLAIN,22));
 
         // Panel central: Formulario de inicio de sesión
         JPanel panelFormulario = new JPanel();
@@ -98,10 +105,9 @@ public class InicioSesion extends JFrame {
         btnIngresar.addActionListener(e -> iniciarSesion());
         btnCancelar.addActionListener(e -> cancelar());
 
-        
     }
 
-    private void iniciarSesion() {
+    public void iniciarSesion() {
         String id = txtId.getText();
         String contrasena = new String(txtContrasena.getPassword());
 
@@ -116,15 +122,19 @@ public class InicioSesion extends JFrame {
         }
     }
 
-    private void cancelar() {
+    public void cancelar() {
         int confirm = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea cancelar?", "Confirmar", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             setVisible(false);
             control.ControlNavegacion.getInstance().irAMenuPrincipal();
         }
+
+    }
+    
+    public void LimpiarCampos(){
+        txtId.setText("");
+        txtContrasena.setText("");
         
     }
 
-
-    
 }

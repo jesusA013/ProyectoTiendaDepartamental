@@ -54,6 +54,7 @@ public class ControlNavegacion {
     }
 
     public void irAInicioSesion() {
+        pantallaInicioSesion.LimpiarCampos();
         mostrarPantalla(pantallaInicioSesion);
 
     }
