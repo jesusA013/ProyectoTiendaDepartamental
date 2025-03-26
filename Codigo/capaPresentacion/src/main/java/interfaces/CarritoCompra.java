@@ -18,42 +18,44 @@ public class CarritoCompra extends javax.swing.JFrame {
      */
     public CarritoCompra() {
         initComponents();
-        
+
         setTitle("Carriro de compra"); // nombre venata
         setSize(800, 600); //tamaño ventana
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);//centar ventana
 
-//        this.idJLabel.setText("ID: 12345 ");
-//        JPanel panel = new JPanel();
-//        this.panel.add(this.idJLabel);
-//        JButton botonBuscarProducto = new JButton();
-//        this.botonBuscarProducto.setText("Buscar producto");
-//        panel.add(botonBuscarProducto);
-//        add(panel, BorderLayout.LINE_START);
-//
-//        JPanel panelResumen = new JPanel();
-//        JButton botonCancelar = new JButton();
-//        this.botonCancelar.setText("Cancelar");
-//        JButton botonProcederPago = new JButton();
-//        this.botonProcederPago.setText("Proceder pago");
-//        this.panelResumen.add(this.botonCancelar);
-//        this.panelResumen.add(this.botonProcederPago);
-//        JLabel resumenJLabel = new JLabel();
-//       this.resumenJLabel.setText("Resumen");
-//        this.panelResumen.add(this.resumenJLabel,CENTER_ALIGNMENT);
-//        
-//        JLabel totalJlabel = new JLabel();
-//        JLabel subtotalJlabel = new JLabel();
-//        JLabel impuestosJlabel = new JLabel();
-//        JLabel cantidadJLabel = new JLabel();
-//
-//        panelResumen.add(this.cantidadJLabel);
-//        panelResumen.add(this.subtotalJLabel);
-//        panelResumen.add(this.impuestosJlabel);
-//        panelResumen.add(this.totalJlabel);
-//        
+//        panel panelId = new panel();
+//        PanelResumen resumen = new PanelResumen();
+//         Agregar los paneles al JFrame
+        this.setLayout(new BorderLayout()); // Usar BorderLayout para organizar los componentes
+        // Panel superior (con JLabel y JButton)
+        JPanel panelSuperior = new JPanel();
+        panelSuperior.setLayout(new BorderLayout());
+        panelSuperior.setPreferredSize(new Dimension(800, 50));
+        panelSuperior.setBackground(SystemColor.activeCaption);
+
+        JLabel idLabel = new JLabel("ID: 123456");
+        idLabel.setHorizontalAlignment(SwingConstants.LEFT);
+
+        JButton botonBuscar = new JButton("Buscar Producto");
+
+        panelSuperior.add(idLabel, BorderLayout.WEST);
+        panelSuperior.add(botonBuscar, BorderLayout.EAST);
+
+        //Panel Resumen de compra en proceso
+        JPanel panelResumen = new JPanel();
+        panelResumen.setLayout(new GridLayout(6, 1, 5, 5));
+        panelResumen.setPreferredSize(new Dimension(250, 580));
+        JLabel cantidadProductosJLabel = new JLabel("Cantidad productos:");
+        JLabel subtotalJLabel = new JLabel("Subtotal:");
+        JLabel impuestosJLabel = new JLabel("Impuestos:");
+        JLabel totalJlabel = new JLabel("Total:");
+
+        JButton botonCnacelar = new JButton("Buscar Producto");
+        JButton botonProcederPago = new JButton("Buscar Producto");
+
         
+        setVisible(true);
     }
 
     /**
@@ -65,24 +67,17 @@ public class CarritoCompra extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 700, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 600, Short.MAX_VALUE)
         );
 
         pack();
@@ -124,6 +119,5 @@ public class CarritoCompra extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
