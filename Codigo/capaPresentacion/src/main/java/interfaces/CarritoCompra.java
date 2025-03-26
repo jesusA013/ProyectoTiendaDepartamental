@@ -6,7 +6,6 @@ package interfaces;
 
 import javax.swing.*;
 import java.awt.*;
- 
 
 /**
  *
@@ -18,65 +17,56 @@ public class CarritoCompra extends javax.swing.JFrame {
      * Creates new form CarritoCompra
      */
     public CarritoCompra() {
-        setTitle("Carriro de compra"); // nombre venata
-        setSize(800, 600); //tamaño ventana
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);//centar ventana
-
-        idJLabel.setText("ID: 12345 ");
-        JPanel panel = new JPanel();
-        panel.add(idJLabel);
-        JButton botonBuscarProducto = new JButton();
-        botonBuscarProducto.setText("Buscar producto");
-        panel.add(botonBuscarProducto);
-        add(panel, BorderLayout.LINE_START);
-
-        JPanel panelResumen = new JPanel();
-        JButton botonCancelar = new JButton();
-        botonCancelar.setText("Cancelar");
-        JButton botonProcederPago = new JButton();
-        botonProcederPago.setText("Proceder pago");
-        panelResumen.add(botonCancelar);
-        panelResumen.add(botonProcederPago);
-        JLabel resumenJLabel = new JLabel();
-        resumenJLabel.setText("Resumen");
-        panelResumen.add(resumenJLabel);
-        
-<<<<<<< Updated upstream
-        JLabel totalJlabel = new JLabel();
-        JLabel subtotalJlabel = new JLabel();
-        JLabel impuestosJlabel = new JLabel();
-        JLabel cantidadJLabel = new JLabel();
-
-        panelResumen.add(cantidadJLabel);
-        panelResumen.add(subtotalJLabel);
-        panelResumen.add(impuestosJlabel);
-        panelResumen.add(totalJlabel);
-=======
-        idJLabel.setText("ID: ");
-        JPanel panel = new JPanel();
-        panel.add(idJLabel);
-        JButton botonBuscarProducto = new JButton();
-        botonBuscarProducto.setText("Buscar producto");
-        panel.add(botonBuscarProducto);
-        add(panel,BorderLayout.LINE_START);
-        
-        
-        JPanel panelResumen = new JPanel();
-        JButton botonCancelar = new JButton();
-        botonCancelar.setText("Cancelar");
-        JButton botonProcederPago = new JButton();
-        botonProcederPago.setText("Proceder pago");
-        panelResumen.add(botonCancelar);
-        panelResumen.add(botonProcederPago);
-        JLabel resumenJLabel = new JLabel();
-        resumenJLabel.setText("Resumen");
-       panelResumen.add(resumenJLabel);
-
-        
->>>>>>> Stashed changes
-        
         initComponents();
+
+       setTitle("Carrito de compra"); // nombre venata
+        setSize(800, 600); //tamaño ventana
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);//centar ventana
+       
+//       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        setLocationRelativeTo(null);//centar ventana
+// comentario d eprueba
+////        panel panelId = new panel();
+////        PanelResumen resumen = new PanelResumen();
+////         Agregar los paneles al JFrame
+//        this.setLayout(new BorderLayout()); // Usar BorderLayout para organizar los componentes
+//        // Panel superior (con JLabel y JButton)
+//        JPanel panelSuperior = new JPanel();
+//        panelSuperior.setLayout(new BorderLayout());
+//        panelSuperior.setPreferredSize(new Dimension(800, 50));
+//        panelSuperior.setBackground(SystemColor.activeCaption);
+//
+//        JLabel idLabel = new JLabel("ID: 123456");
+//        idLabel.setHorizontalAlignment(SwingConstants.LEFT);
+//
+//        JButton botonBuscar = new JButton("Buscar Producto");
+//
+//        panelSuperior.add(idLabel, BorderLayout.WEST);
+//        panelSuperior.add(botonBuscar, BorderLayout.EAST);
+//
+//        //Panel Resumen de compra en proceso
+//        JPanel panelResumen = new JPanel();
+//        panelResumen.setLayout(new GridLayout(6, 1, 5, 5));
+//        panelResumen.setPreferredSize(new Dimension(250, 580));
+//        JLabel cantidadProductosJLabel = new JLabel("Cantidad productos:");
+//        JLabel subtotalJLabel = new JLabel("Subtotal:");
+//        JLabel impuestosJLabel = new JLabel("Impuestos:");
+//        JLabel totalJlabel = new JLabel("Total:");
+//
+//        JButton botonCnacelar = new JButton("Buscar Producto");
+//        JButton botonProcederPago = new JButton("Buscar Producto");
+//
+//        panelResumen.add(cantidadProductosJLabel);
+//                panelResumen.add(subtotalJLabel);
+//        panelResumen.add(totalJlabel);
+//        panelResumen.add(impuestosJLabel);
+//                panelResumen.add(botonCnacelar);
+//        panelResumen.add(botonProcederPago);
+//
+
+//        
+
     }
 
     /**
@@ -88,191 +78,209 @@ public class CarritoCompra extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        backgroundPanel = new javax.swing.JPanel();
         panelResumen = new javax.swing.JPanel();
-        botonProcederPago = new javax.swing.JButton();
-        botonCancelar = new javax.swing.JButton();
-        resumenJLabel = new javax.swing.JLabel();
-<<<<<<< Updated upstream
+        jSeparator1 = new javax.swing.JSeparator();
         cantidadJLabel = new javax.swing.JLabel();
-        subtotalJLabel = new javax.swing.JLabel();
-        impuestosJlabel = new javax.swing.JLabel();
+        subtotalJlabel = new javax.swing.JLabel();
+        impuestosJLabel = new javax.swing.JLabel();
+        separarTotal = new javax.swing.JSeparator();
         totalJlabel = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-=======
->>>>>>> Stashed changes
-        panel = new javax.swing.JPanel();
-        botonBuscarProducto = new javax.swing.JButton();
-        idJLabel = new javax.swing.JLabel();
+        botonCanecelar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        panelCambiante = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
+
+        backgroundPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         panelResumen.setBackground(new java.awt.Color(255, 255, 255));
-        panelResumen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        botonProcederPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        botonProcederPago.setText("Proceder pago");
-        botonProcederPago.addActionListener(new java.awt.event.ActionListener() {
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        cantidadJLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cantidadJLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cantidadJLabel.setText("Cantidad productos:");
+
+        subtotalJlabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        subtotalJlabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        subtotalJlabel.setText("Subtotal:");
+
+        impuestosJLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        impuestosJLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        impuestosJLabel.setText("Impuestos:");
+
+        separarTotal.setForeground(new java.awt.Color(0, 0, 0));
+
+        totalJlabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        totalJlabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        totalJlabel.setText("Total:");
+
+        botonCanecelar.setBackground(new java.awt.Color(255, 186, 186));
+        botonCanecelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        botonCanecelar.setText("Cancelar");
+        botonCanecelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonProcederPagoActionPerformed(evt);
+                botonCanecelarActionPerformed(evt);
             }
         });
 
-        botonCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        botonCancelar.setText("Cancelar");
-        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("Resumen");
+
+        jButton1.setBackground(new java.awt.Color(103, 80, 164));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Proceder Pago");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCancelarActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        resumenJLabel.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        resumenJLabel.setText("Resumen");
-
-<<<<<<< Updated upstream
-        cantidadJLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cantidadJLabel.setText("Cantidad Productos");
-
-        subtotalJLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        subtotalJLabel.setText("Subtotal");
-
-        impuestosJlabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        impuestosJlabel.setText("Impuestos");
-
-        totalJlabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        totalJlabel.setText("Total a pagar");
-
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
-
-=======
->>>>>>> Stashed changes
         javax.swing.GroupLayout panelResumenLayout = new javax.swing.GroupLayout(panelResumen);
         panelResumen.setLayout(panelResumenLayout);
         panelResumenLayout.setHorizontalGroup(
             panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelResumenLayout.createSequentialGroup()
-<<<<<<< Updated upstream
-                .addGap(31, 31, 31)
-                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelResumenLayout.createSequentialGroup()
-                        .addComponent(cantidadJLabel)
-                        .addGap(29, 29, 29)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(totalJlabel)
-                            .addComponent(subtotalJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(impuestosJlabel))
-                        .addGap(29, 29, 29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 72, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-                        .addComponent(resumenJLabel)
-                        .addGap(110, 110, 110))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-                        .addComponent(botonProcederPago)
-                        .addGap(93, 93, 93))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-                        .addComponent(botonCancelar)
-                        .addGap(120, 120, 120))))
-=======
-                .addContainerGap(89, Short.MAX_VALUE)
-                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-                        .addComponent(botonProcederPago)
-                        .addGap(63, 63, 63))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-                        .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonCancelar)
-                            .addComponent(resumenJLabel))
-                        .addGap(83, 83, 83))))
->>>>>>> Stashed changes
+                            .addComponent(separarTotal, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelResumenLayout.createSequentialGroup()
+                                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(totalJlabel)
+                                    .addComponent(cantidadJLabel)
+                                    .addComponent(subtotalJlabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(impuestosJLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(0, 334, Short.MAX_VALUE)))
+                        .addGap(90, 90, 90))
+                    .addGroup(panelResumenLayout.createSequentialGroup()
+                        .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelResumenLayout.createSequentialGroup()
+                                .addGap(107, 107, 107)
+                                .addComponent(jLabel1))
+                            .addGroup(panelResumenLayout.createSequentialGroup()
+                                .addGap(82, 82, 82)
+                                .addComponent(jButton1))
+                            .addGroup(panelResumenLayout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(botonCanecelar)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelResumenLayout.setVerticalGroup(
             panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-<<<<<<< Updated upstream
-                .addGap(20, 20, 20)
-                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelResumenLayout.createSequentialGroup()
-                        .addComponent(resumenJLabel)
-                        .addGap(82, 82, 82)
-                        .addComponent(cantidadJLabel))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(subtotalJLabel)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(impuestosJlabel)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(totalJlabel)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
-=======
+            .addComponent(jSeparator1)
+            .addGroup(panelResumenLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(resumenJLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 406, Short.MAX_VALUE)
->>>>>>> Stashed changes
-                .addComponent(botonCancelar)
+                .addComponent(jLabel1)
+                .addGap(64, 64, 64)
+                .addComponent(cantidadJLabel)
+                .addGap(29, 29, 29)
+                .addComponent(subtotalJlabel)
+                .addGap(42, 42, 42)
+                .addComponent(impuestosJLabel)
+                .addGap(51, 51, 51)
+                .addComponent(separarTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(botonProcederPago)
-                .addGap(49, 49, 49))
+                .addComponent(totalJlabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonCanecelar)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(16, 16, 16))
         );
 
-        panel.setBackground(java.awt.SystemColor.activeCaption);
+        panelCambiante.setBackground(new java.awt.Color(255, 255, 255));
 
-        botonBuscarProducto.setText("Buscar producto");
-        botonBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
+        javax.swing.GroupLayout panelCambianteLayout = new javax.swing.GroupLayout(panelCambiante);
+        panelCambiante.setLayout(panelCambianteLayout);
+        panelCambianteLayout.setHorizontalGroup(
+            panelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 492, Short.MAX_VALUE)
+        );
+        panelCambianteLayout.setVerticalGroup(
+            panelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 515, Short.MAX_VALUE)
+        );
+
+        jPanel1.setBackground(new java.awt.Color(103, 80, 164));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("ID:123456");
+
+        jButton2.setBackground(new java.awt.Color(208, 188, 255));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Buscar Producto");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarProductoActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
-        idJLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        idJLabel.setText("ID:");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search (1).png"))); // NOI18N
+        jLabel2.setPreferredSize(new java.awt.Dimension(30, 30));
 
-        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
-        panel.setLayout(panelLayout);
-        panelLayout.setHorizontalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(idJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< Updated upstream
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 829, Short.MAX_VALUE)
-=======
+                .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
->>>>>>> Stashed changes
-                .addComponent(botonBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addGap(397, 397, 397))
         );
-        panelLayout.setVerticalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBuscarProducto))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel11)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jButton2.getAccessibleContext().setAccessibleName("botonBuscar");
+
+        javax.swing.GroupLayout backgroundPanelLayout = new javax.swing.GroupLayout(backgroundPanel);
+        backgroundPanel.setLayout(backgroundPanelLayout);
+        backgroundPanelLayout.setHorizontalGroup(
+            backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(backgroundPanelLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(panelCambiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelResumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        backgroundPanelLayout.setVerticalGroup(
+            backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundPanelLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelResumen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(backgroundPanelLayout.createSequentialGroup()
+                        .addComponent(panelCambiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 6, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -280,97 +288,57 @@ public class CarritoCompra extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-<<<<<<< Updated upstream
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(panelResumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-=======
-                .addContainerGap(837, Short.MAX_VALUE)
-                .addComponent(panelResumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
->>>>>>> Stashed changes
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(backgroundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelResumen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(backgroundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+    private void botonCanecelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCanecelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonCancelarActionPerformed
+        
+    }//GEN-LAST:event_botonCanecelarActionPerformed
 
-    private void botonProcederPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProcederPagoActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonProcederPagoActionPerformed
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void botonBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarProductoActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonBuscarProductoActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CarritoCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CarritoCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CarritoCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CarritoCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CarritoCompra().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonBuscarProducto;
-    private javax.swing.JButton botonCancelar;
-    private javax.swing.JButton botonProcederPago;
-<<<<<<< Updated upstream
+    private javax.swing.JPanel backgroundPanel;
+    private javax.swing.JButton botonCanecelar;
     private javax.swing.JLabel cantidadJLabel;
-    private javax.swing.JLabel idJLabel;
-    private javax.swing.JLabel impuestosJlabel;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JPanel panel;
+    private javax.swing.JLabel impuestosJLabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel panelCambiante;
     private javax.swing.JPanel panelResumen;
-    private javax.swing.JLabel resumenJLabel;
-    private javax.swing.JLabel subtotalJLabel;
+    private javax.swing.JSeparator separarTotal;
+    private javax.swing.JLabel subtotalJlabel;
     private javax.swing.JLabel totalJlabel;
-=======
-    private javax.swing.JLabel idJLabel;
-    private javax.swing.JPanel panel;
-    private javax.swing.JPanel panelResumen;
-    private javax.swing.JLabel resumenJLabel;
->>>>>>> Stashed changes
     // End of variables declaration//GEN-END:variables
 }
