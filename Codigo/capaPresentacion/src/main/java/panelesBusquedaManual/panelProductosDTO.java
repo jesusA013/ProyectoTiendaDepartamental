@@ -8,24 +8,34 @@ import DTOs.ProductoDTO;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.tree.DefaultTreeCellEditor;
 
 /**
  *
  * @author gamae
  */
 public class panelProductosDTO extends JPanel {
+    
+    int cantidad;
+    double  importe;
 
     /**
      * Creates new form JpanelProductosBO
      */
-    public panelProductosDTO(ProductoDTO producto, int cantidad, int importe) {
+    public panelProductosDTO(ProductoDTO producto, int cantidad) {
         initComponents();
-        this.SKULBL= new JLabel(producto.getSku());     
-        this.colorLBL=new JLabel(producto.getColor());
-        this.marcaLBL=new JLabel(producto.getMarca());
-        this.nombreLBL=new JLabel(producto.getNombre());
-        this.importeProductoLBL=new JLabel(Integer.toString(importe));
-        this.cantidadProductoLBL=new JLabel(Integer.toString(cantidad));
+        
+        
+        this.cantidad=cantidad;
+        this.importe= this.cantidad*producto.getPrecio();
+        this.lblSKU= new JLabel(producto.getSku());     
+        this.lblColor=new JLabel(producto.getColor());
+        this.lblMarca=new JLabel(producto.getMarca());
+        this.lblNombre=new JLabel(producto.getNombre());
+        this.lblImporte=new JLabel(Double.toString(this.importe));
+        this.txtCantidadProducto.setText(Integer.toString(cantidad));
+        
+        
     }
 
     /**
@@ -37,87 +47,119 @@ public class panelProductosDTO extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nombreLBL = new javax.swing.JLabel();
-        marcaLBL = new javax.swing.JLabel();
-        colorLBL = new javax.swing.JLabel();
-        SKULBL = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
+        lblMarca = new javax.swing.JLabel();
+        lblColor = new javax.swing.JLabel();
+        lblSKU = new javax.swing.JLabel();
+        lblCantidad = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        importeProductoLBL = new javax.swing.JLabel();
-        cantidadProductoLBL = new javax.swing.JLabel();
+        txtCantidadProducto = new javax.swing.JTextField();
+        lblImporte = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblPrecio = new javax.swing.JLabel();
+        btnAumentarProducto = new javax.swing.JButton();
+        btnDismunuirProducto = new javax.swing.JButton();
+        btnEliminarProducto = new javax.swing.JButton();
 
-        nombreLBL.setText("jLabel1");
+        jTextField1.setText("jTextField1");
 
-        marcaLBL.setText("jLabel2");
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        colorLBL.setText("jLabel3");
+        lblNombre.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lblNombre.setText("jLabel1");
+        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 56, -1, -1));
 
-        SKULBL.setText("jLabel4");
+        lblMarca.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblMarca.setText("jLabel2");
+        add(lblMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, -1));
 
-        jLabel1.setText("Cantidad");
+        lblColor.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblColor.setText("jLabel3");
+        add(lblColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
 
+        lblSKU.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblSKU.setText("jLabel4");
+        add(lblSKU, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
+
+        lblCantidad.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        lblCantidad.setText("Cantidad");
+        add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 54, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel2.setText("Importe");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(611, 54, -1, -1));
 
-        importeProductoLBL.setText("jLabel3");
+        txtCantidadProducto.setEditable(false);
+        txtCantidadProducto.setText("jTextField2");
+        add(txtCantidadProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 102, -1, -1));
 
-        cantidadProductoLBL.setText("jLabel3");
+        lblImporte.setText("jLabel3");
+        add(lblImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 104, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(nombreLBL)
-                        .addGap(211, 211, 211)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(cantidadProductoLBL))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(importeProductoLBL)
-                            .addComponent(jLabel2))
-                        .addGap(113, 113, 113))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SKULBL)
-                            .addComponent(colorLBL)
-                            .addComponent(marcaLBL))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreLBL)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(marcaLBL)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(importeProductoLBL)
-                    .addComponent(cantidadProductoLBL))
-                .addGap(9, 9, 9)
-                .addComponent(colorLBL)
-                .addGap(18, 18, 18)
-                .addComponent(SKULBL)
-                .addContainerGap(48, Short.MAX_VALUE))
-        );
+        jLabel4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel4.setText("Producto:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+
+        lblPrecio.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblPrecio.setText("jLabel5");
+        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, -1, -1));
+
+        btnAumentarProducto.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnAumentarProducto.setText("+");
+        btnAumentarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAumentarProductoActionPerformed(evt);
+            }
+        });
+        add(btnAumentarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 50, -1));
+
+        btnDismunuirProducto.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        btnDismunuirProducto.setText("-");
+        add(btnDismunuirProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, -1, 30));
+
+        btnEliminarProducto.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        btnEliminarProducto.setText("🗑");
+        btnEliminarProducto.setBorderPainted(false);
+        btnEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProductoActionPerformed(evt);
+            }
+        });
+        add(btnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 190, 60, 60));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAumentarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAumentarProductoActionPerformed
+        // TODO add your handling code here:
+        cantidad++;
+        this.txtCantidadProducto.setText(Integer.toString(cantidad));
+        
+    }//GEN-LAST:event_btnAumentarProductoActionPerformed
+
+    private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
+        // TODO add your handling code here:
+        cantidad--;
+        this.txtCantidadProducto.setText(Integer.toString(cantidad));
+        
+        
+        
+    }//GEN-LAST:event_btnEliminarProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel SKULBL;
-    private javax.swing.JLabel cantidadProductoLBL;
-    private javax.swing.JLabel colorLBL;
-    private javax.swing.JLabel importeProductoLBL;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnAumentarProducto;
+    private javax.swing.JButton btnDismunuirProducto;
+    private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel marcaLBL;
-    private javax.swing.JLabel nombreLBL;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblCantidad;
+    private javax.swing.JLabel lblColor;
+    private javax.swing.JLabel lblImporte;
+    private javax.swing.JLabel lblMarca;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblPrecio;
+    private javax.swing.JLabel lblSKU;
+    private javax.swing.JTextField txtCantidadProducto;
     // End of variables declaration//GEN-END:variables
 }
