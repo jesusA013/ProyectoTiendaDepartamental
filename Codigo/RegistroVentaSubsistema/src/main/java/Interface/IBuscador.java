@@ -56,8 +56,8 @@ public interface IBuscador {
      * ES UN METODO UN POCO PESADO, POR FAVOR USARLO Y GUARDAR SU RETURN EN UNA
      * VARIABLE PARA NO ESTARLO LLAMARLO MUCHAS VECES.
      *
-     * @param Marca Marca a ser filtrada para su busqueda
-     * @return Regresa una List con las marcas filtradas por el parametro
+     * @param nombre nombre a ser filtrada para su busqueda
+     * @return Regresa una List con el nombre filtradas por el parametro
      */
     List buscarNombre(String nombre);
 
