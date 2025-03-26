@@ -28,7 +28,7 @@ public class carro extends JFrame {
 
         // Agregar panelID en la parte superior
         add(panelID, BorderLayout.NORTH);
-        panelID.setPreferredSize(new Dimension(800, 20)); // Establecer dimensiones
+        panelID.setPreferredSize(new Dimension(800, 50)); // Establecer dimensiones
 
         // Agregar panelResumen a la derecha
         add(panelResumen, BorderLayout.EAST);
