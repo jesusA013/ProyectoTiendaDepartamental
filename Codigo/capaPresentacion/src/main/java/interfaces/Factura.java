@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import DTOs.FacturaDTO;
 
+
 public class Factura extends JFrame {
     private JTextField txtRfc, txtNombre, txtCalle, txtNumExterior, txtNumInterior, txtColonia, txtCodigoPostal,
                        txtDelegacion, txtCiudad, txtEstado, txtPais, txtCorreo;
@@ -16,7 +17,7 @@ public class Factura extends JFrame {
     public Factura() {
         // Configuración básica de la ventana
         setTitle("FacturaDatos");
-        setSize(500, 600);
+        setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 

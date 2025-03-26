@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  */
 public class MockManejadorDeVenta implements IRegistroVenta {
 
-    // Clase interna para los estados (copiada de ManejadorVenta)
+    // Clase para los estados (copiada de ManejadorVenta)
     private static class Estados {
         static LinkedList<String> estados = new LinkedList<>();
 
