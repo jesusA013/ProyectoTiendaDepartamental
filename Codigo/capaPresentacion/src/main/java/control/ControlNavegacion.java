@@ -61,9 +61,9 @@ public class ControlNavegacion {
     }
     
     public void irACarritoCompra(){
-        mostrarPantalla(pantallaCarritoCompra);
-        
+        mostrarPantalla(pantallaCarritoCompra);  
     }
     
+  
         
 }

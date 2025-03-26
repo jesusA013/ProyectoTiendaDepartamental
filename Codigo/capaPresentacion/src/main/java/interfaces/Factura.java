@@ -102,7 +102,7 @@ public class Factura extends JFrame {
         btnFacturar.addActionListener(e -> facturar());
         btnCancelar.addActionListener(e -> cancelar());
 
-        setVisible(true);
+        
     }
 
     private void facturar() {
@@ -134,7 +134,5 @@ public class Factura extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Factura());
-    }
+
 }

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package interfaces;
+import control.ControlNavegacion;
 import javax.swing.*;
 import java.awt.*;
 
@@ -15,8 +16,8 @@ public class InicioSesion extends JFrame {
         // Configuración básica de la ventana
         setTitle("Inicio de Sesión");
         setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Centrar la ventana en la pantalla
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        
         setLayout(new BorderLayout());
 
         // Panel superior: Título y borde morado
@@ -106,10 +107,9 @@ public class InicioSesion extends JFrame {
 
         // Validar las credenciales, hay que poner esta validacion en el MOCK (pendiente)
         if (id.equals("123456") && contrasena.equals("password")) {
-            System.out.println("Credenciales válidas .");
+            System.out.println("Inicio de sesion exitoso.");
             // Abrir el formulario Factura
-            new Factura();
-            dispose(); // Cerrar la ventana de inicio de sesión
+            ControlNavegacion.getInstance().irACarritoCompra();
         } else {
             System.out.println("Credenciales inválidas ");
             JOptionPane.showMessageDialog(this, "ID o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -119,8 +119,10 @@ public class InicioSesion extends JFrame {
     private void cancelar() {
         int confirm = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea cancelar?", "Confirmar", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
-            dispose(); // Cierra la ventana
+            setVisible(false);
+            control.ControlNavegacion.getInstance().irAMenuPrincipal();
         }
+        
     }
 
 

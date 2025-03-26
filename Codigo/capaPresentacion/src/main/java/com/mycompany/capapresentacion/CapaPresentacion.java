@@ -13,11 +13,8 @@ import control.ControlNavegacion;
 public class CapaPresentacion {
 
     public static void main(String[] args) {
-        ControlNavegacion navigator = new ControlNavegacion();
-       
-//        navigator.irAMenuPrincipal();
+        ControlNavegacion.getInstance().irAMenuPrincipal();
         
-        navigator.irAInicioSesion();
         
         
     }
