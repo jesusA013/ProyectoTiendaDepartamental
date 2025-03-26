@@ -6,12 +6,13 @@ package interfaces;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import DTOs.FacturaDTO;
 
 public class Factura extends JFrame {
     private JTextField txtRfc, txtNombre, txtCalle, txtNumExterior, txtNumInterior, txtColonia, txtCodigoPostal,
                        txtDelegacion, txtCiudad, txtEstado, txtPais, txtCorreo;
     private JButton btnFacturar, btnCancelar;
-    
+
     public Factura() {
         // Configuración básica de la ventana
         setTitle("FacturaDatos");
@@ -104,31 +105,28 @@ public class Factura extends JFrame {
     }
 
     private void facturar() {
-        // Validar campos obligatorios
-        if (txtRfc.getText().trim().isEmpty() || txtPais.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete los campos obligatorios (*).", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Simulación de envío a la capa de negocio
-        String datosFactura = "RFC: " + txtRfc.getText() + "\n" +
-                             "Nombre: " + txtNombre.getText() + "\n" +
-                             "Calle: " + txtCalle.getText() + "\n" +
-                             "Número Exterior: " + txtNumExterior.getText() + "\n" +
-                             "Número Interior: " + txtNumInterior.getText() + "\n" +
-                             "Colonia: " + txtColonia.getText() + "\n" +
-                             "Código Postal: " + txtCodigoPostal.getText() + "\n" +
-                             "Delegación: " + txtDelegacion.getText() + "\n" +
-                             "Ciudad: " + txtCiudad.getText() + "\n" +
-                             "Estado: " + txtEstado.getText() + "\n" +
-                             "País: " + txtPais.getText() + "\n" +
-                             "Correo: " + txtCorreo.getText();
+        // Crear un FacturaDTO con los datos ingresados
+        FacturaDTO facturaDTO = new FacturaDTO(
+            txtRfc.getText(),
+            txtCodigoPostal.getText(),
+            txtCalle.getText(),
+            txtNombre.getText(),
+            txtNumExterior.getText(),
+            txtNumInterior.getText(),
+            txtColonia.getText(),
+            txtEstado.getText(),
+            txtPais.getText(),
+            txtCorreo.getText()
+        );
         
-        JOptionPane.showMessageDialog(this, "Factura generada con éxito:\n" + datosFactura, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        // Mostrar el objeto FacturaDTO 
+        JOptionPane.showMessageDialog(this, "Factura generada con éxito:\n" + facturaDTO.toString(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        
+        // FacturaNegocio facturaNegocio = new FacturaNegocio();
+        // facturaNegocio.crearFactura(facturaDTO);
     }
 
     private void cancelar() {
-        // Limpiar los campos o cerrar la ventana
         int confirm = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea cancelar?", "Confirmar", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             dispose(); // Cierra la ventana
@@ -136,7 +134,6 @@ public class Factura extends JFrame {
     }
 
     public static void main(String[] args) {
-        // Asegurarse de que el código se ejecute en el hilo de despacho de eventos (EDT)
         SwingUtilities.invokeLater(() -> new Factura());
     }
 }

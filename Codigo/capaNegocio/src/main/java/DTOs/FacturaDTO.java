@@ -53,6 +53,22 @@ public class FacturaDTO {
         this.correo = correo;
     }
 
+    @Override
+public String toString() {
+    return "FacturaDTO{" +
+           "RFC='" + RFC + '\'' +
+           ", codigoPostal='" + codigoPostal + '\'' +
+           ", calle='" + calle + '\'' +
+           ", nombre='" + nombre + '\'' +
+           ", numeroExterior='" + numeroExterior + '\'' +
+           ", numeroInterior='" + numeroInterior + '\'' +
+           ", colonia='" + colonia + '\'' +
+           ", estado='" + estado + '\'' +
+           ", pais='" + pais + '\'' +
+           ", correo='" + correo + '\'' +
+           '}';
+}
+
     /**
      * Regresa el RFC del vendedor
      *
