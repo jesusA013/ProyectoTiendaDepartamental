@@ -4,6 +4,12 @@
  */
 package interfaces;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Jesus
@@ -11,11 +17,18 @@ package interfaces;
 public class MenuPrincipal extends javax.swing.JFrame {
 
     /**
-     * Creates new form MenuPrincipal
+     * Metodo para Crear un nuevo Form MenuPrincipal
      */
     public MenuPrincipal() {
         initComponents();
         this.setSize(800, 600);
+        
+        
+        this.getContentPane().setBackground(Color.WHITE);
+        
+        this.add(panelBotones,BorderLayout.CENTER);
+      
+        
         
         
     }
@@ -31,13 +44,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         panelBotones = new javax.swing.JPanel();
         btnOpcionVendedor = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnOpcionAlmacen = new javax.swing.JButton();
         btnOpcionAdministrador = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblVendedor = new javax.swing.JLabel();
+        lblAdministrador = new javax.swing.JLabel();
+        lblAlmacen = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setBackground(new java.awt.Color(204, 51, 255));
 
+        panelBotones.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnOpcionVendedor.setBackground(new java.awt.Color(157, 137, 208));
         btnOpcionVendedor.setText("Vendedor");
         btnOpcionVendedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -45,19 +64,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Almacen");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnOpcionAlmacen.setBackground(new java.awt.Color(157, 137, 208));
+        btnOpcionAlmacen.setText("Almacen");
+        btnOpcionAlmacen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnOpcionAlmacenActionPerformed(evt);
             }
         });
 
+        btnOpcionAdministrador.setBackground(new java.awt.Color(157, 137, 208));
         btnOpcionAdministrador.setText("Administrador");
         btnOpcionAdministrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOpcionAdministradorActionPerformed(evt);
             }
         });
+
+        lblVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoVendedor.png"))); // NOI18N
+
+        lblAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoAdministrador.png"))); // NOI18N
+
+        lblAlmacen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoAlmacen.png"))); // NOI18N
 
         javax.swing.GroupLayout panelBotonesLayout = new javax.swing.GroupLayout(panelBotones);
         panelBotones.setLayout(panelBotonesLayout);
@@ -66,46 +93,66 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBotonesLayout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnOpcionVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnOpcionAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                    .addGroup(panelBotonesLayout.createSequentialGroup()
+                        .addComponent(btnOpcionAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblAdministrador))
+                    .addGroup(panelBotonesLayout.createSequentialGroup()
+                        .addComponent(btnOpcionAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblAlmacen))
+                    .addGroup(panelBotonesLayout.createSequentialGroup()
+                        .addComponent(btnOpcionVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblVendedor)))
+                .addGap(24, 29, Short.MAX_VALUE))
         );
         panelBotonesLayout.setVerticalGroup(
             panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBotonesLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(btnOpcionVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnOpcionVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(btnOpcionAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnOpcionAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnOpcionAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11))
         );
 
-        jLabel1.setText("jLabel1");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(308, 308, 308)
+                .addGap(283, 283, 283)
                 .addComponent(panelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addContainerGap(281, Short.MAX_VALUE))
+                .addContainerGap(310, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(215, 215, 215)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(190, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
                 .addComponent(panelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(148, 148, 148))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         pack();
@@ -115,9 +162,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnOpcionVendedorActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnOpcionAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionAlmacenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnOpcionAlmacenActionPerformed
 
     private void btnOpcionAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionAdministradorActionPerformed
         // TODO add your handling code here:
@@ -160,9 +207,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOpcionAdministrador;
+    private javax.swing.JButton btnOpcionAlmacen;
     private javax.swing.JButton btnOpcionVendedor;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblAdministrador;
+    private javax.swing.JLabel lblAlmacen;
+    private javax.swing.JLabel lblVendedor;
     private javax.swing.JPanel panelBotones;
     // End of variables declaration//GEN-END:variables
 }
