@@ -97,7 +97,7 @@ public class InicioSesion extends JFrame {
         btnIngresar.addActionListener(e -> iniciarSesion());
         btnCancelar.addActionListener(e -> cancelar());
 
-        setVisible(true);
+        
     }
 
     private void iniciarSesion() {
@@ -123,7 +123,6 @@ public class InicioSesion extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new InicioSesion());
-    }
+
+    
 }

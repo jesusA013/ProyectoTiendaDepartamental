@@ -4,6 +4,8 @@
 
 package com.mycompany.capapresentacion;
 
+import control.ControlNavegacion;
+
 /**
  *
  * @author Jesus
@@ -11,6 +13,12 @@ package com.mycompany.capapresentacion;
 public class CapaPresentacion {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        ControlNavegacion navigator = new ControlNavegacion();
+       
+//        navigator.irAMenuPrincipal();
+        
+        navigator.irAInicioSesion();
+        
+        
     }
 }
