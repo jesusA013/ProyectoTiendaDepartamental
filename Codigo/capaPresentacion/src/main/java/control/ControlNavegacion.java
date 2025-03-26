@@ -23,6 +23,7 @@ public class ControlNavegacion {
     private CarritoCompra pantallaCarritoCompra;
     private FacturaDatos pantallaFactura;
     private BusquedaProducto pantallaBusquedaProducto;
+    private SeleccionMetodoPago pantallaSeleccionMetodoPago;
 
     //Creacion de cada pantalla
     public ControlNavegacion() {
@@ -30,8 +31,8 @@ public class ControlNavegacion {
         this.pantallaMenuPrincipal = new MenuPrincipal();
         this.pantallaCarritoCompra = new CarritoCompra();
         this.pantallaFactura = new FacturaDatos();
-        this.pantallaBusquedaProducto= new BusquedaProducto();
-
+        this.pantallaBusquedaProducto = new BusquedaProducto();
+        this.pantallaSeleccionMetodoPago = new SeleccionMetodoPago();
     }
 
     public static ControlNavegacion getInstance() {
@@ -64,19 +65,21 @@ public class ControlNavegacion {
     public void irAMenuPrincipal() {
         mostrarPantalla(pantallaMenuPrincipal);
     }
-    
-    public void irACarritoCompra(){
-        mostrarPantalla(pantallaCarritoCompra);  
+
+    public void irACarritoCompra() {
+        mostrarPantalla(pantallaCarritoCompra);
     }
-    
-    public void irAFacturaDatos(){
+
+    public void irAFacturaDatos() {
         mostrarPantalla(pantallaFactura);
     }
-    
-    public void irABusquedaProducto(){
+
+    public void irABusquedaProducto() {
         mostrarPantalla(pantallaBusquedaProducto);
     }
     
-  
-        
+    public void irASeleccionMetodoPago() {
+        mostrarPantalla(pantallaSeleccionMetodoPago);
+    }
+    
 }

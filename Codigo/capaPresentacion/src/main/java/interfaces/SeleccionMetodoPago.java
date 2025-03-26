@@ -11,7 +11,7 @@ import panelesMetodos.PanelMetodoTarjeta;
 
 /**
  *
- * @author Jesus
+ * @author Ángel Ruíz
  */
 public class SeleccionMetodoPago extends javax.swing.JFrame {
 

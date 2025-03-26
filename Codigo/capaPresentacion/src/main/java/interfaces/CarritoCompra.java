@@ -89,7 +89,7 @@ public class CarritoCompra extends javax.swing.JFrame {
         totalJlabel = new javax.swing.JLabel();
         botonCanecelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnPago = new javax.swing.JButton();
         panelCambiante = new javax.swing.JPanel();
         panelSuperior = new javax.swing.JPanel();
         lbl_ID = new javax.swing.JLabel();
@@ -136,14 +136,14 @@ public class CarritoCompra extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Resumen");
 
-        jButton1.setBackground(new java.awt.Color(103, 80, 164));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Proceder a Pago");
-        jButton1.setPreferredSize(new java.awt.Dimension(196, 39));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnPago.setBackground(new java.awt.Color(103, 80, 164));
+        btnPago.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnPago.setForeground(new java.awt.Color(255, 255, 255));
+        btnPago.setText("Proceder a Pago");
+        btnPago.setPreferredSize(new java.awt.Dimension(196, 39));
+        btnPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnPagoActionPerformed(evt);
             }
         });
 
@@ -165,7 +165,7 @@ public class CarritoCompra extends javax.swing.JFrame {
                                     .addComponent(subtotalJlabel, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(impuestosJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(botonCanecelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 334, Short.MAX_VALUE)))
                         .addGap(90, 90, 90))
                     .addGroup(panelResumenLayout.createSequentialGroup()
@@ -192,7 +192,7 @@ public class CarritoCompra extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonCanecelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
 
@@ -306,10 +306,10 @@ public class CarritoCompra extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonCanecelarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagoActionPerformed
+        ControlNavegacion.getInstance().irASeleccionMetodoPago();
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnPagoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
        ControlNavegacion.getInstance().irABusquedaProducto();
@@ -324,9 +324,9 @@ public class CarritoCompra extends javax.swing.JFrame {
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JButton botonCanecelar;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnPago;
     private javax.swing.JLabel cantidadJLabel;
     private javax.swing.JLabel impuestosJLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField lblBuscarProducto;
