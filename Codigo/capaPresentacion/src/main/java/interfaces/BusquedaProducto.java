@@ -29,6 +29,10 @@ public class BusquedaProducto extends javax.swing.JFrame {
 
     }
 
+    public void setBusqueda(String busqueda) {
+        this.busqueda = busqueda;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -121,11 +125,8 @@ public class BusquedaProducto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
     
-    
-    public void setBusqueda(String busqueda) {
-        this.busqueda = busqueda;
-    }
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         ControlNavegacion.getInstance().irACarritoCompra();
     }//GEN-LAST:event_btnRegresarActionPerformed
