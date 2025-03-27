@@ -135,8 +135,4 @@ public class Factura extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        // Asegurarse de que el código se ejecute en el hilo de despacho de eventos (EDT)
-        SwingUtilities.invokeLater(() -> new Factura());
-    }
 }
