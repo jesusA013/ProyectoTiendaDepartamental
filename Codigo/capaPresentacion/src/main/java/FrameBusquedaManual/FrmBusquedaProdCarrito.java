@@ -6,7 +6,7 @@ package FrameBusquedaManual;
 
 /**
  *
- * @author Jesus Gammael Soto Escalante 248336
+ * @author gamae
  */
 public class FrmBusquedaProdCarrito extends javax.swing.JFrame {
 

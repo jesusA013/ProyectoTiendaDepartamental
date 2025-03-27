@@ -15,7 +15,7 @@ public class ProductoCarritoDTO {
     private double precio;
     private String marca;
     private String color;
-    private int stock;
+    private int cantidad;
 
     public String getNombre() {
         return nombre;
@@ -57,38 +57,47 @@ public class ProductoCarritoDTO {
     public ProductoCarritoDTO() {
     }
 
+    
     /**
      * Constructor de los productos del carrito de objeto de transferencia de
      * datos
      *
-     * @param stock Stock del producto en el carrito
+     * @param cantidad del producto en el carrito
      * @param precio Precio del producto en el carrito
      * @param importe Importe del producto en el carrito
      * @param impuesto Impuesto del producto en el carrito
+     * @param color color del producto en el carrito
+     * @param marca marca del producto en el carrito
+     * @param nombre marca del producto en el carrito
+     * @param sku marca del producto en el carrito
      */
-    public ProductoCarritoDTO(int stock, double precio, double importe, double impuesto) {
-        this.stock = stock;
+    public ProductoCarritoDTO(String nombre, String sku, double precio, String marca, String color, int cantidad) {
+        this.nombre = nombre;
+        this.sku = sku;
         this.precio = precio;
-        this.importe = importe;
-        this.impuesto = impuesto;
+        this.marca = marca;
+        this.color = color;
+        this.cantidad = cantidad;
+        this.importe = cantidad*precio;
+        this.impuesto = importe*1.16;
     }
 
     /**
-     * Regresa el stock del producto en el carrito
+     * Regresa el cantidad del producto en el carrito
      *
-     * @return Stock del producto en el carrito
+     * @return cantidad del producto en el carrito
      */
-    public int getStock() {
-        return stock;
+    public int getCantidad() {
+        return cantidad;
     }
 
     /**
-     * Establece el stock del producto en el carrito
+     * Establece el cantidad del producto en el carrito
      *
-     * @param stock Stock del producto en el carrito
+     * @param cantidad del producto en el carrito
      */
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     /**
