@@ -20,7 +20,7 @@ import javax.swing.tree.DefaultTreeCellEditor;
  */
 public class PanelProductosCarrito extends JPanel {
 
-    public int cantidad;
+    int cantidad;
     double importe;
     double precio;
 

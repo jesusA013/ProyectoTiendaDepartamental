@@ -42,20 +42,20 @@ public class CarritoCompra extends javax.swing.JFrame {
         panelesProductoCarrito.add(productoPanel3);
         panelesProductoCarrito.add(productoPanel4);
 
-        
         for (PanelProductosCarrito productos : panelesProductoCarrito) {
             panelCambiante.add(productos);
         }
-        
+
         panelCambiante.setLayout(new BoxLayout(panelCambiante, BoxLayout.Y_AXIS));
 
         int cantidadProductos = 0;
+        int subtotalProductos = 0;
+        int impuestosProductos = 0;
+        int totalProductos = 0;
 
-        for (PanelProductosCarrito productos : panelesProductoCarrito) {
-            cantidadProductos += productos.cantidad;
-        }
-        
-        lblCantProductos.setText(Integer.toString(cantidadProductos));
+        lblImpuestos.setText(Double.toString(51.2));
+        lblSubProductos.setText(Double.toString(320));
+        lblCantProductos.setText(Integer.toString(4));
 
     }
 
@@ -319,7 +319,10 @@ public class CarritoCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPagoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        ControlNavegacion.getInstance().irABusquedaProducto();
+
+        ControlNavegacion.getInstance().irABusquedaProducto(lblBuscarProducto.getText());
+
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void lblBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblBuscarProductoActionPerformed

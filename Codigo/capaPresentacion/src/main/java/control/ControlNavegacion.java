@@ -74,8 +74,8 @@ public class ControlNavegacion {
         mostrarPantalla(pantallaFactura);
     }
 
-    public void irABusquedaProducto() {
-        
+    public void irABusquedaProducto(String busqueda) {
+        pantallaBusquedaProducto.setBusqueda(busqueda);
         mostrarPantalla(pantallaBusquedaProducto);
     }
     

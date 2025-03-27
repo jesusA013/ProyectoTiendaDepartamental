@@ -13,6 +13,8 @@ import java.awt.Color;
  */
 public class BusquedaProducto extends javax.swing.JFrame {
 
+    String busqueda;
+
     /**
      * Creates new form BusquedaManual
      */
@@ -20,16 +22,12 @@ public class BusquedaProducto extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(Color.WHITE);
         this.setTitle("Busqueda de Producto");
-        this.setSize(800,600);
+        this.setSize(800, 600);
         this.setLocationRelativeTo(null);
-        
+
         this.lbl_ID.setText("ID: ");
-        
-       
-        
-        
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,12 +121,15 @@ public class BusquedaProducto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
+    public void setBusqueda(String busqueda) {
+        this.busqueda = busqueda;
+    }
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         ControlNavegacion.getInstance().irACarritoCompra();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegresar;
