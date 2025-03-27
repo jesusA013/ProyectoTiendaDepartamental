@@ -294,9 +294,6 @@ public class CarritoCompra extends javax.swing.JFrame {
 
     private void lblBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblBuscarProductoActionPerformed
         // TODO add your handling code here:
-        
-        
-        
     }//GEN-LAST:event_lblBuscarProductoActionPerformed
 
     /**
