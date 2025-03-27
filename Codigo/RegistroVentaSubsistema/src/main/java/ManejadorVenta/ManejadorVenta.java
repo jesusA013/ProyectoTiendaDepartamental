@@ -9,7 +9,9 @@ import BOs.ProductoBO;
 import DTOs.ProductoDTO;
 import Interface.IRegistroVenta;
 import RegistroVentaException.RegistroException;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -17,6 +19,28 @@ import java.util.regex.Pattern;
  * @author gamae
  */
 public class ManejadorVenta implements IRegistroVenta {
+
+    //Lista de ProductoDTOs que se mostraran en los JFrames
+    private List<ProductoDTO> productos = new ArrayList<>();
+    
+    private ProductoDTO producto1 = new ProductoDTO("Tenis Air Force 1", "1511617", 100.00, "Nike", "Blanco", 5);
+    private ProductoDTO producto2 = new ProductoDTO("Camiseta Adidas", "1511622", 40.00, "Adidas", "Negro", 10);
+    private ProductoDTO producto3 = new ProductoDTO("Mochila Under Armour", "1511633", 30.00, "Under Armour", "Azul", 7);
+    private ProductoDTO producto4 = new ProductoDTO("Lentes de sol Gucci", "1511634",80.00,"Gucci","Negro", 4);
+    private ProductoDTO producto5 = new ProductoDTO("Sudadera Puma", "1511644", 50.00, "Puma", "Rojo", 8);
+    
+   public ManejadorVenta(){
+       productos.add(producto1);
+       productos.add(producto2);
+       productos.add(producto3);
+       productos.add(producto4);
+       productos.add(producto5);
+   }
+   
+   public List<ProductoDTO> obtenerProductos(){
+       return productos;
+   }
+    
 
     @Override
     public boolean validarRFC(String RFC) throws RegistroException {
@@ -257,7 +281,7 @@ public class ManejadorVenta implements IRegistroVenta {
 
     @Override
     public double calcularTotal() {
-         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -334,4 +358,5 @@ public class ManejadorVenta implements IRegistroVenta {
     public void registrarVenta() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 }

@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package panelesBusquedaManual;
+package PanelesProductos;
 
+import BOs.ProductoCarritoBO;
+import DTOs.ProductoCarritoDTO;
 import DTOs.ProductoDTO;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -11,31 +13,31 @@ import javax.swing.JPanel;
 import javax.swing.tree.DefaultTreeCellEditor;
 
 /**
- *
+ * Esta clase Panel sirve para crear multiples instancias de este objeto con los
+ * datos de los ProductosDTO
  * @author gamae
  */
-public class panelProductosDTO extends JPanel {
-    
+public class PanelProductosCarrito extends JPanel {
+
     int cantidad;
-    double  importe;
+    double importe;
 
     /**
      * Creates new form JpanelProductosBO
+     * @param producto
      */
-    public panelProductosDTO(ProductoDTO producto, int cantidad) {
+    public PanelProductosCarrito(ProductoCarritoDTO producto) {
         initComponents();
-        
-        
-        this.cantidad=cantidad;
-        this.importe= this.cantidad*producto.getPrecio();
-        this.lblSKU= new JLabel(producto.getSku());     
-        this.lblColor=new JLabel(producto.getColor());
-        this.lblMarca=new JLabel(producto.getMarca());
-        this.lblNombre=new JLabel(producto.getNombre());
-        this.lblImporte=new JLabel(Double.toString(this.importe));
-        this.txtCantidadProducto.setText(Integer.toString(cantidad));
-        
-        
+
+        this.cantidad = producto.getCantidad();
+        this.importe = producto.getCantidad()* producto.getPrecio();
+        this.lblSKU.setText( producto.getSku()); 
+        this.lblColor.setText(producto.getColor());
+        this.lblMarca.setText(producto.getMarca());
+        this.lblNombre.setText(producto.getNombre());
+        this.lblImporte.setText(Double.toString(producto.getImporte()));
+        this.txtCantidadProducto.setText(Integer.toString(producto.getCantidad()));
+
     }
 
     /**
@@ -64,46 +66,53 @@ public class panelProductosDTO extends JPanel {
 
         jTextField1.setText("jTextField1");
 
+        setMinimumSize(new java.awt.Dimension(520, 290));
+        setPreferredSize(new java.awt.Dimension(520, 290));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNombre.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lblNombre.setText("jLabel1");
-        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 56, -1, -1));
+        lblNombre.setText("Nombre");
+        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
 
         lblMarca.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblMarca.setText("jLabel2");
-        add(lblMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, -1));
+        lblMarca.setText("Marca");
+        add(lblMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
 
         lblColor.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblColor.setText("jLabel3");
-        add(lblColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
+        lblColor.setText("Color");
+        add(lblColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
 
         lblSKU.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblSKU.setText("jLabel4");
-        add(lblSKU, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
+        lblSKU.setText("SKU");
+        add(lblSKU, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, -1, -1));
 
         lblCantidad.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         lblCantidad.setText("Cantidad");
-        add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 54, -1, -1));
+        add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel2.setText("Importe");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(611, 54, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, -1, -1));
 
         txtCantidadProducto.setEditable(false);
-        txtCantidadProducto.setText("jTextField2");
-        add(txtCantidadProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 102, -1, -1));
+        txtCantidadProducto.setText("CAntidad");
+        txtCantidadProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadProductoActionPerformed(evt);
+            }
+        });
+        add(txtCantidadProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, -1, -1));
 
-        lblImporte.setText("jLabel3");
-        add(lblImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 104, -1, -1));
+        lblImporte.setText("0");
+        add(lblImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel4.setText("Producto:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
 
         lblPrecio.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        lblPrecio.setText("jLabel5");
-        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, -1, -1));
+        lblPrecio.setText("Precio");
+        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
 
         btnAumentarProducto.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btnAumentarProducto.setText("+");
@@ -112,11 +121,11 @@ public class panelProductosDTO extends JPanel {
                 btnAumentarProductoActionPerformed(evt);
             }
         });
-        add(btnAumentarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 50, -1));
+        add(btnAumentarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 50, -1));
 
         btnDismunuirProducto.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btnDismunuirProducto.setText("-");
-        add(btnDismunuirProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, -1, 30));
+        add(btnDismunuirProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, 30));
 
         btnEliminarProducto.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         btnEliminarProducto.setText("🗑");
@@ -126,24 +135,27 @@ public class panelProductosDTO extends JPanel {
                 btnEliminarProductoActionPerformed(evt);
             }
         });
-        add(btnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 190, 60, 60));
+        add(btnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 80, 80));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAumentarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAumentarProductoActionPerformed
         // TODO add your handling code here:
         cantidad++;
         this.txtCantidadProducto.setText(Integer.toString(cantidad));
-        
+
     }//GEN-LAST:event_btnAumentarProductoActionPerformed
 
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
         // TODO add your handling code here:
         cantidad--;
         this.txtCantidadProducto.setText(Integer.toString(cantidad));
-        
-        
-        
+
+
     }//GEN-LAST:event_btnEliminarProductoActionPerformed
+
+    private void txtCantidadProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

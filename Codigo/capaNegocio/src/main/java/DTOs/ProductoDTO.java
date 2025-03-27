@@ -150,4 +150,6 @@ public class ProductoDTO {
     public void setStock(int stock) {
         this.stock = stock;
     }
+    
+    
 }

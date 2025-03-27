@@ -14,7 +14,7 @@ public class CapaPresentacion {
     public static void main(String[] args) {
       ControlNavegacion.getInstance().irAMenuPrincipal();
 
-       
+      
 
     }
 }
