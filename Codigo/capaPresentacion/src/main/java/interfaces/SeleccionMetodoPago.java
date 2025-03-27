@@ -20,6 +20,12 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
      */
     public SeleccionMetodoPago() {
         initComponents();
+        
+        this.lblID.setText("ID: " + "123456");
+        this.lblCantidadProducto.setText(Integer.toString(4));
+        this.lblSubtotal.setText(Double.toString(320));
+        this.lblImpuestos.setText(Double.toString(51.2));
+        this.lblTotal.setText(Double.toString(370.2));
     }
 
     /**
@@ -168,7 +174,7 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblImpuestos, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(90, 90, 90))
+                .addContainerGap())
         );
         panelResumenLayout.setVerticalGroup(
             panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,9 +274,9 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
                             .addComponent(metodoEfectivo)
                             .addComponent(metodoTarjeta))
                         .addComponent(lblSeleccioneMP)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelResumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(90, 90, 90))
         );
         panelFondoLayout.setVerticalGroup(
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

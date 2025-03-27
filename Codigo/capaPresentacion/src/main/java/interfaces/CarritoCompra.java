@@ -56,6 +56,7 @@ public class CarritoCompra extends javax.swing.JFrame {
         lblImpuestos.setText(Double.toString(51.2));
         lblSubProductos.setText(Double.toString(320));
         lblCantProductos.setText(Integer.toString(4));
+        totalJlabel.setText(Double.toString(370.2));
 
     }
 
