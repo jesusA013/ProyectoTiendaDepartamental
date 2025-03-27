@@ -12,7 +12,8 @@ import java.awt.Color;
  * @author Jesus
  */
 public class BusquedaProducto extends javax.swing.JFrame {
-
+        private String busqueda;
+        
     /**
      * Creates new form BusquedaManual
      */
@@ -25,9 +26,14 @@ public class BusquedaProducto extends javax.swing.JFrame {
         
         this.lbl_ID.setText("ID: ");
         
+        
        
         
         
+    }
+
+    public void setBusqueda(String busqueda) {
+        this.busqueda = busqueda;
     }
     
 
