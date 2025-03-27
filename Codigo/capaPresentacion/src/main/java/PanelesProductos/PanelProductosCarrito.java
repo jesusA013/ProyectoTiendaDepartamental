@@ -15,29 +15,33 @@ import javax.swing.tree.DefaultTreeCellEditor;
 /**
  * Esta clase Panel sirve para crear multiples instancias de este objeto con los
  * datos de los ProductosDTO
+ *
  * @author gamae
  */
 public class PanelProductosCarrito extends JPanel {
 
     int cantidad;
     double importe;
+    double precio;
 
     /**
      * Creates new form JpanelProductosBO
+     *
      * @param producto
      */
     public PanelProductosCarrito(ProductoCarritoDTO producto) {
         initComponents();
 
         this.cantidad = producto.getCantidad();
-        this.importe = producto.getCantidad()* producto.getPrecio();
-        this.lblSKU.setText( producto.getSku()); 
+        this.importe = producto.getCantidad() * producto.getPrecio();
+        this.precio = producto.getPrecio();
+        this.lblSKU.setText(producto.getSku());
         this.lblColor.setText(producto.getColor());
         this.lblMarca.setText(producto.getMarca());
         this.lblNombre.setText(producto.getNombre());
         this.lblImporte.setText(Double.toString(producto.getImporte()));
         this.txtCantidadProducto.setText(Integer.toString(producto.getCantidad()));
-
+        this.lblPrecio.setText(Double.toString(precio));
     }
 
     /**
@@ -66,33 +70,34 @@ public class PanelProductosCarrito extends JPanel {
 
         jTextField1.setText("jTextField1");
 
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setMinimumSize(new java.awt.Dimension(520, 290));
         setPreferredSize(new java.awt.Dimension(520, 290));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNombre.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         lblNombre.setText("Nombre");
-        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
+        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
         lblMarca.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblMarca.setText("Marca");
-        add(lblMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
+        add(lblMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
 
         lblColor.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblColor.setText("Color");
-        add(lblColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
+        add(lblColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, -1, -1));
 
         lblSKU.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblSKU.setText("SKU");
-        add(lblSKU, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, -1, -1));
+        add(lblSKU, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
 
         lblCantidad.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         lblCantidad.setText("Cantidad");
-        add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
+        add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel2.setText("Importe");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
         txtCantidadProducto.setEditable(false);
         txtCantidadProducto.setText("CAntidad");
@@ -101,18 +106,18 @@ public class PanelProductosCarrito extends JPanel {
                 txtCantidadProductoActionPerformed(evt);
             }
         });
-        add(txtCantidadProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, -1, -1));
+        add(txtCantidadProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, -1, -1));
 
         lblImporte.setText("0");
-        add(lblImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, -1, -1));
+        add(lblImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel4.setText("Producto:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         lblPrecio.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblPrecio.setText("Precio");
-        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
+        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
 
         btnAumentarProducto.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btnAumentarProducto.setText("+");
@@ -121,11 +126,16 @@ public class PanelProductosCarrito extends JPanel {
                 btnAumentarProductoActionPerformed(evt);
             }
         });
-        add(btnAumentarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 50, -1));
+        add(btnAumentarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 50, -1));
 
         btnDismunuirProducto.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btnDismunuirProducto.setText("-");
-        add(btnDismunuirProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, 30));
+        btnDismunuirProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDismunuirProductoActionPerformed(evt);
+            }
+        });
+        add(btnDismunuirProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, 20));
 
         btnEliminarProducto.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         btnEliminarProducto.setText("🗑");
@@ -135,27 +145,34 @@ public class PanelProductosCarrito extends JPanel {
                 btnEliminarProductoActionPerformed(evt);
             }
         });
-        add(btnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 80, 80));
+        add(btnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAumentarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAumentarProductoActionPerformed
         // TODO add your handling code here:
         cantidad++;
         this.txtCantidadProducto.setText(Integer.toString(cantidad));
-
+        this.importe = cantidad * precio;
+        this.lblImporte.setText(Double.toString(importe));
     }//GEN-LAST:event_btnAumentarProductoActionPerformed
 
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
         // TODO add your handling code here:
-        cantidad--;
-        this.txtCantidadProducto.setText(Integer.toString(cantidad));
-
+        
 
     }//GEN-LAST:event_btnEliminarProductoActionPerformed
 
     private void txtCantidadProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadProductoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCantidadProductoActionPerformed
+
+    private void btnDismunuirProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDismunuirProductoActionPerformed
+        // TODO add your handling code here:
+        cantidad--;
+        this.txtCantidadProducto.setText(Integer.toString(cantidad));
+        this.importe = cantidad * precio;
+        this.lblImporte.setText(Double.toString(importe));
+    }//GEN-LAST:event_btnDismunuirProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

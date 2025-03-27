@@ -71,13 +71,13 @@ public class ProductoCarritoDTO {
      * @param nombre marca del producto en el carrito
      * @param sku marca del producto en el carrito
      */
-    public ProductoCarritoDTO(String nombre, String sku, double precio, String marca, String color, int cantidad) {
+    public ProductoCarritoDTO(String nombre, String sku, double precio, String marca, String color) {
         this.nombre = nombre;
         this.sku = sku;
         this.precio = precio;
         this.marca = marca;
         this.color = color;
-        this.cantidad = cantidad;
+        this.cantidad = 1;
         this.importe = cantidad*precio;
         this.impuesto = importe*1.16;
     }
