@@ -1,5 +1,7 @@
 package BOs;
 
+import Interfaces.IBO;
+
 /**
  * PagoEfectivoBO.java
  *
@@ -7,7 +9,7 @@ package BOs;
  *
  * @author 
  */
-public class PagoEfectivoBO {
+public class PagoEfectivoBO implements IBO {
 
     private double efectivoEntregado;
     private double cambio;

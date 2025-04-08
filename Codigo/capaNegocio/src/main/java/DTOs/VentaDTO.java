@@ -1,5 +1,6 @@
 package DTOs;
 
+import Interfaces.IDTO;
 import java.util.Calendar;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  *
  * @author
  */
-public class VentaDTO {
+public class VentaDTO implements IDTO {
 
     private String idVenta;
     private List<ProductoVentaDTO> listaProductos;

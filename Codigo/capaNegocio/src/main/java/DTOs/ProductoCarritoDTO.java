@@ -1,5 +1,7 @@
 package DTOs;
 
+import Interfaces.IDTO;
+
 /**
  * ProductoCarritoDTO.java
  *
@@ -8,7 +10,7 @@ package DTOs;
  *
  * @author
  */
-public class ProductoCarritoDTO {
+public class ProductoCarritoDTO implements IDTO {
     
     private String nombre;
     private String sku;

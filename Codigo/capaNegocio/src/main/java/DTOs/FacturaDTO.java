@@ -1,5 +1,7 @@
 package DTOs;
 
+import Interfaces.IDTO;
+
 /**
  * FacturaDTO.java
  *
@@ -7,7 +9,7 @@ package DTOs;
  *
  * @author
  */
-public class FacturaDTO {
+public class FacturaDTO implements IDTO{
 
     private String RFC;
     private String codigoPostal;

@@ -1,5 +1,6 @@
 package BOs;
 
+import Interfaces.IBO;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  *
  * @author
  */
-public class VentaBO {
+public class VentaBO implements IBO {
 
     private String idVenta;
     private List<ProductoVentaBO> listaProductos;

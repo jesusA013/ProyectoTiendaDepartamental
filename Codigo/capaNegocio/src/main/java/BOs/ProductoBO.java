@@ -1,5 +1,7 @@
 package BOs;
 
+import Interfaces.IBO;
+
 /**
  * ProductoBO.java
  *
@@ -7,7 +9,7 @@ package BOs;
  *
  * @author 
  */
-public class ProductoBO {
+public class ProductoBO implements IBO{
 
     private String nombre;
     private String sku;
