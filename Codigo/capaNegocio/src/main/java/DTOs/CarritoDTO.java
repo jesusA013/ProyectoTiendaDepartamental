@@ -1,5 +1,6 @@
 package DTOs;
 
+import Interfaces.IDTO;
 import java.util.List;
 
 /**
@@ -10,7 +11,8 @@ import java.util.List;
  *
  * @author
  */
-public class CarritoDTO {
+public class CarritoDTO implements IDTO
+{
 
     private List<ProductoCarritoDTO> listaProductos;
     private int cantidadTotalProducots;

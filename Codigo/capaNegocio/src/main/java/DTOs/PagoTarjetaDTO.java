@@ -1,5 +1,6 @@
 package DTOs;
 
+import Interfaces.IDTO;
 import java.util.Calendar;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Calendar;
  *
  * @author
  */
-public class PagoTarjetaDTO {
+public class PagoTarjetaDTO implements IDTO {
 
     private String numeroTarjeta;
     private Calendar fechaExpiracion;

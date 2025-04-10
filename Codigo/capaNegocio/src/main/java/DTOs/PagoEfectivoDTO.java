@@ -1,5 +1,7 @@
 package DTOs;
 
+import Interfaces.IDTO;
+
 /**
  * PagoEfectivoDTO.java
  *
@@ -8,7 +10,7 @@ package DTOs;
  *
  * @author
  */
-public class PagoEfectivoDTO {
+public class PagoEfectivoDTO implements IDTO{
 
     private double efectivoEntregado;
     private double cambio;

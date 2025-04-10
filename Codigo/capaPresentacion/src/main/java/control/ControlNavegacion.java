@@ -8,6 +8,7 @@ package control;
  *
  * @author Jesus
  */
+import interfaces.BusquedaProducto;
 import interfaces.*;
 import javax.swing.*;
 

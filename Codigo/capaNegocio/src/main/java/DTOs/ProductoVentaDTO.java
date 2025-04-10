@@ -1,14 +1,16 @@
 package DTOs;
 
+import Interfaces.IDTO;
+
 /**
  * ProductoVentaDTO.java
  *
  * Esta clase representa los productos que se están vendiendo como parte de una
  * transacción de venta en el objeto de transferencia (DTO).
- * 
+ *
  * @author
  */
-public class ProductoVentaDTO {
+public class ProductoVentaDTO implements IDTO {
 
     private int cantidad;
     private double precio;
@@ -36,7 +38,7 @@ public class ProductoVentaDTO {
         this.importe = importe;
         this.producto = producto;
     }
-    
+
     /**
      * Obtiene la cantidad de productos vendidos.
      *
@@ -108,7 +110,5 @@ public class ProductoVentaDTO {
     public void setProducto(ProductoDTO producto) {
         this.producto = producto;
     }
-    
-    
-    
+
 }

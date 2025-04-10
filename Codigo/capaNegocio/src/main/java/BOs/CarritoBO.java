@@ -1,5 +1,6 @@
 package BOs;
 
+import Interfaces.IBO;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
  *
  * @author
  */
-public class CarritoBO {
+public class CarritoBO implements IBO {
 
     private List<ProductoCarritoBO> listaProductos;
     private int cantidadTotalProducots;
