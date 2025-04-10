@@ -26,10 +26,10 @@ public class CarritoCompra extends javax.swing.JFrame {
         setSize(800, 600); //tamaño ventana
         setLocationRelativeTo(null);//centar ventana
 
-        ProductoCarritoDTO producto1 = new ProductoCarritoDTO("Lentes de sol", "123456", 100, "Gucci", "azules");
-        ProductoCarritoDTO producto2 = new ProductoCarritoDTO("Calcetines", "23123", 20, "Nike", "cafe");
-        ProductoCarritoDTO producto3 = new ProductoCarritoDTO("chanclas", "54123", 70, "ardidas", "amarilla");
-        ProductoCarritoDTO producto4 = new ProductoCarritoDTO("gorra", "44577", 130, "NY", "negra");
+        ProductoCarritoDTO producto1 = new ProductoCarritoDTO("Lentes de sol", "123456", 100.0, "Gucci", "azules");
+        ProductoCarritoDTO producto2 = new ProductoCarritoDTO("Calcetines", "23123", 20.0, "Nike", "cafe");
+        ProductoCarritoDTO producto3 = new ProductoCarritoDTO("chanclas", "54123", 70.0, "ardidas", "amarilla");
+        ProductoCarritoDTO producto4 = new ProductoCarritoDTO("gorra", "44577", 130.0, "NY", "negra");
 
         PanelProductosCarrito productoPanel1 = new PanelProductosCarrito(producto1);
         PanelProductosCarrito productoPanel2 = new PanelProductosCarrito(producto2);
