@@ -20,7 +20,6 @@ public interface IRegistroVenta {
 
     void registrarVenta();
 
-    //la neta ni prra idea de la logica a esto
     boolean validarPago();
 
     double calcularTotal();

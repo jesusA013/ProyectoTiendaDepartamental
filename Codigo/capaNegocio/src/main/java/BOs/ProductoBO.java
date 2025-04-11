@@ -6,7 +6,7 @@ import Interfaces.IBO;
  * ProductoBO.java
  *
  * Esta clase representa los productos de objecto negocio
- *
+ *Representa un producto en el nivel del negocio y gestiona atributos como stock y precio
  * @author 
  */
 public class ProductoBO implements IBO{
@@ -172,4 +172,12 @@ public class ProductoBO implements IBO{
     public void validarNombre() {
 
     }
+
+    
+public void reducirStock(int cantidadVendida) {
+    if (cantidadVendida > this.stock) {
+        throw new IllegalArgumentException("Stock insuficiente.");
+    }
+    this.stock -= cantidadVendida;
+}
 }

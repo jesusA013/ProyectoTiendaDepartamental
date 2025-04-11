@@ -7,6 +7,7 @@ package ManejadorVenta;
 import BOs.CarritoBO;
 import BOs.ProductoBO;
 import DTOs.ProductoDTO;
+import DTOs.VentaDTO;
 import Interface.IRegistroVenta;
 import RegistroVentaException.RegistroException;
 import java.util.ArrayList;
@@ -41,8 +42,13 @@ public class ManejadorVenta implements IRegistroVenta {
        return productos;
    }
     
-
-    @Override
+   private ArrayList<VentaDTO>ListaVenta= new ArrayList<>();
+    if (validarPago()==true) {
+   ListaVenta.add();
+}
+   
+   
+    @Override;
     public boolean validarRFC(String RFC) throws RegistroException {
         if (RFC == null || RFC.isEmpty()) {
             throw new RegistroException("El RFC no puede estar vacío.");

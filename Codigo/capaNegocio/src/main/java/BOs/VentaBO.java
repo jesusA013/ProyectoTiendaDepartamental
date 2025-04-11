@@ -1,6 +1,7 @@
 package BOs;
 
 import Interfaces.IBO;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -8,7 +9,8 @@ import java.util.List;
  *
  * Esta clase representa una venta realizada en el sistema. Contiene información
  * sobre los productos vendidos, la cantidad, el subtotal, los impuestos, el
- * IVA, el total de la venta y el vendedor responsable.
+ * IVA, el total de la venta y el vendedor responsable. Registra la venta,
+ * calcula totales, y actualiza el inventario.
  *
  * @author
  */
@@ -23,12 +25,9 @@ public class VentaBO implements IBO {
     private int total;
 
     //private Vendedor vendedor;
-
 //    private Vendedor vendedor;
-
-
-    /** 
-    * Constructor por omision
+    /**
+     * Constructor por omision
      */
     public VentaBO() {
     }
@@ -45,8 +44,6 @@ public class VentaBO implements IBO {
      * @param total Total final de la venta después de impuestos.
      * @param vendedor Vendedor responsable de la venta.
      */
-
-
     public VentaBO(String idVenta, List<ProductoVentaBO> listaProductos, int cantidadProductos, int subtotal, double impuestos, double IVA, int total) { // Quitamos vendedor de momento
 
         this.idVenta = idVenta;
@@ -58,9 +55,7 @@ public class VentaBO implements IBO {
         this.total = total;
 
         //this.vendedor = vendedor;
-
 //        this.vendedor = vendedor;
-
     }
 
     /**
@@ -189,19 +184,82 @@ public class VentaBO implements IBO {
         this.total = total;
     }
 
+    public void RegistrarVenta(LinkedList<ProductoCarritoBO> carritoProductoCarritoBOs) {
+        LinkedList<ProductoVentaBO> productosVendidos = new LinkedList<>();
+        for (ProductoCarritoBO productoCarrito : carritoProductoCarritoBOs) {
+            productosVendidos.add
+        (new ProductoVentaBO(
+                    productoCarrito.getCantidad()
+                    , productoCarrito.getProducto(),
+                    productoCarrito.getPrecio()));
+        }
+        double subtotal = calcularSubtotal(productosVendidos);
+        double impuestos = calcularImpuestos(subtotal);
+        double total = calcularTotal(subtotal, impuestos);
+        
+        // Asignar valores a los atributos de la venta
+        this.idVenta = "VENTA" + System.currentTimeMillis(); // Generar un ID único
+        this.listaProductos = productosVendidos;
+        this.cantidadProductos = productosVendidos.size();
+        this.subtotal = (int) subtotal;
+        this.impuestos = impuestos;
+        this.IVA = 16;
+        this.total = (int) total;
+        
+        //actualizamos el inventario
+        //verifica producto bo no se que mande mal la verdad
+        for(ProductoVentaBO productoVenta : productosVendidos){}
+            ProductoBO producto= productoVenta.getProducto();
+                        producto.setStock(producto.getStock() - productoVenta.getCantidad());
 
-    /**
-     * Obtiene el vendedor responsable de la venta.
-     *
-     * @return Vendedor que realizó la venta.
-     */
+    }
 
+    public double calcularSubtotal(LinkedList<ProductoVentaBO> productosVendidos) {
+        return productosVendidos.stream().mapToDouble(p -> p.getCantidad() * p.getPrecio()).sum();
+    }
+
+    public double calcularImpuestos(double subtotal) {
+        return subtotal * 0.16; // IVA del 16%
+    }
+
+    public double calcularTotal(double subtotal, double impuestos) {
+        return subtotal + impuestos;
+    }
+
+    VentaBO venta = new VentaBO("VENTA001", productosVendidos., productosVendidos.size(),
+            (int) subtotal, impuestos, 16, (int) total);//corregir los datos que guardara la venta y hacer los llamados correspondientes
+
+    guardarVenta(venta);//falta desarrollar el metodo
+
+    actualizarInventario(productosVendidos);// fatala desarrolllar el metodo
+
+    public void registrarVenta(LinkedList<ProductoCarritoBO> carritoProductos) {
+        // Convertir los productos del carrito en productos vendidos
+        LinkedList<ProductoVentaBO> productosVendidos = new LinkedList<>();
+        for (ProductoCarritoBO productoCarrito : carritoProductos) {
+            productosVendidos.add(new ProductoVentaBO(
+                    productoCarrito.getCantidad(),
+                    productoCarrito.getProducto(),productoCarrito.getPrecio()));
+        }
+        
+    }
+    public void guardarVenta (){
+    
+    }
+    
+    public void actualizarInventario(){
+    
+    }
+        /**
+         * Obtiene el vendedor responsable de la venta.
+         *
+         * @return Vendedor que realizó la venta.
+         */
 //    /**
 //     * Obtiene el vendedor responsable de la venta.
 //     *
 //     * @return Vendedor que realizó la venta.
 //     */
-
 //    public Vendedor getVendedor() {
 //        return vendedor;
 //    }
@@ -214,6 +272,5 @@ public class VentaBO implements IBO {
 //    public void setVendedor(Vendedor vendedor) {
 //        this.vendedor = vendedor;
 //    }
-
-    // ------------------------------------ //
-}
+        // ------------------------------------ //
+    }

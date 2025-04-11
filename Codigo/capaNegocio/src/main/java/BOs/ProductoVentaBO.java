@@ -29,7 +29,7 @@ public class ProductoVentaBO implements IBO{
      * @param precio Precio unitario del producto.
      * @param producto Producto asociado a la venta.
      */
-    public ProductoVentaBO(int cantidad, double precio, ProductoBO producto) {
+    public ProductoVentaBO(int cantidad, ProductoBO producto,double precio) {
         this.cantidad = cantidad;
         this.precio = precio;
         this.producto = producto;

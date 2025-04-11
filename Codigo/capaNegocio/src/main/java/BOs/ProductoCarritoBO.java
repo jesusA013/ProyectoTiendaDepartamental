@@ -6,7 +6,7 @@ import Interfaces.IBO;
  * ProductoCarritoBO.java
  *
  * Esta clase representa los productos del carrito de objecto negocio
- *
+ *actua como un intermediario entre los productos seleccionados y el proceso de compra
  * @author 
  */
 public class ProductoCarritoBO implements IBO {
@@ -14,6 +14,7 @@ public class ProductoCarritoBO implements IBO {
     private ProductoBO producto;
     private int cantidad;
     private double importe;
+    private double precio;
 
     /**
      * Constructor por omision
@@ -27,11 +28,13 @@ public class ProductoCarritoBO implements IBO {
      * @param producto Producto del carrito
      * @param cantidad Cantidad del mismo producto
      * @param importe Importe del producto
+     * @param precio el precio del producto
      */
-    public ProductoCarritoBO(ProductoBO producto, int cantidad, double importe) {
+    public ProductoCarritoBO(ProductoBO producto, int cantidad, double importe, double precio) {
         this.producto = producto;
         this.cantidad = cantidad;
         this.importe = cantidad*producto.getPrecio();
+        this.precio= precio;
     }
 
     /**
@@ -61,6 +64,14 @@ public class ProductoCarritoBO implements IBO {
         return cantidad;
     }
 
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
     /**
      * Establece la cantidad del mismo producto
      *
@@ -87,6 +98,12 @@ public class ProductoCarritoBO implements IBO {
     public void setImporte(double importe) {
         this.importe = importe;
     }
-
+public void actualizarCantidad(int nuevaCantidad) {
+    if (nuevaCantidad <= 0) {
+        throw new IllegalArgumentException("La cantidad debe ser mayor que cero.");
+    }
+    this.cantidad = nuevaCantidad;
+    this.importe = nuevaCantidad * this.producto.getPrecio();
+}
     // ------------------------------------ //
 }
