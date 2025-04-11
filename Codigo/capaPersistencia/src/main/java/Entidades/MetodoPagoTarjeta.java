@@ -38,19 +38,59 @@ public class MetodoPagoTarjeta extends MetodoPago {
     /**
      * Constructor del metodo de pago con tarjeta completo.
      *
-     * @param pago Pago de la venta
-     * @param cambio Cambio de la venta
+     * @param idPago ID de la venta
+     * @param total Total de la venta
      * @param tarjeta Tarjeta de credito/debito
      * @param mes Mes de la caducidad
      * @param ano Año de la caducidad
      * @param cvc CVC de la tarjeta
      */
-    public MetodoPagoTarjeta(double pago, double cambio, String tarjeta, int mes, int ano, int cvc) {
-        super(pago, cambio);
+    public MetodoPagoTarjeta(int idPago, double total, String tarjeta, int mes, int ano, int cvc) {
+        super(idPago, total);
         this.tarjeta = tarjeta;
         this.mes = mes;
         this.ano = ano;
         this.cvc = cvc;
+    }
+
+    /**
+     * Regresa el ID de la venta.
+     *
+     * @return ID de la venta
+     */
+    @Override
+    public int getIdPago() {
+        return idPago;
+    }
+
+    /**
+     * Establece el ID de la venta.
+     *
+     * @param idPago ID de la venta
+     */
+    @Override
+    public void setIdPago(int idPago) {
+        this.idPago = idPago;
+    }
+
+    /**
+     * Regresa el total de la venta
+     *
+     * @return Total de la venta
+     */
+    @Override
+    public double getTotal() {
+        return total;
+    }
+
+    /**
+     * Establece el total de la venta.
+     *
+     * @param total Total de la venta
+     */
+    @Override
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     /**

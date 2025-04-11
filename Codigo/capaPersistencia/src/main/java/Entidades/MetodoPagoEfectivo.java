@@ -9,7 +9,8 @@ package Entidades;
  */
 public class MetodoPagoEfectivo extends MetodoPago {
 
-    private double monto;
+    private double efectivoEntregado;
+    private double cambio;
 
     /**
      * Constructor por ausencia
@@ -20,40 +21,102 @@ public class MetodoPagoEfectivo extends MetodoPago {
     /**
      * Constructor del metodo de pago en efectivo.
      *
-     * @param monto Monto del pago
-     */
-    public MetodoPagoEfectivo(double monto) {
-        this.monto = monto;
-    }
-
-    /**
-     * Constructor del metodo de pago en efectivo completo.
-     *
-     * @param monto Monto del pago
-     * @param pago Pago de la venta
+     * @param efectivoEntregado Pago de la venta
      * @param cambio Cambio de la venta
      */
-    public MetodoPagoEfectivo(double monto, double pago, double cambio) {
-        super(pago, cambio);
-        this.monto = monto;
+    public MetodoPagoEfectivo(double efectivoEntregado, double cambio) {
+        this.efectivoEntregado = efectivoEntregado;
+        this.cambio = cambio;
     }
 
     /**
-     * Regresa el monto del pago.
+     * Constructor del metodo de pago en efectivo.
      *
-     * @return Monto del pago
+     * @param idPago ID de la venta
+     * @param total Total de la venta
+     * @param efectivoEntregado Pago de la venta
+     * @param cambio Cambio de la venta
      */
-    public double getMonto() {
-        return monto;
+    public MetodoPagoEfectivo(int idPago, double total, double efectivoEntregado, double cambio) {
+        super(idPago, total);
+        this.efectivoEntregado = efectivoEntregado;
+        this.cambio = cambio;
     }
 
     /**
-     * Establece el Monto del pago.
+     * Regresa el pago de la venta.
      *
-     * @param monto Monto del pago
+     * @return Pago de la venta
      */
-    public void setMonto(double monto) {
-        this.monto = monto;
+    public double getEfectivoEntregado() {
+        return efectivoEntregado;
+    }
+
+    /**
+     * Establece el pago de la venta.
+     *
+     * @param efectivoEntregado Pago de la venta
+     */
+    public void setEfectivoEntregado(double efectivoEntregado) {
+        this.efectivoEntregado = efectivoEntregado;
+    }
+
+    /**
+     * Regresa el cambio de la venta.
+     *
+     * @return Cambio de la venta
+     */
+    public double getCambio() {
+        return cambio;
+    }
+
+    /**
+     * Establece el cambio de la venta.
+     *
+     * @param cambio Cambio de la venta
+     */
+    public void setCambio(double cambio) {
+        this.cambio = cambio;
+    }
+
+    /**
+     * Regresa el ID de la venta.
+     *
+     * @return ID de la venta
+     */
+    @Override
+    public int getIdPago() {
+        return idPago;
+    }
+
+    /**
+     * Establece el ID de la venta.
+     *
+     * @param idPago ID de la venta
+     */
+    @Override
+    public void setIdPago(int idPago) {
+        this.idPago = idPago;
+    }
+
+    /**
+     * Regresa el total de la venta
+     *
+     * @return Total de la venta
+     */
+    @Override
+    public double getTotal() {
+        return total;
+    }
+
+    /**
+     * Establece el total de la venta.
+     *
+     * @param total Total de la venta
+     */
+    @Override
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     /**
@@ -63,7 +126,6 @@ public class MetodoPagoEfectivo extends MetodoPago {
      */
     @Override
     public String toString() {
-        return "MetodoPagoEfectivo{" + "monto=" + monto + '}';
+        return "MetodoPagoEfectivo{" + "efectivoEntregado=" + efectivoEntregado + ", cambio=" + cambio + '}';
     }
-
 }

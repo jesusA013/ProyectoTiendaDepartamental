@@ -9,8 +9,8 @@ package Entidades;
  */
 public abstract class MetodoPago {
 
-    private double pago;
-    private double cambio;
+    protected int idPago;
+    protected double total;
 
     /**
      * Constructor por ausencia
@@ -19,50 +19,50 @@ public abstract class MetodoPago {
     }
 
     /**
-     * Constructor del metodo de pago.
+     * Constructor del metodo de pago
      *
-     * @param pago Pago de la venta
-     * @param cambio Cambio de la venta
+     * @param idPago ID de la venta
+     * @param total Total de la venta
      */
-    public MetodoPago(double pago, double cambio) {
-        this.pago = pago;
-        this.cambio = cambio;
+    public MetodoPago(int idPago, double total) {
+        this.idPago = idPago;
+        this.total = total;
     }
 
     /**
-     * Regresa el pago de la venta.
+     * Regresa el ID de la venta.
      *
-     * @return Pago de la venta
+     * @return ID de la venta
      */
-    public double getPago() {
-        return pago;
+    public int getIdPago() {
+        return idPago;
     }
 
     /**
-     * Establece el pago de la venta.
+     * Establece el ID de la venta.
      *
-     * @param pago Pago de la venta
+     * @param idPago ID de la venta
      */
-    public void setPago(double pago) {
-        this.pago = pago;
+    public void setIdPago(int idPago) {
+        this.idPago = idPago;
     }
 
     /**
-     * Regresa el cambio de la venta.
+     * Regresa el total de la venta
      *
-     * @return Cambio de la venta
+     * @return Total de la venta
      */
-    public double getCambio() {
-        return cambio;
+    public double getTotal() {
+        return total;
     }
 
     /**
-     * Establece el cambio de la venta.
+     * Establece el total de la venta.
      *
-     * @param cambio Cambio de la venta
+     * @param total Total de la venta
      */
-    public void setCambio(double cambio) {
-        this.cambio = cambio;
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     /**
@@ -72,7 +72,6 @@ public abstract class MetodoPago {
      */
     @Override
     public String toString() {
-        return "MetodoPago{" + "pago=" + pago + ", cambio=" + cambio + '}';
+        return "MetodoPago{" + "idPago=" + idPago + ", total=" + total + '}';
     }
-
 }
