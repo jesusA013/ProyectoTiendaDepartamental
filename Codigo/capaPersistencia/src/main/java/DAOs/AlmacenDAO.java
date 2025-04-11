@@ -8,6 +8,6 @@ package DAOs;
  *
  * @author Knocmare
  */
-public class Almacen implements IUsuarioDAO {
+public class AlmacenDAO implements IUsuarioDAO {
     
 }
