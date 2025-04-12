@@ -8,7 +8,7 @@ package Excepciones;
  *
  * @author Ángel Ruíz García - 248171
  */
-public class NegocioException extends RuntimeException {
+public class NegocioException extends Exception {
 
     /**
      * Constructor por omision
