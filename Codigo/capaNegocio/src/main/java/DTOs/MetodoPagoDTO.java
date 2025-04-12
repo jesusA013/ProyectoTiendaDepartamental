@@ -1,13 +1,14 @@
-package Entidades;
+package DTOs;
 
 /**
- * MetodoPago.java
+ * MetodoPagoDTO.java
  *
- * Esta clase abstracta regresenta el metodo de pago.
+ * Esta clase abstracta regresenta el metodo de pago de objecto de transferencia
+ * de datos.
  *
  * @author Ángel Ruíz García - 00000248171
  */
-public abstract class MetodoPago {
+public abstract class MetodoPagoDTO {
 
     protected int idPago;
     protected double total;
@@ -15,7 +16,7 @@ public abstract class MetodoPago {
     /**
      * Constructor por ausencia
      */
-    public MetodoPago() {
+    public MetodoPagoDTO() {
     }
 
     /**
@@ -24,7 +25,7 @@ public abstract class MetodoPago {
      * @param idPago ID de la venta
      * @param total Total de la venta
      */
-    public MetodoPago(int idPago, double total) {
+    public MetodoPagoDTO(int idPago, double total) {
         this.idPago = idPago;
         this.total = total;
     }
@@ -72,6 +73,6 @@ public abstract class MetodoPago {
      */
     @Override
     public String toString() {
-        return "MetodoPago{" + "idPago=" + idPago + ", total=" + total + '}';
+        return "MetodoPagoDTO{" + "idPago=" + idPago + ", total=" + total + '}';
     }
 }

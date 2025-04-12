@@ -1,14 +1,14 @@
-package Entidades;
+package DTOs;
 
 /**
- * MetodoPagoTarjeta.java
- *
- * Esta clase representa el metodo de pago con tarjeta.
- *
- * @author Knocmare
+ * MetodoTarjetaDTO.java
+ * 
+ * Esta clase representa el metodo de pago con tarjeta de objecto de
+ * transferencia de datos.
+ * 
+ * @author Ángel Ruíz García - 00000248171
  */
-public class MetodoPagoTarjeta extends MetodoPago {
-
+public class MetodoTarjetaDTO extends MetodoPagoDTO {
     private String tarjeta;
     private int mes;
     private int ano;
@@ -17,7 +17,7 @@ public class MetodoPagoTarjeta extends MetodoPago {
     /**
      * Constructor por ausencia
      */
-    public MetodoPagoTarjeta() {
+    public MetodoTarjetaDTO() {
     }
 
     /**
@@ -28,7 +28,7 @@ public class MetodoPagoTarjeta extends MetodoPago {
      * @param ano Año de la caducidad
      * @param cvc CVC de la tarjeta
      */
-    public MetodoPagoTarjeta(String tarjeta, int mes, int ano, int cvc) {
+    public MetodoTarjetaDTO(String tarjeta, int mes, int ano, int cvc) {
         this.tarjeta = tarjeta;
         this.mes = mes;
         this.ano = ano;
@@ -45,7 +45,7 @@ public class MetodoPagoTarjeta extends MetodoPago {
      * @param ano Año de la caducidad
      * @param cvc CVC de la tarjeta
      */
-    public MetodoPagoTarjeta(int idPago, double total, String tarjeta, int mes, int ano, int cvc) {
+    public MetodoTarjetaDTO(int idPago, double total, String tarjeta, int mes, int ano, int cvc) {
         super(idPago, total);
         this.tarjeta = tarjeta;
         this.mes = mes;
@@ -174,5 +174,4 @@ public class MetodoPagoTarjeta extends MetodoPago {
     public String toString() {
         return "MetodoPagoTarjeta{" + "tarjeta=" + tarjeta + ", mes=" + mes + ", ano=" + ano + ", cvc=" + cvc + '}';
     }
-
 }

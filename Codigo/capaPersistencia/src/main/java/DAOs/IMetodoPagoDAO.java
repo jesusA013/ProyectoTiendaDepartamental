@@ -16,9 +16,10 @@ public interface IMetodoPagoDAO {
     /**
      * Guarda un nuevo método de pago en la fuente de datos.
      *
-     * @param metodoPago Objeto que representa el método de pago a guardar.
+     * @param metodoPago Método de pago a guardar.
+     * @return Método de pago a guardar.
      */
-    void guardarMetodoPago(MetodoPago metodoPago);
+    MetodoPago guardarMetodoPago(MetodoPago metodoPago);
 
     /**
      * Obtiene un método de pago por su identificador único.
@@ -32,7 +33,7 @@ public interface IMetodoPagoDAO {
     /**
      * Lista todos los métodos de pago almacenados.
      *
-     * @return Una lista de objetos {@link MetodoPago}.
+     * @return Una lista de métodos de pago.
      */
     List<MetodoPago> listarTodos();
 }

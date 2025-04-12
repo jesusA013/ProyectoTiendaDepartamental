@@ -1,13 +1,13 @@
 package Entidades;
 
 /**
- * MetodoPagoEfectivo.java
+ * MetodoEfectivo.java
  *
  * Esta clase representa el metodo de pago en efectivo.
  *
- * @author Knocmare
+ * @author Ángel Ruíz García - 00000248171
  */
-public class MetodoPagoEfectivo extends MetodoPago {
+public class MetodoEfectivo extends MetodoPago {
 
     private double efectivoEntregado;
     private double cambio;
@@ -15,7 +15,7 @@ public class MetodoPagoEfectivo extends MetodoPago {
     /**
      * Constructor por ausencia
      */
-    public MetodoPagoEfectivo() {
+    public MetodoEfectivo() {
     }
 
     /**
@@ -24,7 +24,7 @@ public class MetodoPagoEfectivo extends MetodoPago {
      * @param efectivoEntregado Pago de la venta
      * @param cambio Cambio de la venta
      */
-    public MetodoPagoEfectivo(double efectivoEntregado, double cambio) {
+    public MetodoEfectivo(double efectivoEntregado, double cambio) {
         this.efectivoEntregado = efectivoEntregado;
         this.cambio = cambio;
     }
@@ -37,7 +37,7 @@ public class MetodoPagoEfectivo extends MetodoPago {
      * @param efectivoEntregado Pago de la venta
      * @param cambio Cambio de la venta
      */
-    public MetodoPagoEfectivo(int idPago, double total, double efectivoEntregado, double cambio) {
+    public MetodoEfectivo(int idPago, double total, double efectivoEntregado, double cambio) {
         super(idPago, total);
         this.efectivoEntregado = efectivoEntregado;
         this.cambio = cambio;

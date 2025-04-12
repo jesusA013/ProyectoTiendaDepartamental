@@ -19,10 +19,12 @@ public class MetodoTarjetaDAO implements IMetodoPagoDAO {
      * Guarda un método de pago con tarjeta en la base de datos.
      *
      * @param metodoPago Método de pago con tarjeta.
+     * @return Método de pago con tarjeta.
      */
     @Override
-    public void guardarMetodoPago(MetodoPago metodoPago) {
+    public MetodoPago guardarMetodoPago(MetodoPago metodoPago) {
         pagos.add(metodoPago);
+        return metodoPago;
     }
 
     /**

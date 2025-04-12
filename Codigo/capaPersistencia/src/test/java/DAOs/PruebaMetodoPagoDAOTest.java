@@ -4,8 +4,8 @@
  */
 package DAOs;
 
-import Entidades.MetodoPagoEfectivo;
-import Entidades.MetodoPagoTarjeta;
+import Entidades.MetodoEfectivo;
+import Entidades.MetodoTarjeta;
 
 /**
  *
@@ -24,8 +24,8 @@ public class PruebaMetodoPagoDAOTest {
         IMetodoPagoDAO tarjetaDAO = new MetodoTarjetaDAO();
         IMetodoPagoDAO efectivoDAO = new MetodoEfectivoDAO();
         
-        tarjetaDAO.guardarMetodoPago(new MetodoPagoTarjeta(1, 180.00, "1234", 12, 2030, 123));
-        efectivoDAO.guardarMetodoPago(new MetodoPagoEfectivo(2, 150.00, 200.00, 50.00));
+        tarjetaDAO.guardarMetodoPago(new MetodoTarjeta(1, 180.00, "1234", 12, 2030, 123));
+        efectivoDAO.guardarMetodoPago(new MetodoEfectivo(2, 150.00, 200.00, 50.00));
 
         System.out.println("Tarjeta: " + tarjetaDAO.obtenerMetodoPagoPorId(1).getTotal());
         System.out.println("Efectivo: " + efectivoDAO.obtenerMetodoPagoPorId(2).getTotal());
