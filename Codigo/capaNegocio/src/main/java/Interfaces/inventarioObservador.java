@@ -6,8 +6,8 @@ package Interfaces;
 
 /**
  *
- * @author gamae
+ * @author melis
  */
-public interface IBO {
-    
+public interface inventarioObservador {
+    void actualizar (String producto , int nuevoStock);
 }

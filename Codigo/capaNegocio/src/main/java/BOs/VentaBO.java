@@ -1,6 +1,5 @@
 package BOs;
 
-import Interfaces.IBO;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
  *
  * @author
  */
-public class VentaBO implements IBO {
+public class VentaBO   {
 
     private String idVenta;
     private List<ProductoVentaBO> listaProductos;
@@ -184,19 +183,18 @@ public class VentaBO implements IBO {
         this.total = total;
     }
 
-    public void RegistrarVenta(LinkedList<ProductoCarritoBO> carritoProductoCarritoBOs) {
+    public void registrarVenta(LinkedList<ProductoCarritoBO> carritoProductoCarritoBOs) {
         LinkedList<ProductoVentaBO> productosVendidos = new LinkedList<>();
         for (ProductoCarritoBO productoCarrito : carritoProductoCarritoBOs) {
-            productosVendidos.add
-        (new ProductoVentaBO(
-                    productoCarrito.getCantidad()
-                    , productoCarrito.getProducto(),
+            productosVendidos.add(new ProductoVentaBO(
+                    productoCarrito.getCantidad(),
+                     productoCarrito.getProducto(),
                     productoCarrito.getPrecio()));
         }
         double subtotal = calcularSubtotal(productosVendidos);
         double impuestos = calcularImpuestos(subtotal);
         double total = calcularTotal(subtotal, impuestos);
-        
+
         // Asignar valores a los atributos de la venta
         this.idVenta = "VENTA" + System.currentTimeMillis(); // Generar un ID único
         this.listaProductos = productosVendidos;
@@ -205,13 +203,17 @@ public class VentaBO implements IBO {
         this.impuestos = impuestos;
         this.IVA = 16;
         this.total = (int) total;
-        
+
         //actualizamos el inventario
         //verifica producto bo no se que mande mal la verdad
-        for(ProductoVentaBO productoVenta : productosVendidos){}
-            ProductoBO producto= productoVenta.getProducto();
-                        producto.setStock(producto.getStock() - productoVenta.getCantidad());
+        for (ProductoVentaBO productoVenta : productosVendidos) {
+        ProductoBO producto = productoVenta.getProducto();
+        producto.setStock(producto.getStock() - productoVenta.getCantidad());
+//        guardarVentaArchivo(venta);//falta desarrollar el metodo
 
+        actualizarInventario(productosVendidos);
+        }
+        
     }
 
     public double calcularSubtotal(LinkedList<ProductoVentaBO> productosVendidos) {
@@ -226,35 +228,52 @@ public class VentaBO implements IBO {
         return subtotal + impuestos;
     }
 
-    VentaBO venta = new VentaBO("VENTA001", productosVendidos., productosVendidos.size(),
-            (int) subtotal, impuestos, 16, (int) total);//corregir los datos que guardara la venta y hacer los llamados correspondientes
+//    VentaBO venta = new VentaBO("VENTA001", productosVendidos., productosVendidos.size(),
+//            (int) subtotal, impuestos, 16, (int) total);//corregir los datos que guardara la venta y hacer los llamados correspondientes
 
-    guardarVenta(venta);//falta desarrollar el metodo
+//    public void registrarVenta(LinkedList<ProductoCarritoBO> carritoProductos) {
+//        // Convertir los productos del carrito en productos vendidos
+//        LinkedList<ProductoVentaBO> productosVendidos = new LinkedList<>();
+//        for (ProductoCarritoBO productoCarrito : carritoProductos) {
+//            productosVendidos.add(new ProductoVentaBO(
+//            productoCarrito.getCantidad(),
+//            productoCarrito.getProducto(), productoCarrito.getPrecio()));
+//        }
+//
+//    }
 
-    actualizarInventario(productosVendidos);// fatala desarrolllar el metodo
+    /*Este metodo no esta desarrollado a falta de claridad
+    +sobre cmo sera el guardado de la venta
+     */
+    public void guardarVentaArchivo() {
 
-    public void registrarVenta(LinkedList<ProductoCarritoBO> carritoProductos) {
-        // Convertir los productos del carrito en productos vendidos
-        LinkedList<ProductoVentaBO> productosVendidos = new LinkedList<>();
-        for (ProductoCarritoBO productoCarrito : carritoProductos) {
-            productosVendidos.add(new ProductoVentaBO(
-                    productoCarrito.getCantidad(),
-                    productoCarrito.getProducto(),productoCarrito.getPrecio()));
+    }
+
+    /*
+    *Este metodo busca actualizar el inventario general de la tienda
+     */
+    public void actualizarInventario(LinkedList<ProductoVentaBO> productosVendidos) {
+        if (listaProductos != null) {
+            for (ProductoVentaBO productoVenta : listaProductos) {
+                ProductoBO producto = productoVenta.getProducto();
+                int nuevoStock = producto.getStock() - productoVenta.getCantidad();
+                if (nuevoStock >= 0) {
+                    producto.setStock(nuevoStock);
+                    System.out.println("Stock actualizado para " + producto.getNombre() + ": " + nuevoStock);
+                } else {
+                    System.err.println("Error: No hay suficiente stock para el producto " + producto.getNombre());
+                }
+            }
+        } else {
+            System.err.println("Error: La lista de productos está vacía o no inicializada.");
         }
-        
     }
-    public void guardarVenta (){
-    
-    }
-    
-    public void actualizarInventario(){
-    
-    }
-        /**
-         * Obtiene el vendedor responsable de la venta.
-         *
-         * @return Vendedor que realizó la venta.
-         */
+
+    /**
+     * Obtiene el vendedor responsable de la venta.
+     *
+     * @return Vendedor que realizó la venta.
+     */
 //    /**
 //     * Obtiene el vendedor responsable de la venta.
 //     *
@@ -272,5 +291,5 @@ public class VentaBO implements IBO {
 //    public void setVendedor(Vendedor vendedor) {
 //        this.vendedor = vendedor;
 //    }
-        // ------------------------------------ //
-    }
+    // ------------------------------------ //
+}

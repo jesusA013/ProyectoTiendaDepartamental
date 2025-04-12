@@ -1,6 +1,5 @@
 package BOs;
 
-import Interfaces.IBO;
 
 /**
  * FacturaBO.java
@@ -9,7 +8,7 @@ import Interfaces.IBO;
  *
  * @author 
  */
-public class FacturaBO implements IBO{
+public class FacturaBO {
 
     private String RFC;
     private String codigoPostal;

@@ -1,6 +1,5 @@
 package BOs;
 
-import Interfaces.IBO;
 
 /**
  * ProductoCarritoBO.java
@@ -9,7 +8,7 @@ import Interfaces.IBO;
  *actua como un intermediario entre los productos seleccionados y el proceso de compra
  * @author 
  */
-public class ProductoCarritoBO implements IBO {
+public class ProductoCarritoBO {
 
     private ProductoBO producto;
     private int cantidad;

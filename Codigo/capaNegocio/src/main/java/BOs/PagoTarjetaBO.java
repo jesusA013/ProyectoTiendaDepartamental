@@ -1,6 +1,5 @@
 package BOs;
 
-import Interfaces.IBO;
 import java.util.Calendar;
 
 /**
@@ -10,7 +9,7 @@ import java.util.Calendar;
  *
  * @author 
  */
-public class PagoTarjetaBO implements IBO {
+public class PagoTarjetaBO  {
 
     private String numeroTarjeta;
     private Calendar fechaExpiracion;

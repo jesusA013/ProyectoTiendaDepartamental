@@ -42,13 +42,10 @@ public class ManejadorVenta implements IRegistroVenta {
        return productos;
    }
     
-   private ArrayList<VentaDTO>ListaVenta= new ArrayList<>();
-    if (validarPago()==true) {
-   ListaVenta.add();
-}
+ 
    
    
-    @Override;
+    @Override
     public boolean validarRFC(String RFC) throws RegistroException {
         if (RFC == null || RFC.isEmpty()) {
             throw new RegistroException("El RFC no puede estar vacío.");

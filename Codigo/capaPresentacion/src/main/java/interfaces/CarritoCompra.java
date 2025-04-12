@@ -60,21 +60,21 @@ public class CarritoCompra extends javax.swing.JFrame {
         totalJlabel.setText(Double.toString(370.2));
 
     }
-    public void procesarCarrito(){
-    LinkedList<ProductoCarritoBO> carritoProductos = new LinkedList<>();
-    carritoProductos.add(new ProductoCarritoBO(new ProductoCarritoBO("Lentes de sol","123456",100.00,"Gucci",50),2,200.0));
-        carritoProductos.add(new ProductoCarritoBO(new ProductoCarritoBO("Calcetines", "23123", 20.0, "Nike", "cafe"),5,100.0));
-        
-        double subtotal= calcularSubtotal(carritoProductos);
-        double impuestos=calcularImpuestos();
-        double total=CalcularTotal();
-        
-        lblSubProductos.setText(Double.toString(subtotal));
-        lblImpuestos.setText(Double.toString(impuestos));
-        totalJlabel.setText(Double.toString(total));
-        
-        registrarVenta(carritoProductos); //aqui se le llama para registrar la venta
-    }
+//    public void procesarCarrito(){
+//    LinkedList<ProductoCarritoBO> carritoProductos = new LinkedList<>();
+//    carritoProductos.add(new ProductoCarritoBO(new ProductoCarritoBO("Lentes de sol","123456",100.00,"Gucci",50),2,200.0));
+//        carritoProductos.add(new ProductoCarritoBO(new ProductoCarritoBO("Calcetines", "23123", 20.0, "Nike", "cafe"),5,100.0));
+//        
+//        double subtotal= calcularSubtotal(carritoProductos);
+//        double impuestos=calcularImpuestos();
+//        double total=CalcularTotal();
+//        
+//        lblSubProductos.setText(Double.toString(subtotal));
+//        lblImpuestos.setText(Double.toString(impuestos));
+//        totalJlabel.setText(Double.toString(total));
+//        
+//        registrarVenta(carritoProductos); //aqui se le llama para registrar la venta
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
