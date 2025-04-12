@@ -187,8 +187,8 @@ public class VentaBO   {
         LinkedList<ProductoVentaBO> productosVendidos = new LinkedList<>();
         for (ProductoCarritoBO productoCarrito : carritoProductoCarritoBOs) {
             productosVendidos.add(new ProductoVentaBO(
-                    productoCarrito.getCantidad(),
-                     productoCarrito.getProducto(),
+                    productoCarrito.getProducto(),
+                     productoCarrito.getCantidad(),
                     productoCarrito.getPrecio()));
         }
         double subtotal = calcularSubtotal(productosVendidos);

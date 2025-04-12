@@ -1,15 +1,18 @@
 package BOs;
 
 import java.util.List;
-import Interfaces.inventarioObservador;
+import Interface.inventarioObservador;
+import java.util.LinkedList;
+
 /**
  * ProductoBO.java
  *
- * Esta clase representa los productos de objecto negocio
- *Representa un producto en el nivel del negocio y gestiona atributos como stock y precio
- * @author 
+ * Esta clase representa los productos de objecto negocio Representa un producto
+ * en el nivel del negocio y gestiona atributos como stock y precio
+ *
+ * @author
  */
-public class ProductoBO implements inventarioObservador{
+public class ProductoBO implements inventarioObservador {
 
     private String nombre;
     private String sku;
@@ -17,7 +20,7 @@ public class ProductoBO implements inventarioObservador{
     private String marca;
     private String color;
     private int stock;
-    
+
     /**
      * Constructor por omision
      */
@@ -172,31 +175,34 @@ public class ProductoBO implements inventarioObservador{
     public void validarNombre() {
 
     }
-/*Metodos de implementacion para patron observador*/
-    private List<inventarioObservador> observadores = new List<>();
-    public void agregarObservador(){
-    observadores.add(observador);
+    /*Metodos de implementacion para patron observador*/
+    private LinkedList<inventarioObservador> observadores = new LinkedList<>();
+
+    public void agregarObservador(inventarioObservador observador) {
+        observadores.add(observador);
     }
-    public void eliminarObservador(){
-    observadores.remove(observador);
+
+    public void eliminarObservador(inventarioObservador observador) {
+        observadores.remove(observador);
     }
-    
-    public void actualizarStock(int nuevoStock){
-    this.stock= nuevoStock;
-    notificarObservadores();
+
+    public void actualizarStock(int nuevoStock) {
+        this.stock = nuevoStock;
+        notificarObservadores();
     }
-     private void notificarObservadores(){
-     for(inventarioObservador observador : observadores){
-     observador.actualizar(nombre ,stock);
-     }
-     }
-    
-public void reducirStock(int cantidadVendida) {
-    if (cantidadVendida > this.stock) {
-        throw new IllegalArgumentException("Stock insuficiente.");
+
+    private void notificarObservadores() {
+        for (inventarioObservador observador : observadores) {
+            observador.actualizar(nombre, stock);
+        }
     }
-    this.stock -= cantidadVendida;
-}
+
+    public void reducirStock(int cantidadVendida) {
+        if (cantidadVendida > this.stock) {
+            throw new IllegalArgumentException("Stock insuficiente.");
+        }
+        this.stock -= cantidadVendida;
+    }
 
     @Override
     public void actualizar(String producto, int nuevoStock) {

@@ -25,6 +25,7 @@ public class ControlNavegacion {
     private FacturaDatos pantallaFactura;
     private BusquedaProducto pantallaBusquedaProducto;
     private SeleccionMetodoPago pantallaSeleccionMetodoPago;
+    private GraciasPorSuCompra pantallaGraciasCompra;
 
     //Creacion de cada pantalla
     public ControlNavegacion() {
@@ -34,6 +35,7 @@ public class ControlNavegacion {
         this.pantallaFactura = new FacturaDatos();
         this.pantallaBusquedaProducto = new BusquedaProducto();
         this.pantallaSeleccionMetodoPago = new SeleccionMetodoPago();
+        this.pantallaGraciasCompra= new GraciasPorSuCompra();
     }
 
     public static ControlNavegacion getInstance() {
@@ -84,4 +86,8 @@ public class ControlNavegacion {
         mostrarPantalla(pantallaSeleccionMetodoPago);
     }
     
+    public void irAGraciasPorSuCompra(){
+        mostrarPantalla(pantallaGraciasCompra);
+        
+    }
 }

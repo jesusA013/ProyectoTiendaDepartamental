@@ -353,6 +353,9 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
      */
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         // TODO add your handling code here:
+        ControlNavegacion.getInstance().irAGraciasPorSuCompra();
+        
+        
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     

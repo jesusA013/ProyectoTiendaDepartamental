@@ -35,5 +35,10 @@
             <artifactId>capaPersistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.mycompany</groupId>
+            <artifactId>RegistroVentaSubsistema</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>
