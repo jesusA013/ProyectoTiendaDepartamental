@@ -1,14 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package control;
 
 /**
  *
  * @author Jesus
  */
-import interfaces.BusquedaProducto;
+import Implementaciones.*;
+import ModuloAlmacen.GestionProveedores.*;
 import interfaces.*;
 import javax.swing.*;
 
@@ -26,6 +23,9 @@ public class ControlNavegacion {
     private BusquedaProducto pantallaBusquedaProducto;
     private SeleccionMetodoPago pantallaSeleccionMetodoPago;
     private GraciasPorSuCompra pantallaGraciasCompra;
+    // Gestion Proveedores
+    private final IManejadorProveedor manejadorProveedor;
+    private ListaProveedores pantallaListaProveedores;
 
     //Creacion de cada pantalla
     public ControlNavegacion() {
@@ -36,6 +36,9 @@ public class ControlNavegacion {
         this.pantallaBusquedaProducto = new BusquedaProducto();
         this.pantallaSeleccionMetodoPago = new SeleccionMetodoPago();
         this.pantallaGraciasCompra= new GraciasPorSuCompra();
+        //
+        this.pantallaListaProveedores = ListaProveedores.getInstancia();
+        this.manejadorProveedor = new ManejadorProveedor();
     }
 
     public static ControlNavegacion getInstance() {
@@ -90,4 +93,18 @@ public class ControlNavegacion {
         mostrarPantalla(pantallaGraciasCompra);
         
     }
+    
+    ///////////////////////////////////////////////////////
+    public void mostrarFormListaProveedores() {
+        if (manejadorProveedor != null) {
+            // Configuras la tabla (botones)
+            manejadorProveedor.configuracionInicialTabla();
+
+            // Actualizas los datos
+            manejadorProveedor.buscarTabla();
+        }
+
+        mostrarPantalla(pantallaListaProveedores);
+    }
+
 }
