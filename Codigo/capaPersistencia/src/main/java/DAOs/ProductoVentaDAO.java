@@ -4,6 +4,8 @@
  */
 package DAOs;
 
+import Interfaz.IProductoVentaDAO;
+
 /**
  *
  * @author Knocmare

@@ -1,6 +1,8 @@
 package Entidades;
 
 import java.util.Date;
+import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  * Venta.java
@@ -11,131 +13,84 @@ import java.util.Date;
  */
 public class Venta {
 
-    private int idVenta;
-    private double subtotal;
-    private double impuesto;
-    private double total;
+    private ObjectId id;
     private Date fecha;
+    private List<ProductoVendido> productos;
+    private ObjectId vendedorId;
+    private Factura factura;
+    private DetallesVenta detallesVenta;
 
-    /**
-     * Constructor por ausencia
-     */
     public Venta() {
     }
 
-    /**
-     * Constructor de una venta.
-     *
-     * @param subtotal Subtotal de la venta
-     * @param impuesto Impuesto de la venta
-     * @param total Total de la venta
-     * @param fecha Fecha de la venta
-     */
-    public Venta(double subtotal, double impuesto, double total, Date fecha) {
-        this.subtotal = subtotal;
-        this.impuesto = impuesto;
-        this.total = total;
+    public Venta(Date fecha, List<ProductoVendido> productos, ObjectId vendedorId, Factura factura, DetallesVenta detallesVenta) {
         this.fecha = fecha;
+        this.productos = productos;
+        this.vendedorId = vendedorId;
+        this.factura = factura;
+        this.detallesVenta = detallesVenta;
     }
 
-    /**
-     * Regresa el ID de la venta.
-     *
-     * @return ID de la venta
-     */
-    public int getIdVenta() {
-        return idVenta;
+    public Venta(Date fecha, List<ProductoVendido> productos, ObjectId vendedorId, DetallesVenta detallesVenta) {
+        this.fecha = fecha;
+        this.productos = productos;
+        this.vendedorId = vendedorId;
+        this.detallesVenta = detallesVenta;
     }
 
-    /**
-     * Establece el ID de la venta.
-     *
-     * @param idVenta ID de la venta
-     */
-    public void setIdVenta(int idVenta) {
-        this.idVenta = idVenta;
+    public ObjectId getId() {
+        return id;
     }
 
-    /**
-     * Regresa el subtotal de la venta.
-     *
-     * @return Subtotal de la venta
-     */
-    public double getSubtotal() {
-        return subtotal;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
-    /**
-     * Establece el subtotal de la venta
-     *
-     * @param subtotal Subtotal de la venta
-     */
-    public void setSubtotal(double subtotal) {
-        this.subtotal = subtotal;
-    }
-
-    /**
-     * Regresa el impuesto de la venta.
-     *
-     * @return Impuesto de la venta
-     */
-    public double getImpuesto() {
-        return impuesto;
-    }
-
-    /**
-     * Establece el impuesto de la venta.
-     *
-     * @param impuesto Impuesto de la venta
-     */
-    public void setImpuesto(double impuesto) {
-        this.impuesto = impuesto;
-    }
-
-    /**
-     * Regresa el total de la venta.
-     *
-     * @return Total de la venta
-     */
-    public double getTotal() {
-        return total;
-    }
-
-    /**
-     * Establece el total de la venta.
-     *
-     * @param total
-     */
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    /**
-     * Regresa la fecha de la venta.
-     *
-     * @return Fecha de la venta
-     */
     public Date getFecha() {
         return fecha;
     }
 
-    /**
-     * Establece la fecha de la venta.
-     *
-     * @param fecha Fecha de la venta
-     */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-    /**
-     * Regresa una cadena con con todos los datos.
-     *
-     * @return Cadena con todos los datos
-     */
+    public List<ProductoVendido> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<ProductoVendido> productos) {
+        this.productos = productos;
+    }
+
+    public ObjectId getVendedorId() {
+        return vendedorId;
+    }
+
+    public void setVendedorId(ObjectId vendedorId) {
+        this.vendedorId = vendedorId;
+    }
+
+    public Factura getFactura() {
+        return factura;
+    }
+
+    public void setFactura(Factura factura) {
+        this.factura = factura;
+    }
+
+    public DetallesVenta getDetallesVenta() {
+        return detallesVenta;
+    }
+
+    public void setDetallesVenta(DetallesVenta detallesVenta) {
+        this.detallesVenta = detallesVenta;
+    }
+
     @Override
     public String toString() {
-        return "Venta{" + "idVenta=" + idVenta + ", subtotal=" + subtotal + ", impuesto=" + impuesto + ", total=" + total + ", fecha=" + fecha + '}';
+        return "Venta{" + "id=" + id + ", fecha=" + fecha + ", productos=" + productos + ", vendedorId=" + vendedorId + ", factura=" + factura + ", detallesVenta=" + detallesVenta + '}';
     }
+
+    
 
 }

@@ -1,5 +1,6 @@
 package DAOs;
 
+import Interfaz.IMetodoPagoDAO;
 import Entidades.MetodoPago;
 import java.util.ArrayList;
 import java.util.List;

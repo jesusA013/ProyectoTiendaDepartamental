@@ -1,4 +1,4 @@
-package DAOs;
+package Interfaz;
 
 import Entidades.MetodoPago;
 import java.util.List;

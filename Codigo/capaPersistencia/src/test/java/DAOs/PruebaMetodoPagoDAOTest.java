@@ -4,6 +4,7 @@
  */
 package DAOs;
 
+import Interfaz.IMetodoPagoDAO;
 import Entidades.MetodoEfectivo;
 import Entidades.MetodoTarjeta;
 

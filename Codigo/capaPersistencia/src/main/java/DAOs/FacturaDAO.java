@@ -4,6 +4,9 @@
  */
 package DAOs;
 
+import Interfaz.IFacturaDAO;
+
+
 /**
  *
  * @author Knocmare

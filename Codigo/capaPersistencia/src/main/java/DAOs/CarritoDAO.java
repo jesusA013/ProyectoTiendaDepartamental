@@ -4,6 +4,8 @@
  */
 package DAOs;
 
+import Interfaz.ICarritoDAO;
+
 /**
  *
  * @author Knocmare
