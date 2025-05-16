@@ -4,6 +4,8 @@
  */
 package Entidades;
 
+import org.bson.Document;
+
 /**
  *
  * @author gaspa
@@ -55,6 +57,7 @@ public class Domicilio {
     public void setCodigoPostal(String codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
+    
 
     @Override
     public String toString() {

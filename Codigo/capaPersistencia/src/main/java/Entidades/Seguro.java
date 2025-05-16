@@ -4,6 +4,8 @@
  */
 package Entidades;
 
+import org.bson.Document;
+
 /**
  *
  * @author gaspa

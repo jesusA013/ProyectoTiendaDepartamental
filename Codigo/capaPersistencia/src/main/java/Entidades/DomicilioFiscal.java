@@ -4,6 +4,8 @@
  */
 package Entidades;
 
+import org.bson.Document;
+
 /**
  *
  * @author gaspa
@@ -14,7 +16,7 @@ public class DomicilioFiscal {
     private String ciudadLocalidad;
     private String codigoPostal;
     
-
+    
     public DomicilioFiscal() {
     }
 
@@ -36,7 +38,7 @@ public class DomicilioFiscal {
     public String getDelegacionMunicipio() {
         return delegacionMunicipio;
     }
-
+    
     public void setDelegacionMunicipio(String delegacionMunicipio) {
         this.delegacionMunicipio = delegacionMunicipio;
     }
@@ -57,7 +59,6 @@ public class DomicilioFiscal {
         this.codigoPostal = codigoPostal;
     }
 
-    
 
     @Override
     public String toString() {

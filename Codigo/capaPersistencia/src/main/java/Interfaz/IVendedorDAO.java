@@ -6,13 +6,18 @@ package Interfaz;
 
 import Entidades.Vendedor;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author gaspa
  */
 public interface IVendedorDAO {
-    void insertarVendedor(Vendedor vendedor);
+    Vendedor insertarVendedor(Vendedor vendedor);
     Vendedor buscarPorCURP(String curp);
     List<Vendedor> obtenerTodos();
+    Vendedor buscarPorId(ObjectId id);
+    boolean actualizarVendedor(String id, Vendedor vendedor);
+    Vendedor actualizarVendedor(Vendedor vendedor);
+    Vendedor eliminarVendedor(ObjectId id);
 }

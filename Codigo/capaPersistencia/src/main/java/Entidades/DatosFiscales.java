@@ -45,6 +45,7 @@ public class DatosFiscales {
     public void setDomicilioFiscal(DomicilioFiscal domicilioFiscal) {
         this.domicilioFiscal = domicilioFiscal;
     }
+    
 
     @Override
     public String toString() {
