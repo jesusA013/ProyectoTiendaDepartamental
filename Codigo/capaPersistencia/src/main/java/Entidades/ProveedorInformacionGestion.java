@@ -1,0 +1,122 @@
+package Entidades;
+
+import org.bson.types.ObjectId;
+
+/**
+ * ProveedorInformacionGestion.java
+ *
+ * Esta clase representa la entidad de la información de historial y gestión del
+ * proveedor.
+ *
+ * @author Ángel Ruíz García - 00000248171
+ */
+public class ProveedorInformacionGestion {
+
+    private ObjectId idGestion;
+    private String fechaAlta;
+    private String estado;
+    private String comentarios;
+
+    /**
+     * Constructor por omision.
+     */
+    public ProveedorInformacionGestion() {
+    }
+
+    /**
+     * Inicializa los atributos al valor de sus parámetros.
+     *
+     * @param idGestion ID de la información de historial y gestión
+     * @param fechaAlta Fecha de alta del proveedor
+     * @param estado Estado del proveedor
+     * @param comentarios Comentarios sobre el proveedor
+     */
+    public ProveedorInformacionGestion(ObjectId idGestion, String fechaAlta, String estado, String comentarios) {
+        this.idGestion = idGestion;
+        this.fechaAlta = fechaAlta;
+        this.estado = estado;
+        this.comentarios = comentarios;
+    }
+
+    /**
+     * Regresa el ID de la información de historial y gestión.
+     *
+     * @return ID de la información de historial y gestión
+     */
+    public ObjectId getIdGestion() {
+        return idGestion;
+    }
+
+    /**
+     * Establece el ID de la información de historial y gestión.
+     *
+     * @param idGestion ID de la información de historial y gestión
+     */
+    public void setIdGestion(ObjectId idGestion) {
+        this.idGestion = idGestion;
+    }
+
+    /**
+     * Regresa la fecha de alta del proveedor.
+     *
+     * @return Fecha de alta del proveedor
+     */
+    public String getFechaAlta() {
+        return fechaAlta;
+    }
+
+    /**
+     * Establece la fecha de alta del proveedor.
+     *
+     * @param fechaAlta Fecha de alta del proveedor
+     */
+    public void setFechaAlta(String fechaAlta) {
+        this.fechaAlta = fechaAlta;
+    }
+
+    /**
+     * Regresa el estado del proveedor.
+     *
+     * @return Estado del proveedor
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * Establece el estado del proveedor.
+     *
+     * @param estado Estado del proveedor
+     */
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    /**
+     * Regresa los comentarios sobre el proveedor.
+     *
+     * @return Comentarios sobre el proveedor
+     */
+    public String getComentarios() {
+        return comentarios;
+    }
+
+    /**
+     * Establece los comentarios sobre el proveedor.
+     *
+     * @param comentarios Comentarios sobre el proveedor
+     */
+    public void setComentarios(String comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    /**
+     * Regresa una cadena con el valor de los atributos.
+     *
+     * @return Cadena con el valor de los atributos
+     */
+    @Override
+    public String toString() {
+        return "ProveedorInformacionGestion{" + "idGestion=" + idGestion + ", fechaAlta=" + fechaAlta + ", estado=" + estado + ", comentarios=" + comentarios + '}';
+    }
+}
