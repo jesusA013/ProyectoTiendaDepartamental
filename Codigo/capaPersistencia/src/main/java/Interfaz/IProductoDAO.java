@@ -4,10 +4,16 @@
  */
 package Interfaz;
 
+import Entidades.Producto;
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author Knocmare
  */
 public interface IProductoDAO {
-    
+    Producto insertarProducto(Producto producto);
+    Producto buscarPorId(ObjectId id);
+    Producto actualizarProducto(Producto producto);
+    Producto eliminarProducto(ObjectId id);
 }

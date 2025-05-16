@@ -132,17 +132,10 @@ public class ProductoVenta {
 
     @Override
     public String toString() {
-        
-        int idProd = (producto != null) ? producto.getIdProducto() : -1; // Asumiendo que Producto tiene getIdProducto()
-        return "ProductoVenta{" +
-               "idProductoVenta=" + idProductoVenta +
-               ", idCarrito=" + idCarrito +
-               ", idProducto=" + idProd + // Muestra el ID del producto base
-               ", cantidad=" + cantidad +
-               ", precioUnitarioVenta=" + precioUnitarioVenta +
-               ", importe=" + importe +
-               '}';
+        return "ProductoVenta{" + "idProductoVenta=" + idProductoVenta + ", idCarrito=" + idCarrito + ", producto=" + producto + ", cantidad=" + cantidad + ", precioUnitarioVenta=" + precioUnitarioVenta + ", importe=" + importe + '}';
     }
+
+    
 
    
 }

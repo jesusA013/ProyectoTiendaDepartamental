@@ -1,5 +1,7 @@
 package Entidades;
 
+import org.bson.types.ObjectId;
+
 /**
  * Producto.java
  *
@@ -9,10 +11,16 @@ package Entidades;
  */
 public class Producto {
 
-    private int idProducto;
+    private ObjectId id; 
+    private String codigo;
     private String nombre;
+    private String SKU;
+    private String marca;
+    private String color;
+    private double precio;
     private int stock;
     private String descripcion;
+    private ObjectId proveedorId; 
 
     /**
      * Constructor por ausencia
@@ -28,11 +36,23 @@ public class Producto {
      * @param stock Stock del producto
      * @param descripcion Descripcion del producto
      */
-    public Producto(int idProducto, String nombre, int stock, String descripcion) {
-        this.idProducto = idProducto;
+    public Producto(ObjectId idProducto, String nombre, int stock, String descripcion) {
+        this.id = idProducto;
         this.nombre = nombre;
         this.stock = stock;
         this.descripcion = descripcion;
+    }
+
+    public Producto(String codigo, String nombre, String SKU, String marca, String color, double precio, int stock, String descripcion, ObjectId proveedorId) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.SKU = SKU;
+        this.marca = marca;
+        this.color = color;
+        this.precio = precio;
+        this.stock = stock;
+        this.descripcion = descripcion;
+        this.proveedorId = proveedorId;
     }
 
     /**
@@ -40,8 +60,8 @@ public class Producto {
      *
      * @return ID del producto
      */
-    public int getIdProducto() {
-        return idProducto;
+    public ObjectId getId() {    
+        return id;
     }
 
     /**
@@ -49,8 +69,8 @@ public class Producto {
      *
      * @param idProducto ID del producto
      */
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public void setId(ObjectId id) {    
+        this.id = id;
     }
 
     /**
@@ -107,6 +127,53 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getSKU() {
+        return SKU;
+    }
+
+    public void setSKU(String SKU) {
+        this.SKU = SKU;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public ObjectId getProveedorId() {
+        return proveedorId;
+    }
+
+    public void setProveedorId(ObjectId proveedorId) {
+        this.proveedorId = proveedorId;
+    }
     /**
      * Regresa una cadena con todos los datos.
      *
@@ -114,7 +181,11 @@ public class Producto {
      */
     @Override
     public String toString() {
-        return "Producto{" + "idProducto=" + idProducto + ", nombre=" + nombre + ", stock=" + stock + ", descripcion=" + descripcion + '}';
+        return "Producto{" + "id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", SKU=" + SKU + ", marca=" + marca + ", color=" + color + ", precio=" + precio + ", stock=" + stock + ", descripcion=" + descripcion + ", proveedorId=" + proveedorId + '}';
     }
+    
+
+    
+    
 
 }
