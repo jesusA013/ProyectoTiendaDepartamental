@@ -27,13 +27,11 @@ public class ProveedorInformacionGestion {
     /**
      * Inicializa los atributos al valor de sus parámetros.
      *
-     * @param idGestion ID de la información de historial y gestión
      * @param fechaAlta Fecha de alta del proveedor
      * @param estado Estado del proveedor
      * @param comentarios Comentarios sobre el proveedor
      */
-    public ProveedorInformacionGestion(ObjectId idGestion, Date fechaAlta, String estado, String comentarios) {
-        this.idGestion = idGestion;
+    public ProveedorInformacionGestion(Date fechaAlta, String estado, String comentarios) {
         this.fechaAlta = fechaAlta;
         this.estado = estado;
         this.comentarios = comentarios;

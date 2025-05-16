@@ -23,11 +23,9 @@ public class ProveedorInformacionBasica {
     /**
      * Inicializa los atributos al valor de sus parámetros.
      *
-     * @param idBasica ID de la información básica
      * @param nombreProveedor Nombre del proveedor
      */
-    public ProveedorInformacionBasica(ObjectId idBasica, String nombreProveedor) {
-        this.idBasica = idBasica;
+    public ProveedorInformacionBasica(String nombreProveedor) {
         this.nombreProveedor = nombreProveedor;
     }
 

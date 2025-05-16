@@ -1,6 +1,7 @@
 package DAOs;
 
 import Entidades.Proveedor;
+import Exception.PersistenciaException;
 import Interfaz.IProveedorDAO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -31,7 +32,7 @@ public class ProveedorDAO implements IProveedorDAO {
     }
 
     @Override
-    public Proveedor guardarProveedor(Proveedor proveedor) {
+    public Proveedor guardarProveedor(Proveedor proveedor) throws PersistenciaException {
         if (proveedor.getGestion().getFechaAlta() == null) {
             proveedor.getGestion().setFechaAlta(new Date());
         }
@@ -42,18 +43,18 @@ public class ProveedorDAO implements IProveedorDAO {
     }
 
     @Override
-    public Proveedor editarProveedor(Proveedor proveedor) {
+    public Proveedor editarProveedor(Proveedor proveedor) throws PersistenciaException {
         coleccion.replaceOne(eq("id", proveedor.getIdProveedor()), proveedor);
         return obtenerProveedorPorId(proveedor.getIdProveedor());
     }
 
     @Override
-    public Proveedor obtenerProveedorPorId(ObjectId idProveedor) {
+    public Proveedor obtenerProveedorPorId(ObjectId idProveedor) throws PersistenciaException {
         return coleccion.find(eq("id", idProveedor)).first();
     }
 
     @Override
-    public List<Proveedor> listaProveedor() {
+    public List<Proveedor> listaProveedores() throws PersistenciaException {
         return coleccion.find().into(new ArrayList<>());
     }
 

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAOs;
 
 import Interfaz.IConexion;
@@ -19,7 +15,8 @@ import org.bson.codecs.pojo.PojoCodecProvider;
  *
  * @author gaspa
  */
-public class Conexion implements IConexion{
+public class Conexion implements IConexion {
+
     @Override
     public MongoDatabase conexion() {
         // Configura el proveedor de códecs para trabajar con objetos Java y MongoDB
@@ -40,7 +37,7 @@ public class Conexion implements IConexion{
         // Crea un cliente MongoDB utilizando los ajustes configurados
         MongoClient dbServer = MongoClients.create(clientsSettings);
 
-        // Obtiene la base de datos específica ("ClaseBaseDatosAvanzadas") del cliente MongoDB
-        return dbServer.getDatabase("SistemaVentas");
+        // Obtiene la base de datos específica del cliente MongoDB
+        return dbServer.getDatabase("TiendaDepartamental");
     }
 }

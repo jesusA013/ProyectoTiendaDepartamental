@@ -27,15 +27,13 @@ public class ProveedorInformacionContacto {
     /**
      * Inicializa los atributos al valor de sus parámetros.
      *
-     * @param idContacto ID de la información de contacto
      * @param contacto Contacto del proveedor
      * @param telefono Teléfono del proveedor
      * @param correo Correo del proveedor
      * @param direccion Dirección del proveedor
      * @param paginaWeb Página web del proveedor
      */
-    public ProveedorInformacionContacto(ObjectId idContacto, String contacto, String telefono, String correo, String direccion, String paginaWeb) {
-        this.idContacto = idContacto;
+    public ProveedorInformacionContacto(String contacto, String telefono, String correo, String direccion, String paginaWeb) {
         this.contacto = contacto;
         this.telefono = telefono;
         this.correo = correo;
@@ -153,6 +151,7 @@ public class ProveedorInformacionContacto {
 
     /**
      * Regresa una cadena con el valor de los atributos.
+     *
      * @return Cadena con el valor de los atributos
      */
     @Override

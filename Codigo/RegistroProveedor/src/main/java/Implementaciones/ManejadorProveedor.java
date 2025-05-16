@@ -69,7 +69,7 @@ public class ManejadorProveedor implements IManejadorProveedor {
     @Override
     public void buscarTabla() {
         try {
-            List<ProveedorTablaDTO> proveedorTablaLista = this.proveedorNegocio.listaProveedores();
+            List<ProveedorTablaDTO> proveedorTablaLista = this.proveedorNegocio.obtenerListaProveedores();
             DefaultTableModel modelo = (DefaultTableModel) this.tablaProveedores.getModel();
             modelo.setRowCount(0);
             this.cargarListaProveedores(proveedorTablaLista);

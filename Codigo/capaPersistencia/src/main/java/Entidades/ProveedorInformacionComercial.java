@@ -26,14 +26,12 @@ public class ProveedorInformacionComercial {
     /**
      * Inicializa los atributos al valor de sus parámetros.
      *
-     * @param idComercial ID de la información comercial del proveedor
      * @param rfc RFC del proveedor
      * @param formaPago Forma de pago del proveedor
      * @param terminoPago Termino de pago del proveedor
      * @param moneda Tipo de moneda
      */
-    public ProveedorInformacionComercial(ObjectId idComercial, String rfc, String formaPago, String terminoPago, String moneda) {
-        this.idComercial = idComercial;
+    public ProveedorInformacionComercial(String rfc, String formaPago, String terminoPago, String moneda) {
         this.rfc = rfc;
         this.formaPago = formaPago;
         this.terminoPago = terminoPago;

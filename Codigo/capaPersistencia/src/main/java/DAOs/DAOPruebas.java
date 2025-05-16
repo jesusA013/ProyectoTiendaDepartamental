@@ -11,9 +11,16 @@ import Entidades.DomicilioFiscal;
 import Entidades.Factura;
 import Entidades.NombreCompleto;
 import Entidades.ProductoVendido;
+import Entidades.Proveedor;
+import Entidades.ProveedorInformacionBasica;
+import Entidades.ProveedorInformacionComercial;
+import Entidades.ProveedorInformacionContacto;
+import Entidades.ProveedorInformacionGestion;
 import Entidades.Vendedor;
 import Entidades.Venta;
+import Exception.PersistenciaException;
 import Interfaz.IConexion;
+import Interfaz.IProveedorDAO;
 import Interfaz.IVendedorDAO;
 import Interfaz.IVentasDAO;
 import java.util.Arrays;
@@ -29,6 +36,8 @@ public class DAOPruebas {
     IConexion Mongo = new Conexion();
     IVentasDAO ventasDAO = new VentasDAO(Mongo.conexion());
     IVendedorDAO vendedorDAO = new VendedorDAO(Mongo.conexion());
+    IProveedorDAO proveedorDAO = new ProveedorDAO(Mongo.conexion());
+    
     public void insertarVenta(){
         ProductoVendido producto1 = new ProductoVendido();
         producto1.setCantidad(2);
@@ -84,8 +93,40 @@ public class DAOPruebas {
         vendedorDAO.insertarVendedor(nuevo);
         System.out.println("Vendedor insertado correctamente.");
     }
-    public static void main(String[] args) {
+    
+    public void insertarProveedor() throws PersistenciaException{
+        ProveedorInformacionBasica basica = new ProveedorInformacionBasica();
+        basica.setNombreProveedor("Amazon Business");
+        
+        ProveedorInformacionContacto contacto = new ProveedorInformacionContacto();
+        contacto.setContacto("Ricardo Mendez");
+        contacto.setTelefono("+55 2345678790");
+        contacto.setCorreo("RicardoMendez@gmail.com");
+        contacto.setDireccion("Av. Jalisco 123");
+        contacto.setPaginaWeb("https://www.ricardeza.com.mx");
+        
+        ProveedorInformacionComercial comercial = new ProveedorInformacionComercial();
+        comercial.setRfc("AMB980102XXX");
+        comercial.setFormaPago("Transferencia electrónica");
+        comercial.setTerminoPago("30 días");
+        comercial.setMoneda("MXN");
+        
+        ProveedorInformacionGestion gestion = new ProveedorInformacionGestion();
+        gestion.setFechaAlta(new Date());
+        gestion.setEstado("Activo");
+        gestion.setComentarios("Proveedor confiable con entrega en tiempo.");
+        
+        Proveedor proveedor = new Proveedor();
+        proveedor.setBasica(basica);
+        proveedor.setContacto(contacto);
+        proveedor.setComercial(comercial);
+        proveedor.setGestion(gestion);
+        
+        proveedorDAO.guardarProveedor(proveedor);
+    }
+    
+    public static void main(String[] args) throws PersistenciaException {
         DAOPruebas pruebas = new DAOPruebas();
-        pruebas.insertarVendedor();
+        pruebas.insertarProveedor();
     }
 }

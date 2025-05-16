@@ -1,5 +1,8 @@
 package DTOs;
 
+import java.util.Date;
+import org.bson.types.ObjectId;
+
 /**
  * ProveedorInformacionGestionDTO.java
  *
@@ -10,7 +13,8 @@ package DTOs;
  */
 public class ProveedorInformacionGestionDTO {
 
-    private String fechaAlta;
+    private ObjectId idGestion;
+    private Date fechaAlta;
     private String estado;
     private String comentarios;
 
@@ -21,17 +25,36 @@ public class ProveedorInformacionGestionDTO {
     }
 
     /**
-     * Constructor de la información de historial y gestión del proveedor de
-     * objeto de transferencia de datos.
+     * Inicializa los atributos al valor de sus parámetros.
      *
+     * @param idGestion ID de la información de historial y gestión
      * @param fechaAlta Fecha de alta del proveedor
      * @param estado Estado del proveedor
      * @param comentarios Comentarios sobre el proveedor
      */
-    public ProveedorInformacionGestionDTO(String fechaAlta, String estado, String comentarios) {
+    public ProveedorInformacionGestionDTO(ObjectId idGestion, Date fechaAlta, String estado, String comentarios) {
+        this.idGestion = idGestion;
         this.fechaAlta = fechaAlta;
         this.estado = estado;
         this.comentarios = comentarios;
+    }
+
+    /**
+     * Regresa el ID de la información de historial y gestión.
+     *
+     * @return ID de la información de historial y gestión
+     */
+    public ObjectId getIdGestion() {
+        return idGestion;
+    }
+
+    /**
+     * Establece el ID de la información de historial y gestión.
+     *
+     * @param idGestion ID de la información de historial y gestión
+     */
+    public void setIdGestion(ObjectId idGestion) {
+        this.idGestion = idGestion;
     }
 
     /**
@@ -39,7 +62,7 @@ public class ProveedorInformacionGestionDTO {
      *
      * @return Fecha de alta del proveedor
      */
-    public String getFechaAlta() {
+    public Date getFechaAlta() {
         return fechaAlta;
     }
 
@@ -48,7 +71,7 @@ public class ProveedorInformacionGestionDTO {
      *
      * @param fechaAlta Fecha de alta del proveedor
      */
-    public void setFechaAlta(String fechaAlta) {
+    public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
@@ -89,12 +112,12 @@ public class ProveedorInformacionGestionDTO {
     }
 
     /**
-     * Regresa la cadena con todos los datos.
+     * Regresa una cadena con el valor de los atributos.
      *
-     * @return Cadena con todos los datos
+     * @return Cadena con el valor de los atributos
      */
     @Override
     public String toString() {
-        return "ProveedorInformacionGestionDTO{" + "fechaAlta=" + fechaAlta + ", estado=" + estado + ", comentarios=" + comentarios + '}';
+        return "ProveedorInformacionGestion{" + "idGestion=" + idGestion + ", fechaAlta=" + fechaAlta + ", estado=" + estado + ", comentarios=" + comentarios + '}';
     }
 }

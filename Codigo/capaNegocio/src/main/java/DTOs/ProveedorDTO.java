@@ -1,5 +1,7 @@
 package DTOs;
 
+import org.bson.types.ObjectId;
+
 /**
  * ProveedorDTO.java
  *
@@ -10,7 +12,7 @@ package DTOs;
  */
 public class ProveedorDTO {
 
-    private int idProveedor;
+    private ObjectId idProveedor;
     private ProveedorInformacionBasicaDTO basica;
     private ProveedorInformacionContactoDTO contacto;
     private ProveedorInformacionComercialDTO comercial;
@@ -32,7 +34,7 @@ public class ProveedorDTO {
      * @param comercial Información comercial del proveedor
      * @param gestion Información de historial y gestión del proveedor
      */
-    public ProveedorDTO(int idProveedor, ProveedorInformacionBasicaDTO basica, ProveedorInformacionContactoDTO contacto, ProveedorInformacionComercialDTO comercial, ProveedorInformacionGestionDTO gestion) {
+    public ProveedorDTO(ObjectId idProveedor, ProveedorInformacionBasicaDTO basica, ProveedorInformacionContactoDTO contacto, ProveedorInformacionComercialDTO comercial, ProveedorInformacionGestionDTO gestion) {
         this.idProveedor = idProveedor;
         this.basica = basica;
         this.contacto = contacto;
@@ -45,7 +47,7 @@ public class ProveedorDTO {
      *
      * @return ID del proveedor
      */
-    public int getIdProveedor() {
+    public ObjectId getIdProveedor() {
         return idProveedor;
     }
 
@@ -54,7 +56,7 @@ public class ProveedorDTO {
      *
      * @param idProveedor ID del proveedor
      */
-    public void setIdProveedor(int idProveedor) {
+    public void setIdProveedor(ObjectId idProveedor) {
         this.idProveedor = idProveedor;
     }
 
