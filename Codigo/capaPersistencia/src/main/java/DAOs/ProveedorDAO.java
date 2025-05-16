@@ -1,0 +1,60 @@
+package DAOs;
+
+import Entidades.Proveedor;
+import Interfaz.IProveedorDAO;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import org.bson.types.ObjectId;
+
+/**
+ * ProveedorDAO.java
+ *
+ * Esta clase implementa las operaciones básicas para la gestión de proveedores.
+ *
+ * @author Ángel Ruíz García - 00000248171
+ */
+public class ProveedorDAO implements IProveedorDAO {
+
+    private final MongoCollection<Proveedor> coleccion;
+
+    /**
+     * Inicializa la coleccion para usar la base de datos.
+     *
+     * @param database Base de datos
+     */
+    public ProveedorDAO(MongoDatabase database) {
+        this.coleccion = database.getCollection("Proveedores", Proveedor.class);
+    }
+
+    @Override
+    public Proveedor guardarProveedor(Proveedor proveedor) {
+        if (proveedor.getGestion().getFechaAlta() == null) {
+            proveedor.getGestion().setFechaAlta(new Date());
+        }
+        ObjectId nuevoId = new ObjectId();
+        proveedor.setIdProveedor(nuevoId);
+        coleccion.insertOne(proveedor);
+        return proveedor;
+    }
+
+    @Override
+    public Proveedor editarProveedor(Proveedor proveedor) {
+        coleccion.replaceOne(eq("id", proveedor.getIdProveedor()), proveedor);
+        return obtenerProveedorPorId(proveedor.getIdProveedor());
+    }
+
+    @Override
+    public Proveedor obtenerProveedorPorId(ObjectId idProveedor) {
+        return coleccion.find(eq("id", idProveedor)).first();
+    }
+
+    @Override
+    public List<Proveedor> listaProveedor() {
+        return coleccion.find().into(new ArrayList<>());
+    }
+
+}

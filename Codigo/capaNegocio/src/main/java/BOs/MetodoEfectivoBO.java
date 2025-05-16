@@ -1,12 +1,12 @@
 package BOs;
 
-import DAOs.IMetodoPagoDAO;
 import DAOs.MetodoEfectivoDAO;
 import DTOs.MetodoEfectivoDTO;
 import DTOs.MetodoPagoDTO;
 import Entidades.MetodoEfectivo;
 import Entidades.MetodoPago;
 import Interfaces.IMetodoPago;
+import Interfaz.IMetodoPagoDAO;
 import java.util.ArrayList;
 import java.util.List;
 

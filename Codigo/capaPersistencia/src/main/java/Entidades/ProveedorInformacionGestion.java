@@ -1,5 +1,6 @@
 package Entidades;
 
+import java.util.Date;
 import org.bson.types.ObjectId;
 
 /**
@@ -13,7 +14,7 @@ import org.bson.types.ObjectId;
 public class ProveedorInformacionGestion {
 
     private ObjectId idGestion;
-    private String fechaAlta;
+    private Date fechaAlta;
     private String estado;
     private String comentarios;
 
@@ -31,7 +32,7 @@ public class ProveedorInformacionGestion {
      * @param estado Estado del proveedor
      * @param comentarios Comentarios sobre el proveedor
      */
-    public ProveedorInformacionGestion(ObjectId idGestion, String fechaAlta, String estado, String comentarios) {
+    public ProveedorInformacionGestion(ObjectId idGestion, Date fechaAlta, String estado, String comentarios) {
         this.idGestion = idGestion;
         this.fechaAlta = fechaAlta;
         this.estado = estado;
@@ -61,7 +62,7 @@ public class ProveedorInformacionGestion {
      *
      * @return Fecha de alta del proveedor
      */
-    public String getFechaAlta() {
+    public Date getFechaAlta() {
         return fechaAlta;
     }
 
@@ -70,7 +71,7 @@ public class ProveedorInformacionGestion {
      *
      * @param fechaAlta Fecha de alta del proveedor
      */
-    public void setFechaAlta(String fechaAlta) {
+    public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
