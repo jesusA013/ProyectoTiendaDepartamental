@@ -1,8 +1,9 @@
 package Implementaciones;
 
-import DTOs.ProveedorTablaDTO;
-import ModuloAlmacen.GestionProveedores.*;
-import java.util.List;
+import DTOs.ProveedorDTO;
+import Exception.ProveedorException;
+import javax.swing.JTable;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -10,11 +11,18 @@ import java.util.List;
  */
 public interface IManejadorProveedor {
     
-    void configuracionInicialTabla();
+    void configuracionInicialTabla(JTable tablaProveedores);
     
-    void getIdSeleccionadoTabla();
+    ObjectId getIdSeleccionadoTabla(JTable tablaProveedores);
     
-    void buscarTabla();
+    void buscarTabla(JTable tablaProveedores);
     
+    ProveedorDTO registrarProveedor(ProveedorDTO proveedorDTO) throws ProveedorException;
+    
+    ProveedorDTO obtenerProveedor(ObjectId id) throws ProveedorException;
+    
+    ProveedorDTO editarProveedor(ProveedorDTO proveedorDTO) throws ProveedorException;
+    
+    void restaurarCampos();
     
 }
