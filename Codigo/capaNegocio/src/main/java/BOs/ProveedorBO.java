@@ -18,9 +18,8 @@ import Exception.PersistenciaException;
 import Interfaces.IProveedorBO;
 import Interfaz.IConexion;
 import Interfaz.IProveedorDAO;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.bson.types.ObjectId;
 
 /**
@@ -48,7 +47,7 @@ public class ProveedorBO implements IProveedorBO {
         try {
             Proveedor proveedor = convertirEntidad(proveedorDTO);
             ProveedorDTO proveedorGuardado = convertirDTO(proveedorDAO.guardarProveedor(proveedor));
-            
+
             return proveedorGuardado;
         } catch (PersistenciaException ex) {
             throw new NegocioException("Error " + ex.getMessage());
@@ -57,16 +56,41 @@ public class ProveedorBO implements IProveedorBO {
 
     @Override
     public ProveedorDTO editarProveedor(ProveedorDTO proveedorDTO) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Proveedor proveedor = convertirEntidad(proveedorDTO);
+            ProveedorDTO proveedorEditado = convertirDTO(proveedorDAO.editarProveedor(proveedor));
+
+            return proveedorEditado;
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error " + ex.getMessage());
+        }
     }
 
+    @Override
     public ProveedorDTO obtenerProveedorPorId(ObjectId idProveedor) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            ProveedorDTO proveedorEditado = convertirDTO(proveedorDAO.obtenerProveedorPorId(idProveedor));
+
+            return proveedorEditado;
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error " + ex.getMessage());
+        }
     }
 
     @Override
     public List<ProveedorTablaDTO> obtenerListaProveedores() throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            List<Proveedor> listaProveedores = this.proveedorDAO.listaProveedores();
+
+            List<ProveedorDTO> dtos = new ArrayList<>();
+            for (Proveedor proveedor : listaProveedores) {
+                dtos.add(this.obtenerProveedorPorId(proveedor.getIdProveedor()));
+            }
+
+            return this.convertirTablaDTO(dtos);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error " + ex.getMessage());
+        }
     }
 
     /**
@@ -119,11 +143,9 @@ public class ProveedorBO implements IProveedorBO {
      */
     private Proveedor convertirEntidad(ProveedorDTO proveedorDTO) {
         ProveedorInformacionBasica basica = new ProveedorInformacionBasica(
-                proveedorDTO.getBasica().getIdBasica(),
                 proveedorDTO.getBasica().getNombreProveedor());
 
         ProveedorInformacionContacto contacto = new ProveedorInformacionContacto(
-                proveedorDTO.getContacto().getIdContacto(),
                 proveedorDTO.getContacto().getContacto(),
                 proveedorDTO.getContacto().getTelefono(),
                 proveedorDTO.getContacto().getCorreo(),
@@ -131,20 +153,17 @@ public class ProveedorBO implements IProveedorBO {
                 proveedorDTO.getContacto().getPaginaWeb());
 
         ProveedorInformacionComercial comercial = new ProveedorInformacionComercial(
-                proveedorDTO.getComercial().getIdComercial(),
                 proveedorDTO.getComercial().getRfc(),
                 proveedorDTO.getComercial().getFormaPago(),
                 proveedorDTO.getComercial().getTerminoPago(),
                 proveedorDTO.getComercial().getMoneda());
 
         ProveedorInformacionGestion gestion = new ProveedorInformacionGestion(
-                proveedorDTO.getGestion().getIdGestion(),
                 proveedorDTO.getGestion().getFechaAlta(),
                 proveedorDTO.getGestion().getEstado(),
                 proveedorDTO.getGestion().getComentarios());
 
         Proveedor proveedor = new Proveedor(
-                proveedorDTO.getIdProveedor(),
                 basica,
                 contacto,
                 comercial,
@@ -153,4 +172,26 @@ public class ProveedorBO implements IProveedorBO {
         return proveedor;
     }
 
+    /**
+     * Convierte la lista ProveedorDTO a ProveedorTablaDTO.
+     *
+     * @param estudiantes Lista a convertir
+     * @return Regresa la lista creada
+     */
+    private List<ProveedorTablaDTO> convertirTablaDTO(List<ProveedorDTO> proveedores) {
+        if (proveedores == null) {
+            return null;
+        }
+
+        List<ProveedorTablaDTO> proveedoresDTO = new ArrayList<>();
+        for (ProveedorDTO proveedor : proveedores) {
+            String nombreProveedor = proveedor.getBasica().getNombreProveedor();
+            String telefono = proveedor.getContacto().getTelefono();
+            String correo = proveedor.getContacto().getCorreo();
+            String estado = proveedor.getGestion().getEstado();
+            ProveedorTablaDTO dato = new ProveedorTablaDTO(proveedor.getIdProveedor(), nombreProveedor, telefono, correo, estado);
+            proveedoresDTO.add(dato);
+        }
+        return proveedoresDTO;
+    }
 }

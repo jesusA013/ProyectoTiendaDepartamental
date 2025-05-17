@@ -88,7 +88,7 @@ public class MetodoPagoAdapter {
             return convertirTarjetaDTO((MetodoTarjeta) entidad);
         }
          
-        /
+        
         System.err.println("Error: Tipo de MetodoPago (Entidad) no soportado para conversión a DTO: " + entidad.getClass().getName());
         
         return null;

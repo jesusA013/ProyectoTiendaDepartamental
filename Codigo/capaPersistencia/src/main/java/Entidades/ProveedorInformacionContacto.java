@@ -1,5 +1,6 @@
 package Entidades;
 
+import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.types.ObjectId;
 
 /**
@@ -11,6 +12,7 @@ import org.bson.types.ObjectId;
  */
 public class ProveedorInformacionContacto {
 
+    @BsonId
     private ObjectId idContacto;
     private String contacto;
     private String telefono;

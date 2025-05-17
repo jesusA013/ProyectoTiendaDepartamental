@@ -2,9 +2,9 @@ package Interfaces;
 
 import DTOs.ProveedorDTO;
 import DTOs.ProveedorTablaDTO;
-import Entidades.Proveedor;
 import Excepciones.NegocioException;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  * IProveedorDAO.java
@@ -19,7 +19,7 @@ public interface IProveedorBO {
     
     ProveedorDTO editarProveedor(ProveedorDTO proveedorDTO) throws NegocioException;
     
-    //ProveedorDTO obtenerProveedorPorId(ObjectId idProveedor) throws NegocioException;
+    ProveedorDTO obtenerProveedorPorId(ObjectId idProveedor) throws NegocioException;
     
     List<ProveedorTablaDTO> obtenerListaProveedores() throws NegocioException;
     

@@ -1,16 +1,19 @@
 package Entidades;
 
+import org.bson.types.ObjectId;
+
 /**
  * Usuario.java
  *
  * Esta clase representa un usuario.
  *
- * @author Knocmare
+ * @author Ángel Ruíz García - 00000248171
  */
 public class Usuario {
 
-    private int idUsuario;
+    private ObjectId idUsuario;
     private String idCuenta;
+    //private String nombreUsuario;
     private String contrasena;
     private String tipo;
 
@@ -38,7 +41,7 @@ public class Usuario {
      *
      * @return ID del usuario
      */
-    public int getIdUsuario() {
+    public ObjectId getIdUsuario() {
         return idUsuario;
     }
 
@@ -47,7 +50,7 @@ public class Usuario {
      *
      * @param idUsuario ID del usuario
      */
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(ObjectId idUsuario) {
         this.idUsuario = idUsuario;
     }
 

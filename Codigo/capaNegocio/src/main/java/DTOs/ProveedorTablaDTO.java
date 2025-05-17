@@ -1,5 +1,7 @@
 package DTOs;
 
+import org.bson.types.ObjectId;
+
 /**
  * ProveedorTablaDTO.java
  *
@@ -10,7 +12,7 @@ package DTOs;
  */
 public class ProveedorTablaDTO {
 
-    private final int idProveedor;
+    private final ObjectId idProveedor;
     private final String nombreProveedor;
     private final String telefono;
     private final String correo;
@@ -18,14 +20,13 @@ public class ProveedorTablaDTO {
 
     /**
      * Contructor de la tabla de proveedores
-     *
      * @param idProveedor ID del proveedor
      * @param nombreProveedor Nombre del proveedor
      * @param telefono Telefono del proveedor
      * @param correo Correo del proveedor
      * @param estado Estado del proveedor
      */
-    public ProveedorTablaDTO(int idProveedor, String nombreProveedor, String telefono, String correo, String estado) {
+    public ProveedorTablaDTO(ObjectId idProveedor, String nombreProveedor, String telefono, String correo, String estado) {
         this.idProveedor = idProveedor;
         this.nombreProveedor = nombreProveedor;
         this.telefono = telefono;
@@ -38,7 +39,7 @@ public class ProveedorTablaDTO {
      *
      * @return ID del proveedor
      */
-    public int getIdProveedor() {
+    public ObjectId getIdProveedor() {
         return idProveedor;
     }
 

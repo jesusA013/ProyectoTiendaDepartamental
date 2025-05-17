@@ -1,6 +1,7 @@
 package Entidades;
 
 import java.util.Date;
+import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.types.ObjectId;
 
 /**
@@ -13,6 +14,7 @@ import org.bson.types.ObjectId;
  */
 public class ProveedorInformacionGestion {
 
+    @BsonId
     private ObjectId idGestion;
     private Date fechaAlta;
     private String estado;

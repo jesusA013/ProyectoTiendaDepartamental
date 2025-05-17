@@ -44,13 +44,13 @@ public class ProveedorDAO implements IProveedorDAO {
 
     @Override
     public Proveedor editarProveedor(Proveedor proveedor) throws PersistenciaException {
-        coleccion.replaceOne(eq("id", proveedor.getIdProveedor()), proveedor);
+        coleccion.replaceOne(eq("_id", proveedor.getIdProveedor()), proveedor);
         return obtenerProveedorPorId(proveedor.getIdProveedor());
     }
 
     @Override
     public Proveedor obtenerProveedorPorId(ObjectId idProveedor) throws PersistenciaException {
-        return coleccion.find(eq("id", idProveedor)).first();
+        return coleccion.find(eq("_id", idProveedor)).first();
     }
 
     @Override

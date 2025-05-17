@@ -38,11 +38,11 @@ public class AdapterCarritoDTO {
         // Mapeo de la lista de productos (ProductoCarritoDTO -> ProductoVenta)
         if (carritoDTO.getListaProductos() != null) {
             // Usamos el NUEVO adaptador: ProductoVentaAdapter
-            List<ProductoVenta> listaProductosEntidad = carritoDTO.getListaProductos()
-                .stream()
-                .map(ProductoVentaAdapter::convertirAEntidad) // Llama al adaptador correcto
-                .collect(Collectors.toList());
-            carritoEntidad.setCarrito(listaProductosEntidad); // Usa el setter de la entidad: setCarrito
+//            List<ProductoVenta> listaProductosEntidad = carritoDTO.getListaProductos()
+//                .stream()
+//                .map(ProductoVentaAdapter::convertirAEntidad) // Llama al adaptador correcto
+//                .collect(Collectors.toList());
+//            carritoEntidad.setCarrito(listaProductosEntidad); // Usa el setter de la entidad: setCarrito
         } else {
             carritoEntidad.setCarrito(new ArrayList<>()); // O null
         }
@@ -65,10 +65,10 @@ public class AdapterCarritoDTO {
         List<ProductoCarritoDTO> listaProductosDTO = null;
         if (carritoEntidad.getCarrito() != null) { // Usa el getter: getCarrito()
             // Usamos el NUEVO adaptador: ProductoVentaAdapter
-             listaProductosDTO = carritoEntidad.getCarrito()
-                .stream()
-                .map(ProductoVentaAdapter::convertirADTO) // Llama al adaptador correcto
-                .collect(Collectors.toList());
+//             listaProductosDTO = carritoEntidad.getCarrito()
+//                .stream()
+//                .map(ProductoVentaAdapter::convertirADTO) // Llama al adaptador correcto
+//                .collect(Collectors.toList());
         } else {
             listaProductosDTO = new ArrayList<>(); // O null
         }
@@ -89,21 +89,21 @@ public class AdapterCarritoDTO {
 
     // Metodos para convertir en Listas
 
-    public static List<Carrito> convertirAEntidad(List<CarritoDTO> listaDTO) {
-        if (listaDTO == null) {
-            return null;
-        }
-        return listaDTO.stream()
-                      .map(CarritoAdapter::convertirAEntidad)
-                      .collect(Collectors.toList());
-    }
+//    public static List<Carrito> convertirAEntidad(List<CarritoDTO> listaDTO) {
+//        if (listaDTO == null) {
+//            return null;
+//        }
+//        return listaDTO.stream()
+//                      .map(CarritoAdapter::convertirAEntidad)
+//                      .collect(Collectors.toList());
+//    }
 
-    public static List<CarritoDTO> convertirADTO(List<Carrito> listaEntidad) {
-         if (listaEntidad == null) {
-            return null;
-        }
-        return listaEntidad.stream()
-                           .map(CarritoAdapter::convertirADTO)
-                           .collect(Collectors.toList());
-    }
+//    public static List<CarritoDTO> convertirADTO(List<Carrito> listaEntidad) {
+//         if (listaEntidad == null) {
+//            return null;
+//        }
+//        return listaEntidad.stream()
+//                           .map(CarritoAdapter::convertirADTO)
+//                           .collect(Collectors.toList());
+//    }
 }
