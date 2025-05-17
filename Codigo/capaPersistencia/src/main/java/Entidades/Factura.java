@@ -29,5 +29,10 @@ public class Factura {
     public void setFechaEmision(Date fechaEmision) {
         this.fechaEmision = fechaEmision;
     }
+
+    @Override
+    public String toString() {
+        return "Factura{" + "folioFactura=" + folioFactura + ", fechaEmision=" + fechaEmision + '}';
+    }
     
 }

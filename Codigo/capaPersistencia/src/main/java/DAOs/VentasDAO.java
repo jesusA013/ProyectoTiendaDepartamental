@@ -8,6 +8,7 @@ import Entidades.Venta;
 import Interfaz.IVentasDAO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.bson.Document;
@@ -18,46 +19,33 @@ import org.bson.types.ObjectId;
  * @author Knocmare
  */
 public class VentasDAO implements IVentasDAO {
-    private final MongoCollection<Document> coleccion;
+    private final MongoCollection<Venta> coleccion;
 
     public VentasDAO(MongoDatabase database) {
-        this.coleccion = database.getCollection("Ventas");
+        this.coleccion = database.getCollection("Ventas",Venta.class);
     }
 
     @Override
-    public void insertarVenta(Venta venta) {
-        Document docVenta = new Document("fecha", venta.getFecha())
-            .append("productos", venta.getProductos().stream().map(p -> new Document()
-                .append("_id", p.getProductoId())
-                .append("cantidad", p.getCantidad())
-                .append("precioUnitario", p.getPrecioUnitario())
-            ).collect(Collectors.toList()))
-            .append("vendedorId", venta.getVendedorId())
-            .append("Factura", new Document()
-                .append("folioFactura", venta.getFactura().getFolioFactura())
-                .append("fechaEmision", venta.getFactura().getFechaEmision()))
-            .append("detallesVenta", new Document()
-                .append("Subtotal", venta.getDetallesVenta().getSubtotal())
-                .append("IVA", venta.getDetallesVenta().getIva())
-                .append("total", venta.getDetallesVenta().getTotal())
-                .append("formaPago", venta.getDetallesVenta().getFormaPago())
-                .append("metodoPago", venta.getDetallesVenta().getMetodoPago()));
-
-        coleccion.insertOne(docVenta);
+    public Venta insertarVenta(Venta venta) {
+        ObjectId nuevoId = new ObjectId();
+        venta.setId(nuevoId);
+        coleccion.insertOne(venta);
+        return buscarPorId(nuevoId);
+    }
+    @Override
+    public Venta buscarPorId(ObjectId id) {
+        return coleccion.find(eq("_id", id)).first();
     }
 
     @Override
-    public List<Venta> consultarVentas() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Venta actualizarVenta(Venta venta) {
+        coleccion.replaceOne(eq("_id", venta.getId()), venta);
+        return buscarPorId(venta.getId());
     }
 
     @Override
-    public Venta buscarVentaPorId(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Venta eliminarVenta(ObjectId id) {
+        return coleccion.findOneAndDelete(eq("_id", id));
     }
-
-    @Override
-    public List<Venta> buscarVentasPorVendedor(ObjectId vendedorId) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 }

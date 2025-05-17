@@ -13,8 +13,8 @@ import org.bson.types.ObjectId;
  * @author Ilian Gastelum
  */
 public interface IVentasDAO {
-    void insertarVenta(Venta venta);
-    List<Venta> consultarVentas();
-    Venta buscarVentaPorId(ObjectId id);
-    List<Venta> buscarVentasPorVendedor(ObjectId vendedorId);
+    Venta insertarVenta(Venta venta);
+    Venta buscarPorId(ObjectId id);
+    Venta actualizarVenta(Venta venta);
+    Venta eliminarVenta(ObjectId id);
 }

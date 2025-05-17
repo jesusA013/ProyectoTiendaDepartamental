@@ -12,10 +12,9 @@ import org.bson.types.ObjectId;
  * @author Knocmare
  */
 public class Venta {
-
-    private ObjectId id;
+    private ObjectId _id;
     private Date fecha;
-    private List<ProductoVendido> productos;
+    private List<ProductoVenta> productos;
     private ObjectId vendedorId;
     private Factura factura;
     private DetallesVenta detallesVenta;
@@ -23,7 +22,7 @@ public class Venta {
     public Venta() {
     }
 
-    public Venta(Date fecha, List<ProductoVendido> productos, ObjectId vendedorId, Factura factura, DetallesVenta detallesVenta) {
+    public Venta(Date fecha, List<ProductoVenta> productos, ObjectId vendedorId, Factura factura, DetallesVenta detallesVenta) {
         this.fecha = fecha;
         this.productos = productos;
         this.vendedorId = vendedorId;
@@ -31,20 +30,22 @@ public class Venta {
         this.detallesVenta = detallesVenta;
     }
 
-    public Venta(Date fecha, List<ProductoVendido> productos, ObjectId vendedorId, DetallesVenta detallesVenta) {
-        this.fecha = fecha;
-        this.productos = productos;
-        this.vendedorId = vendedorId;
-        this.detallesVenta = detallesVenta;
-    }
-
     public ObjectId getId() {
-        return id;
+        return _id;
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
+    public void setId(ObjectId _id) {
+        this._id = _id;
     }
+
+    public List<ProductoVenta> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<ProductoVenta> productos) {
+        this.productos = productos;
+    }
+
 
     public Date getFecha() {
         return fecha;
@@ -52,14 +53,6 @@ public class Venta {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-
-    public List<ProductoVendido> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<ProductoVendido> productos) {
-        this.productos = productos;
     }
 
     public ObjectId getVendedorId() {
@@ -88,8 +81,9 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "Venta{" + "id=" + id + ", fecha=" + fecha + ", productos=" + productos + ", vendedorId=" + vendedorId + ", factura=" + factura + ", detallesVenta=" + detallesVenta + '}';
+        return "Venta{" + "_id=" + _id + ", fecha=" + fecha + ", productos=" + productos + ", vendedorId=" + vendedorId + ", factura=" + factura + ", detallesVenta=" + detallesVenta + '}';
     }
+
 
     
 

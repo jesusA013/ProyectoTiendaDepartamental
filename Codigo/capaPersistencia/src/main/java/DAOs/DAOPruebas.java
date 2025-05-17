@@ -56,7 +56,6 @@ public class DAOPruebas {
 
         Venta venta = new Venta();
         venta.setFecha(new Date());
-        venta.setProductos(Arrays.asList(producto1));
         venta.setVendedorId(new ObjectId("6823b93d2b4a9e356644152e"));
         venta.setFactura(factura);
         venta.setDetallesVenta(detalles);
