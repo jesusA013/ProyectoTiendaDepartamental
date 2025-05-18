@@ -1,7 +1,10 @@
 package ModuloAlmacen.GestionProveedores;
 
+import DTOs.ProveedorDTO;
+import Exception.ProveedorException;
 import Implementaciones.IManejadorProveedor;
 import control.ControlNavegacion;
+import org.bson.types.ObjectId;
 
 /**
  * ProveedoresPanelDetalles.java
@@ -15,9 +18,28 @@ public class ProveedoresPanelDetalles extends javax.swing.JPanel {
     /**
      * Creates new form ProveedoresPanelNuevo
      * @param controlProveedor
+     * @param id
      */
-    public ProveedoresPanelDetalles(IManejadorProveedor controlProveedor) {
+    public ProveedoresPanelDetalles(IManejadorProveedor controlProveedor, ObjectId id) throws ProveedorException {
         initComponents();
+        ProveedorDTO proveedor = controlProveedor.obtenerProveedor(id);
+        txtIdProveedor.setText(proveedor.getIdProveedor().toString());
+        txtNombreProveedor.setText(proveedor.getBasica().getNombreProveedor());
+        
+        txtContacto.setText(proveedor.getContacto().getContacto());
+        txtTelefono.setText(proveedor.getContacto().getTelefono());
+        txtCorreo.setText(proveedor.getContacto().getCorreo());
+        txtDireccion.setText(proveedor.getContacto().getDireccion());
+        txtPaginaWeb.setText(proveedor.getContacto().getPaginaWeb());
+        
+        txtRFC.setText(proveedor.getComercial().getRfc());
+        txtFormaPago.setText(proveedor.getComercial().getFormaPago());
+        txtTerminoPago.setText(proveedor.getComercial().getTerminoPago());
+        txtMoneda.setText(proveedor.getComercial().getMoneda());
+        
+        txtFecha.setText(proveedor.getGestion().getFechaAlta().toString());
+        txtEstado.setText(proveedor.getGestion().getEstado());
+        txtComentarios.setText(proveedor.getGestion().getComentarios());
     }
 
     /**
@@ -403,7 +425,7 @@ public class ProveedoresPanelDetalles extends javax.swing.JPanel {
                                     .addGroup(panelFondoLayout.createSequentialGroup()
                                         .addComponent(jLabel17)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(panelFondoLayout.createSequentialGroup()
                                         .addComponent(jLabel18)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

@@ -1,7 +1,6 @@
 package ModuloAlmacen.GestionProveedores;
 
 import Implementaciones.IManejadorProveedor;
-import Implementaciones.ManejadorProveedor;
 import control.ControlNavegacion;
 
 /**

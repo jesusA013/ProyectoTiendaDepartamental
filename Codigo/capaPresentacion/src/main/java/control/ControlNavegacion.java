@@ -4,6 +4,7 @@ package control;
  *
  * @author Jesus
  */
+import Exception.ProveedorException;
 import ModuloVenta.FacturaDatos;
 import ModuloVenta.GraciasPorSuCompra;
 import ModuloVenta.SeleccionMetodoPago;
@@ -16,6 +17,7 @@ import ModuloAlmacen.GestionProveedores.*;
 import ModuloAlmacen.MenuAlmacen;
 import java.awt.BorderLayout;
 import javax.swing.*;
+import org.bson.types.ObjectId;
 
 public class ControlNavegacion {
 
@@ -36,11 +38,7 @@ public class ControlNavegacion {
     private final IManejadorProveedor manejadorProveedor;
     private JPanel panelCambiante;
     private final ProveedoresPantalla pantallaProveedores;
-    private final ProveedoresPanelListado panelListaProveedores;
     private final MenuAlmacen pantallaAlmacen;
-    private final ProveedoresPanelNuevo panelNuevoProveedor;
-    private final ProveedoresPanelEditar panelEditarProveedor;
-    private final ProveedoresPanelDetalles panelDetallesProveedor;
 
     //Creacion de cada pantalla
     public ControlNavegacion() {
@@ -55,10 +53,6 @@ public class ControlNavegacion {
         this.manejadorProveedor = new ManejadorProveedor();
         this.pantallaProveedores = ProveedoresPantalla.getInstancia(manejadorProveedor);
         this.pantallaAlmacen = new MenuAlmacen();
-        this.panelListaProveedores = new ProveedoresPanelListado(manejadorProveedor);
-        this.panelNuevoProveedor = new ProveedoresPanelNuevo(manejadorProveedor);
-        this.panelEditarProveedor = new ProveedoresPanelEditar(manejadorProveedor);
-        this.panelDetallesProveedor = new ProveedoresPanelDetalles(manejadorProveedor);
     }
 
     public static ControlNavegacion getInstance() {
@@ -137,7 +131,7 @@ public class ControlNavegacion {
     public void mostrarFormListaProveedores() {
         // Panel Listado
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
-        mostrarPanel(panelCambiante, panelListaProveedores);
+        mostrarPanel(panelCambiante, new ProveedoresPanelListado(manejadorProveedor));
         mostrarPantalla(pantallaProveedores);
     }
 
@@ -156,23 +150,27 @@ public class ControlNavegacion {
      */
     public void mostrarPanelProveedorNuevo() {
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
-        mostrarPanel(panelCambiante, panelNuevoProveedor);
+        mostrarPanel(panelCambiante, new ProveedoresPanelNuevo(manejadorProveedor));
     }
     
     /**
      * Muestra el panel para editar un proveedor ya registrado.
+     * @param id
+     * @throws Exception.ProveedorException
      */
-    public void mostrarPanelProveedorEditar() {
+    public void mostrarPanelProveedorEditar(ObjectId id) throws ProveedorException {
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
-        mostrarPanel(panelCambiante, panelEditarProveedor);
+        mostrarPanel(panelCambiante, new ProveedoresPanelEditar(manejadorProveedor, id));
     }
     
     /**
      * Muestra el panel para ver los detalles un proveedor ya registrado.
+     * @param id
+     * @throws Exception.ProveedorException
      */
-    public void mostrarPanelProveedorDetalles() {
+    public void mostrarPanelProveedorDetalles(ObjectId id) throws ProveedorException {
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
-        mostrarPanel(panelCambiante, panelDetallesProveedor);
+        mostrarPanel(panelCambiante, new ProveedoresPanelDetalles(manejadorProveedor, id));
     }
     /////////////////////////////////////////////////////////////////
 }

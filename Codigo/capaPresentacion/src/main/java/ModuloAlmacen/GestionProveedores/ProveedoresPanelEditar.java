@@ -1,7 +1,16 @@
 package ModuloAlmacen.GestionProveedores;
 
+import DTOs.ProveedorDTO;
+import DTOs.ProveedorInformacionBasicaDTO;
+import DTOs.ProveedorInformacionComercialDTO;
+import DTOs.ProveedorInformacionContactoDTO;
+import DTOs.ProveedorInformacionGestionDTO;
+import Exception.ProveedorException;
 import Implementaciones.IManejadorProveedor;
 import control.ControlNavegacion;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import org.bson.types.ObjectId;
 
 /**
  * ProveedoresPanelEditar.java
@@ -11,13 +20,38 @@ import control.ControlNavegacion;
  * @author Ángel Ruíz García - 00000248171
  */
 public class ProveedoresPanelEditar extends javax.swing.JPanel {
-
+    
+    IManejadorProveedor controlProveedor;
+    ProveedorDTO proveedor;
+    
     /**
      * Creates new form ProveedoresPanelNuevo
      * @param controlProveedor
+     * @param id
      */
-    public ProveedoresPanelEditar(IManejadorProveedor controlProveedor) {
+    public ProveedoresPanelEditar(IManejadorProveedor controlProveedor, ObjectId id) throws ProveedorException {
         initComponents();
+        
+        this.controlProveedor = controlProveedor;
+        proveedor = controlProveedor.obtenerProveedor(id);
+        
+        txtIdProveedor.setText(proveedor.getIdProveedor().toString());
+        txtNombreProveedor.setText(proveedor.getBasica().getNombreProveedor());
+        
+        txtContacto.setText(proveedor.getContacto().getContacto());
+        txtTelefono.setText(proveedor.getContacto().getTelefono());
+        txtCorreo.setText(proveedor.getContacto().getCorreo());
+        txtDireccion.setText(proveedor.getContacto().getDireccion());
+        txtPaginaWeb.setText(proveedor.getContacto().getPaginaWeb());
+        
+        txtRFC.setText(proveedor.getComercial().getRfc());
+        txtFormaPago.setText(proveedor.getComercial().getFormaPago());
+        txtTerminoPago.setText(proveedor.getComercial().getTerminoPago());
+        cboMoneda.setSelectedItem(proveedor.getComercial().getMoneda());
+        
+        txtFecha.setText(proveedor.getGestion().getFechaAlta().toString());
+        cboEstado.setSelectedItem(proveedor.getGestion().getEstado());
+        txtComentarios.setText(proveedor.getGestion().getComentarios());
     }
 
     /**
@@ -431,7 +465,7 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
                                     .addGroup(panelFondoLayout.createSequentialGroup()
                                         .addComponent(jLabel17)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(panelFondoLayout.createSequentialGroup()
                                         .addComponent(jLabel18)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -635,11 +669,62 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        ProveedorInformacionBasicaDTO basicaActualizado = new ProveedorInformacionBasicaDTO();
+        basicaActualizado.setNombreProveedor(txtNombreProveedor.getText());
         
+        ProveedorInformacionContactoDTO contactoActualizado = new ProveedorInformacionContactoDTO();
+        contactoActualizado.setContacto(txtContacto.getText());
+        contactoActualizado.setTelefono(txtTelefono.getText());
+        contactoActualizado.setCorreo(txtCorreo.getText());
+        contactoActualizado.setDireccion(txtDireccion.getText());
+        contactoActualizado.setPaginaWeb(txtPaginaWeb.getText());
+        
+        ProveedorInformacionComercialDTO comercialActualizado = new ProveedorInformacionComercialDTO();
+        comercialActualizado.setRfc(txtRFC.getText());
+        comercialActualizado.setFormaPago(txtFormaPago.getText());
+        comercialActualizado.setTerminoPago(txtTerminoPago.getText());
+        comercialActualizado.setMoneda((String) cboMoneda.getSelectedItem());
+        
+        
+        ProveedorInformacionGestionDTO gestionActualizado = new ProveedorInformacionGestionDTO();
+        gestionActualizado.setFechaAlta(proveedor.getGestion().getFechaAlta());
+        gestionActualizado.setEstado((String) cboEstado.getSelectedItem());
+        gestionActualizado.setComentarios(txtComentarios.getText());
+        
+        ProveedorDTO proveedorActualizado = new ProveedorDTO();
+        proveedorActualizado.setIdProveedor(proveedor.getIdProveedor());
+        proveedorActualizado.setBasica(basicaActualizado);
+        proveedorActualizado.setContacto(contactoActualizado);
+        proveedorActualizado.setComercial(comercialActualizado);
+        proveedorActualizado.setGestion(gestionActualizado);
+        
+        try {
+            ProveedorDTO resultado = controlProveedor.editarProveedor(proveedorActualizado);
+            JOptionPane.showMessageDialog(this, "Proveedor Actualizado con éxito con el ID: " + resultado.getIdProveedor());
+            ControlNavegacion.getInstance().mostrarPanelProveedoresLista();
+        } catch (ProveedorException ex) {
+            JOptionPane.showMessageDialog(this, "Error al actualizado el proveedor: " + ex.getMessage());
+        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
-        // TODO add your handling code here:
+        txtIdProveedor.setText(proveedor.getIdProveedor().toString());
+        txtNombreProveedor.setText(proveedor.getBasica().getNombreProveedor());
+        
+        txtContacto.setText(proveedor.getContacto().getContacto());
+        txtTelefono.setText(proveedor.getContacto().getTelefono());
+        txtCorreo.setText(proveedor.getContacto().getCorreo());
+        txtDireccion.setText(proveedor.getContacto().getDireccion());
+        txtPaginaWeb.setText(proveedor.getContacto().getPaginaWeb());
+        
+        txtRFC.setText(proveedor.getComercial().getRfc());
+        txtFormaPago.setText(proveedor.getComercial().getFormaPago());
+        txtTerminoPago.setText(proveedor.getComercial().getTerminoPago());
+        cboMoneda.setSelectedItem(proveedor.getComercial().getMoneda());
+        
+        txtFecha.setText(proveedor.getGestion().getFechaAlta().toString());
+        cboEstado.setSelectedItem(proveedor.getGestion().getEstado());
+        txtComentarios.setText(proveedor.getGestion().getComentarios());
     }//GEN-LAST:event_btnRestaurarActionPerformed
 
 

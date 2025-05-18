@@ -13,6 +13,8 @@ import control.ControlNavegacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -39,8 +41,12 @@ public class ManejadorProveedor implements IManejadorProveedor {
         ActionListener onDetallesClickListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Metodo para detalles
-                ControlNavegacion.getInstance().mostrarPanelProveedorDetalles();
+                try {
+                    //Metodo para detalles
+                    ControlNavegacion.getInstance().mostrarPanelProveedorDetalles(getIdSeleccionadoTabla(tablaProveedores));
+                } catch (ProveedorException ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
         };
         int indiceColumnaDetalles = 5;
@@ -53,8 +59,12 @@ public class ManejadorProveedor implements IManejadorProveedor {
         ActionListener onEditarClickListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Metodo para editar
-                ControlNavegacion.getInstance().mostrarPanelProveedorEditar();
+                try {
+                    //Metodo para editar
+                    ControlNavegacion.getInstance().mostrarPanelProveedorEditar(getIdSeleccionadoTabla(tablaProveedores));
+                } catch (ProveedorException ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
         };
         int indiceColumnaEditar = 6;

@@ -164,6 +164,7 @@ public class ProveedorBO implements IProveedorBO {
                 proveedorDTO.getGestion().getComentarios());
 
         Proveedor proveedor = new Proveedor(
+                proveedorDTO.getIdProveedor(),
                 basica,
                 contacto,
                 comercial,
