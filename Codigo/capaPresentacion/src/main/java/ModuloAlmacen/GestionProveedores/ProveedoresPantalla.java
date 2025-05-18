@@ -1,28 +1,37 @@
 package ModuloAlmacen.GestionProveedores;
 
+import Implementaciones.IManejadorProveedor;
+
 /**
+ * ProveedoresPantalla.java
+ *
+ * Este Frame es donde apareceran los paneles de Gestión de Proveedores.
  *
  * @author Ángel Ruíz García - 00000248171
  */
-public class ListaProveedores extends javax.swing.JFrame {
-    private static ListaProveedores instancia;
+public class ProveedoresPantalla extends javax.swing.JFrame {
+
+    private static ProveedoresPantalla instancia;
+    private static ProveedoresPanelListado lista;
 
     /**
      * Creates new form ListaProveedores
      */
-    public ListaProveedores() {
+    public ProveedoresPantalla(IManejadorProveedor controlProveedor) {
         initComponents();
+        lista = new ProveedoresPanelListado(controlProveedor);
+        panelCambiante.add(lista);
     }
-    
-    public static ListaProveedores getInstancia() {
+
+    public static ProveedoresPantalla getInstancia(IManejadorProveedor controlProveedor) {
         if (instancia == null) {
-            instancia = new ListaProveedores();
+            instancia = new ProveedoresPantalla(controlProveedor);
         }
         return instancia;
     }
-    
-    public javax.swing.JTable getTablaProveedores() {
-        return tablaProveedores;
+
+    public javax.swing.JPanel getPanelCambiante() {
+        return panelCambiante;
     }
 
     /**
@@ -35,27 +44,14 @@ public class ListaProveedores extends javax.swing.JFrame {
     private void initComponents() {
 
         panelFondo = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaProveedores = new javax.swing.JTable();
         panelSuperior = new javax.swing.JPanel();
         lblID = new javax.swing.JLabel();
+        panelCambiante = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         panelFondo.setBackground(new java.awt.Color(255, 255, 255));
-
-        tablaProveedores.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
-            }
-        ));
-        jScrollPane1.setViewportView(tablaProveedores);
 
         panelSuperior.setBackground(new java.awt.Color(103, 80, 164));
 
@@ -70,30 +66,39 @@ public class ListaProveedores extends javax.swing.JFrame {
             .addGroup(panelSuperiorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(911, Short.MAX_VALUE))
         );
         panelSuperiorLayout.setVerticalGroup(
             panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblID, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
+        panelCambiante.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout panelCambianteLayout = new javax.swing.GroupLayout(panelCambiante);
+        panelCambiante.setLayout(panelCambianteLayout);
+        panelCambianteLayout.setHorizontalGroup(
+            panelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1117, Short.MAX_VALUE)
+        );
+        panelCambianteLayout.setVerticalGroup(
+            panelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 523, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
         panelFondo.setLayout(panelFondoLayout);
         panelFondoLayout.setHorizontalGroup(
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelFondoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(panelSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelSuperior, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelCambiante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelFondoLayout.setVerticalGroup(
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFondoLayout.createSequentialGroup()
                 .addComponent(panelSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelCambiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -110,47 +115,12 @@ public class ListaProveedores extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListaProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListaProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListaProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListaProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ListaProveedores().setVisible(true);
-            }
-        });
-    }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblID;
+    private javax.swing.JPanel panelCambiante;
     private javax.swing.JPanel panelFondo;
     private javax.swing.JPanel panelSuperior;
-    private javax.swing.JTable tablaProveedores;
     // End of variables declaration//GEN-END:variables
 }

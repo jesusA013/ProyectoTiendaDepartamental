@@ -1,18 +1,24 @@
 package Implementaciones;
 
 import BOs.ProveedorBO;
+import DTOs.ProveedorDTO;
 import DTOs.ProveedorTablaDTO;
 import Excepciones.NegocioException;
+import Exception.ProveedorException;
 import Interfaces.IProveedorBO;
 import ModuloAlmacen.GestionProveedores.*;
 import Utilidades.JButtonCellEditor;
 import Utilidades.JButtonRenderer;
+import control.ControlNavegacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import org.bson.types.ObjectId;
 
 /**
  * ManejadorProveedor.java
@@ -24,19 +30,23 @@ import javax.swing.table.TableColumnModel;
  */
 public class ManejadorProveedor implements IManejadorProveedor {
     
-    private final JTable tablaProveedores = ListaProveedores.getInstancia().getTablaProveedores();
     private final IProveedorBO proveedorNegocio = new ProveedorBO();
 
     /**
      * Este metodo estable los botones de la tabla de proveedores.
+     * @param tablaProveedores
      */
     @Override
-    public void configuracionInicialTabla() {
-        ActionListener onEditarClickListener = new ActionListener() {
+    public void configuracionInicialTabla(JTable tablaProveedores) {
+        ActionListener onDetallesClickListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Metodo para detalles
-                //detallesProveedor();
+                try {
+                    //Metodo para detalles
+                    ControlNavegacion.getInstance().mostrarPanelProveedorDetalles(getIdSeleccionadoTabla(tablaProveedores));
+                } catch (ProveedorException ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
         };
         int indiceColumnaDetalles = 5;
@@ -44,13 +54,17 @@ public class ManejadorProveedor implements IManejadorProveedor {
         modeloColumnas.getColumn(indiceColumnaDetalles)
                 .setCellRenderer(new JButtonRenderer("Detalles"));
         modeloColumnas.getColumn(indiceColumnaDetalles)
-                .setCellEditor(new JButtonCellEditor("Detalles", onEditarClickListener));
+                .setCellEditor(new JButtonCellEditor("Detalles", onDetallesClickListener));
 
-        ActionListener onEliminarClickListener = new ActionListener() {
+        ActionListener onEditarClickListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Metodo para editar
-                //editarProveedor();
+                try {
+                    //Metodo para editar
+                    ControlNavegacion.getInstance().mostrarPanelProveedorEditar(getIdSeleccionadoTabla(tablaProveedores));
+                } catch (ProveedorException ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
         };
         int indiceColumnaEditar = 6;
@@ -58,28 +72,33 @@ public class ManejadorProveedor implements IManejadorProveedor {
         modeloColumnas.getColumn(indiceColumnaEditar)
                 .setCellRenderer(new JButtonRenderer("Editar"));
         modeloColumnas.getColumn(indiceColumnaEditar)
-                .setCellEditor(new JButtonCellEditor("Editar", onEliminarClickListener));
+                .setCellEditor(new JButtonCellEditor("Editar", onEditarClickListener));
     }
 
     @Override
-    public void getIdSeleccionadoTabla() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ObjectId getIdSeleccionadoTabla(JTable tablaProveedores) {
+        int filaSeleccionada = tablaProveedores.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            String idStr = tablaProveedores.getValueAt(filaSeleccionada, 0).toString();
+            return new ObjectId(idStr);
+        }
+        return null;
     }
 
     @Override
-    public void buscarTabla() {
+    public void buscarTabla(JTable tablaProveedores) {
         try {
             List<ProveedorTablaDTO> proveedorTablaLista = this.proveedorNegocio.obtenerListaProveedores();
-            DefaultTableModel modelo = (DefaultTableModel) this.tablaProveedores.getModel();
+            DefaultTableModel modelo = (DefaultTableModel) tablaProveedores.getModel();
             modelo.setRowCount(0);
-            this.cargarListaProveedores(proveedorTablaLista);
+            this.cargarListaProveedores(proveedorTablaLista, tablaProveedores);
         } catch (NegocioException ex) {
             System.out.println(ex.getMessage());
         }
     }
     
-    private void cargarListaProveedores(List<ProveedorTablaDTO> listaProveedores) {
-        DefaultTableModel modeloTabla = (DefaultTableModel) this.tablaProveedores.getModel();
+    private void cargarListaProveedores(List<ProveedorTablaDTO> listaProveedores, JTable tablaProveedores) {
+        DefaultTableModel modeloTabla = (DefaultTableModel) tablaProveedores.getModel();
 
         if (!listaProveedores.isEmpty()) {
             listaProveedores.forEach(row -> {
@@ -94,6 +113,79 @@ public class ManejadorProveedor implements IManejadorProveedor {
             });
         }
     }
+
+    @Override
+    public ProveedorDTO registrarProveedor(ProveedorDTO proveedorDTO) throws ProveedorException {
+        try {
+            return this.proveedorNegocio.guardarProveedor(proveedorDTO);
+        } catch (NegocioException ex) {
+            throw new ProveedorException("Error " + ex.getMessage());
+        }
+    }
+
+    @Override
+    public ProveedorDTO obtenerProveedor(ObjectId id) throws ProveedorException {
+        try {
+            return this.proveedorNegocio.obtenerProveedorPorId(id);
+        } catch (NegocioException ex) {
+            throw new ProveedorException("Error " + ex.getMessage());
+        }
+    }
+
+    @Override
+    public ProveedorDTO editarProveedor(ProveedorDTO proveedorDTO) throws ProveedorException {
+        try {
+            return this.proveedorNegocio.editarProveedor(proveedorDTO);
+        } catch (NegocioException ex) {
+            throw new ProveedorException("Error " + ex.getMessage());
+        }
+    }
+
+    @Override
+    public void restaurarCampos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
+//    private void editar() throws NegocioException {
+//        Long id = this.getIdSeleccionadoTabla();
+//        panelEstudianteEditar panelEstudiante = new panelEstudianteEditar(estudianteNegocio, carreraNegocio, id);
+//        this.setLayout(new BorderLayout());
+//        this.removeAll();
+//        this.add(panelEstudiante, BorderLayout.CENTER);
+//        this.revalidate();
+//        this.repaint();
+//    }
+//
+//    private void eliminar() {
+//        Long id = this.getIdSeleccionadoTabla();
+//        System.out.println("El id que se va a eliminar es " + id);
+//
+//        int confirmacion = JOptionPane.showConfirmDialog(this, 
+//                "¿Estás seguro de que deseas eliminar el estudiante con el id institucional: " + id + "?", 
+//                "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+//
+//        if (confirmacion == JOptionPane.YES_OPTION) {
+//            try {
+//                estudianteNegocio.eliminar(id);
+//                JOptionPane.showMessageDialog(this, "Estudiante eliminado con éxito con el id institucional: " + id);
+//            } catch (NegocioException e) {
+//                JOptionPane.showMessageDialog(this, "Error al eliminar el estudiante: " + e.getMessage());
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Eliminación cancelada.");
+//        }
+//    }
+//
+//    private Long getIdSeleccionadoTabla() {
+//        int indiceFilaSeleccionada = this.tablaEstudiantes.getSelectedRow();
+//        if (indiceFilaSeleccionada != -1) {
+//
+//            EstudianteTablaDTO estudianteSeleccionado = estudiantesLista.get(indiceFilaSeleccionada);
+//
+//            return estudianteSeleccionado.getIdEstudiante();
+//        } else {
+//            return 0L;
+//        }
+//    }
     
 }

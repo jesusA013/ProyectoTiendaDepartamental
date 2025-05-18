@@ -4,16 +4,27 @@ package control;
  *
  * @author Jesus
  */
+import Exception.ProveedorException;
+import ModuloVenta.FacturaDatos;
+import ModuloVenta.GraciasPorSuCompra;
+import ModuloVenta.SeleccionMetodoPago;
+import ModuloVenta.BusquedaProducto;
+import ModuloVenta.CarritoCompra;
+import Inicio.InicioSesion;
+import Inicio.MenuPrincipal;
 import Implementaciones.*;
 import ModuloAlmacen.GestionProveedores.*;
-import interfaces.*;
+import ModuloAlmacen.MenuAlmacen;
+import java.awt.BorderLayout;
 import javax.swing.*;
+import org.bson.types.ObjectId;
 
 public class ControlNavegacion {
 
     private static ControlNavegacion instancia;
 
     private JFrame pantallaActual;
+    private JPanel panelActual;
 
     //Instancias unicas de cada pantalla
     private InicioSesion pantallaInicioSesion;
@@ -23,9 +34,11 @@ public class ControlNavegacion {
     private BusquedaProducto pantallaBusquedaProducto;
     private SeleccionMetodoPago pantallaSeleccionMetodoPago;
     private GraciasPorSuCompra pantallaGraciasCompra;
-    // Gestion Proveedores
+    // Gestión Proveedores
     private final IManejadorProveedor manejadorProveedor;
-    private ListaProveedores pantallaListaProveedores;
+    private JPanel panelCambiante;
+    private final ProveedoresPantalla pantallaProveedores;
+    private final MenuAlmacen pantallaAlmacen;
 
     //Creacion de cada pantalla
     public ControlNavegacion() {
@@ -36,9 +49,10 @@ public class ControlNavegacion {
         this.pantallaBusquedaProducto = new BusquedaProducto();
         this.pantallaSeleccionMetodoPago = new SeleccionMetodoPago();
         this.pantallaGraciasCompra= new GraciasPorSuCompra();
-        //
-        this.pantallaListaProveedores = ListaProveedores.getInstancia();
+        // Gestión Proveedores
         this.manejadorProveedor = new ManejadorProveedor();
+        this.pantallaProveedores = ProveedoresPantalla.getInstancia(manejadorProveedor);
+        this.pantallaAlmacen = new MenuAlmacen();
     }
 
     public static ControlNavegacion getInstance() {
@@ -61,11 +75,19 @@ public class ControlNavegacion {
         pantallaActual.setLocationRelativeTo(null);
         pantallaActual.setVisible(true);
     }
+    
+    public void mostrarPanel(JPanel panelCambiante, JPanel panelNuevo) {
+        panelActual = panelCambiante;
+        panelActual.setLayout(new BorderLayout());
+        panelActual.removeAll();
+        panelActual.add(panelNuevo, BorderLayout.CENTER);
+        panelActual.revalidate();
+        panelActual.repaint();
+    }
 
     public void irAInicioSesion() {
         pantallaInicioSesion.LimpiarCampos();
         mostrarPantalla(pantallaInicioSesion);
-
     }
 
     public void irAMenuPrincipal() {
@@ -95,16 +117,60 @@ public class ControlNavegacion {
     }
     
     ///////////////////////////////////////////////////////
+    /**
+     * Muestra la pantalla del menu de almacen
+     */
+    public void mostrarMenuAlmacen() {
+        mostrarPantalla(pantallaAlmacen);
+    }
+    
+    // Gestión Proveedores
+    /**
+     * Muestra la pantalla de proveedores con la lista.
+     */
     public void mostrarFormListaProveedores() {
-        if (manejadorProveedor != null) {
-            // Configuras la tabla (botones)
-            manejadorProveedor.configuracionInicialTabla();
-
-            // Actualizas los datos
-            manejadorProveedor.buscarTabla();
-        }
-
-        mostrarPantalla(pantallaListaProveedores);
+        // Panel Listado
+        panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
+        mostrarPanel(panelCambiante, new ProveedoresPanelListado(manejadorProveedor));
+        mostrarPantalla(pantallaProveedores);
     }
 
+    /**
+     * Muestra el panel con la lista de proveedores.
+     */
+    public void mostrarPanelProveedoresLista() {
+        // Panel Listado
+        panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
+        mostrarPanel(panelCambiante, new ProveedoresPanelListado(manejadorProveedor));
+
+    }
+    
+    /**
+     * Muestra el panel para registrar un proveedor.
+     */
+    public void mostrarPanelProveedorNuevo() {
+        panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
+        mostrarPanel(panelCambiante, new ProveedoresPanelNuevo(manejadorProveedor));
+    }
+    
+    /**
+     * Muestra el panel para editar un proveedor ya registrado.
+     * @param id
+     * @throws Exception.ProveedorException
+     */
+    public void mostrarPanelProveedorEditar(ObjectId id) throws ProveedorException {
+        panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
+        mostrarPanel(panelCambiante, new ProveedoresPanelEditar(manejadorProveedor, id));
+    }
+    
+    /**
+     * Muestra el panel para ver los detalles un proveedor ya registrado.
+     * @param id
+     * @throws Exception.ProveedorException
+     */
+    public void mostrarPanelProveedorDetalles(ObjectId id) throws ProveedorException {
+        panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
+        mostrarPanel(panelCambiante, new ProveedoresPanelDetalles(manejadorProveedor, id));
+    }
+    /////////////////////////////////////////////////////////////////
 }

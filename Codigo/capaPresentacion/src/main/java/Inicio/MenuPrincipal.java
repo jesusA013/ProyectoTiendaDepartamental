@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package interfaces;
+package Inicio;
 
 import control.ControlNavegacion;
 import java.awt.BorderLayout;
@@ -220,7 +220,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOpcionVendedorActionPerformed
 
     private void btnOpcionAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionAlmacenActionPerformed
-        // TODO add your handling code here:
+        ControlNavegacion.getInstance().mostrarMenuAlmacen();
     }//GEN-LAST:event_btnOpcionAlmacenActionPerformed
 
     private void btnOpcionAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionAdministradorActionPerformed

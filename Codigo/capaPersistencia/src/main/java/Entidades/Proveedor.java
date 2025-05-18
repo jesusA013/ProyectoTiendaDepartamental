@@ -28,6 +28,23 @@ public class Proveedor {
     /**
      * Inicializa los atributos al valor de sus parámetros.
      *
+     * @param idProveedor ID del proveedor
+     * @param basica Información básica del proveedor
+     * @param contacto Información contacto del proveedor
+     * @param comercial Información comercial del proveedor
+     * @param gestion Información de historial y gestión del proveedor
+     */
+    public Proveedor(ObjectId idProveedor, ProveedorInformacionBasica basica, ProveedorInformacionContacto contacto, ProveedorInformacionComercial comercial, ProveedorInformacionGestion gestion) {
+        this.idProveedor = idProveedor;
+        this.basica = basica;
+        this.contacto = contacto;
+        this.comercial = comercial;
+        this.gestion = gestion;
+    }
+
+    /**
+     * Inicializa los atributos al valor de sus parámetros sin el ID.
+     *
      * @param basica Información básica del proveedor
      * @param contacto Información contacto del proveedor
      * @param comercial Información comercial del proveedor
