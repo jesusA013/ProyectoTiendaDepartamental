@@ -5,7 +5,7 @@
 package Interfaz;
 
 import Entidades.Venta;
-import java.util.List;
+import Exception.PersistenciaException;
 import org.bson.types.ObjectId;
 
 /**
@@ -13,8 +13,8 @@ import org.bson.types.ObjectId;
  * @author Ilian Gastelum
  */
 public interface IVentasDAO {
-    Venta insertarVenta(Venta venta);
-    Venta buscarPorId(ObjectId id);
-    Venta actualizarVenta(Venta venta);
-    Venta eliminarVenta(ObjectId id);
+    Venta insertarVenta(Venta venta) throws PersistenciaException;
+    Venta buscarPorId(ObjectId id) throws PersistenciaException;
+    Venta actualizarVenta(Venta venta) throws PersistenciaException;
+    Venta eliminarVenta(ObjectId id) throws PersistenciaException;
 }

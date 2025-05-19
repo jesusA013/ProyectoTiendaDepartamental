@@ -1,6 +1,7 @@
 package PanelesProductos;
 
 import DTOs.ProductoVentaDTO;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -14,23 +15,30 @@ public class PanelProductosCarrito extends JPanel {
     int cantidad;
     double importe;
     double precio;
+    ProductoVentaDTO producto;
+    JFrame carrito;
 
     /**
      * Creates new form JpanelProductosBO
      *
      * @param producto
+     * @param panel
      */
-    public PanelProductosCarrito(ProductoVentaDTO producto) {
+    public PanelProductosCarrito(ProductoVentaDTO producto, JFrame panel) {
         initComponents();
         
+        carrito = panel;
+        
+        this.producto = producto;
+        
         this.cantidad = producto.getCantidad();
-        this.importe = producto.getCantidad() * producto.getProducto().getPrecio();
-        this.precio = producto.getProducto().getPrecio();
+        this.importe = producto.getCantidad() * producto.getPrecioUnitario();
+        this.precio = producto.getPrecioUnitario();
         this.lblSKU.setText(producto.getProducto().getSKU());
         this.lblColor.setText(producto.getProducto().getColor());
         this.lblMarca.setText(producto.getProducto().getMarca());
         this.lblNombre.setText(producto.getProducto().getNombre());
-        this.lblImporte.setText(Double.toString(producto.getPrecioUnitario()));
+        this.lblImporte.setText(Double.toString(importe));
         this.txtCantidadProducto.setText(Integer.toString(producto.getCantidad()));
         this.lblPrecio.setText(Double.toString(precio));
     }
@@ -91,14 +99,12 @@ public class PanelProductosCarrito extends JPanel {
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
         txtCantidadProducto.setEditable(false);
+        txtCantidadProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCantidadProducto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCantidadProducto.setText("CAntidad");
-        txtCantidadProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantidadProductoActionPerformed(evt);
-            }
-        });
-        add(txtCantidadProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, -1, -1));
+        add(txtCantidadProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 80, 30));
 
+        lblImporte.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImporte.setText("0");
         add(lblImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, -1, -1));
 
@@ -110,14 +116,14 @@ public class PanelProductosCarrito extends JPanel {
         lblPrecio.setText("Precio");
         add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
 
-        btnAumentarProducto.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnAumentarProducto.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btnAumentarProducto.setText("+");
         btnAumentarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAumentarProductoActionPerformed(evt);
             }
         });
-        add(btnAumentarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 50, -1));
+        add(btnAumentarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 50, 30));
 
         btnDismunuirProducto.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btnDismunuirProducto.setText("-");
@@ -126,7 +132,7 @@ public class PanelProductosCarrito extends JPanel {
                 btnDismunuirProductoActionPerformed(evt);
             }
         });
-        add(btnDismunuirProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, 20));
+        add(btnDismunuirProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, -1, 30));
 
         btnEliminarProducto.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         btnEliminarProducto.setText("🗑");
@@ -140,30 +146,27 @@ public class PanelProductosCarrito extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAumentarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAumentarProductoActionPerformed
-        // TODO add your handling code here:
         cantidad++;
+        producto.setCantidad(cantidad);
         this.txtCantidadProducto.setText(Integer.toString(cantidad));
         this.importe = cantidad * precio;
         this.lblImporte.setText(Double.toString(importe));
     }//GEN-LAST:event_btnAumentarProductoActionPerformed
 
-    private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
-        // TODO add your handling code here:
-        
-
-    }//GEN-LAST:event_btnEliminarProductoActionPerformed
-
-    private void txtCantidadProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadProductoActionPerformed
-
     private void btnDismunuirProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDismunuirProductoActionPerformed
-        // TODO add your handling code here:
         cantidad--;
+        producto.setCantidad(cantidad);
         this.txtCantidadProducto.setText(Integer.toString(cantidad));
         this.importe = cantidad * precio;
         this.lblImporte.setText(Double.toString(importe));
     }//GEN-LAST:event_btnDismunuirProductoActionPerformed
+
+    private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
+        
+        carrito.remove(this);
+        carrito.revalidate(); // Actualizar diseño
+        carrito.repaint(); // Redibujar
+    }//GEN-LAST:event_btnEliminarProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
