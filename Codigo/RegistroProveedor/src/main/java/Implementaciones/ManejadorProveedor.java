@@ -10,7 +10,6 @@ import DTOs.ProveedorTablaDTO;
 import Excepciones.NegocioException;
 import Exception.ProveedorException;
 import Interfaces.IProveedorBO;
-import ModuloAlmacen.GestionProveedores.*;
 import Utilidades.JButtonCellEditor;
 import Utilidades.JButtonRenderer;
 import control.ControlNavegacion;
@@ -47,6 +46,7 @@ public class ManejadorProveedor implements IManejadorProveedor {
     
     /**
      * Este metodo estable los botones de la tabla de proveedores.
+     *
      * @param tablaProveedores
      */
     @Override
@@ -98,6 +98,10 @@ public class ManejadorProveedor implements IManejadorProveedor {
         return null;
     }
 
+    /**
+     * 
+     * @param tablaProveedores 
+     */
     @Override
     public void buscarTabla(JTable tablaProveedores) {
         try {
@@ -110,6 +114,11 @@ public class ManejadorProveedor implements IManejadorProveedor {
         }
     }
     
+    /**
+     * 
+     * @param listaProveedores
+     * @param tablaProveedores 
+     */
     private void cargarListaProveedores(List<ProveedorTablaDTO> listaProveedores, JTable tablaProveedores) {
         DefaultTableModel modeloTabla = (DefaultTableModel) tablaProveedores.getModel();
 
@@ -127,6 +136,23 @@ public class ManejadorProveedor implements IManejadorProveedor {
         }
     }
 
+    /**
+     * 
+     * @param panel
+     * @param nombreProveedor
+     * @param contacto
+     * @param telefono
+     * @param correo
+     * @param direccion
+     * @param paginaWeb
+     * @param rfc
+     * @param formaPago
+     * @param terminoPago
+     * @param moneda
+     * @param estado
+     * @param comentarios
+     * @throws ProveedorException 
+     */
     @Override
     public void registrarProveedor(JPanel panel, String nombreProveedor,
             String contacto, String telefono, String correo, String direccion,
@@ -207,6 +233,25 @@ public class ManejadorProveedor implements IManejadorProveedor {
         }
     }
 
+    /**
+     * 
+     * @param panel
+     * @param id
+     * @param nombreProveedor
+     * @param contacto
+     * @param telefono
+     * @param correo
+     * @param direccion
+     * @param paginaWeb
+     * @param rfc
+     * @param formaPago
+     * @param terminoPago
+     * @param moneda
+     * @param fecha
+     * @param estado
+     * @param comentarios
+     * @throws ProveedorException 
+     */
     @Override
     public void editarProveedor(JPanel panel, ObjectId id, String nombreProveedor,
             String contacto, String telefono, String correo, String direccion,

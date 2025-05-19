@@ -14,12 +14,39 @@ import org.bson.types.ObjectId;
  */
 public interface IProveedorDAO {
     
+    /**
+     * Registra un proveedor en la base de datos.
+     *
+     * @param proveedor Proveedor a registrar
+     * @return Regresa el proveedor registrado
+     * @throws PersistenciaException Excepcion si ocurre un error en el proceso
+     */
     Proveedor guardarProveedor(Proveedor proveedor) throws PersistenciaException;
     
+    /**
+     * Modifica un proveedor de la base de datos.
+     *
+     * @param proveedor Proveedor a modificar
+     * @return Regresa el proveedor modificado
+     * @throws PersistenciaException Excepcion si ocurre un error en el proceso
+     */
     Proveedor editarProveedor(Proveedor proveedor) throws PersistenciaException;
     
+    /**
+     * Obtiene un proveedor de la base de datos usando el ID.
+     *
+     * @param idProveedor ID del proveedor a buscar
+     * @return Regresa el proveedor encontrado
+     * @throws PersistenciaException Excepcion si ocurre un error en el proceso
+     */
     Proveedor obtenerProveedorPorId(ObjectId idProveedor) throws PersistenciaException;
     
+    /**
+     * Obtiene una lista con todos los proveedores de la base de datos.
+     *
+     * @return Regresa la lista de proveedores encontrada
+     * @throws PersistenciaException Excepcion si ocurre un error en el proceso
+     */
     List<Proveedor> listaProveedores() throws PersistenciaException;
     
 }

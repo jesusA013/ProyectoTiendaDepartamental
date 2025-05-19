@@ -45,6 +45,13 @@ public class ProductoDTO {
         this.descripcion = descripcion;
     }
 
+    /**
+     * Contructor que usa ProductoVenta para guardar productos.
+     * @param nombre Nombre del producto
+     * @param SKU
+     * @param marca
+     * @param color 
+     */
     public ProductoDTO(String nombre, String SKU, String marca, String color) {
         this.nombre = nombre;
         this.SKU = SKU;

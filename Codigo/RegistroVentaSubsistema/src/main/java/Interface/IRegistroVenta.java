@@ -4,13 +4,12 @@
  */
 package Interface;
 
-import BOs.CarritoBO;
 import DTOs.ProductoDTO;
-import DTOs.ProductoVentaDTO;
 import BOs.ProductoBO;
-import BOs.ProductoCarritoBO;
-import BOs.ProductoVentaBO;
+import DTOs.ProductoVentaDTO;
 import RegistroVentaException.RegistroException;
+import java.util.List;
+import javax.swing.JFrame;
 
 /**
  *
@@ -18,7 +17,7 @@ import RegistroVentaException.RegistroException;
  */
 public interface IRegistroVenta {
 
-    void registrarVenta();
+    void registrarVenta(JFrame frame, List<ProductoVentaDTO> productos) throws RegistroException;
 
     boolean validarPago();
 
@@ -39,8 +38,6 @@ public interface IRegistroVenta {
     ProductoBO consultarCatalogoProducto();
 
     boolean validarStock();
-
-    CarritoBO regresarCarrito();
 
     /**
      * Este metodo hace las operaciones necesarias si nuestra compra se realiza

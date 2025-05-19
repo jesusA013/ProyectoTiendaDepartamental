@@ -38,7 +38,7 @@ public class DAOPruebas {
     IVendedorDAO vendedorDAO = new VendedorDAO(Mongo.conexion());
     IProveedorDAO proveedorDAO = new ProveedorDAO(Mongo.conexion());
     
-    public void insertarVenta(){
+    public void insertarVenta() throws PersistenciaException{
         Producto producto1 = new Producto("Lentes de Sol", "23SAD23", "WER", "Verde");
         Producto producto2 = new Producto("Pantuflas", "F2F24", "FW", "Negro");
         

@@ -10,11 +10,11 @@ package RegistroVentaException;
  */
 public class BuscadorException extends Exception {
 
+    public BuscadorException() {
+    }
+
     public BuscadorException(String mensaje) {
         super(mensaje);
     }
-    
-    
-    
-    
+
 }

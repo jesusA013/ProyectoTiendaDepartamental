@@ -9,6 +9,7 @@ import Entidades.Factura;
 import Entidades.Producto;
 import Entidades.ProductoVenta;
 import Entidades.Venta;
+import Exception.PersistenciaException;
 import Interfaz.IConexion;
 import Interfaz.IVentasDAO;
 import java.util.Arrays;
@@ -37,7 +38,7 @@ public class VentaDAOTest {
     }
     
     @Test
-    public void testInsertarVenta() {
+    public void testInsertarVenta() throws PersistenciaException {
         Producto p = new Producto("Lentes de Sol", "23SAD23", "WER", "Verde");
         ProductoVenta pv = new ProductoVenta(p, 2, 750);
         Factura factura = new Factura("FAC-001", new Date());
@@ -56,7 +57,7 @@ public class VentaDAOTest {
     }
 
     @Test
-    public void testBuscarPorId() {
+    public void testBuscarPorId() throws PersistenciaException {
         Venta venta = crearVentaEjemplo();
         Venta insertada = ventaDAO.insertarVenta(venta);
         Venta encontrada = ventaDAO.buscarPorId(insertada.getId());
@@ -66,7 +67,7 @@ public class VentaDAOTest {
     }
 
     @Test
-    public void testActualizarVenta() {
+    public void testActualizarVenta() throws PersistenciaException {
         Venta venta = crearVentaEjemplo();
         Venta insertada = ventaDAO.insertarVenta(venta);
 
@@ -77,7 +78,7 @@ public class VentaDAOTest {
     }
 
     @Test
-    public void testEliminarVenta() {
+    public void testEliminarVenta() throws PersistenciaException {
         Venta venta = crearVentaEjemplo();
         Venta insertada = ventaDAO.insertarVenta(venta);
         Venta eliminada = ventaDAO.eliminarVenta(insertada.getId());
