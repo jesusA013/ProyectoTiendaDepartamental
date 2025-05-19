@@ -2,8 +2,6 @@ package Entidades;
 
 import org.bson.types.ObjectId;
 
-
-
 /**
  * ProductoVenta.java
  *
@@ -11,18 +9,18 @@ import org.bson.types.ObjectId;
  *
  * @author Knocmare y Angel Beltran en la 2da Version
  */
-
 public class ProductoVenta {
 
     private ObjectId _id;
+    private Producto producto;
     private int cantidad;
     private double precioUnitario;
 
-   
     public ProductoVenta() {
     }
 
-    public ProductoVenta(int cantidad, double precioUnitario) {
+    public ProductoVenta(Producto producto, int cantidad, double precioUnitario) {
+        this.producto = producto;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
     }
@@ -33,6 +31,14 @@ public class ProductoVenta {
 
     public void setId(ObjectId _id) {
         this._id = _id;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public double getPrecioUnitario() {
@@ -53,12 +59,7 @@ public class ProductoVenta {
 
     @Override
     public String toString() {
-        return "ProductoVenta{" + "_id=" + _id + ", cantidad=" + cantidad + ", precioUnitario=" + precioUnitario + '}';
+        return "ProductoVenta{" + "_id=" + _id + ", producto=" + producto + ", cantidad=" + cantidad + ", precioUnitario=" + precioUnitario + '}';
     }
-
     
-
-    
-
-   
 }

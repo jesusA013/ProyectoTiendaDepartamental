@@ -1,6 +1,6 @@
 package DTOs;
 
-import Interfaces.IDTO;
+import org.bson.types.ObjectId;
 
 /**
  * ProductoDTO.java
@@ -11,14 +11,18 @@ import Interfaces.IDTO;
  *
  * @author 
  */
-public class ProductoDTO implements IDTO {
+public class ProductoDTO {
     
+    private ObjectId id; 
+    private String codigo;
     private String nombre;
-    private String sku;
-    private double precio;
+    private String SKU;
     private String marca;
     private String color;
+    private double precio;
     private int stock;
+    private String descripcion;
+    private ObjectId proveedorId; 
 
     /**
      * Constructor por omisión.
@@ -27,28 +31,61 @@ public class ProductoDTO implements IDTO {
     }
 
     /**
-     * Constructor de un producto de objeto de transferencia de datos
+     * Constructor del producto.
      *
-     * @param nombre Nombre del producto.
-     * @param sku Código SKU del producto.
-     * @param precio Precio del producto.
-     * @param marca Marca del producto.
-     * @param color Color del producto.
-     * @param stock Cantidad disponible en inventario.
+     * @param idProducto ID del producto
+     * @param nombre Nombre del producto
+     * @param stock Stock del producto
+     * @param descripcion Descripcion del producto
      */
-    public ProductoDTO(String nombre, String sku, double precio, String marca, String color, int stock) {
+    public ProductoDTO(ObjectId idProducto, String nombre, int stock, String descripcion) {
+        this.id = idProducto;
         this.nombre = nombre;
-        this.sku = sku;
-        this.precio = precio;
+        this.stock = stock;
+        this.descripcion = descripcion;
+    }
+
+    public ProductoDTO(String nombre, String SKU, String marca, String color) {
+        this.nombre = nombre;
+        this.SKU = SKU;
         this.marca = marca;
         this.color = color;
+    }
+
+    public ProductoDTO(String codigo, String nombre, String SKU, String marca, String color, double precio, int stock, String descripcion, ObjectId proveedorId) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.SKU = SKU;
+        this.marca = marca;
+        this.color = color;
+        this.precio = precio;
         this.stock = stock;
+        this.descripcion = descripcion;
+        this.proveedorId = proveedorId;
     }
 
     /**
-     * Obtiene el nombre del producto.
+     * Regresa el ID del producto.
      *
-     * @return Nombre del producto.
+     * @return ID del producto
+     */
+    public ObjectId getId() {
+        return id;
+    }
+
+    /**
+     * Establece el ID del producto.
+     *
+     * @param id
+     */
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
+    /**
+     * Regresa el nombre del producto.
+     *
+     * @return Nombre del producto
      */
     public String getNombre() {
         return nombre;
@@ -57,101 +94,103 @@ public class ProductoDTO implements IDTO {
     /**
      * Establece el nombre del producto.
      *
-     * @param nombre Nuevo nombre del producto.
+     * @param nombre Nombre del producto
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     /**
-     * Obtiene el código SKU del producto.
+     * Regresa el stock del producto.
      *
-     * @return Código SKU del producto.
-     */
-    public String getSku() {
-        return sku;
-    }
-
-    /**
-     * Establece el código SKU del producto.
-     *
-     * @param sku Nuevo código SKU del producto.
-     */
-    public void setSku(String sku) {
-        this.sku = sku;
-    }
-
-    /**
-     * Obtiene el precio del producto.
-     *
-     * @return Precio del producto.
-     */
-    public double getPrecio() {
-        return precio;
-    }
-
-    /**
-     * Establece el precio del producto.
-     *
-     * @param precio Nuevo precio del producto.
-     */
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    /**
-     * Obtiene la marca del producto.
-     *
-     * @return Marca del producto.
-     */
-    public String getMarca() {
-        return marca;
-    }
-
-    /**
-     * Establece la marca del producto.
-     *
-     * @param marca Nueva marca del producto.
-     */
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    /**
-     * Obtiene el color del producto.
-     *
-     * @return Color del producto.
-     */
-    public String getColor() {
-        return color;
-    }
-
-    /**
-     * Establece el color del producto.
-     *
-     * @param color Nuevo color del producto.
-     */
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    /**
-     * Obtiene la cantidad disponible en inventario.
-     *
-     * @return Cantidad de stock disponible.
+     * @return Stock del producto
      */
     public int getStock() {
         return stock;
     }
 
     /**
-     * Establece la cantidad disponible en inventario.
+     * Establece el stock del producto.
      *
-     * @param stock Nueva cantidad de stock disponible.
+     * @param stock Stock del producto
      */
     public void setStock(int stock) {
         this.stock = stock;
     }
-    
-    
+
+    /**
+     * Regresa la descripcion del producto.
+     *
+     * @return Descripcion del producto
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * Establece la descripcion del producto.
+     *
+     * @param descripcion Descripcion del producto
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getSKU() {
+        return SKU;
+    }
+
+    public void setSKU(String SKU) {
+        this.SKU = SKU;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public ObjectId getProveedorId() {
+        return proveedorId;
+    }
+
+    public void setProveedorId(ObjectId proveedorId) {
+        this.proveedorId = proveedorId;
+    }
+
+    /**
+     * Regresa una cadena con todos los datos.
+     *
+     * @return Regresa una cadena con todo los datos del producto.
+     */
+    @Override
+    public String toString() {
+        return "ProductoDTO{" + "id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", SKU=" + SKU + ", marca=" + marca + ", color=" + color + ", precio=" + precio + ", stock=" + stock + ", descripcion=" + descripcion + ", proveedorId=" + proveedorId + '}';
+    }
 }

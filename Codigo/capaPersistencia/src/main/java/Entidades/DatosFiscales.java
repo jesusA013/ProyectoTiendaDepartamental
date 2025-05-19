@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Entidades;
 
 /**
@@ -9,6 +5,7 @@ package Entidades;
  * @author gaspa
  */
 public class DatosFiscales {
+
     private String correo;
     private String rfc;
     private DomicilioFiscal domicilioFiscal;
@@ -45,11 +42,10 @@ public class DatosFiscales {
     public void setDomicilioFiscal(DomicilioFiscal domicilioFiscal) {
         this.domicilioFiscal = domicilioFiscal;
     }
-    
 
     @Override
     public String toString() {
         return "DatosFiscales{" + "correo=" + correo + ", rfc=" + rfc + ", domicilioFiscal=" + domicilioFiscal + '}';
     }
-    
+
 }

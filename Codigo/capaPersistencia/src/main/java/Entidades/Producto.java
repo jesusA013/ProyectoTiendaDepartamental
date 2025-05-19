@@ -11,7 +11,7 @@ import org.bson.types.ObjectId;
  */
 public class Producto {
 
-    private ObjectId id; 
+    private ObjectId id;
     private String codigo;
     private String nombre;
     private String SKU;
@@ -20,7 +20,7 @@ public class Producto {
     private double precio;
     private int stock;
     private String descripcion;
-    private ObjectId proveedorId; 
+    private ObjectId proveedorId;
 
     /**
      * Constructor por ausencia
@@ -43,6 +43,13 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
+    public Producto(String nombre, String SKU, String marca, String color) {
+        this.nombre = nombre;
+        this.SKU = SKU;
+        this.marca = marca;
+        this.color = color;
+    }
+
     public Producto(String codigo, String nombre, String SKU, String marca, String color, double precio, int stock, String descripcion, ObjectId proveedorId) {
         this.codigo = codigo;
         this.nombre = nombre;
@@ -60,16 +67,16 @@ public class Producto {
      *
      * @return ID del producto
      */
-    public ObjectId getId() {    
+    public ObjectId getId() {
         return id;
     }
 
     /**
      * Establece el ID del producto.
      *
-     * @param idProducto ID del producto
+     * @param id
      */
-    public void setId(ObjectId id) {    
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -174,6 +181,7 @@ public class Producto {
     public void setProveedorId(ObjectId proveedorId) {
         this.proveedorId = proveedorId;
     }
+
     /**
      * Regresa una cadena con todos los datos.
      *
@@ -183,9 +191,4 @@ public class Producto {
     public String toString() {
         return "Producto{" + "id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", SKU=" + SKU + ", marca=" + marca + ", color=" + color + ", precio=" + precio + ", stock=" + stock + ", descripcion=" + descripcion + ", proveedorId=" + proveedorId + '}';
     }
-    
-
-    
-    
-
 }

@@ -1,16 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package PanelesProductos;
 
-import BOs.ProductoCarritoBO;
-import DTOs.ProductoCarritoDTO;
-import DTOs.ProductoDTO;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
+import DTOs.ProductoVentaDTO;
 import javax.swing.JPanel;
-import javax.swing.tree.DefaultTreeCellEditor;
 
 /**
  * Esta clase Panel sirve para crear multiples instancias de este objeto con los
@@ -29,17 +20,17 @@ public class PanelProductosCarrito extends JPanel {
      *
      * @param producto
      */
-    public PanelProductosCarrito(ProductoCarritoDTO producto) {
+    public PanelProductosCarrito(ProductoVentaDTO producto) {
         initComponents();
-
+        
         this.cantidad = producto.getCantidad();
-        this.importe = producto.getCantidad() * producto.getPrecio();
-        this.precio = producto.getPrecio();
-        this.lblSKU.setText(producto.getSku());
-        this.lblColor.setText(producto.getColor());
-        this.lblMarca.setText(producto.getMarca());
-        this.lblNombre.setText(producto.getNombre());
-        this.lblImporte.setText(Double.toString(producto.getImporte()));
+        this.importe = producto.getCantidad() * producto.getProducto().getPrecio();
+        this.precio = producto.getProducto().getPrecio();
+        this.lblSKU.setText(producto.getProducto().getSKU());
+        this.lblColor.setText(producto.getProducto().getColor());
+        this.lblMarca.setText(producto.getProducto().getMarca());
+        this.lblNombre.setText(producto.getProducto().getNombre());
+        this.lblImporte.setText(Double.toString(producto.getPrecioUnitario()));
         this.txtCantidadProducto.setText(Integer.toString(producto.getCantidad()));
         this.lblPrecio.setText(Double.toString(precio));
     }

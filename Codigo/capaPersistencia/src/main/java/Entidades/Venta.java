@@ -1,5 +1,6 @@
 package Entidades;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -12,6 +13,7 @@ import org.bson.types.ObjectId;
  * @author Knocmare
  */
 public class Venta {
+
     private ObjectId _id;
     private Date fecha;
     private List<ProductoVenta> productos;
@@ -20,8 +22,18 @@ public class Venta {
     private DetallesVenta detallesVenta;
 
     public Venta() {
+        this.productos = new ArrayList<>();
     }
 
+    /**
+     * Inicializa los atributos al valor de sus parámetros.
+     *
+     * @param fecha
+     * @param productos
+     * @param vendedorId
+     * @param factura
+     * @param detallesVenta
+     */
     public Venta(Date fecha, List<ProductoVenta> productos, ObjectId vendedorId, Factura factura, DetallesVenta detallesVenta) {
         this.fecha = fecha;
         this.productos = productos;
@@ -45,7 +57,6 @@ public class Venta {
     public void setProductos(List<ProductoVenta> productos) {
         this.productos = productos;
     }
-
 
     public Date getFecha() {
         return fecha;
@@ -83,8 +94,5 @@ public class Venta {
     public String toString() {
         return "Venta{" + "_id=" + _id + ", fecha=" + fecha + ", productos=" + productos + ", vendedorId=" + vendedorId + ", factura=" + factura + ", detallesVenta=" + detallesVenta + '}';
     }
-
-
-    
 
 }

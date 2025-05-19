@@ -99,33 +99,33 @@ public class FacturaDatos extends JFrame {
         add(panelBotones, BorderLayout.SOUTH);
 
         // Eventos
-        btnFacturar.addActionListener(e -> facturar());
+//        btnFacturar.addActionListener(e -> facturar());
         btnCancelar.addActionListener(e -> cancelar());
 
         
     }
 
-    private void facturar() {
-        // Crear un FacturaDTO con los datos ingresados
-        FacturaDTO facturaDTO = new FacturaDTO(
-            txtRfc.getText(),
-            txtCodigoPostal.getText(),
-            txtCalle.getText(),
-            txtNombre.getText(),
-            txtNumExterior.getText(),
-            txtNumInterior.getText(),
-            txtColonia.getText(),
-            txtEstado.getText(),
-            txtPais.getText(),
-            txtCorreo.getText()
-        );
-        
-        // Mostrar el objeto FacturaDTO 
-        JOptionPane.showMessageDialog(this, "Factura generada con éxito:\n" + facturaDTO.toString(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        
-        // FacturaNegocio facturaNegocio = new FacturaNegocio();
-        // facturaNegocio.crearFactura(facturaDTO);
-    }
+//    private void facturar() {
+//        // Crear un FacturaDTO con los datos ingresados
+//        FacturaDTO facturaDTO = new FacturaDTO(
+//            txtRfc.getText(),
+//            txtCodigoPostal.getText(),
+//            txtCalle.getText(),
+//            txtNombre.getText(),
+//            txtNumExterior.getText(),
+//            txtNumInterior.getText(),
+//            txtColonia.getText(),
+//            txtEstado.getText(),
+//            txtPais.getText(),
+//            txtCorreo.getText()
+//        );
+//        
+//        // Mostrar el objeto FacturaDTO 
+//        JOptionPane.showMessageDialog(this, "Factura generada con éxito:\n" + facturaDTO.toString(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
+//        
+//        // FacturaNegocio facturaNegocio = new FacturaNegocio();
+//        // facturaNegocio.crearFactura(facturaDTO);
+//    }
 
     private void cancelar() {
         int confirm = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea cancelar?", "Confirmar", JOptionPane.YES_NO_OPTION);
