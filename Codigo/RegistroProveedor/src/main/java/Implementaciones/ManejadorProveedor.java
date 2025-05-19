@@ -13,8 +13,6 @@ import control.ControlNavegacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -31,7 +29,15 @@ import org.bson.types.ObjectId;
 public class ManejadorProveedor implements IManejadorProveedor {
     
     private final IProveedorBO proveedorNegocio = new ProveedorBO();
-
+    private static ManejadorProveedor instancia;
+    
+    public static ManejadorProveedor getInstance() {
+        if (instancia == null) {
+            instancia = new ManejadorProveedor();
+        }
+        return instancia;
+    }
+    
     /**
      * Este metodo estable los botones de la tabla de proveedores.
      * @param tablaProveedores
@@ -140,21 +146,30 @@ public class ManejadorProveedor implements IManejadorProveedor {
             throw new ProveedorException("Error " + ex.getMessage());
         }
     }
-
+    
     @Override
-    public void restaurarCampos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void restaurarCamposEditar(ObjectId id) {
+        try {
+            ProveedorDTO proveedor = obtenerProveedor(id);
+            //ProveedoresPanelEditar.getInstancia(this).setCampos(proveedor);
+        } catch (ProveedorException ex) {
+            System.err.println("Error al obtener proveedor: " + ex.getMessage());
+        }
     }
     
-//    private void editar() throws NegocioException {
-//        Long id = this.getIdSeleccionadoTabla();
-//        panelEstudianteEditar panelEstudiante = new panelEstudianteEditar(estudianteNegocio, carreraNegocio, id);
-//        this.setLayout(new BorderLayout());
-//        this.removeAll();
-//        this.add(panelEstudiante, BorderLayout.CENTER);
-//        this.revalidate();
-//        this.repaint();
-//    }
+    /**
+     * 
+     * @param id 
+     */
+    @Override
+    public void restaurarCamposDetalles(ObjectId id) {
+        try {
+            ProveedorDTO proveedor = obtenerProveedor(id);
+            //ProveedoresPanelDetalles.getInstancia(this).setCampos(proveedor);
+        } catch (ProveedorException ex) {
+            System.err.println("Error al obtener proveedor: " + ex.getMessage());
+        }
+    }
 //
 //    private void eliminar() {
 //        Long id = this.getIdSeleccionadoTabla();

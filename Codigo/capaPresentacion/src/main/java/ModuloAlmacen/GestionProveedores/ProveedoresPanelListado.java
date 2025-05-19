@@ -2,6 +2,7 @@ package ModuloAlmacen.GestionProveedores;
 
 import Implementaciones.IManejadorProveedor;
 import control.ControlNavegacion;
+import javax.swing.JTable;
 
 /**
  * ProveedoresPanelListado.java
@@ -12,6 +13,8 @@ import control.ControlNavegacion;
  */
 public class ProveedoresPanelListado extends javax.swing.JPanel {
     
+    private static ProveedoresPanelListado instancia;
+    
     /**
      * Creates new form ProveedoresPanelListado
      * @param controlProveedor
@@ -20,6 +23,17 @@ public class ProveedoresPanelListado extends javax.swing.JPanel {
         initComponents();
         controlProveedor.configuracionInicialTabla(tablaProveedores);
         controlProveedor.buscarTabla(tablaProveedores);
+    }
+    
+    public static ProveedoresPanelListado getInstance(IManejadorProveedor controlProveedor) {
+        if (instancia == null) {
+            instancia = new ProveedoresPanelListado(controlProveedor);
+        }
+        return instancia;
+    }
+
+    public JTable getTablaProveedores() {
+        return tablaProveedores;
     }
 
     /**

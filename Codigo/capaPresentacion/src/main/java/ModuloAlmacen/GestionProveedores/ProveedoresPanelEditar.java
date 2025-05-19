@@ -23,18 +23,32 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
     
     IManejadorProveedor controlProveedor;
     ProveedorDTO proveedor;
+    private static ProveedoresPanelEditar instancia;
     
     /**
      * Creates new form ProveedoresPanelNuevo
      * @param controlProveedor
-     * @param id
      */
-    public ProveedoresPanelEditar(IManejadorProveedor controlProveedor, ObjectId id) throws ProveedorException {
+    public ProveedoresPanelEditar(IManejadorProveedor controlProveedor){
         initComponents();
-        
         this.controlProveedor = controlProveedor;
+    }
+    
+    public static ProveedoresPanelEditar getInstance(IManejadorProveedor controlProveedor) {
+        if (instancia == null) {
+            instancia = new ProveedoresPanelEditar(controlProveedor);
+        }
+        return instancia;
+    }
+    
+    public void actualizarDatos(ObjectId id) throws ProveedorException {
         proveedor = controlProveedor.obtenerProveedor(id);
-        
+        setCampos(proveedor);
+        this.revalidate();
+        this.repaint();
+    }
+    
+    public void setCampos(ProveedorDTO proveedor) {
         txtIdProveedor.setText(proveedor.getIdProveedor().toString());
         txtNombreProveedor.setText(proveedor.getBasica().getNombreProveedor());
         

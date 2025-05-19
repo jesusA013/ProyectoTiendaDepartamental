@@ -69,9 +69,9 @@ public class ProveedorBO implements IProveedorBO {
     @Override
     public ProveedorDTO obtenerProveedorPorId(ObjectId idProveedor) throws NegocioException {
         try {
-            ProveedorDTO proveedorEditado = convertirDTO(proveedorDAO.obtenerProveedorPorId(idProveedor));
+            ProveedorDTO proveedorEncontrado = convertirDTO(proveedorDAO.obtenerProveedorPorId(idProveedor));
 
-            return proveedorEditado;
+            return proveedorEncontrado;
         } catch (PersistenciaException ex) {
             throw new NegocioException("Error " + ex.getMessage());
         }

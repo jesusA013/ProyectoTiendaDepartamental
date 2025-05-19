@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 public class ProveedoresPanelNuevo extends javax.swing.JPanel {
     
     IManejadorProveedor controlProveedor;
+    private static ProveedoresPanelNuevo instancia;
     
     /**
      * Creates new form ProveedoresPanelNuevo
@@ -29,6 +30,13 @@ public class ProveedoresPanelNuevo extends javax.swing.JPanel {
     public ProveedoresPanelNuevo(IManejadorProveedor controlProveedor) {
         this.controlProveedor = controlProveedor;
         initComponents();
+    }
+    
+    public static ProveedoresPanelNuevo getInstance(IManejadorProveedor controlProveedor) {
+        if (instancia == null) {
+            instancia = new ProveedoresPanelNuevo(controlProveedor);
+        }
+        return instancia;
     }
 
     /**

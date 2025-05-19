@@ -215,16 +215,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOpcionVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionVendedorActionPerformed
-        ControlNavegacion.getInstance().irAInicioSesion();
+        ControlNavegacion.getInstance().irAInicioSesion("Vendedor");
         
     }//GEN-LAST:event_btnOpcionVendedorActionPerformed
 
     private void btnOpcionAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionAlmacenActionPerformed
-        ControlNavegacion.getInstance().mostrarMenuAlmacen();
+        ControlNavegacion.getInstance().irAInicioSesion("Almacen");
     }//GEN-LAST:event_btnOpcionAlmacenActionPerformed
 
     private void btnOpcionAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionAdministradorActionPerformed
-        // TODO add your handling code here:
+        ControlNavegacion.getInstance().irAInicioSesion("Administrador");
     }//GEN-LAST:event_btnOpcionAdministradorActionPerformed
 
  

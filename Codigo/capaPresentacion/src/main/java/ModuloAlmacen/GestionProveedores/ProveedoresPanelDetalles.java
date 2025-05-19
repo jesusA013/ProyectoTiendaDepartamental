@@ -15,28 +15,48 @@ import org.bson.types.ObjectId;
  */
 public class ProveedoresPanelDetalles extends javax.swing.JPanel {
 
+    private static ProveedoresPanelDetalles instancia;
+    IManejadorProveedor controlProveedor;
+
     /**
      * Creates new form ProveedoresPanelNuevo
+     *
      * @param controlProveedor
-     * @param id
      */
-    public ProveedoresPanelDetalles(IManejadorProveedor controlProveedor, ObjectId id) throws ProveedorException {
+    public ProveedoresPanelDetalles(IManejadorProveedor controlProveedor) {
         initComponents();
+        this.controlProveedor = controlProveedor;
+    }
+
+    public static ProveedoresPanelDetalles getInstance(IManejadorProveedor controlProveedor) {
+        if (instancia == null) {
+            instancia = new ProveedoresPanelDetalles(controlProveedor);
+        }
+        return instancia;
+    }
+    
+    public void actualizarDatos(ObjectId id) throws ProveedorException {
         ProveedorDTO proveedor = controlProveedor.obtenerProveedor(id);
+        setCampos(proveedor);
+        this.revalidate();
+        this.repaint();
+    }
+    
+    public void setCampos(ProveedorDTO proveedor){
         txtIdProveedor.setText(proveedor.getIdProveedor().toString());
         txtNombreProveedor.setText(proveedor.getBasica().getNombreProveedor());
-        
+
         txtContacto.setText(proveedor.getContacto().getContacto());
         txtTelefono.setText(proveedor.getContacto().getTelefono());
         txtCorreo.setText(proveedor.getContacto().getCorreo());
         txtDireccion.setText(proveedor.getContacto().getDireccion());
         txtPaginaWeb.setText(proveedor.getContacto().getPaginaWeb());
-        
+
         txtRFC.setText(proveedor.getComercial().getRfc());
         txtFormaPago.setText(proveedor.getComercial().getFormaPago());
         txtTerminoPago.setText(proveedor.getComercial().getTerminoPago());
         txtMoneda.setText(proveedor.getComercial().getMoneda());
-        
+
         txtFecha.setText(proveedor.getGestion().getFechaAlta().toString());
         txtEstado.setText(proveedor.getGestion().getEstado());
         txtComentarios.setText(proveedor.getGestion().getComentarios());

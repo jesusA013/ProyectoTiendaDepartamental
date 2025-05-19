@@ -23,6 +23,8 @@ public interface IManejadorProveedor {
     
     ProveedorDTO editarProveedor(ProveedorDTO proveedorDTO) throws ProveedorException;
     
-    void restaurarCampos();
+    void restaurarCamposEditar(ObjectId id);
+    
+    void restaurarCamposDetalles(ObjectId id);
     
 }
