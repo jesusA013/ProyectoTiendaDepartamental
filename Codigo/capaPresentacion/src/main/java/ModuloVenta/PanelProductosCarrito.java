@@ -1,6 +1,7 @@
-package PanelesProductos;
+package ModuloVenta;
 
 import DTOs.ProductoVentaDTO;
+import Interface.IRegistroVenta;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -16,20 +17,19 @@ public class PanelProductosCarrito extends JPanel {
     double importe;
     double precio;
     ProductoVentaDTO producto;
-    JFrame carrito;
+    JPanel panelCambiante;
 
     /**
      * Creates new form JpanelProductosBO
      *
-     * @param producto
+     * @param controlVenta
      * @param panel
+     * @param producto
      */
-    public PanelProductosCarrito(ProductoVentaDTO producto, JFrame panel) {
-        initComponents();
-        
-        carrito = panel;
-        
+    public PanelProductosCarrito(JPanel panel, ProductoVentaDTO producto) {
+        panelCambiante = panel;
         this.producto = producto;
+        initComponents();
         
         this.cantidad = producto.getCantidad();
         this.importe = producto.getCantidad() * producto.getPrecioUnitario();
@@ -80,15 +80,15 @@ public class PanelProductosCarrito extends JPanel {
 
         lblMarca.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblMarca.setText("Marca");
-        add(lblMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
+        add(lblMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 80, -1));
 
         lblColor.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblColor.setText("Color");
-        add(lblColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, -1, -1));
+        add(lblColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 80, -1));
 
         lblSKU.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblSKU.setText("SKU");
-        add(lblSKU, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
+        add(lblSKU, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 160, -1));
 
         lblCantidad.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         lblCantidad.setText("Cantidad");
@@ -106,7 +106,7 @@ public class PanelProductosCarrito extends JPanel {
 
         lblImporte.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImporte.setText("0");
-        add(lblImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, -1, -1));
+        add(lblImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(416, 60, 80, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel4.setText("Producto:");
@@ -114,7 +114,7 @@ public class PanelProductosCarrito extends JPanel {
 
         lblPrecio.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblPrecio.setText("Precio");
-        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
+        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 100, -1));
 
         btnAumentarProducto.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btnAumentarProducto.setText("+");
@@ -148,24 +148,27 @@ public class PanelProductosCarrito extends JPanel {
     private void btnAumentarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAumentarProductoActionPerformed
         cantidad++;
         producto.setCantidad(cantidad);
-        this.txtCantidadProducto.setText(Integer.toString(cantidad));
-        this.importe = cantidad * precio;
-        this.lblImporte.setText(Double.toString(importe));
+        txtCantidadProducto.setText(String.valueOf(cantidad));
+
+        importe = cantidad * precio;
+        lblImporte.setText(String.valueOf(importe));
     }//GEN-LAST:event_btnAumentarProductoActionPerformed
 
     private void btnDismunuirProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDismunuirProductoActionPerformed
-        cantidad--;
-        producto.setCantidad(cantidad);
-        this.txtCantidadProducto.setText(Integer.toString(cantidad));
-        this.importe = cantidad * precio;
-        this.lblImporte.setText(Double.toString(importe));
+        if (cantidad > 1) {
+            cantidad--;
+            producto.setCantidad(cantidad);
+            txtCantidadProducto.setText(String.valueOf(cantidad));
+
+            importe = cantidad * precio;
+            lblImporte.setText(String.valueOf(importe));
+        }
     }//GEN-LAST:event_btnDismunuirProductoActionPerformed
 
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
-        
-        carrito.remove(this);
-        carrito.revalidate(); // Actualizar diseño
-        carrito.repaint(); // Redibujar
+        panelCambiante.remove(this);
+        panelCambiante.revalidate(); // Actualizar diseño
+        panelCambiante.repaint(); // Redibujar
     }//GEN-LAST:event_btnEliminarProductoActionPerformed
 
 

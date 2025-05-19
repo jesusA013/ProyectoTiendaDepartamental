@@ -13,6 +13,8 @@ import ModuloVenta.CarritoCompra;
 import Inicio.InicioSesion;
 import Inicio.MenuPrincipal;
 import Implementaciones.*;
+import Interface.IRegistroVenta;
+import ManejadorVenta.ManejadorVenta;
 import ModuloAlmacen.GestionProveedores.*;
 import ModuloAlmacen.MenuAlmacen;
 import gestionVendedores.*;
@@ -49,13 +51,17 @@ public class ControlNavegacion {
     private final ProveedoresPanelNuevo proveedorPanelNuevo;
     private final ProveedoresPanelEditar proveedorPanelEditar;
     private final ProveedoresPanelDetalles proveedorPanelDetalles;
+    // Gestión Venta
+    private final IRegistroVenta manejadorVenta;
     
 
     //Creacion de cada pantalla
     public ControlNavegacion() {
         this.pantallaInicioSesion = new InicioSesion();
         this.pantallaMenuPrincipal = new MenuPrincipal();
-        this.pantallaCarritoCompra = new CarritoCompra();
+        // Gestión Venta
+        this.manejadorVenta = new ManejadorVenta();
+        this.pantallaCarritoCompra = new CarritoCompra(manejadorVenta);
         this.pantallaFactura = new FacturaDatos();
         this.pantallaBusquedaProducto = new BusquedaProducto();
         this.pantallaSeleccionMetodoPago = new SeleccionMetodoPago();

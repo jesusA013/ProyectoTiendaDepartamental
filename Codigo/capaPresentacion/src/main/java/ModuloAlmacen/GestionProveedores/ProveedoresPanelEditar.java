@@ -420,7 +420,7 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
         jLabel16.setText("Moneda de Transacción");
 
         cboMoneda.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        cboMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MXN", "Item 2", "Item 3", "Item 4" }));
+        cboMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MXN", "USD", "EUR", "JPY", "CAD", "GBP" }));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel17.setText("Fecha de Alta");

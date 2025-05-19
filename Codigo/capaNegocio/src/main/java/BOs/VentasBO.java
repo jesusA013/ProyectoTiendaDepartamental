@@ -29,7 +29,7 @@ import org.bson.types.ObjectId;
  * @author
  */
 public class VentasBO implements IVentasBO {
-    
+
     private final IVentasDAO ventaDAO;
     IConexion Mongo = new Conexion();
 
@@ -39,7 +39,7 @@ public class VentasBO implements IVentasBO {
     public VentasBO() {
         this.ventaDAO = new VentasDAO(Mongo.conexion());
     }
-    
+
     @Override
     public VentaDTO insertarVenta(VentaDTO ventaDTO) throws NegocioException {
         try {
@@ -85,7 +85,7 @@ public class VentasBO implements IVentasBO {
             throw new NegocioException("Error " + ex.getMessage());
         }
     }
-    
+
     /**
      * Convierte la entidad a DTO.
      *
@@ -96,7 +96,7 @@ public class VentasBO implements IVentasBO {
         VentaDTO ventaDTO = new VentaDTO();
         ventaDTO.setId(venta.getId());
         ventaDTO.setFecha(venta.getFecha());
-        
+
         List<ProductoVentaDTO> productos = new ArrayList<>();
         for (ProductoVenta productoVenta : venta.getProductos()) {
             Producto producto = productoVenta.getProducto();
@@ -107,14 +107,14 @@ public class VentasBO implements IVentasBO {
             productos.add(productoVentaDTO);
         }
         ventaDTO.setProductos(productos);
-        
+
         ventaDTO.setVendedorId(venta.getVendedorId());
-        
+
         FacturaDTO factura = new FacturaDTO();
         factura.setFolioFactura(venta.getFactura().getFolioFactura());
         factura.setFechaEmision(venta.getFactura().getFechaEmision());
         ventaDTO.setFactura(factura);
-        
+
         DetallesVentaDTO detallesVentaDTO = new DetallesVentaDTO();
         detallesVentaDTO.setSubtotal(venta.getDetallesVenta().getSubtotal());
         detallesVentaDTO.setIva(venta.getDetallesVenta().getIva());
@@ -122,10 +122,10 @@ public class VentasBO implements IVentasBO {
         detallesVentaDTO.setFormaPago(venta.getDetallesVenta().getFormaPago());
         detallesVentaDTO.setMetodoPago(venta.getDetallesVenta().getMetodoPago());
         ventaDTO.setDetallesVenta(detallesVentaDTO);
-        
+
         return ventaDTO;
     }
-    
+
     /**
      * Convierte la DTO a entidad.
      *
@@ -136,7 +136,7 @@ public class VentasBO implements IVentasBO {
         Venta venta = new Venta();
         venta.setId(ventaDTO.getId());
         venta.setFecha(ventaDTO.getFecha());
-        
+
         List<ProductoVenta> productos = new ArrayList<>();
         for (ProductoVentaDTO productoVentaDTO : ventaDTO.getProductos()) {
             ProductoDTO productoDTO = productoVentaDTO.getProducto();
@@ -147,14 +147,14 @@ public class VentasBO implements IVentasBO {
             productos.add(productoVenta);
         }
         venta.setProductos(productos);
-        
+
         venta.setVendedorId(ventaDTO.getVendedorId());
-        
+
         Factura factura = new Factura();
         factura.setFolioFactura(ventaDTO.getFactura().getFolioFactura());
         factura.setFechaEmision(ventaDTO.getFactura().getFechaEmision());
         venta.setFactura(factura);
-        
+
         DetallesVenta detallesVenta = new DetallesVenta();
         detallesVenta.setSubtotal(ventaDTO.getDetallesVenta().getSubtotal());
         detallesVenta.setIva(ventaDTO.getDetallesVenta().getIva());
@@ -162,7 +162,7 @@ public class VentasBO implements IVentasBO {
         detallesVenta.setFormaPago(ventaDTO.getDetallesVenta().getFormaPago());
         detallesVenta.setMetodoPago(ventaDTO.getDetallesVenta().getMetodoPago());
         venta.setDetallesVenta(detallesVenta);
-        
+
         return venta;
     }
 }

@@ -10,9 +10,11 @@ package RegistroVentaException;
  */
 public class RegistroException extends Exception {
 
+    public RegistroException() {
+    }
+
     public RegistroException(String mensaje) {
         super(mensaje);
     }
-    
-    
+
 }

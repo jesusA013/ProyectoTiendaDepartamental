@@ -1,18 +1,25 @@
 package ManejadorVenta;
 
-import BOs.CarritoBO;
 import BOs.ProductoBO;
 import DTOs.ProductoDTO;
+import DTOs.ProductoVentaDTO;
 import Interface.IRegistroVenta;
 import RegistroVentaException.RegistroException;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Pattern;
+import javax.swing.JFrame;
 
 /**
  * Mock para simular el comportamiento del subsistema de registro de ventas,
  * enfocado en la funcionalidad de facturación.
  */
 public class MockManejadorDeVenta implements IRegistroVenta {
+
+    @Override
+    public void registrarVenta(JFrame frame, List<ProductoVentaDTO> productos) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     // Clase para los estados (copiada de ManejadorVenta)
     private static class Estados {
@@ -52,11 +59,6 @@ public class MockManejadorDeVenta implements IRegistroVenta {
             estados.add("Yucatán");
             estados.add("Zacatecas");
         }
-    }
-
-    @Override
-    public void registrarVenta() {
-        // 
     }
 
     @Override
@@ -111,12 +113,6 @@ public class MockManejadorDeVenta implements IRegistroVenta {
     public boolean validarStock() {
         // 
         return true;
-    }
-
-    @Override
-    public CarritoBO regresarCarrito() {
-        // 
-        return null;
     }
 
     @Override

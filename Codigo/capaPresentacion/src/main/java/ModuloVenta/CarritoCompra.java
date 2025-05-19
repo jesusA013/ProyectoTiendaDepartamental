@@ -3,11 +3,13 @@ package ModuloVenta;
 import DTOs.ProductoDTO;
 import DTOs.ProductoVentaDTO;
 import DTOs.VentaDTO;
-import PanelesProductos.PanelProductosCarrito;
+import Interface.IRegistroVenta;
+import RegistroVentaException.RegistroException;
 import control.ControlNavegacion;
-import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,35 +17,42 @@ import javax.swing.BoxLayout;
  */
 public class CarritoCompra extends javax.swing.JFrame {
 
+    IRegistroVenta controlVenta;
+    List<ProductoVentaDTO> carritoGlobal;
+    private static CarritoCompra instancia;
+
     /**
      * Creates new form CarritoCompra
+     *
+     * @param controlVenta
      */
-    public CarritoCompra() {
+    public CarritoCompra(IRegistroVenta controlVenta) {
         initComponents();
 
+        this.controlVenta = controlVenta;
         setTitle("Carrito de compra"); // nombre venata
-        
+
         VentaDTO venta = new VentaDTO();
-        venta.setFecha(new Date());
-        
+        carritoGlobal = venta.getProductos();
+
         ProductoDTO producto1 = new ProductoDTO("Lentes de sol", "123456", "Gucci", "azules");
         ProductoDTO producto2 = new ProductoDTO("Calcetines", "23123", "Nike", "cafe");
         ProductoDTO producto3 = new ProductoDTO("chanclas", "54123", "ardidas", "amarilla");
         ProductoDTO producto4 = new ProductoDTO("gorra", "44577", "NY", "negra");
-        
+
         ProductoVentaDTO productoVenta1 = new ProductoVentaDTO(producto1, 2, 100.0);
         ProductoVentaDTO productoVenta2 = new ProductoVentaDTO(producto2, 3, 20.0);
         ProductoVentaDTO productoVenta3 = new ProductoVentaDTO(producto3, 1, 70.0);
         ProductoVentaDTO productoVenta4 = new ProductoVentaDTO(producto4, 1, 130.0);
-        venta.getProductos().add(productoVenta1);
-        venta.getProductos().add(productoVenta2);
-        venta.getProductos().add(productoVenta3);
-        venta.getProductos().add(productoVenta4);
-        
-        PanelProductosCarrito productoPanel1 = new PanelProductosCarrito(productoVenta1, this);
-        PanelProductosCarrito productoPanel2 = new PanelProductosCarrito(productoVenta2, this);
-        PanelProductosCarrito productoPanel3 = new PanelProductosCarrito(productoVenta3, this);
-        PanelProductosCarrito productoPanel4 = new PanelProductosCarrito(productoVenta4, this);
+        carritoGlobal.add(productoVenta1);
+        carritoGlobal.add(productoVenta2);
+        carritoGlobal.add(productoVenta3);
+        carritoGlobal.add(productoVenta4);
+
+        PanelProductosCarrito productoPanel1 = new PanelProductosCarrito(panelCambiante, productoVenta1);
+        PanelProductosCarrito productoPanel2 = new PanelProductosCarrito(panelCambiante, productoVenta2);
+        PanelProductosCarrito productoPanel3 = new PanelProductosCarrito(panelCambiante, productoVenta3);
+        PanelProductosCarrito productoPanel4 = new PanelProductosCarrito(panelCambiante, productoVenta4);
 
         LinkedList<PanelProductosCarrito> panelesProductoCarrito = new LinkedList<>();
         panelesProductoCarrito.add(productoPanel1);
@@ -61,13 +70,36 @@ public class CarritoCompra extends javax.swing.JFrame {
         double subtotalProductos = 0;
         double impuestosProductos = 0;
         double totalProductos = 0;
-        
+
         lblCantProductos.setText(Integer.toString(cantidadProductos));
         lblSubProductos.setText(Double.toString(subtotalProductos));
         lblImpuestos.setText(Double.toString(impuestosProductos));
         totalJlabel.setText(Double.toString(totalProductos));
     }
-    
+
+    public static CarritoCompra getInstance(IRegistroVenta controlVenta) {
+        if (instancia == null) {
+            instancia = new CarritoCompra(controlVenta);
+        }
+        return instancia;
+    }
+
+    public List<ProductoVentaDTO> getCarritoGlobal() {
+        return carritoGlobal;
+    }
+
+    public void setCarritoGlobal(List<ProductoVentaDTO> carritoGlobal) {
+        this.carritoGlobal = carritoGlobal;
+    }
+
+    private void pagar() {
+        try {
+            controlVenta.registrarVenta(this, carritoGlobal);
+        } catch (RegistroException ex) {
+            JOptionPane.showMessageDialog(this, "Error al realizar el pago: " + ex.getMessage());
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -335,11 +367,11 @@ public class CarritoCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCanecelarActionPerformed
 
     private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagoActionPerformed
-        ControlNavegacion.getInstance().irASeleccionMetodoPago();
+        pagar();
     }//GEN-LAST:event_btnPagoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       ControlNavegacion.getInstance().irABusquedaProducto(txtBuscarProducto.getText());
+        ControlNavegacion.getInstance().irABusquedaProducto(txtBuscarProducto.getText());
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**

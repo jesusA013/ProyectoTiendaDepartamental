@@ -1,50 +1,68 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ManejadorVenta;
 
-import BOs.CarritoBO;
 import BOs.ProductoBO;
+import BOs.VentasBO;
 import DTOs.ProductoDTO;
+import DTOs.ProductoVentaDTO;
 import DTOs.VentaDTO;
+import Excepciones.NegocioException;
 import Interface.IRegistroVenta;
+import Interfaces.IVentasBO;
 import RegistroVentaException.RegistroException;
+import control.ControlNavegacion;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author gamae
  */
 public class ManejadorVenta implements IRegistroVenta {
+    
+    private final IVentasBO ventasNegocio = new VentasBO();
+    private static ManejadorVenta instancia;
 
+    public static ManejadorVenta getInstance() {
+        if (instancia == null) {
+            instancia = new ManejadorVenta();
+        }
+        return instancia;
+    }
+    
+    @Override
+    public void registrarVenta(JFrame frame, List<ProductoVentaDTO> productos) throws RegistroException {
+        VentaDTO ventaDTO = new VentaDTO();
+        ventaDTO.setFecha(new Date());
+        ventaDTO.setProductos(productos);
+        
+        try {
+            VentaDTO resultado = this.ventasNegocio.insertarVenta(ventaDTO);
+            JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getId());
+            ControlNavegacion.getInstance().irASeleccionMetodoPago();
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(frame, "Error al registrar la venta: " + ex.getMessage());
+        }
+    }
+    
     //Lista de ProductoDTOs que se mostraran en los JFrames
-    private List<ProductoDTO> productos = new ArrayList<>();
+//    private List<ProductoDTO> productos = new ArrayList<>();
     
-    private ProductoDTO producto1 = new ProductoDTO("Tenis Air Force 1", "1511617", 100.00, "Nike", "Blanco", 5);
-    private ProductoDTO producto2 = new ProductoDTO("Camiseta Adidas", "1511622", 40.00, "Adidas", "Negro", 10);
-    private ProductoDTO producto3 = new ProductoDTO("Mochila Under Armour", "1511633", 30.00, "Under Armour", "Azul", 7);
-    private ProductoDTO producto4 = new ProductoDTO("Lentes de sol Gucci", "1511634",80.00,"Gucci","Negro", 4);
-    private ProductoDTO producto5 = new ProductoDTO("Sudadera Puma", "1511644", 50.00, "Puma", "Rojo", 8);
-    
-   public ManejadorVenta(){
-       productos.add(producto1);
-       productos.add(producto2);
-       productos.add(producto3);
-       productos.add(producto4);
-       productos.add(producto5);
-   }
-   
-   public List<ProductoDTO> obtenerProductos(){
-       return productos;
-   }
-    
- 
-   
-   
+//    private ProductoDTO p = new ProductoDTO();
+//    private ProductoDTO producto1 = new ProductoDTO("Tenis Air Force 1", "1511617", 100.00, "Nike", "Blanco", 5);
+//    private ProductoDTO producto2 = new ProductoDTO("Camiseta Adidas", "1511622", 40.00, "Adidas", "Negro", 10);
+//    private ProductoDTO producto3 = new ProductoDTO("Mochila Under Armour", "1511633", 30.00, "Under Armour", "Azul", 7);
+//    private ProductoDTO producto4 = new ProductoDTO("Lentes de sol Gucci", "1511634", 80.00, "Gucci", "Negro", 4);
+//    private ProductoDTO producto5 = new ProductoDTO("Sudadera Puma", "1511644", 50.00, "Puma", "Rojo", 8);
+
+//    public List<ProductoDTO> obtenerProductos() {
+//        return productos;
+//    }
+
     @Override
     public boolean validarRFC(String RFC) throws RegistroException {
         if (RFC == null || RFC.isEmpty()) {
@@ -328,11 +346,6 @@ public class ManejadorVenta implements IRegistroVenta {
     }
 
     @Override
-    public CarritoBO regresarCarrito() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public boolean seleccionMetodoPagoTarjeta() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -354,11 +367,6 @@ public class ManejadorVenta implements IRegistroVenta {
 
     @Override
     public void cancelarFacturacion() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void registrarVenta() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
