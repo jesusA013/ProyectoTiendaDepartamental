@@ -15,6 +15,7 @@ import Inicio.MenuPrincipal;
 import Implementaciones.*;
 import ModuloAlmacen.GestionProveedores.*;
 import ModuloAlmacen.MenuAlmacen;
+import gestionVendedores.*;
 import java.awt.BorderLayout;
 import javax.swing.*;
 import org.bson.types.ObjectId;
@@ -39,6 +40,11 @@ public class ControlNavegacion {
     private JPanel panelCambiante;
     private final ProveedoresPantalla pantallaProveedores;
     private final MenuAlmacen pantallaAlmacen;
+    //Gestion Vendedores
+    private GenerarInforme pantallaGeneraInforme;
+    private InformacionVendedor panatallaInformacionVendedor;
+    private ListadoVendedores pantallaListadoVendedores;
+    private RegistrarVendedor pantallaRegistraVendedor;
 
     //Creacion de cada pantalla
     public ControlNavegacion() {
@@ -53,6 +59,11 @@ public class ControlNavegacion {
         this.manejadorProveedor = new ManejadorProveedor();
         this.pantallaProveedores = ProveedoresPantalla.getInstancia(manejadorProveedor);
         this.pantallaAlmacen = new MenuAlmacen();
+        //Gestion Vendedores
+//        this.pantallaRegistraVendedor= new;
+//        this.pantallaListadoVendedores;
+//        this.panatallaInformacionVendedor;
+//        this.pantallaGeneraInforme=;
     }
 
     public static ControlNavegacion getInstance() {
@@ -173,4 +184,11 @@ public class ControlNavegacion {
         mostrarPanel(panelCambiante, new ProveedoresPanelDetalles(manejadorProveedor, id));
     }
     /////////////////////////////////////////////////////////////////
+//GestionVendedores
+    public void mostrarListadoVendedores(){}
+    public void mostrarInformacionVendedor(){}
+    public void mostrarGenerarInoforme(){}
+    public void mostrarRegistroVendedor(){}
+    
+
 }
