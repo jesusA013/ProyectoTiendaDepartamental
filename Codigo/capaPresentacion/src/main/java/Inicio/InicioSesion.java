@@ -13,6 +13,7 @@ public class InicioSesion extends JFrame {
     private JTextField txtId;
     private JPasswordField txtContrasena;
     private JButton btnIngresar, btnCancelar;
+    private String tipo;
 
     public InicioSesion() {
         // Configuración básica de la ventana
@@ -57,7 +58,7 @@ public class InicioSesion extends JFrame {
         panelFormulario.add(new JLabel("ID:"), gbc);
 
         gbc.gridx = 1;
-        txtId = new JTextField("123456", 15);
+        txtId = new JTextField("", 15); ///
         panelFormulario.add(txtId, gbc);
 
         // Icono de usuario
@@ -71,7 +72,7 @@ public class InicioSesion extends JFrame {
         panelFormulario.add(new JLabel("Contraseña:"), gbc);
 
         gbc.gridx = 1;
-        txtContrasena = new JPasswordField("********", 15);
+        txtContrasena = new JPasswordField("", 15); ///
         panelFormulario.add(txtContrasena, gbc);
 
         // Icono de candado
@@ -106,16 +107,28 @@ public class InicioSesion extends JFrame {
         btnCancelar.addActionListener(e -> cancelar());
 
     }
-
+    
+    public void setTipo(String tipo){
+        this.tipo = tipo;
+    }
+    
     public void iniciarSesion() {
         String id = txtId.getText();
         String contrasena = new String(txtContrasena.getPassword());
 
         // Validar las credenciales, hay que poner esta validacion en el MOCK (pendiente)
-        if (id.equals("123456") && contrasena.equals("password")) {
+        if (id.equals("123456") && contrasena.equals("password") && tipo.equals("Vendedor")) {
             System.out.println("Inicio de sesion exitoso.");
             // Abrir el formulario Factura
             ControlNavegacion.getInstance().irACarritoCompra();
+        } else if (id.equals("123456") && contrasena.equals("password") && tipo.equals("Administrador")) {
+            System.out.println("Inicio de sesion exitoso.");
+            // Abrir el formulario Factura
+            //ControlNavegacion.getInstance().mostrarMenuAlmacen();
+        } else if (id.equals("123456") && contrasena.equals("password") && tipo.equals("Almacen")) {
+            System.out.println("Inicio de sesion exitoso.");
+            // Abrir el formulario Factura
+            ControlNavegacion.getInstance().mostrarMenuAlmacen();
         } else {
             System.out.println("Credenciales inválidas ");
             JOptionPane.showMessageDialog(this, "ID o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);

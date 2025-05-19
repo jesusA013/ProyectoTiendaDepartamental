@@ -6,6 +6,7 @@ package DAOs;
 
 import Entidades.DetallesVenta;
 import Entidades.Factura;
+import Entidades.Producto;
 import Entidades.ProductoVenta;
 import Entidades.Venta;
 import Interfaz.IConexion;
@@ -37,7 +38,8 @@ public class VentaDAOTest {
     
     @Test
     public void testInsertarVenta() {
-        ProductoVenta pv = new ProductoVenta(2, 750);
+        Producto p = new Producto("Lentes de Sol", "23SAD23", "WER", "Verde");
+        ProductoVenta pv = new ProductoVenta(p, 2, 750);
         Factura factura = new Factura("FAC-001", new Date());
         DetallesVenta detalles = new DetallesVenta(1500, 40, 1540, "Transferencia", "Pago en una sola exhibición");
 
@@ -88,7 +90,8 @@ public class VentaDAOTest {
     }
 
     private Venta crearVentaEjemplo() {
-        ProductoVenta pv = new ProductoVenta(1, 500);
+        Producto p = new Producto("Casa de Campaña", "AD3V23", "KULE", "Azul");
+        ProductoVenta pv = new ProductoVenta(p, 1, 500);
         Factura factura = new Factura("FAC-123", new Date());
         DetallesVenta detalles = new DetallesVenta(500, 80, 580, "Efectivo", "Pago único");
 

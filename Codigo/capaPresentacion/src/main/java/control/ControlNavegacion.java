@@ -26,7 +26,7 @@ public class ControlNavegacion {
 
     private JFrame pantallaActual;
     private JPanel panelActual;
-
+    
     //Instancias unicas de cada pantalla
     private InicioSesion pantallaInicioSesion;
     private MenuPrincipal pantallaMenuPrincipal;
@@ -45,6 +45,11 @@ public class ControlNavegacion {
     private InformacionVendedor panatallaInformacionVendedor;
     private ListadoVendedores pantallaListadoVendedores;
     private RegistrarVendedor pantallaRegistraVendedor;
+    private final ProveedoresPanelListado proveedorPanelListado;
+    private final ProveedoresPanelNuevo proveedorPanelNuevo;
+    private final ProveedoresPanelEditar proveedorPanelEditar;
+    private final ProveedoresPanelDetalles proveedorPanelDetalles;
+    
 
     //Creacion de cada pantalla
     public ControlNavegacion() {
@@ -64,6 +69,10 @@ public class ControlNavegacion {
 //        this.pantallaListadoVendedores;
 //        this.panatallaInformacionVendedor;
 //        this.pantallaGeneraInforme=;
+        this.proveedorPanelListado = ProveedoresPanelListado.getInstance(manejadorProveedor);
+        this.proveedorPanelNuevo = ProveedoresPanelNuevo.getInstance(manejadorProveedor);
+        this.proveedorPanelEditar = ProveedoresPanelEditar.getInstance(manejadorProveedor);
+        this.proveedorPanelDetalles = ProveedoresPanelDetalles.getInstance(manejadorProveedor);
     }
 
     public static ControlNavegacion getInstance() {
@@ -96,7 +105,8 @@ public class ControlNavegacion {
         panelActual.repaint();
     }
 
-    public void irAInicioSesion() {
+    public void irAInicioSesion(String tipo) {
+        pantallaInicioSesion.setTipo(tipo);
         pantallaInicioSesion.LimpiarCampos();
         mostrarPantalla(pantallaInicioSesion);
     }
@@ -141,8 +151,7 @@ public class ControlNavegacion {
      */
     public void mostrarFormListaProveedores() {
         // Panel Listado
-        panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
-        mostrarPanel(panelCambiante, new ProveedoresPanelListado(manejadorProveedor));
+        mostrarPanelProveedoresLista();
         mostrarPantalla(pantallaProveedores);
     }
 
@@ -152,6 +161,9 @@ public class ControlNavegacion {
     public void mostrarPanelProveedoresLista() {
         // Panel Listado
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
+        JTable tablaProveedores = proveedorPanelListado.getTablaProveedores();
+        manejadorProveedor.configuracionInicialTabla(tablaProveedores);
+        manejadorProveedor.buscarTabla(tablaProveedores);
         mostrarPanel(panelCambiante, new ProveedoresPanelListado(manejadorProveedor));
 
     }
@@ -161,7 +173,7 @@ public class ControlNavegacion {
      */
     public void mostrarPanelProveedorNuevo() {
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
-        mostrarPanel(panelCambiante, new ProveedoresPanelNuevo(manejadorProveedor));
+        mostrarPanel(panelCambiante, proveedorPanelNuevo);
     }
     
     /**
@@ -171,7 +183,8 @@ public class ControlNavegacion {
      */
     public void mostrarPanelProveedorEditar(ObjectId id) throws ProveedorException {
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
-        mostrarPanel(panelCambiante, new ProveedoresPanelEditar(manejadorProveedor, id));
+        proveedorPanelEditar.actualizarDatos(id);
+        mostrarPanel(panelCambiante, proveedorPanelEditar);
     }
     
     /**
@@ -181,9 +194,9 @@ public class ControlNavegacion {
      */
     public void mostrarPanelProveedorDetalles(ObjectId id) throws ProveedorException {
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
-        mostrarPanel(panelCambiante, new ProveedoresPanelDetalles(manejadorProveedor, id));
+        proveedorPanelDetalles.actualizarDatos(id);
+        mostrarPanel(panelCambiante, proveedorPanelDetalles);
     }
-    /////////////////////////////////////////////////////////////////
 //GestionVendedores
     public void mostrarListadoVendedores(){}
     public void mostrarInformacionVendedor(){}

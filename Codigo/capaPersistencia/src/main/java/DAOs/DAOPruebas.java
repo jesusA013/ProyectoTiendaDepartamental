@@ -10,7 +10,8 @@ import Entidades.Domicilio;
 import Entidades.DomicilioFiscal;
 import Entidades.Factura;
 import Entidades.NombreCompleto;
-import Entidades.ProductoVendido;
+import Entidades.Producto;
+import Entidades.ProductoVenta;
 import Entidades.Proveedor;
 import Entidades.ProveedorInformacionBasica;
 import Entidades.ProveedorInformacionComercial;
@@ -23,7 +24,6 @@ import Interfaz.IConexion;
 import Interfaz.IProveedorDAO;
 import Interfaz.IVendedorDAO;
 import Interfaz.IVentasDAO;
-import java.util.Arrays;
 import java.util.Date;
 import org.bson.types.ObjectId;
 
@@ -39,10 +39,19 @@ public class DAOPruebas {
     IProveedorDAO proveedorDAO = new ProveedorDAO(Mongo.conexion());
     
     public void insertarVenta(){
-        ProductoVendido producto1 = new ProductoVendido();
-        producto1.setCantidad(2);
-        producto1.setPrecioUnitario(750);
-
+        Producto producto1 = new Producto("Lentes de Sol", "23SAD23", "WER", "Verde");
+        Producto producto2 = new Producto("Pantuflas", "F2F24", "FW", "Negro");
+        
+        ProductoVenta productoVenta1 = new ProductoVenta();
+        productoVenta1.setProducto(producto1);
+        productoVenta1.setCantidad(2);
+        productoVenta1.setPrecioUnitario(150);
+        
+        ProductoVenta productoVenta2 = new ProductoVenta();
+        productoVenta2.setProducto(producto2);
+        productoVenta2.setCantidad(1);
+        productoVenta2.setPrecioUnitario(370);
+        
         Factura factura = new Factura();
         factura.setFolioFactura("FAC-001");
         factura.setFechaEmision(new Date());
@@ -56,6 +65,8 @@ public class DAOPruebas {
 
         Venta venta = new Venta();
         venta.setFecha(new Date());
+        venta.getProductos().add(productoVenta1);
+        venta.getProductos().add(productoVenta2);
         venta.setVendedorId(new ObjectId("6823b93d2b4a9e356644152e"));
         venta.setFactura(factura);
         venta.setDetallesVenta(detalles);
@@ -63,6 +74,7 @@ public class DAOPruebas {
         // 4. Insertar la venta
         ventasDAO.insertarVenta(venta);
     }
+    
     public void insertarVendedor(){
 
         Vendedor nuevo = new Vendedor();
@@ -126,6 +138,6 @@ public class DAOPruebas {
     
     public static void main(String[] args) throws PersistenciaException {
         DAOPruebas pruebas = new DAOPruebas();
-        pruebas.insertarProveedor();
+        pruebas.insertarVenta();
     }
 }

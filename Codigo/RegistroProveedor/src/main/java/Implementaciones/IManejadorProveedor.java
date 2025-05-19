@@ -2,6 +2,8 @@ package Implementaciones;
 
 import DTOs.ProveedorDTO;
 import Exception.ProveedorException;
+import java.util.Date;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import org.bson.types.ObjectId;
 
@@ -17,12 +19,22 @@ public interface IManejadorProveedor {
     
     void buscarTabla(JTable tablaProveedores);
     
-    ProveedorDTO registrarProveedor(ProveedorDTO proveedorDTO) throws ProveedorException;
+    void registrarProveedor(JPanel panel, String nombreProveedor, 
+            String contacto, String telefono, String correo, String direccion, 
+            String paginaWeb, String rfc, String formaPago, String terminoPago, 
+            String moneda, String estado, String comentarios) throws ProveedorException;
     
     ProveedorDTO obtenerProveedor(ObjectId id) throws ProveedorException;
     
-    ProveedorDTO editarProveedor(ProveedorDTO proveedorDTO) throws ProveedorException;
+    void editarProveedor(JPanel panel, ObjectId id, String nombreProveedor,
+            String contacto, String telefono, String correo, String direccion,
+            String paginaWeb, String rfc, String formaPago, String terminoPago,
+            String moneda, Date fecha, String estado, String comentarios) throws ProveedorException;
     
-    void restaurarCampos();
+//    void limpiarCamposProveedor();
+    
+    void restaurarCamposEditar(ObjectId id);
+    
+    void restaurarCamposDetalles(ObjectId id);
     
 }

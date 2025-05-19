@@ -1,6 +1,6 @@
 package DTOs;
 
-import Interfaces.IDTO;
+import org.bson.types.ObjectId;
 
 /**
  * ProductoVentaDTO.java
@@ -10,12 +10,12 @@ import Interfaces.IDTO;
  *
  * @author
  */
-public class ProductoVentaDTO implements IDTO {
+public class ProductoVentaDTO {
 
-    private int cantidad;
-    private double precio;
-    private double importe;
+    private ObjectId _id;
     private ProductoDTO producto;
+    private int cantidad;
+    private double precioUnitario;
 
     /**
      * Constructor por omision
@@ -24,19 +24,40 @@ public class ProductoVentaDTO implements IDTO {
     }
 
     /**
-     * Constructor del producto que se está vendiendo de objeto de transferencia
-     * de datos
+     * Inicializa los atributos al valor de sus parámetros.
      *
+     * @param producto
      * @param cantidad Cantidad de productos vendidos
-     * @param precio Precio unitario del producto
-     * @param importe Importe del producto
-     * @param producto Producto asociado a la venta
+     * @param precioUnitario
      */
-    public ProductoVentaDTO(int cantidad, double precio, double importe, ProductoDTO producto) {
-        this.cantidad = cantidad;
-        this.precio = precio;
-        this.importe = importe;
+    public ProductoVentaDTO(ProductoDTO producto, int cantidad, double precioUnitario) {
         this.producto = producto;
+        this.cantidad = cantidad;
+        this.precioUnitario = precioUnitario;
+    }
+
+    public ObjectId getId() {
+        return _id;
+    }
+
+    public void setId(ObjectId _id) {
+        this._id = _id;
+    }
+
+    public ProductoDTO getProducto() {
+        return producto;
+    }
+
+    public void setProducto(ProductoDTO producto) {
+        this.producto = producto;
+    }
+
+    public double getPrecioUnitario() {
+        return precioUnitario;
+    }
+
+    public void setPrecioUnitario(double precioUnitario) {
+        this.precioUnitario = precioUnitario;
     }
 
     /**
@@ -57,58 +78,9 @@ public class ProductoVentaDTO implements IDTO {
         this.cantidad = cantidad;
     }
 
-    /**
-     * Obtiene el precio unitario del producto.
-     *
-     * @return Precio unitario del producto.
-     */
-    public double getPrecio() {
-        return precio;
-    }
-
-    /**
-     * Establece el precio unitario del producto.
-     *
-     * @param precio Precio unitario del producto.
-     */
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    /**
-     * Obtiene el importe total del producto.
-     *
-     * @return Importe total del producto (cantidad * precio).
-     */
-    public double getImporte() {
-        return importe;
-    }
-
-    /**
-     * Establece el importe total del producto.
-     *
-     * @param importe Importe total del producto (cantidad * precio).
-     */
-    public void setImporte(double importe) {
-        this.importe = importe;
-    }
-
-    /**
-     * Obtiene el producto asociado a la venta.
-     *
-     * @return Producto asociado a la venta.
-     */
-    public ProductoDTO getProducto() {
-        return producto;
-    }
-
-    /**
-     * Establece el producto asociado a la venta.
-     *
-     * @param producto Producto asociado a la venta.
-     */
-    public void setProducto(ProductoDTO producto) {
-        this.producto = producto;
+    @Override
+    public String toString() {
+        return "ProductoVenta{" + "_id=" + _id + ", cantidad=" + cantidad + ", precioUnitario=" + precioUnitario + '}';
     }
 
 }
