@@ -9,6 +9,8 @@ import Exception.ProveedorException;
 import Implementaciones.IManejadorProveedor;
 import control.ControlNavegacion;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,6 +39,37 @@ public class ProveedoresPanelNuevo extends javax.swing.JPanel {
             instancia = new ProveedoresPanelNuevo(controlProveedor);
         }
         return instancia;
+    }
+    
+    private void añadir() {
+        try {
+            controlProveedor.registrarProveedor(this, txtNombreProveedor.getText(),
+                    txtContacto.getText(), txtTelefono.getText(), txtCorreo.getText(),
+                    txtDireccion.getText(), txtPaginaWeb.getText(), txtRFC.getText(),
+                    txtFormaPago.getText(), txtTerminoPago.getText(),
+                    (String) cboMoneda.getSelectedItem(), (String) cboEstado.getSelectedItem(), 
+                    txtComentarios.getText());
+        } catch (ProveedorException ex) {
+            JOptionPane.showMessageDialog(this, "Error al guardar el proveedor: " + ex.getMessage());
+        }
+    }
+    
+    private void restaurar() {
+        txtNombreProveedor.setText("");
+        
+        txtContacto.setText("");
+        txtTelefono.setText("");
+        txtCorreo.setText("");
+        txtDireccion.setText("");
+        txtPaginaWeb.setText("");
+        
+        txtRFC.setText("");
+        txtFormaPago.getText();
+        txtTerminoPago.getText();
+        cboMoneda.setSelectedIndex(0);
+        
+        cboEstado.setSelectedIndex(0);
+        txtComentarios.setText("");
     }
 
     /**
@@ -615,59 +648,11 @@ public class ProveedoresPanelNuevo extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
-        ProveedorInformacionBasicaDTO basicaNuevo = new ProveedorInformacionBasicaDTO();
-        basicaNuevo.setNombreProveedor(txtNombreProveedor.getText());
-        
-        ProveedorInformacionContactoDTO contactoNuevo = new ProveedorInformacionContactoDTO();
-        contactoNuevo.setContacto(txtContacto.getText());
-        contactoNuevo.setTelefono(txtTelefono.getText());
-        contactoNuevo.setCorreo(txtCorreo.getText());
-        contactoNuevo.setDireccion(txtDireccion.getText());
-        contactoNuevo.setPaginaWeb(txtPaginaWeb.getText());
-        
-        ProveedorInformacionComercialDTO comercialNuevo = new ProveedorInformacionComercialDTO();
-        comercialNuevo.setRfc(txtRFC.getText());
-        comercialNuevo.setFormaPago(txtFormaPago.getText());
-        comercialNuevo.setTerminoPago(txtTerminoPago.getText());
-        comercialNuevo.setMoneda((String) cboMoneda.getSelectedItem());
-        
-        
-        ProveedorInformacionGestionDTO gestionNuevo = new ProveedorInformacionGestionDTO();
-        gestionNuevo.setFechaAlta(new Date());
-        gestionNuevo.setEstado((String) cboEstado.getSelectedItem());
-        gestionNuevo.setComentarios(txtComentarios.getText());
-        
-        ProveedorDTO proveedorNuevo = new ProveedorDTO();
-        proveedorNuevo.setBasica(basicaNuevo);
-        proveedorNuevo.setContacto(contactoNuevo);
-        proveedorNuevo.setComercial(comercialNuevo);
-        proveedorNuevo.setGestion(gestionNuevo);
-        
-        try {
-            ProveedorDTO resultado = controlProveedor.registrarProveedor(proveedorNuevo);
-            JOptionPane.showMessageDialog(this, "Proveedor guardado con éxito con el ID: " + resultado.getIdProveedor());
-            ControlNavegacion.getInstance().mostrarPanelProveedoresLista();
-        } catch (ProveedorException ex) {
-            JOptionPane.showMessageDialog(this, "Error al guardar el proveedor: " + ex.getMessage());
-        }
+        añadir();
     }//GEN-LAST:event_btnAñadirActionPerformed
 
     private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
-        txtNombreProveedor.setText("");
-        
-        txtContacto.setText("");
-        txtTelefono.setText("");
-        txtCorreo.setText("");
-        txtDireccion.setText("");
-        txtPaginaWeb.setText("");
-        
-        txtRFC.setText("");
-        txtFormaPago.getText();
-        txtTerminoPago.getText();
-        cboMoneda.setSelectedIndex(0);
-        
-        cboEstado.setSelectedIndex(0);
-        txtComentarios.setText("");
+        restaurar();
     }//GEN-LAST:event_btnRestaurarActionPerformed
 
 

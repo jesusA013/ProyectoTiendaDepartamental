@@ -8,7 +8,6 @@ import DTOs.ProveedorInformacionGestionDTO;
 import Exception.ProveedorException;
 import Implementaciones.IManejadorProveedor;
 import control.ControlNavegacion;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import org.bson.types.ObjectId;
 
@@ -48,7 +47,7 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
         this.repaint();
     }
     
-    public void setCampos(ProveedorDTO proveedor) {
+    private void setCampos(ProveedorDTO proveedor) {
         txtIdProveedor.setText(proveedor.getIdProveedor().toString());
         txtNombreProveedor.setText(proveedor.getBasica().getNombreProveedor());
         
@@ -66,6 +65,27 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
         txtFecha.setText(proveedor.getGestion().getFechaAlta().toString());
         cboEstado.setSelectedItem(proveedor.getGestion().getEstado());
         txtComentarios.setText(proveedor.getGestion().getComentarios());
+    }
+    
+    private void actualizar() {
+        int confirmacion = JOptionPane.showConfirmDialog(this,
+                "¿Estás seguro de que deseas actualizar el proveedor?",
+                "Confirmar actualización", JOptionPane.YES_NO_OPTION);
+
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            try {
+                controlProveedor.editarProveedor(this, proveedor.getIdProveedor(), txtNombreProveedor.getText(),
+                        txtContacto.getText(), txtTelefono.getText(), txtCorreo.getText(),
+                        txtDireccion.getText(), txtPaginaWeb.getText(), txtRFC.getText(),
+                        txtFormaPago.getText(), txtTerminoPago.getText(),
+                        (String) cboMoneda.getSelectedItem(), proveedor.getGestion().getFechaAlta(),
+                        (String) cboEstado.getSelectedItem(), txtComentarios.getText());
+            } catch (ProveedorException e) {
+                JOptionPane.showMessageDialog(this, "Error al actualizar el proveedor: " + e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Actualización cancelada.");
+        }
     }
 
     /**
@@ -683,62 +703,11 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        ProveedorInformacionBasicaDTO basicaActualizado = new ProveedorInformacionBasicaDTO();
-        basicaActualizado.setNombreProveedor(txtNombreProveedor.getText());
-        
-        ProveedorInformacionContactoDTO contactoActualizado = new ProveedorInformacionContactoDTO();
-        contactoActualizado.setContacto(txtContacto.getText());
-        contactoActualizado.setTelefono(txtTelefono.getText());
-        contactoActualizado.setCorreo(txtCorreo.getText());
-        contactoActualizado.setDireccion(txtDireccion.getText());
-        contactoActualizado.setPaginaWeb(txtPaginaWeb.getText());
-        
-        ProveedorInformacionComercialDTO comercialActualizado = new ProveedorInformacionComercialDTO();
-        comercialActualizado.setRfc(txtRFC.getText());
-        comercialActualizado.setFormaPago(txtFormaPago.getText());
-        comercialActualizado.setTerminoPago(txtTerminoPago.getText());
-        comercialActualizado.setMoneda((String) cboMoneda.getSelectedItem());
-        
-        
-        ProveedorInformacionGestionDTO gestionActualizado = new ProveedorInformacionGestionDTO();
-        gestionActualizado.setFechaAlta(proveedor.getGestion().getFechaAlta());
-        gestionActualizado.setEstado((String) cboEstado.getSelectedItem());
-        gestionActualizado.setComentarios(txtComentarios.getText());
-        
-        ProveedorDTO proveedorActualizado = new ProveedorDTO();
-        proveedorActualizado.setIdProveedor(proveedor.getIdProveedor());
-        proveedorActualizado.setBasica(basicaActualizado);
-        proveedorActualizado.setContacto(contactoActualizado);
-        proveedorActualizado.setComercial(comercialActualizado);
-        proveedorActualizado.setGestion(gestionActualizado);
-        
-        try {
-            ProveedorDTO resultado = controlProveedor.editarProveedor(proveedorActualizado);
-            JOptionPane.showMessageDialog(this, "Proveedor Actualizado con éxito con el ID: " + resultado.getIdProveedor());
-            ControlNavegacion.getInstance().mostrarPanelProveedoresLista();
-        } catch (ProveedorException ex) {
-            JOptionPane.showMessageDialog(this, "Error al actualizado el proveedor: " + ex.getMessage());
-        }
+        actualizar();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
-        txtIdProveedor.setText(proveedor.getIdProveedor().toString());
-        txtNombreProveedor.setText(proveedor.getBasica().getNombreProveedor());
-        
-        txtContacto.setText(proveedor.getContacto().getContacto());
-        txtTelefono.setText(proveedor.getContacto().getTelefono());
-        txtCorreo.setText(proveedor.getContacto().getCorreo());
-        txtDireccion.setText(proveedor.getContacto().getDireccion());
-        txtPaginaWeb.setText(proveedor.getContacto().getPaginaWeb());
-        
-        txtRFC.setText(proveedor.getComercial().getRfc());
-        txtFormaPago.setText(proveedor.getComercial().getFormaPago());
-        txtTerminoPago.setText(proveedor.getComercial().getTerminoPago());
-        cboMoneda.setSelectedItem(proveedor.getComercial().getMoneda());
-        
-        txtFecha.setText(proveedor.getGestion().getFechaAlta().toString());
-        cboEstado.setSelectedItem(proveedor.getGestion().getEstado());
-        txtComentarios.setText(proveedor.getGestion().getComentarios());
+        setCampos(proveedor);
     }//GEN-LAST:event_btnRestaurarActionPerformed
 
 

@@ -42,7 +42,7 @@ public class ProveedoresPanelDetalles extends javax.swing.JPanel {
         this.repaint();
     }
     
-    public void setCampos(ProveedorDTO proveedor){
+    private void setCampos(ProveedorDTO proveedor){
         txtIdProveedor.setText(proveedor.getIdProveedor().toString());
         txtNombreProveedor.setText(proveedor.getBasica().getNombreProveedor());
 
