@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package gestionProductos;
+package ModuloAdministracion;
 
 import Excepciones.NegocioException;
 import control.ControlNavegacion;
+import gestionProductos.PanelMenuGestionProductos;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.util.logging.Level;
@@ -17,15 +18,13 @@ import javax.swing.JPanel;
  *
  * @author gaspa
  */
-public class FrmMenuPrincipal extends javax.swing.JFrame {
+public class AdministradorMenu extends javax.swing.JFrame {
     
     /**
      * Creates new form MenuPrincipal
      */
-    public FrmMenuPrincipal() {
+    public AdministradorMenu() {
         initComponents();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
    }
 
     /**
@@ -41,7 +40,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         lbl_ID = new javax.swing.JLabel();
         panelSuperior1 = new javax.swing.JPanel();
         lbl_ID1 = new javax.swing.JLabel();
-        panelCambiante = new javax.swing.JPanel();
+        PanelAdministradorMenu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         gestionProductosBTN = new javax.swing.JButton();
         gestionVendedoresBTN = new javax.swing.JButton();
@@ -99,9 +98,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelCambiante.setBackground(new java.awt.Color(255, 255, 255));
-        panelCambiante.setForeground(new java.awt.Color(255, 255, 255));
-        panelCambiante.setRequestFocusEnabled(false);
+        PanelAdministradorMenu.setBackground(new java.awt.Color(255, 255, 255));
+        PanelAdministradorMenu.setForeground(new java.awt.Color(255, 255, 255));
+        PanelAdministradorMenu.setRequestFocusEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setText("Menu Principal");
@@ -145,44 +144,44 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout panelCambianteLayout = new javax.swing.GroupLayout(panelCambiante);
-        panelCambiante.setLayout(panelCambianteLayout);
-        panelCambianteLayout.setHorizontalGroup(
-            panelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCambianteLayout.createSequentialGroup()
+        javax.swing.GroupLayout PanelAdministradorMenuLayout = new javax.swing.GroupLayout(PanelAdministradorMenu);
+        PanelAdministradorMenu.setLayout(PanelAdministradorMenuLayout);
+        PanelAdministradorMenuLayout.setHorizontalGroup(
+            PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAdministradorMenuLayout.createSequentialGroup()
                 .addContainerGap(125, Short.MAX_VALUE)
-                .addGroup(panelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCambianteLayout.createSequentialGroup()
+                .addGroup(PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAdministradorMenuLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(238, 238, 238))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCambianteLayout.createSequentialGroup()
-                        .addGroup(panelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAdministradorMenuLayout.createSequentialGroup()
+                        .addGroup(PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(gestionVendedoresBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(gestionProductosBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(101, 101, 101)
-                        .addGroup(panelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(promocionesBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ReportesBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(133, 133, 133))))
-            .addGroup(panelCambianteLayout.createSequentialGroup()
+            .addGroup(PanelAdministradorMenuLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(btnCerrarSesion)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        panelCambianteLayout.setVerticalGroup(
-            panelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCambianteLayout.createSequentialGroup()
-                .addGroup(panelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelCambianteLayout.createSequentialGroup()
+        PanelAdministradorMenuLayout.setVerticalGroup(
+            PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAdministradorMenuLayout.createSequentialGroup()
+                .addGroup(PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelAdministradorMenuLayout.createSequentialGroup()
                         .addGap(161, 161, 161)
                         .addComponent(jLabel1)
                         .addGap(67, 67, 67)
-                        .addGroup(panelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(gestionProductosBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ReportesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelCambianteLayout.createSequentialGroup()
+                    .addGroup(PanelAdministradorMenuLayout.createSequentialGroup()
                         .addGap(417, 417, 417)
-                        .addGroup(panelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(promocionesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(gestionVendedoresBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
@@ -195,14 +194,14 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelSuperior1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelCambiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(PanelAdministradorMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelSuperior1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(panelCambiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(PanelAdministradorMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -217,51 +216,18 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void gestionProductosBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionProductosBTNActionPerformed
-        PanelMenuGestionProductos panelMenuGestion = new PanelMenuGestionProductos(panelCambiante);
-        panelCambiante.setLayout(new BorderLayout());
-        panelCambiante.removeAll();
-        panelCambiante.add(panelMenuGestion,BorderLayout.CENTER);
-        panelCambiante.revalidate();
-        panelCambiante.repaint();
+        PanelMenuGestionProductos panelMenuGestion = new PanelMenuGestionProductos(PanelAdministradorMenu);
+        PanelAdministradorMenu.setLayout(new BorderLayout());
+        PanelAdministradorMenu.removeAll();
+        PanelAdministradorMenu.add(panelMenuGestion,BorderLayout.CENTER);
+        PanelAdministradorMenu.revalidate();
+        PanelAdministradorMenu.repaint();
     }//GEN-LAST:event_gestionProductosBTNActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmMenuPrincipal().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelAdministradorMenu;
     private javax.swing.JButton ReportesBTN;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton gestionProductosBTN;
@@ -269,7 +235,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbl_ID;
     private javax.swing.JLabel lbl_ID1;
-    private javax.swing.JPanel panelCambiante;
     private javax.swing.JPanel panelSuperior;
     private javax.swing.JPanel panelSuperior1;
     private javax.swing.JButton promocionesBTN;

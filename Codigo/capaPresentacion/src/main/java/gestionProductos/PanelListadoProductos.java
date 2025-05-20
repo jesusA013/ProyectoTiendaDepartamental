@@ -4,9 +4,6 @@
  */
 package gestionProductos;
 
-import BOs.ProductoBO;
-import DAOs.Conexion;
-import DAOs.ProductoDAO;
 import DTOs.ProductoTablaDTO;
 import Excepciones.NegocioException;
 import Implementaciones.IManejadorProveedor;
@@ -85,7 +82,7 @@ public class PanelListadoProductos extends javax.swing.JPanel {
     private void editar() throws NegocioException {
         ObjectId id = this.getIdSeleccionadoTabla();
         
-        PanelEditarProducto panelCarrera = new PanelEditarProducto();
+        PanelEditarProducto panelCarrera = new PanelEditarProducto(panelCambiante, productoBO, id);
         this.setLayout(new BorderLayout());
         this.removeAll();
         this.add(panelCarrera, BorderLayout.CENTER);

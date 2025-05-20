@@ -124,7 +124,7 @@ public class InicioSesion extends JFrame {
         } else if (id.equals("123456") && contrasena.equals("password") && tipo.equals("Administrador")) {
             System.out.println("Inicio de sesion exitoso.");
             // Abrir el formulario Factura
-            //ControlNavegacion.getInstance().mostrarMenuAlmacen();
+            ControlNavegacion.getInstance().mostrarMenuAdministrador();
         } else if (id.equals("123456") && contrasena.equals("password") && tipo.equals("Almacen")) {
             System.out.println("Inicio de sesion exitoso.");
             // Abrir el formulario Factura

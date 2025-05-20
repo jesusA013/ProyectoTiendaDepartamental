@@ -16,6 +16,7 @@ import Implementaciones.*;
 import Interface.IRegistroVenta;
 import Interfaces.INavegador;
 import ManejadorVenta.ManejadorVenta;
+import ModuloAdministracion.AdministradorMenu;
 import ModuloAlmacen.GestionProveedores.*;
 import ModuloAlmacen.MenuAlmacen;
 import RegistroVentaException.RegistroException;
@@ -34,6 +35,7 @@ public class ControlNavegacion implements INavegador{
     //Instancias unicas de cada pantalla
     private InicioSesion pantallaInicioSesion;
     private MenuPrincipal pantallaMenuPrincipal;
+    
     // Gestión Venta
     private final IRegistroVenta manejadorVenta;
     private CarritoCompra pantallaCarritoCompra;
@@ -55,6 +57,8 @@ public class ControlNavegacion implements INavegador{
     private final ProveedoresPanelNuevo proveedorPanelNuevo;
     private final ProveedoresPanelEditar proveedorPanelEditar;
     private final ProveedoresPanelDetalles proveedorPanelDetalles;
+    //productos
+    private AdministradorMenu pantallaAdministradorMenu;
 
     /**
      * 
@@ -78,11 +82,14 @@ public class ControlNavegacion implements INavegador{
         this.proveedorPanelNuevo = ProveedoresPanelNuevo.getInstance(manejadorProveedor);
         this.proveedorPanelEditar = ProveedoresPanelEditar.getInstance(manejadorProveedor);
         this.proveedorPanelDetalles = ProveedoresPanelDetalles.getInstance(manejadorProveedor);
+        //productos
+        this.pantallaAdministradorMenu = new AdministradorMenu();
         //Gestion Vendedores
 //        this.pantallaRegistraVendedor= new;
 //        this.pantallaListadoVendedores;
 //        this.panatallaInformacionVendedor;
 //        this.pantallaGeneraInforme=;
+        
     }
 
     public static ControlNavegacion getInstance() {
@@ -155,6 +162,9 @@ public class ControlNavegacion implements INavegador{
      */
     public void mostrarMenuAlmacen() {
         mostrarPantalla(pantallaAlmacen);
+    }
+    public void mostrarMenuAdministrador() {
+        mostrarPantalla(pantallaAdministradorMenu);
     }
     
     // Gestión Proveedores

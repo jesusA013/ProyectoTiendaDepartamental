@@ -56,7 +56,6 @@ public class PanelMenuGestionProductos extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         registrarBTN = new javax.swing.JButton();
-        gestionVendedoresBTN = new javax.swing.JButton();
         consultarProductosBTN = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -76,11 +75,6 @@ public class PanelMenuGestionProductos extends javax.swing.JPanel {
                 registrarBTNActionPerformed(evt);
             }
         });
-
-        gestionVendedoresBTN.setBackground(new java.awt.Color(103, 80, 164));
-        gestionVendedoresBTN.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        gestionVendedoresBTN.setForeground(new java.awt.Color(255, 255, 255));
-        gestionVendedoresBTN.setText("Baja de Producto");
 
         consultarProductosBTN.setBackground(new java.awt.Color(103, 80, 164));
         consultarProductosBTN.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -106,10 +100,7 @@ public class PanelMenuGestionProductos extends javax.swing.JPanel {
                         .addComponent(registrarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(300, 300, 300)
-                        .addComponent(consultarProductosBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(300, 300, 300)
-                        .addComponent(gestionVendedoresBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(consultarProductosBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(175, 175, 175))
         );
         jPanel1Layout.setVerticalGroup(
@@ -121,8 +112,7 @@ public class PanelMenuGestionProductos extends javax.swing.JPanel {
                 .addComponent(registrarBTN)
                 .addGap(78, 78, 78)
                 .addComponent(consultarProductosBTN)
-                .addGap(78, 78, 78)
-                .addComponent(gestionVendedoresBTN))
+                .addGap(218, 218, 218))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -158,7 +148,6 @@ public class PanelMenuGestionProductos extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton consultarProductosBTN;
-    private javax.swing.JButton gestionVendedoresBTN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton registrarBTN;
