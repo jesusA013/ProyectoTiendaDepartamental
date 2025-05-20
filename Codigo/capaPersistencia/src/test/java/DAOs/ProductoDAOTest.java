@@ -5,12 +5,10 @@
 package DAOs;
 
 import Entidades.Producto;
+import Exception.PersistenciaException;
 import Interfaz.IConexion;
 import Interfaz.IProductoDAO;
-import Interfaz.IVendedorDAO;
 import org.bson.types.ObjectId;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,7 +32,7 @@ public class ProductoDAOTest {
     }
     
     @Test
-    void testInsertarProducto() {
+    void testInsertarProducto() throws PersistenciaException {
         Producto producto = crearProductoEjemplo();
         Producto insertado = productoDAO.insertarProducto(producto);
 
@@ -44,7 +42,7 @@ public class ProductoDAOTest {
     }
 
     @Test
-    void testBuscarPorId() {
+    void testBuscarPorId() throws PersistenciaException {
         Producto producto = productoDAO.insertarProducto(crearProductoEjemplo());
         Producto buscado = productoDAO.buscarPorId(producto.getId());
 
@@ -53,7 +51,7 @@ public class ProductoDAOTest {
     }
 
     @Test
-    void testActualizarProducto() {
+    void testActualizarProducto() throws PersistenciaException {
         Producto producto = productoDAO.insertarProducto(crearProductoEjemplo());
         producto.setNombre("Teclado Mecánico Azul");
         Producto actualizado = productoDAO.actualizarProducto(producto);
@@ -63,7 +61,7 @@ public class ProductoDAOTest {
     }
 
     @Test
-    void testEliminarProducto() {
+    void testEliminarProducto() throws PersistenciaException {
         Producto producto = productoDAO.insertarProducto(crearProductoEjemplo());
         Producto eliminado = productoDAO.eliminarProducto(producto.getId());
 

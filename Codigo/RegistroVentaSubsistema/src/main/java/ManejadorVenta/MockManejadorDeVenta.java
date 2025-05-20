@@ -27,6 +27,11 @@ public class MockManejadorDeVenta implements IRegistroVenta {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public List<ProductoDTO> buscarProductos(String busqueda) throws RegistroException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     // Clase para los estados (copiada de ManejadorVenta)
     private static class Estados {
         static LinkedList<String> estados = new LinkedList<>();
@@ -131,11 +136,6 @@ public class MockManejadorDeVenta implements IRegistroVenta {
     public boolean seleccionMetodoPagoEfectivo() {
         // 
         return false;
-    }
-
-    @Override
-    public void regresarMetodoPago() throws RegistroException {
-        // 
     }
 
     @Override

@@ -5,6 +5,8 @@
 package Interfaces;
 
 import DTOs.ProductoDTO;
+import Excepciones.NegocioException;
+import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
@@ -15,12 +17,14 @@ import org.bson.types.ObjectId;
  * @author 
  */
 public interface IProductoBO {
-    ProductoDTO insertarProducto(ProductoDTO productoDTO);
+    ProductoDTO insertarProducto(ProductoDTO productoDTO) throws NegocioException;
     
-    ProductoDTO buscarProductoPorId(ObjectId id);
+    ProductoDTO buscarProductoPorId(ObjectId id) throws NegocioException;
     
-    ProductoDTO actualizarProducto(ProductoDTO productoDTO);
+    List<ProductoDTO> buscarProductos(String producto) throws NegocioException;
     
-    ProductoDTO eliminarProducto(ObjectId id);
+    ProductoDTO actualizarProducto(ProductoDTO productoDTO) throws NegocioException;
+    
+    ProductoDTO eliminarProducto(ObjectId id) throws NegocioException;
     
 }

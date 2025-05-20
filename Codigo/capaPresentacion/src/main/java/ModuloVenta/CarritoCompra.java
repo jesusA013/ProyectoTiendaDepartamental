@@ -8,6 +8,8 @@ import RegistroVentaException.RegistroException;
 import control.ControlNavegacion;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 
@@ -20,6 +22,7 @@ public class CarritoCompra extends javax.swing.JFrame {
     IRegistroVenta controlVenta;
     List<ProductoVentaDTO> carritoGlobal;
     private static CarritoCompra instancia;
+    LinkedList<PanelProductosCarrito> panelesProductoCarrito;
 
     /**
      * Creates new form CarritoCompra
@@ -54,7 +57,7 @@ public class CarritoCompra extends javax.swing.JFrame {
         PanelProductosCarrito productoPanel3 = new PanelProductosCarrito(panelCambiante, productoVenta3);
         PanelProductosCarrito productoPanel4 = new PanelProductosCarrito(panelCambiante, productoVenta4);
 
-        LinkedList<PanelProductosCarrito> panelesProductoCarrito = new LinkedList<>();
+        panelesProductoCarrito = new LinkedList<>();
         panelesProductoCarrito.add(productoPanel1);
         panelesProductoCarrito.add(productoPanel2);
         panelesProductoCarrito.add(productoPanel3);
@@ -92,6 +95,14 @@ public class CarritoCompra extends javax.swing.JFrame {
         this.carritoGlobal = carritoGlobal;
     }
 
+    public LinkedList<PanelProductosCarrito> getPanelesProductoCarrito() {
+        return panelesProductoCarrito;
+    }
+
+    public void setPanelesProductoCarrito(LinkedList<PanelProductosCarrito> panelesProductoCarrito) {
+        this.panelesProductoCarrito = panelesProductoCarrito;
+    }
+
     private void pagar() {
         try {
             controlVenta.registrarVenta(this, carritoGlobal);
@@ -117,7 +128,7 @@ public class CarritoCompra extends javax.swing.JFrame {
         impuestosJLabel = new javax.swing.JLabel();
         separarTotal = new javax.swing.JSeparator();
         Jlabel0 = new javax.swing.JLabel();
-        botonCanecelar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnPago = new javax.swing.JButton();
         lblSubProductos = new javax.swing.JLabel();
@@ -160,13 +171,13 @@ public class CarritoCompra extends javax.swing.JFrame {
         Jlabel0.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Jlabel0.setText("Total:");
 
-        botonCanecelar.setBackground(new java.awt.Color(255, 186, 186));
-        botonCanecelar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        botonCanecelar.setText("Cancelar");
-        botonCanecelar.setPreferredSize(new java.awt.Dimension(196, 39));
-        botonCanecelar.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setBackground(new java.awt.Color(255, 186, 186));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setPreferredSize(new java.awt.Dimension(196, 39));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCanecelarActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -228,7 +239,7 @@ public class CarritoCompra extends javax.swing.JFrame {
                                             .addComponent(Jlabel0)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(totalJlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addComponent(botonCanecelar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(90, 90, 90))
                     .addGroup(panelResumenLayout.createSequentialGroup()
@@ -261,7 +272,7 @@ public class CarritoCompra extends javax.swing.JFrame {
                     .addComponent(Jlabel0)
                     .addComponent(totalJlabel))
                 .addGap(28, 28, 28)
-                .addComponent(botonCanecelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(51, Short.MAX_VALUE))
@@ -362,16 +373,20 @@ public class CarritoCompra extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonCanecelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCanecelarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         ControlNavegacion.getInstance().irAMenuPrincipal();
-    }//GEN-LAST:event_botonCanecelarActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagoActionPerformed
         pagar();
     }//GEN-LAST:event_btnPagoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        ControlNavegacion.getInstance().irABusquedaProducto(txtBuscarProducto.getText());
+        try {
+            ControlNavegacion.getInstance().irABusquedaProducto(txtBuscarProducto.getText());
+        } catch (RegistroException ex) {
+            JOptionPane.showMessageDialog(this, "Error al buscar el producto: " + ex.getMessage());
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
@@ -383,8 +398,8 @@ public class CarritoCompra extends javax.swing.JFrame {
     private javax.swing.JPanel PanelProductosScroll;
     private javax.swing.JScrollPane ScrollProductosCarrito;
     private javax.swing.JPanel backgroundPanel;
-    private javax.swing.JButton botonCanecelar;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnPago;
     private javax.swing.JLabel cantidadJLabel;
     private javax.swing.JLabel impuestosJLabel;

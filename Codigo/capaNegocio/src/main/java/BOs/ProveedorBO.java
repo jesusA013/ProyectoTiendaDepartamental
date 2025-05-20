@@ -203,7 +203,7 @@ public class ProveedorBO implements IProveedorBO {
     /**
      * Convierte la lista ProveedorDTO a ProveedorTablaDTO.
      *
-     * @param estudiantes Lista a convertir
+     * @param proveedores Lista a convertir
      * @return Regresa la lista creada
      */
     private List<ProveedorTablaDTO> convertirTablaDTO(List<ProveedorDTO> proveedores) {

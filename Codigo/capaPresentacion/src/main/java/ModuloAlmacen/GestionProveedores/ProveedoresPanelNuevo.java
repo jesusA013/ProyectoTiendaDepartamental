@@ -1,16 +1,8 @@
 package ModuloAlmacen.GestionProveedores;
 
-import DTOs.ProveedorDTO;
-import DTOs.ProveedorInformacionBasicaDTO;
-import DTOs.ProveedorInformacionComercialDTO;
-import DTOs.ProveedorInformacionContactoDTO;
-import DTOs.ProveedorInformacionGestionDTO;
 import Excepciones.ProveedorException;
 import Implementaciones.IManejadorProveedor;
 import control.ControlNavegacion;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**

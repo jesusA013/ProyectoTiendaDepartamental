@@ -1,10 +1,16 @@
 package BOs;
 
+import DAOs.Conexion;
+import DAOs.ProductoDAO;
 import DTOs.ProductoDTO;
+import Entidades.Producto;
+import Excepciones.NegocioException;
+import Exception.PersistenciaException;
 import Interfaces.IProductoBO;
-import java.util.List;
+import Interfaz.IConexion;
 import Interfaz.IProductoDAO;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
@@ -17,84 +23,119 @@ import org.bson.types.ObjectId;
  */
 public class ProductoBO implements IProductoBO {
 
-    private IProductoDAO productoDAO;
+    private final IProductoDAO productoDAO;
+    IConexion Mongo = new Conexion();
 
-    public ProductoBO(IProductoDAO productoDAO) {
-        //this.productoDAO = new ProductoDAO();
+    /**
+     * Inicializa el atributo para usar la DAO.
+     */
+    public ProductoBO() {
+        this.productoDAO = new ProductoDAO(Mongo.conexion());
+    }
+
+    @Override
+    public ProductoDTO insertarProducto(ProductoDTO productoDTO) throws NegocioException {
+        try {
+            Producto producto = convertirEntidad(productoDTO);
+            ProductoDTO productoGuardado = convertirDTO(productoDAO.insertarProducto(producto));
+
+            return productoGuardado;
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error " + ex.getMessage());
+        }
+    }
+
+    @Override
+    public ProductoDTO buscarProductoPorId(ObjectId id) throws NegocioException {
+        try {
+            ProductoDTO productoEncontrado = convertirDTO(productoDAO.buscarPorId(id));
+
+            return productoEncontrado;
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error " + ex.getMessage());
+        }
     }
     
     @Override
-    public ProductoDTO insertarProducto(ProductoDTO productoDTO) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<ProductoDTO> buscarProductos(String productoBuscar) throws NegocioException {
+        try {
+            List<Producto> listaProductos = this.productoDAO.buscarProductos(productoBuscar);
+
+            List<ProductoDTO> dtos = new ArrayList<>();
+            for (Producto producto : listaProductos) {
+                dtos.add(this.buscarProductoPorId(producto.getId()));
+            }
+
+            return dtos;
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error " + ex.getMessage());
+        }
     }
 
     @Override
-    public ProductoDTO buscarProductoPorId(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ProductoDTO actualizarProducto(ProductoDTO productoDTO) throws NegocioException {
+        try {
+            Producto producto = convertirEntidad(productoDTO);
+            ProductoDTO productoActualizado = convertirDTO(productoDAO.actualizarProducto(producto));
+
+            return productoActualizado;
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error " + ex.getMessage());
+        }
     }
 
     @Override
-    public ProductoDTO actualizarProducto(ProductoDTO productoDTO) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    public ProductoDTO eliminarProducto(ObjectId id) throws NegocioException {
+        try {
+            ProductoDTO productoEliminado = convertirDTO(productoDAO.eliminarProducto(id));
 
-    @Override
-    public ProductoDTO eliminarProducto(ObjectId id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            return productoEliminado;
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error " + ex.getMessage());
+        }
     }
-
-    // ------------------------------------ //
+    
     /**
-     * Valida la existencia del SKU
+     * Convierte la entidad a DTO.
+     *
+     * @param producto Entidad a convertir
+     * @return Regresa la DTO creada
      */
-    private void validarExistenciaSKU() {
-
+    private ProductoDTO convertirDTO(Producto producto) {
+        ProductoDTO productoDTO = new ProductoDTO();
+        productoDTO.setId(producto.getId());
+        productoDTO.setNombre(producto.getNombre());
+        productoDTO.setStock(producto.getStock());
+        productoDTO.setDescripcion(producto.getDescripcion());
+        productoDTO.setCodigo(producto.getCodigo());
+        productoDTO.setSKU(producto.getSKU());
+        productoDTO.setMarca(producto.getMarca());
+        productoDTO.setColor(producto.getColor());
+        productoDTO.setPrecio(producto.getPrecio());
+        productoDTO.setProveedorId(producto.getProveedorId());
+        
+        return productoDTO;
     }
 
     /**
-     * Valida el precio
+     * Convierte la DTO a entidad.
+     *
+     * @param productoDTO DTO a convertir
+     * @return Regresa la entidad creada
      */
-    public void validarPrecio() {
-
+    private Producto convertirEntidad(ProductoDTO productoDTO) {
+        Producto producto = new Producto();
+        producto.setId(productoDTO.getId());
+        producto.setNombre(productoDTO.getNombre());
+        producto.setStock(productoDTO.getStock());
+        producto.setDescripcion(productoDTO.getDescripcion());
+        producto.setCodigo(productoDTO.getCodigo());
+        producto.setSKU(productoDTO.getSKU());
+        producto.setMarca(productoDTO.getMarca());
+        producto.setColor(productoDTO.getColor());
+        producto.setPrecio(productoDTO.getPrecio());
+        producto.setProveedorId(productoDTO.getProveedorId());
+        
+        return producto;
     }
-
-    /**
-     * Valida el nombre del producto
-     */
-    public void validarNombre() {
-
-    }
-//    /*Metodos de implementacion para patron observador*/
-//    private LinkedList<inventarioObservador> observadores = new LinkedList<>();
-//
-//    public void agregarObservador(inventarioObservador observador) {
-//        observadores.add(observador);
-//    }
-//
-//    public void eliminarObservador(inventarioObservador observador) {
-//        observadores.remove(observador);
-//    }
-//
-//    public void actualizarStock(int nuevoStock) {
-//        this.stock = nuevoStock;
-//        notificarObservadores();
-//    }
-//
-//    private void notificarObservadores() {
-//        for (inventarioObservador observador : observadores) {
-//            observador.actualizar(nombre, stock);
-//        }
-//    }
-//
-//    public void reducirStock(int cantidadVendida) {
-//        if (cantidadVendida > this.stock) {
-//            throw new IllegalArgumentException("Stock insuficiente.");
-//        }
-//        this.stock -= cantidadVendida;
-//    }
-//
-//    @Override
-//    public void actualizar(String producto, int nuevoStock) {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
 }

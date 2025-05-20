@@ -8,12 +8,14 @@ import DTOs.VentaDTO;
 import Excepciones.NegocioException;
 import Interface.IRegistroVenta;
 import Interfaces.INavegador;
+import Interfaces.IProductoBO;
 import Interfaces.IVentasBO;
 import RegistroVentaException.RegistroException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -25,8 +27,10 @@ import javax.swing.JOptionPane;
 public class ManejadorVenta implements IRegistroVenta {
     
     private final IVentasBO ventasNegocio = new VentasBO();
+    private final IProductoBO productoNegocio = new ProductoBO();
     private static ManejadorVenta instancia;
     INavegador navegacion;
+    
     @Override
     public void setNavegador(INavegador navegador){
         this.navegacion = navegador;
@@ -53,20 +57,57 @@ public class ManejadorVenta implements IRegistroVenta {
         }
     }
     
-    //Lista de ProductoDTOs que se mostraran en los JFrames
-//    private List<ProductoDTO> productos = new ArrayList<>();
+    @Override
+    public List<ProductoDTO> buscarProductos(String busqueda) throws RegistroException {
+        try {
+            return this.productoNegocio.buscarProductos(busqueda);
+        } catch (NegocioException ex) {
+            throw new RegistroException("Error al buscar productos: " + ex.getMessage());
+        }
+    }
+
+    private class Estados {
+
+        static LinkedList<String> estados = new LinkedList<>();
+
+        public Estados() {
+            estados.add("Aguascalientes");
+            estados.add("Baja California");
+            estados.add("Baja California Sur");
+            estados.add("Campeche");
+            estados.add("Chiapas");
+            estados.add("Chihuahua");
+            estados.add("Ciudad de México");
+            estados.add("Coahuila");
+            estados.add("Colima");
+            estados.add("Durango");
+            estados.add("Estado de México");
+            estados.add("Guanajuato");
+            estados.add("Guerrero");
+            estados.add("Hidalgo");
+            estados.add("Jalisco");
+            estados.add("Michoacán");
+            estados.add("Morelos");
+            estados.add("Nayarit");
+            estados.add("Nuevo León");
+            estados.add("Oaxaca");
+            estados.add("Puebla");
+            estados.add("Querétaro");
+            estados.add("Quintana Roo");
+            estados.add("San Luis Potosí");
+            estados.add("Sinaloa");
+            estados.add("Sonora");
+            estados.add("Tabasco");
+            estados.add("Tamaulipas");
+            estados.add("Tlaxcala");
+            estados.add("Veracruz");
+            estados.add("Yucatán");
+            estados.add("Zacatecas");
+
+        }
+
+    }
     
-//    private ProductoDTO p = new ProductoDTO();
-//    private ProductoDTO producto1 = new ProductoDTO("Tenis Air Force 1", "1511617", 100.00, "Nike", "Blanco", 5);
-//    private ProductoDTO producto2 = new ProductoDTO("Camiseta Adidas", "1511622", 40.00, "Adidas", "Negro", 10);
-//    private ProductoDTO producto3 = new ProductoDTO("Mochila Under Armour", "1511633", 30.00, "Under Armour", "Azul", 7);
-//    private ProductoDTO producto4 = new ProductoDTO("Lentes de sol Gucci", "1511634", 80.00, "Gucci", "Negro", 4);
-//    private ProductoDTO producto5 = new ProductoDTO("Sudadera Puma", "1511644", 50.00, "Puma", "Rojo", 8);
-
-//    public List<ProductoDTO> obtenerProductos() {
-//        return productos;
-//    }
-
     @Override
     public boolean validarRFC(String RFC) throws RegistroException {
         if (RFC == null || RFC.isEmpty()) {
@@ -239,49 +280,7 @@ public class ManejadorVenta implements IRegistroVenta {
         }
         return true;
     }
-
-    private class Estados {
-
-        static LinkedList<String> estados = new LinkedList<>();
-
-        public Estados() {
-            estados.add("Aguascalientes");
-            estados.add("Baja California");
-            estados.add("Baja California Sur");
-            estados.add("Campeche");
-            estados.add("Chiapas");
-            estados.add("Chihuahua");
-            estados.add("Ciudad de México");
-            estados.add("Coahuila");
-            estados.add("Colima");
-            estados.add("Durango");
-            estados.add("Estado de México");
-            estados.add("Guanajuato");
-            estados.add("Guerrero");
-            estados.add("Hidalgo");
-            estados.add("Jalisco");
-            estados.add("Michoacán");
-            estados.add("Morelos");
-            estados.add("Nayarit");
-            estados.add("Nuevo León");
-            estados.add("Oaxaca");
-            estados.add("Puebla");
-            estados.add("Querétaro");
-            estados.add("Quintana Roo");
-            estados.add("San Luis Potosí");
-            estados.add("Sinaloa");
-            estados.add("Sonora");
-            estados.add("Tabasco");
-            estados.add("Tamaulipas");
-            estados.add("Tlaxcala");
-            estados.add("Veracruz");
-            estados.add("Yucatán");
-            estados.add("Zacatecas");
-
-        }
-
-    }
-
+    
     @Override
     public boolean validarEstado(String estado) throws RegistroException {
         if (estado == null || estado.isEmpty()) {
@@ -356,11 +355,6 @@ public class ManejadorVenta implements IRegistroVenta {
 
     @Override
     public boolean seleccionMetodoPagoEfectivo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void regresarMetodoPago() throws RegistroException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

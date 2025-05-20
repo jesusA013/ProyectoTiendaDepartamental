@@ -18,6 +18,7 @@ import Interfaces.INavegador;
 import ManejadorVenta.ManejadorVenta;
 import ModuloAlmacen.GestionProveedores.*;
 import ModuloAlmacen.MenuAlmacen;
+import RegistroVentaException.RegistroException;
 import gestionVendedores.*;
 import java.awt.BorderLayout;
 import javax.swing.*;
@@ -33,6 +34,8 @@ public class ControlNavegacion implements INavegador{
     //Instancias unicas de cada pantalla
     private InicioSesion pantallaInicioSesion;
     private MenuPrincipal pantallaMenuPrincipal;
+    // Gestión Venta
+    private final IRegistroVenta manejadorVenta;
     private CarritoCompra pantallaCarritoCompra;
     private FacturaDatos pantallaFactura;
     private BusquedaProducto pantallaBusquedaProducto;
@@ -52,11 +55,10 @@ public class ControlNavegacion implements INavegador{
     private final ProveedoresPanelNuevo proveedorPanelNuevo;
     private final ProveedoresPanelEditar proveedorPanelEditar;
     private final ProveedoresPanelDetalles proveedorPanelDetalles;
-    // Gestión Venta
-    private final IRegistroVenta manejadorVenta;
-    
 
-    //Creacion de cada pantalla
+    /**
+     * 
+     */
     public ControlNavegacion() {
         this.pantallaInicioSesion = new InicioSesion();
         this.pantallaMenuPrincipal = new MenuPrincipal();
@@ -64,7 +66,7 @@ public class ControlNavegacion implements INavegador{
         this.manejadorVenta = new ManejadorVenta();
         this.pantallaCarritoCompra = new CarritoCompra(manejadorVenta);
         this.pantallaFactura = new FacturaDatos();
-        this.pantallaBusquedaProducto = new BusquedaProducto();
+        this.pantallaBusquedaProducto = new BusquedaProducto(manejadorVenta);
         this.pantallaSeleccionMetodoPago = new SeleccionMetodoPago();
         this.pantallaGraciasCompra= new GraciasPorSuCompra();
         // Gestión Proveedores
@@ -72,15 +74,15 @@ public class ControlNavegacion implements INavegador{
         this.pantallaProveedores = ProveedoresPantalla.getInstancia(manejadorProveedor);
         manejadorProveedor.setNavegador(this);
         this.pantallaAlmacen = new MenuAlmacen();
+        this.proveedorPanelListado = ProveedoresPanelListado.getInstance(manejadorProveedor);
+        this.proveedorPanelNuevo = ProveedoresPanelNuevo.getInstance(manejadorProveedor);
+        this.proveedorPanelEditar = ProveedoresPanelEditar.getInstance(manejadorProveedor);
+        this.proveedorPanelDetalles = ProveedoresPanelDetalles.getInstance(manejadorProveedor);
         //Gestion Vendedores
 //        this.pantallaRegistraVendedor= new;
 //        this.pantallaListadoVendedores;
 //        this.panatallaInformacionVendedor;
 //        this.pantallaGeneraInforme=;
-        this.proveedorPanelListado = ProveedoresPanelListado.getInstance(manejadorProveedor);
-        this.proveedorPanelNuevo = ProveedoresPanelNuevo.getInstance(manejadorProveedor);
-        this.proveedorPanelEditar = ProveedoresPanelEditar.getInstance(manejadorProveedor);
-        this.proveedorPanelDetalles = ProveedoresPanelDetalles.getInstance(manejadorProveedor);
     }
 
     public static ControlNavegacion getInstance() {
@@ -132,8 +134,8 @@ public class ControlNavegacion implements INavegador{
         mostrarPantalla(pantallaFactura);
     }
 
-    public void irABusquedaProducto(String busqueda) {
-        pantallaBusquedaProducto.setBusqueda(busqueda);
+    public void irABusquedaProducto(String busqueda) throws RegistroException {
+        pantallaBusquedaProducto.busquedaProducto(busqueda);
         mostrarPantalla(pantallaBusquedaProducto);
     }
     
@@ -175,7 +177,7 @@ public class ControlNavegacion implements INavegador{
         JTable tablaProveedores = proveedorPanelListado.getTablaProveedores();
         manejadorProveedor.configuracionInicialTabla(tablaProveedores);
         manejadorProveedor.buscarTabla(tablaProveedores);
-        mostrarPanel(panelCambiante, new ProveedoresPanelListado(manejadorProveedor));
+        mostrarPanel(panelCambiante, proveedorPanelListado);
 
     }
     

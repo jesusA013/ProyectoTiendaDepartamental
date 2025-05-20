@@ -4,31 +4,36 @@
  */
 package ModuloVenta;
 
+import Interface.IRegistroVenta;
+import RegistroVentaException.RegistroException;
 import control.ControlNavegacion;
 import java.awt.Color;
+import java.util.LinkedList;
 
 /**
  *
  * @author Jesus
  */
 public class BusquedaProducto extends javax.swing.JFrame {
-
-    String busqueda;
-
+    
+    LinkedList<PanelProductosCarrito> panelesProductoCarrito;
+    IRegistroVenta manejadorVenta;
+    
     /**
      * Creates new form BusquedaManual
      */
-    public BusquedaProducto() {
+    public BusquedaProducto(IRegistroVenta manejadorVenta) {
+        this.manejadorVenta = manejadorVenta;
         initComponents();
         this.getContentPane().setBackground(Color.WHITE);
         this.setTitle("Busqueda de Producto");
 
-        this.lbl_ID.setText("ID: ");
+        this.lbl_ID.setText("ID: 00000000000");
 
     }
 
-    public void setBusqueda(String busqueda) {
-        this.busqueda = busqueda;
+    public void busquedaProducto(String busqueda) throws RegistroException {
+        manejadorVenta.buscarProductos(busqueda);
     }
 
     /**
@@ -149,9 +154,8 @@ public class BusquedaProducto extends javax.swing.JFrame {
                         .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                         .addComponent(txtBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -175,7 +179,7 @@ public class BusquedaProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        ControlNavegacion.getInstance().irABusquedaProducto(txtBuscarProducto.getText());
+        
     }//GEN-LAST:event_btnBuscarActionPerformed
 
 

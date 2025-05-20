@@ -19,6 +19,8 @@ import javax.swing.JFrame;
 public interface IRegistroVenta {
 
     void registrarVenta(JFrame frame, List<ProductoVentaDTO> productos) throws RegistroException;
+    
+    List<ProductoDTO> buscarProductos(String busqueda) throws RegistroException;
 
     boolean validarPago();
 
@@ -57,16 +59,6 @@ public interface IRegistroVenta {
      * metodo regresarMetodoPago())
      */
     boolean seleccionMetodoPagoEfectivo();
-
-    /**
-     * Este metodo regresa el metodo de pago antes utilizando validandolo la
-     * opción con un Boolean de los metodos seleccionMetodoPagoEfectivo() y
-     * seleccionMetodoPagoTarjeta().
-     *
-     * @throws RegistroException realiza una exception cuando ninguno de los
-     * metodos mencionado no han sido usados
-     */
-    void regresarMetodoPago() throws RegistroException;
 
     /**
      *
