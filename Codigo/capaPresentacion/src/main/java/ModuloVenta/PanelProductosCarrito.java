@@ -69,8 +69,9 @@ public class PanelProductosCarrito extends JPanel {
         jTextField1.setText("jTextField1");
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        setMinimumSize(new java.awt.Dimension(520, 290));
-        setPreferredSize(new java.awt.Dimension(520, 290));
+        setMaximumSize(new java.awt.Dimension(520, 200));
+        setMinimumSize(new java.awt.Dimension(520, 200));
+        setPreferredSize(new java.awt.Dimension(520, 200));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNombre.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N

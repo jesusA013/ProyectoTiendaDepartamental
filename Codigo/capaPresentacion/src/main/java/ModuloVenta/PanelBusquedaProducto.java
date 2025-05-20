@@ -51,40 +51,45 @@ public class PanelBusquedaProducto extends javax.swing.JPanel {
         btnAgregarCarrito = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setMaximumSize(new java.awt.Dimension(800, 182));
+        setMinimumSize(new java.awt.Dimension(800, 182));
+        setName(""); // NOI18N
+        setPreferredSize(new java.awt.Dimension(800, 182));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblMarca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblMarca.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblMarca.setText("Marca");
-        add(lblMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 61, 129, -1));
+        add(lblMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 200, -1));
 
         lblProducto.setText("Producto");
         add(lblProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 27, 65, -1));
 
-        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         lblNombre.setText("Nombre");
-        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 32, 160, -1));
+        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 200, -1));
 
-        lblColor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblColor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblColor.setText("Color");
-        add(lblColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 87, 121, -1));
+        add(lblColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 210, -1));
 
-        lblSKU.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblSKU.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblSKU.setText("SKU");
-        add(lblSKU, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 113, 149, -1));
+        add(lblSKU, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 200, -1));
 
-        lblPrecio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblPrecio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblPrecio.setText("Precio");
-        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 139, 118, -1));
+        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 200, -1));
 
         btnAgregarCarrito.setBackground(new java.awt.Color(103, 80, 164));
-        btnAgregarCarrito.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAgregarCarrito.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         btnAgregarCarrito.setText("Agregar al Carrito");
         btnAgregarCarrito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarCarritoActionPerformed(evt);
             }
         });
-        add(btnAgregarCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(579, 87, -1, 46));
+        add(btnAgregarCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 56, 210, 60));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCarritoActionPerformed

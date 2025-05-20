@@ -7,7 +7,6 @@ import control.ControlNavegacion;
 import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
-import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,36 +31,42 @@ public class BusquedaProducto extends javax.swing.JFrame {
         this.lbl_ID.setText("ID: 00000000000");
         this.panelBusquedaProducto = new LinkedList<>();
         
-        ProductoDTO producto4 = new ProductoDTO("gorra", "44577", "NY", "negra");
-        PanelBusquedaProducto productoPanel1 = new PanelBusquedaProducto(manejadorVenta, producto4);
-        panelBusquedaProducto.add(productoPanel1);
-        panelBusquedaProducto.add(productoPanel1);
         
-        for (PanelBusquedaProducto panelProducto : panelBusquedaProducto) {
-            panelCambiante.add(panelProducto);
-        }
         
     }
 
     public void busquedaProducto(String busqueda) throws RegistroException {
-        productos = manejadorVenta.buscarProductos(busqueda);
+//        productos = manejadorVenta.buscarProductos(busqueda);
+//        
+//        // Limpiar antes de agregar nuevos paneles
+//        this.panelBusquedaProducto.clear();
+//        this.panelCambiante.removeAll();
+//        this.panelCambiante.revalidate();
+//        this.panelCambiante.repaint();
+//        
+//        for (ProductoDTO producto : productos) {
+//            ProductoDTO producto4 = new ProductoDTO("gorra", "44577", "NY", "negra");
+//            PanelBusquedaProducto panel = new PanelBusquedaProducto(manejadorVenta, producto4);
+//            panelBusquedaProducto.add(panel);
+//        }
+//        
+//        for (PanelBusquedaProducto panelProducto : panelBusquedaProducto) {
+//            panelCambiante.add(panelProducto);
+//        }
+//        
+//        this.panelCambiante.revalidate();
+//        this.panelCambiante.repaint();
         
-        // Limpiar antes de agregar nuevos paneles
-        this.panelBusquedaProducto.clear();
-        this.panelCambiante.removeAll();
-        this.panelCambiante.revalidate();
-        this.panelCambiante.repaint();
-        
-        for (ProductoDTO producto : productos) {
-            ProductoDTO producto4 = new ProductoDTO("gorra", "44577", "NY", "negra");
-            PanelBusquedaProducto panel = new PanelBusquedaProducto(manejadorVenta, producto4);
-            panelBusquedaProducto.add(panel);
-        }
+        ProductoDTO producto1 = new ProductoDTO("gorra", "44577", "NY", "negra");
+        PanelBusquedaProducto productoPanel1 = new PanelBusquedaProducto(manejadorVenta, producto1);
+        ProductoDTO producto2 = new ProductoDTO("Lentes de sol", "123456", "Gucci", "azules");
+        PanelBusquedaProducto productoPanel2 = new PanelBusquedaProducto(manejadorVenta, producto2);
+        panelBusquedaProducto.add(productoPanel1);
+        panelBusquedaProducto.add(productoPanel2);
         
         for (PanelBusquedaProducto panelProducto : panelBusquedaProducto) {
             panelCambiante.add(panelProducto);
         }
-        
         this.panelCambiante.revalidate();
         this.panelCambiante.repaint();
     }
@@ -120,8 +125,6 @@ public class BusquedaProducto extends javax.swing.JFrame {
         panelProductos.setBackground(new java.awt.Color(255, 255, 255));
         panelProductos.setPreferredSize(new java.awt.Dimension(800, 603));
         panelProductos.setLayout(new java.awt.BorderLayout());
-
-        panelCambiante.setLayout(new javax.swing.BoxLayout(panelCambiante, javax.swing.BoxLayout.LINE_AXIS));
         panelProductos.add(panelCambiante, java.awt.BorderLayout.CENTER);
 
         jScrollPane1.setViewportView(panelProductos);
