@@ -6,7 +6,7 @@ package ModuloAdministracion;
 
 import Excepciones.NegocioException;
 import control.ControlNavegacion;
-import gestionProductos.PanelMenuGestionProductos;
+import ModuloAdministracion.GestionProductos.PanelMenuGestionProductos;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.util.logging.Level;
