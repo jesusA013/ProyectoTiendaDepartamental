@@ -5,6 +5,7 @@
 package Interfaces;
 
 import DTOs.ProductoDTO;
+import DTOs.ProductoTablaDTO;
 import Excepciones.NegocioException;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -26,5 +27,7 @@ public interface IProductoBO {
     ProductoDTO actualizarProducto(ProductoDTO productoDTO) throws NegocioException;
     
     ProductoDTO eliminarProducto(ObjectId id) throws NegocioException;
+    
+    List<ProductoTablaDTO> obtenerTodosParaTabla()throws NegocioException;
     
 }

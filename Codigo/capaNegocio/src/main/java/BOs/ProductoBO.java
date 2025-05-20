@@ -1,8 +1,10 @@
 package BOs;
 
+import static Adapters.ProductoAdapter.convertirATablaDTO;
 import DAOs.Conexion;
 import DAOs.ProductoDAO;
 import DTOs.ProductoDTO;
+import DTOs.ProductoTablaDTO;
 import Entidades.Producto;
 import Excepciones.NegocioException;
 import Exception.PersistenciaException;
@@ -11,6 +13,8 @@ import Interfaz.IConexion;
 import Interfaz.IProductoDAO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import org.bson.types.ObjectId;
 
 /**
@@ -92,6 +96,15 @@ public class ProductoBO implements IProductoBO {
             return productoEliminado;
         } catch (PersistenciaException ex) {
             throw new NegocioException("Error " + ex.getMessage());
+        }
+    }
+    @Override
+    public List<ProductoTablaDTO> obtenerTodosParaTabla()throws NegocioException {
+        try {
+            List<Producto> productos = productoDAO.buscarTodos();
+            return convertirATablaDTO(productos);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException(ex.getMessage());
         }
     }
     

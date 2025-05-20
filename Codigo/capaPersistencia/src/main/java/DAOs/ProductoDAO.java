@@ -74,4 +74,9 @@ public class ProductoDAO implements IProductoDAO {
     public Producto eliminarProducto(ObjectId id) throws PersistenciaException {
         return coleccion.findOneAndDelete(eq("_id", id));
     }
+
+    @Override
+    public List<Producto> buscarTodos() throws PersistenciaException{
+        return coleccion.find().into(new ArrayList<>());
+    }
 }

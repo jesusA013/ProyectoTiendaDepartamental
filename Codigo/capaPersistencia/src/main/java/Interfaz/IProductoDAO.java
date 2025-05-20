@@ -20,5 +20,8 @@ public interface IProductoDAO {
     Producto actualizarProducto(Producto producto) throws PersistenciaException;
 
     Producto eliminarProducto(ObjectId id) throws PersistenciaException;
+    
+    List<Producto> buscarTodos()throws PersistenciaException;
+     
 
 }

@@ -1,6 +1,7 @@
 package Adapters;
 
 import DTOs.ProductoDTO;
+import DTOs.ProductoTablaDTO;
 import Entidades.Producto; // La entidad Producto
 import java.util.ArrayList;
 import java.util.List;
@@ -15,80 +16,95 @@ import java.util.stream.Collectors;
  */
 public class ProductoAdapter {
 
-    // DTO -> Entidad 
-
-    /**
-     * Convierte un ProductoDTO a una entidad Producto.
-     *
-     *
-     * @param dto El objeto ProductoDTO a convertir. Si es {@code null}, retorna {@code null}.
-     * @return La entidad {@code Producto} mapeada (con los campos disponibles).
-     */
+    // DTO -> Entidad
     public static Producto convertirAEntidad(ProductoDTO dto) {
         if (dto == null) {
             return null;
         }
 
         Producto entidad = new Producto();
-
-        // Mapear campos coincidentes
+        
+        entidad.setId(dto.getId()); // si es null no pasa nada
+        entidad.setCodigo(dto.getCodigo());
         entidad.setNombre(dto.getNombre());
+        entidad.setSKU(dto.getSKU());
+        entidad.setMarca(dto.getMarca());
+        entidad.setColor(dto.getColor());
+        entidad.setPrecio(dto.getPrecio());
         entidad.setStock(dto.getStock());
-
-       
+        entidad.setDescripcion(dto.getDescripcion());
+        entidad.setProveedorId(dto.getProveedorId());
 
         return entidad;
     }
 
-    // Entidad -> DTO 
-
-    /**
-     *
-     * @param entidad La entidad Producto a convertir. Si es {@code null}, retorna {@code null}.
-     * @return El {@code ProductoDTO} mapeado (con los campos disponibles).
-     */
+    // Entidad -> DTO
     public static ProductoDTO convertirADTO(Producto entidad) {
         if (entidad == null) {
             return null;
         }
 
         ProductoDTO dto = new ProductoDTO();
-
-        // Mapear campos coincidentes
+        
+        dto.setId(entidad.getId());
+        dto.setCodigo(entidad.getCodigo());
         dto.setNombre(entidad.getNombre());
+        dto.setSKU(entidad.getSKU());
+        dto.setMarca(entidad.getMarca());
+        dto.setColor(entidad.getColor());
+        dto.setPrecio(entidad.getPrecio());
         dto.setStock(entidad.getStock());
+        dto.setDescripcion(entidad.getDescripcion());
+        dto.setProveedorId(entidad.getProveedorId());
 
         return dto;
     }
 
     // --- Métodos para convertir listas ---
-
-    /**
-     * Convierte una lista de ProductoDTO a una lista de entidades Producto.
-     
-     */
     public static List<Producto> convertirAEntidad(List<ProductoDTO> listaDTO) {
         if (listaDTO == null || listaDTO.isEmpty()) {
-            return new ArrayList<>(); // Es mejor devolver lista vacía que null
+            return new ArrayList<>();
         }
         return listaDTO.stream()
-                      .filter(Objects::nonNull) 
-                      .map(ProductoAdapter::convertirAEntidad) 
+                      .filter(Objects::nonNull)
+                      .map(ProductoAdapter::convertirAEntidad)
                       .collect(Collectors.toList());
     }
 
-    /**
-     * Convierte una lista de entidades Producto a una lista de ProductoDTO.
-     *
-     * 
-     */
     public static List<ProductoDTO> convertirADTO(List<Producto> listaEntidad) {
-         if (listaEntidad == null || listaEntidad.isEmpty()) {
-            return new ArrayList<>(); 
+        if (listaEntidad == null || listaEntidad.isEmpty()) {
+            return new ArrayList<>();
         }
         return listaEntidad.stream()
-                           .filter(Objects::nonNull) 
-                           .map(ProductoAdapter::convertirADTO) 
+                           .filter(Objects::nonNull)
+                           .map(ProductoAdapter::convertirADTO)
+                           .collect(Collectors.toList());
+    }
+    public static ProductoTablaDTO convertirATablaDTO(Producto entidad) {
+        if (entidad == null) {
+            return null;
+        }
+
+        ProductoTablaDTO dto = new ProductoTablaDTO();
+        dto.setId(entidad.getId());
+        dto.setCodigo(entidad.getCodigo());
+        dto.setNombre(entidad.getNombre());
+        dto.setMarca(entidad.getMarca());
+        dto.setColor(entidad.getColor());
+        dto.setPrecio(entidad.getPrecio());
+        dto.setStock(entidad.getStock());
+
+        return dto;
+    }
+
+    public static List<ProductoTablaDTO> convertirATablaDTO(List<Producto> listaEntidad) {
+        if (listaEntidad == null || listaEntidad.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return listaEntidad.stream()
+                           .filter(Objects::nonNull)
+                           .map(ProductoAdapter::convertirATablaDTO)
                            .collect(Collectors.toList());
     }
 }
