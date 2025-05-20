@@ -4,6 +4,7 @@
  */
 package ModuloVenta;
 
+import Interface.IRegistroVenta;
 import control.ControlNavegacion;
 
 /**
@@ -11,11 +12,14 @@ import control.ControlNavegacion;
  * @author gamae
  */
 public class GraciasPorSuCompra extends javax.swing.JFrame {
-
+    
+    IRegistroVenta controlVenta;
+    
     /**
      * Creates new form GraciasPorSuCompra
      */
-    public GraciasPorSuCompra() {
+    public GraciasPorSuCompra(IRegistroVenta controlVenta) {
+        this.controlVenta = controlVenta;
         initComponents();
     }
 
@@ -70,7 +74,7 @@ public class GraciasPorSuCompra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
-        
+        CarritoCompra.getInstance(controlVenta).limpiarCarrito();
         ControlNavegacion.getInstance().irAMenuPrincipal();
         dispose();
     }//GEN-LAST:event_btn_salirActionPerformed

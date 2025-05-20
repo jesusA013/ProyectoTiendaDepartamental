@@ -39,12 +39,12 @@ public class CarritoCompra extends javax.swing.JFrame {
         panelesProductoCarrito = new LinkedList<>();
         carritoGlobal = new ArrayList<>();
         cargarCarrito();
-
+        
         cantidadProductos = 0;
         subtotalProductos = 0;
         impuestosProductos = 0;
         totalProductos = 0;
-
+        
         lblCantProductos.setText(Integer.toString(cantidadProductos));
         lblSubProductos.setText(Double.toString(subtotalProductos));
         lblImpuestos.setText(Double.toString(impuestosProductos));
@@ -108,6 +108,11 @@ public class CarritoCompra extends javax.swing.JFrame {
         lblSubProductos.setText(String.format("%.2f", subtotalProductos));
         lblImpuestos.setText(String.format("%.2f", impuestosProductos));
         totalJlabel.setText(String.format("%.2f", totalProductos));
+    }
+    
+    public void limpiarCarrito() {
+        this.carritoGlobal = new LinkedList<>();
+        this.panelesProductoCarrito = new LinkedList<>();
     }
 
     /**
@@ -373,6 +378,7 @@ public class CarritoCompra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        limpiarCarrito();
         ControlNavegacion.getInstance().irAMenuPrincipal();
     }//GEN-LAST:event_btnCancelarActionPerformed
 

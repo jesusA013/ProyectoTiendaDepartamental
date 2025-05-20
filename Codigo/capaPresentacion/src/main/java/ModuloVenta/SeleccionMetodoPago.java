@@ -390,7 +390,7 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        
+        CarritoCompra.getInstance(controlVenta).limpiarCarrito();
         ControlNavegacion.getInstance().irAMenuPrincipal();
     }//GEN-LAST:event_btnCancelarActionPerformed
 

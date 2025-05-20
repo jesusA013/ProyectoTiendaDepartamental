@@ -73,7 +73,7 @@ public class ControlNavegacion implements INavegador{
         this.pantallaFactura = new FacturaDatos();
         this.pantallaBusquedaProducto = new BusquedaProducto(manejadorVenta);
         this.pantallaSeleccionMetodoPago = new SeleccionMetodoPago(manejadorVenta);
-        this.pantallaGraciasCompra= new GraciasPorSuCompra();
+        this.pantallaGraciasCompra= new GraciasPorSuCompra(manejadorVenta);
         // Gestión Proveedores
         this.manejadorProveedor = new ManejadorProveedor();
         this.pantallaProveedores = ProveedoresPantalla.getInstancia(manejadorProveedor);

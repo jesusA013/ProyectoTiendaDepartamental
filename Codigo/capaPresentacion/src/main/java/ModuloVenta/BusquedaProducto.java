@@ -38,14 +38,6 @@ public class BusquedaProducto extends javax.swing.JFrame {
 
     public void busquedaProducto(String busqueda) throws RegistroException {
         productos = manejadorVenta.buscarProductos(busqueda);
-        ProductoDTO producto1 = new ProductoDTO("Lentes de sol", "123456", "Gucci", "azules", 100.0);
-        ProductoDTO producto2 = new ProductoDTO("Calcetines", "23123", "Nike", "cafe", 20.0);
-        ProductoDTO producto3 = new ProductoDTO("chanclas", "54123", "ardidas", "amarilla", 70.0);
-        ProductoDTO producto4 = new ProductoDTO("gorra", "44577", "NY", "negra", 130.0);
-        productos.add(producto1);
-        productos.add(producto2);
-        productos.add(producto3);
-        productos.add(producto4);
 
         // Limpiar antes de agregar nuevos paneles
         this.panelBusquedaProducto.clear();
@@ -146,7 +138,6 @@ public class BusquedaProducto extends javax.swing.JFrame {
         txtBuscarProducto.setBackground(new java.awt.Color(208, 188, 255));
         txtBuscarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtBuscarProducto.setForeground(new java.awt.Color(102, 102, 102));
-        txtBuscarProducto.setText("Buscar Producto");
         txtBuscarProducto.setPreferredSize(new java.awt.Dimension(130, 27));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -155,14 +146,14 @@ public class BusquedaProducto extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelSuperior, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ScrollProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 818, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
