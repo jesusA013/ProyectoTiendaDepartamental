@@ -4,6 +4,10 @@
  */
 package Inicio;
 
+import BOs.UsuarioBO;
+import DTOs.UsuarioDTO;
+import Excepciones.NegocioException;
+import Interfaces.IUsuarioBO;
 import control.ControlNavegacion;
 import javax.swing.*;
 import java.awt.*;
@@ -14,8 +18,10 @@ public class InicioSesion extends JFrame {
     private JPasswordField txtContrasena;
     private JButton btnIngresar, btnCancelar;
     private String tipo;
+    private IUsuarioBO usuarioBO;
 
     public InicioSesion() {
+        usuarioBO = new UsuarioBO();
         // Configuración básica de la ventana
         setTitle("Inicio de Sesión");
         setSize(800, 600);
@@ -116,22 +122,34 @@ public class InicioSesion extends JFrame {
         String id = txtId.getText();
         String contrasena = new String(txtContrasena.getPassword());
 
-        // Validar las credenciales, hay que poner esta validacion en el MOCK (pendiente)
-        if (id.equals("123456") && contrasena.equals("password") && tipo.equals("Vendedor")) {
-            System.out.println("Inicio de sesion exitoso.");
-            // Abrir el formulario Factura
-            ControlNavegacion.getInstance().irACarritoCompra();
-        } else if (id.equals("123456") && contrasena.equals("password") && tipo.equals("Administrador")) {
-            System.out.println("Inicio de sesion exitoso.");
-            // Abrir el formulario Factura
-            ControlNavegacion.getInstance().mostrarMenuAdministrador();
-        } else if (id.equals("123456") && contrasena.equals("password") && tipo.equals("Almacen")) {
-            System.out.println("Inicio de sesion exitoso.");
-            // Abrir el formulario Factura
-            ControlNavegacion.getInstance().mostrarMenuAlmacen();
-        } else {
-            System.out.println("Credenciales inválidas ");
+        try {
+            UsuarioDTO usuario = usuarioBO.verificarCredenciales(id, contrasena);
+            String rol = usuario.getRol(); // Rol real obtenido de la base de datos
+
+            if (rol.equalsIgnoreCase("Administrador") || rol.equalsIgnoreCase(tipo)) {
+                System.out.println("Inicio de sesión exitoso.");
+
+                switch (tipo) {
+                    case "Vendedor":
+                        ControlNavegacion.getInstance().irACarritoCompra();
+                        break;
+                    case "Administrador":
+                        ControlNavegacion.getInstance().mostrarMenuAdministrador();
+                        break;
+                    case "Almacen":
+                        ControlNavegacion.getInstance().mostrarMenuAlmacen();
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(this, "Tipo de usuario no reconocido.", "Error", JOptionPane.ERROR_MESSAGE);
+                        break;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No tienes permisos para acceder como " + tipo, "Acceso denegado", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "ID o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Error en inicio de sesión: " + ex.getMessage());
         }
     }
 
