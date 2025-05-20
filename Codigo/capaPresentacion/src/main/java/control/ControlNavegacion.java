@@ -68,10 +68,11 @@ public class ControlNavegacion implements INavegador{
         this.pantallaMenuPrincipal = new MenuPrincipal();
         // Gestión Venta
         this.manejadorVenta = new ManejadorVenta();
+        manejadorVenta.setNavegador(this);
         this.pantallaCarritoCompra = new CarritoCompra(manejadorVenta);
         this.pantallaFactura = new FacturaDatos();
         this.pantallaBusquedaProducto = new BusquedaProducto(manejadorVenta);
-        this.pantallaSeleccionMetodoPago = new SeleccionMetodoPago();
+        this.pantallaSeleccionMetodoPago = new SeleccionMetodoPago(manejadorVenta);
         this.pantallaGraciasCompra= new GraciasPorSuCompra();
         // Gestión Proveedores
         this.manejadorProveedor = new ManejadorProveedor();

@@ -100,7 +100,7 @@ public class VentasBO implements IVentasBO {
         List<ProductoVentaDTO> productos = new ArrayList<>();
         for (ProductoVenta productoVenta : venta.getProductos()) {
             Producto producto = productoVenta.getProducto();
-            ProductoDTO productoDTO = new ProductoDTO(producto.getNombre(), producto.getSKU(), producto.getMarca(), producto.getColor());
+            ProductoDTO productoDTO = new ProductoDTO(producto.getNombre(), producto.getSKU(), producto.getMarca(), producto.getColor(), producto.getPrecio());
             int cantidad = productoVenta.getCantidad();
             double precioUnitario = productoVenta.getPrecioUnitario();
             ProductoVentaDTO productoVentaDTO = new ProductoVentaDTO(productoDTO, cantidad, precioUnitario);

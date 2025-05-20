@@ -51,12 +51,14 @@ public class ProductoDTO {
      * @param SKU
      * @param marca
      * @param color 
+     * @param precio 
      */
-    public ProductoDTO(String nombre, String SKU, String marca, String color) {
+    public ProductoDTO(String nombre, String SKU, String marca, String color, double precio) {
         this.nombre = nombre;
         this.SKU = SKU;
         this.marca = marca;
         this.color = color;
+        this.precio = precio;
     }
 
     public ProductoDTO(String codigo, String nombre, String SKU, String marca, String color, double precio, int stock, String descripcion, ObjectId proveedorId) {

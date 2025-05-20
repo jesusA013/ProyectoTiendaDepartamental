@@ -3,7 +3,6 @@ package ModuloVenta;
 import DTOs.ProductoDTO;
 import DTOs.ProductoVentaDTO;
 import Interface.IRegistroVenta;
-import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,7 +12,6 @@ import javax.swing.JOptionPane;
 public class PanelBusquedaProducto extends javax.swing.JPanel {
 
     IRegistroVenta controlVenta;
-    LinkedList<PanelProductosCarrito> panelesProductoCarrito;
     ProductoDTO productoDTO;
 
     /**
@@ -93,15 +91,14 @@ public class PanelBusquedaProducto extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCarritoActionPerformed
-        ProductoDTO producto = new ProductoDTO("Lentes de sol", "123456", "Gucci", "azules");
-        ProductoVentaDTO productoVenta = new ProductoVentaDTO(producto, 1, productoDTO.getPrecio());
+        ProductoVentaDTO productoVenta = new ProductoVentaDTO(productoDTO, 1, productoDTO.getPrecio());
 
         PanelProductosCarrito productoPanel = new PanelProductosCarrito(CarritoCompra.getInstance(controlVenta).getPanelCambiante(), productoVenta);
 
-        panelesProductoCarrito = CarritoCompra.getInstance(controlVenta).getPanelesProductoCarrito();
-        panelesProductoCarrito.add(productoPanel);
-        CarritoCompra.getInstance(controlVenta).setPanelesProductoCarrito(panelesProductoCarrito);
-        JOptionPane.showMessageDialog(this, "Producto registrado en el carrito: ");
+        CarritoCompra.getInstance(controlVenta).getPanelesProductoCarrito().add(productoPanel);
+        CarritoCompra.getInstance(controlVenta).getCarritoGlobal().add(productoVenta);
+        CarritoCompra.getInstance(controlVenta).cargarCarrito();
+        JOptionPane.showMessageDialog(this, "Producto registrado en el carrito: " + productoVenta.getProducto().getNombre());
     }//GEN-LAST:event_btnAgregarCarritoActionPerformed
 
 

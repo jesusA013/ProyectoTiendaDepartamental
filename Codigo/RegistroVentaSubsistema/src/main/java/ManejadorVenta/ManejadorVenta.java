@@ -2,6 +2,8 @@ package ManejadorVenta;
 
 import BOs.ProductoBO;
 import BOs.VentasBO;
+import DTOs.DetallesVentaDTO;
+import DTOs.FacturaDTO;
 import DTOs.ProductoDTO;
 import DTOs.ProductoVentaDTO;
 import DTOs.VentaDTO;
@@ -41,10 +43,71 @@ public class ManejadorVenta implements IRegistroVenta {
     }
     
     @Override
-    public void registrarVenta(JFrame frame, List<ProductoVentaDTO> productos) throws RegistroException {
+    public void registrarVentaTarjeta(JFrame frame, List<ProductoVentaDTO> productos, String digitosTarjeta, String fechaExpiracion, String CVC) throws RegistroException {
+        double subtotalProductos = 0;
+        double impuestosProductos;
+        double totalProductos;
+        
+        for (ProductoVentaDTO producto : productos) {
+            subtotalProductos += producto.getCantidad() * producto.getPrecioUnitario();
+        }
+        impuestosProductos = subtotalProductos * 0.06;
+        totalProductos = subtotalProductos + impuestosProductos;
+        
         VentaDTO ventaDTO = new VentaDTO();
         ventaDTO.setFecha(new Date());
         ventaDTO.setProductos(productos);
+        
+//        FacturaDTO facturaDTO = new FacturaDTO("23-31-00-B", new Date());
+        FacturaDTO facturaDTO = new FacturaDTO();
+        
+        DetallesVentaDTO detallesVentaDTO = new DetallesVentaDTO();
+        detallesVentaDTO.setSubtotal(subtotalProductos);
+        detallesVentaDTO.setIva(impuestosProductos);
+        detallesVentaDTO.setTotal(totalProductos);
+        detallesVentaDTO.setFormaPago("Transferencia");
+        detallesVentaDTO.setMetodoPago("Tarjeta");
+        
+        ventaDTO.setFactura(facturaDTO);
+        ventaDTO.setDetallesVenta(detallesVentaDTO);
+        
+        try {
+            VentaDTO resultado = this.ventasNegocio.insertarVenta(ventaDTO);
+            JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getId());
+            navegacion.irASeleccionMetodoPago();
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(frame, "Error al registrar la venta: " + ex.getMessage());
+        }
+    }
+    
+    @Override
+    public void registrarVentaEfectivo(JFrame frame, List<ProductoVentaDTO> productos, String efectivoEntregado, String cambio) throws RegistroException {
+        double subtotalProductos = 0;
+        double impuestosProductos;
+        double totalProductos;
+        
+        for (ProductoVentaDTO producto : productos) {
+            subtotalProductos += producto.getCantidad() * producto.getPrecioUnitario();
+        }
+        impuestosProductos = subtotalProductos * 0.06;
+        totalProductos = subtotalProductos + impuestosProductos;
+        
+        VentaDTO ventaDTO = new VentaDTO();
+        ventaDTO.setFecha(new Date());
+        ventaDTO.setProductos(productos);
+        
+//        FacturaDTO facturaDTO = new FacturaDTO("23-31-00-A", new Date());
+        FacturaDTO facturaDTO = new FacturaDTO();
+        
+        DetallesVentaDTO detallesVentaDTO = new DetallesVentaDTO();
+        detallesVentaDTO.setSubtotal(subtotalProductos);
+        detallesVentaDTO.setIva(impuestosProductos);
+        detallesVentaDTO.setTotal(totalProductos);
+        detallesVentaDTO.setFormaPago("En caja");
+        detallesVentaDTO.setMetodoPago("Efectivo");
+        
+        ventaDTO.setFactura(facturaDTO);
+        ventaDTO.setDetallesVenta(detallesVentaDTO);
         
         try {
             VentaDTO resultado = this.ventasNegocio.insertarVenta(ventaDTO);

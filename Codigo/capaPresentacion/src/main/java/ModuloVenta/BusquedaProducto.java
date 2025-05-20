@@ -7,6 +7,7 @@ import control.ControlNavegacion;
 import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,12 +15,14 @@ import javax.swing.JOptionPane;
  * @author Ángel Ruíz García - 00000248171
  */
 public class BusquedaProducto extends javax.swing.JFrame {
+
     LinkedList<PanelBusquedaProducto> panelBusquedaProducto;
     List<ProductoDTO> productos;
     IRegistroVenta manejadorVenta;
-    
+
     /**
      * Creates new form BusquedaManual
+     *
      * @param manejadorVenta
      */
     public BusquedaProducto(IRegistroVenta manejadorVenta) {
@@ -30,43 +33,37 @@ public class BusquedaProducto extends javax.swing.JFrame {
 
         this.lbl_ID.setText("ID: 00000000000");
         this.panelBusquedaProducto = new LinkedList<>();
-        
-        
-        
+
     }
 
     public void busquedaProducto(String busqueda) throws RegistroException {
-//        productos = manejadorVenta.buscarProductos(busqueda);
-//        
-//        // Limpiar antes de agregar nuevos paneles
-//        this.panelBusquedaProducto.clear();
-//        this.panelCambiante.removeAll();
-//        this.panelCambiante.revalidate();
-//        this.panelCambiante.repaint();
-//        
-//        for (ProductoDTO producto : productos) {
-//            ProductoDTO producto4 = new ProductoDTO("gorra", "44577", "NY", "negra");
-//            PanelBusquedaProducto panel = new PanelBusquedaProducto(manejadorVenta, producto4);
-//            panelBusquedaProducto.add(panel);
-//        }
-//        
-//        for (PanelBusquedaProducto panelProducto : panelBusquedaProducto) {
-//            panelCambiante.add(panelProducto);
-//        }
-//        
-//        this.panelCambiante.revalidate();
-//        this.panelCambiante.repaint();
-        
-        ProductoDTO producto1 = new ProductoDTO("gorra", "44577", "NY", "negra");
-        PanelBusquedaProducto productoPanel1 = new PanelBusquedaProducto(manejadorVenta, producto1);
-        ProductoDTO producto2 = new ProductoDTO("Lentes de sol", "123456", "Gucci", "azules");
-        PanelBusquedaProducto productoPanel2 = new PanelBusquedaProducto(manejadorVenta, producto2);
-        panelBusquedaProducto.add(productoPanel1);
-        panelBusquedaProducto.add(productoPanel2);
-        
+        productos = manejadorVenta.buscarProductos(busqueda);
+        ProductoDTO producto1 = new ProductoDTO("Lentes de sol", "123456", "Gucci", "azules", 100.0);
+        ProductoDTO producto2 = new ProductoDTO("Calcetines", "23123", "Nike", "cafe", 20.0);
+        ProductoDTO producto3 = new ProductoDTO("chanclas", "54123", "ardidas", "amarilla", 70.0);
+        ProductoDTO producto4 = new ProductoDTO("gorra", "44577", "NY", "negra", 130.0);
+        productos.add(producto1);
+        productos.add(producto2);
+        productos.add(producto3);
+        productos.add(producto4);
+
+        // Limpiar antes de agregar nuevos paneles
+        this.panelBusquedaProducto.clear();
+        this.panelCambiante.removeAll();
+        this.panelCambiante.revalidate();
+        this.panelCambiante.repaint();
+
+        for (ProductoDTO producto : productos) {
+            PanelBusquedaProducto panel = new PanelBusquedaProducto(manejadorVenta, producto);
+            panelBusquedaProducto.add(panel);
+        }
+
         for (PanelBusquedaProducto panelProducto : panelBusquedaProducto) {
             panelCambiante.add(panelProducto);
         }
+
+        panelCambiante.setLayout(new BoxLayout(panelCambiante, BoxLayout.Y_AXIS));
+
         this.panelCambiante.revalidate();
         this.panelCambiante.repaint();
     }
@@ -83,8 +80,8 @@ public class BusquedaProducto extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         panelSuperior = new javax.swing.JPanel();
         lbl_ID = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        panelProductos = new javax.swing.JPanel();
+        ScrollProductos = new javax.swing.JScrollPane();
+        PanelProductosScroll = new javax.swing.JPanel();
         panelCambiante = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
@@ -119,15 +116,14 @@ public class BusquedaProducto extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 605));
+        ScrollProductos.setBackground(new java.awt.Color(255, 255, 255));
+        ScrollProductos.setPreferredSize(new java.awt.Dimension(800, 605));
 
-        panelProductos.setBackground(new java.awt.Color(255, 255, 255));
-        panelProductos.setPreferredSize(new java.awt.Dimension(800, 603));
-        panelProductos.setLayout(new java.awt.BorderLayout());
-        panelProductos.add(panelCambiante, java.awt.BorderLayout.CENTER);
+        PanelProductosScroll.setBackground(new java.awt.Color(255, 255, 255));
+        PanelProductosScroll.setLayout(new java.awt.BorderLayout());
+        PanelProductosScroll.add(panelCambiante, java.awt.BorderLayout.CENTER);
 
-        jScrollPane1.setViewportView(panelProductos);
+        ScrollProductos.setViewportView(PanelProductosScroll);
 
         btnRegresar.setBackground(new java.awt.Color(255, 186, 186));
         btnRegresar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -160,7 +156,7 @@ public class BusquedaProducto extends javax.swing.JFrame {
             .addComponent(panelSuperior, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)
+                .addComponent(ScrollProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 818, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
@@ -182,7 +178,7 @@ public class BusquedaProducto extends javax.swing.JFrame {
                         .addComponent(txtBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ScrollProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -201,8 +197,9 @@ public class BusquedaProducto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        CarritoCompra.getInstance(manejadorVenta).cargarCarrito();
         ControlNavegacion.getInstance().irACarritoCompra();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
@@ -216,13 +213,13 @@ public class BusquedaProducto extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelProductosScroll;
+    private javax.swing.JScrollPane ScrollProductos;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_ID;
     private javax.swing.JPanel panelCambiante;
-    private javax.swing.JPanel panelProductos;
     private javax.swing.JPanel panelSuperior;
     private javax.swing.JTextField txtBuscarProducto;
     // End of variables declaration//GEN-END:variables

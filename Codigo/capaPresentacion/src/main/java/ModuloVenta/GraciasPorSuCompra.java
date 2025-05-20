@@ -70,7 +70,6 @@ public class GraciasPorSuCompra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
-        // TODO add your handling code here:
         
         ControlNavegacion.getInstance().irAMenuPrincipal();
         dispose();

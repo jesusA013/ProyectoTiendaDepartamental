@@ -4,18 +4,37 @@
  */
 package ModuloVenta;
 
+import javax.swing.JTextField;
+
 /**
  *
  * @author Knocmare
  */
 public class PanelMetodoEfectivo extends javax.swing.JPanel {
-
+    
+    public static PanelMetodoEfectivo instancia;
+    
     /**
      * Creates new form PanelMetodoEfectivo
      */
     public PanelMetodoEfectivo() {
         initComponents();
 
+    }
+
+    public static PanelMetodoEfectivo getInstance() {
+        if (instancia == null) {
+            instancia = new PanelMetodoEfectivo();
+        }
+        return instancia;
+    }
+
+    public String getTxtEfectivo() {
+        return txtEfectivo.getText();
+    }
+
+    public String getTxtCambio() {
+        return txtCambio.getText();
     }
 
     /**

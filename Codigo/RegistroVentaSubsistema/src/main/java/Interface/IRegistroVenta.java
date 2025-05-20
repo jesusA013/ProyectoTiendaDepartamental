@@ -14,7 +14,9 @@ import javax.swing.JFrame;
  */
 public interface IRegistroVenta {
 
-    void registrarVenta(JFrame frame, List<ProductoVentaDTO> productos) throws RegistroException;
+    void registrarVentaTarjeta(JFrame frame, List<ProductoVentaDTO> productos, String digitosTarjeta, String fechaExpiracion, String CVC) throws RegistroException;
+    
+    void registrarVentaEfectivo(JFrame frame, List<ProductoVentaDTO> productos, String efectivoEntregado, String cambio) throws RegistroException;
     
     List<ProductoDTO> buscarProductos(String busqueda) throws RegistroException;
 
