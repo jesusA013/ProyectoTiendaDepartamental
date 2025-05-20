@@ -7,6 +7,7 @@ package Interface;
 import DTOs.ProductoDTO;
 import BOs.ProductoBO;
 import DTOs.ProductoVentaDTO;
+import Interfaces.INavegador;
 import RegistroVentaException.RegistroException;
 import java.util.List;
 import javax.swing.JFrame;
@@ -38,7 +39,7 @@ public interface IRegistroVenta {
     ProductoBO consultarCatalogoProducto();
 
     boolean validarStock();
-
+    void setNavegador(INavegador navegador);
     /**
      * Este metodo hace las operaciones necesarias si nuestra compra se realiza
      * con el metodo de pago tarjeta

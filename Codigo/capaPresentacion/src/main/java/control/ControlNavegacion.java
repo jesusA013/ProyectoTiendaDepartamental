@@ -4,7 +4,7 @@ package control;
  *
  * @author Jesus
  */
-import Exception.ProveedorException;
+import Excepciones.ProveedorException;
 import ModuloVenta.FacturaDatos;
 import ModuloVenta.GraciasPorSuCompra;
 import ModuloVenta.SeleccionMetodoPago;
@@ -14,6 +14,7 @@ import Inicio.InicioSesion;
 import Inicio.MenuPrincipal;
 import Implementaciones.*;
 import Interface.IRegistroVenta;
+import Interfaces.INavegador;
 import ManejadorVenta.ManejadorVenta;
 import ModuloAlmacen.GestionProveedores.*;
 import ModuloAlmacen.MenuAlmacen;
@@ -22,7 +23,7 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 import org.bson.types.ObjectId;
 
-public class ControlNavegacion {
+public class ControlNavegacion implements INavegador{
 
     private static ControlNavegacion instancia;
 
@@ -69,6 +70,7 @@ public class ControlNavegacion {
         // Gestión Proveedores
         this.manejadorProveedor = new ManejadorProveedor();
         this.pantallaProveedores = ProveedoresPantalla.getInstancia(manejadorProveedor);
+        manejadorProveedor.setNavegador(this);
         this.pantallaAlmacen = new MenuAlmacen();
         //Gestion Vendedores
 //        this.pantallaRegistraVendedor= new;
@@ -117,6 +119,7 @@ public class ControlNavegacion {
         mostrarPantalla(pantallaInicioSesion);
     }
 
+    @Override
     public void irAMenuPrincipal() {
         mostrarPantalla(pantallaMenuPrincipal);
     }
@@ -134,10 +137,12 @@ public class ControlNavegacion {
         mostrarPantalla(pantallaBusquedaProducto);
     }
     
+    @Override
     public void irASeleccionMetodoPago() {
         mostrarPantalla(pantallaSeleccionMetodoPago);
     }
     
+    @Override
     public void irAGraciasPorSuCompra(){
         mostrarPantalla(pantallaGraciasCompra);
         
@@ -187,6 +192,7 @@ public class ControlNavegacion {
      * @param id
      * @throws Exception.ProveedorException
      */
+    @Override
     public void mostrarPanelProveedorEditar(ObjectId id) throws ProveedorException {
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
         proveedorPanelEditar.actualizarDatos(id);
@@ -198,6 +204,7 @@ public class ControlNavegacion {
      * @param id
      * @throws Exception.ProveedorException
      */
+    @Override
     public void mostrarPanelProveedorDetalles(ObjectId id) throws ProveedorException {
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
         proveedorPanelDetalles.actualizarDatos(id);

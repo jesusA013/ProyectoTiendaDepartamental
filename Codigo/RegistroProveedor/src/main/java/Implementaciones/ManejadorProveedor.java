@@ -8,11 +8,11 @@ import DTOs.ProveedorInformacionContactoDTO;
 import DTOs.ProveedorInformacionGestionDTO;
 import DTOs.ProveedorTablaDTO;
 import Excepciones.NegocioException;
-import Exception.ProveedorException;
+import Excepciones.ProveedorException;
+import Interfaces.INavegador;
 import Interfaces.IProveedorBO;
 import Utilidades.JButtonCellEditor;
 import Utilidades.JButtonRenderer;
-import control.ControlNavegacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -36,7 +36,11 @@ public class ManejadorProveedor implements IManejadorProveedor {
     
     private final IProveedorBO proveedorNegocio = new ProveedorBO();
     private static ManejadorProveedor instancia;
-    
+    INavegador navegacion;
+    @Override
+    public void setNavegador(INavegador navegador){
+        this.navegacion = navegador;
+    }
     public static ManejadorProveedor getInstance() {
         if (instancia == null) {
             instancia = new ManejadorProveedor();
@@ -55,8 +59,9 @@ public class ManejadorProveedor implements IManejadorProveedor {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    
                     //Metodo para detalles
-                    ControlNavegacion.getInstance().mostrarPanelProveedorDetalles(getIdSeleccionadoTabla(tablaProveedores));
+                    navegacion.mostrarPanelProveedorDetalles(getIdSeleccionadoTabla(tablaProveedores));
                 } catch (ProveedorException ex) {
                     System.out.println(ex.getMessage());
                 }
@@ -74,7 +79,7 @@ public class ManejadorProveedor implements IManejadorProveedor {
             public void actionPerformed(ActionEvent e) {
                 try {
                     //Metodo para editar
-                    ControlNavegacion.getInstance().mostrarPanelProveedorEditar(getIdSeleccionadoTabla(tablaProveedores));
+                    navegacion.mostrarPanelProveedorEditar(getIdSeleccionadoTabla(tablaProveedores));
                 } catch (ProveedorException ex) {
                     System.out.println(ex.getMessage());
                 }
@@ -218,7 +223,7 @@ public class ManejadorProveedor implements IManejadorProveedor {
         try {
             ProveedorDTO resultado = this.proveedorNegocio.guardarProveedor(proveedorNuevo);
             JOptionPane.showMessageDialog(panel, "Proveedor guardado con éxito con el ID: " + resultado.getIdProveedor());
-            ControlNavegacion.getInstance().mostrarPanelProveedoresLista();
+            navegacion.mostrarPanelProveedoresLista();
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(panel, "Error al guardar el proveedor: " + ex.getMessage());
         }
@@ -318,7 +323,7 @@ public class ManejadorProveedor implements IManejadorProveedor {
         try {
             ProveedorDTO resultado = this.proveedorNegocio.editarProveedor(proveedorActualizado);
             JOptionPane.showMessageDialog(panel, "Proveedor Actualizado con éxito con el ID: " + resultado.getIdProveedor());
-            ControlNavegacion.getInstance().mostrarPanelProveedoresLista();
+            navegacion.mostrarPanelProveedoresLista();
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(panel, "Error al actualizado el proveedor: " + ex.getMessage());
         }

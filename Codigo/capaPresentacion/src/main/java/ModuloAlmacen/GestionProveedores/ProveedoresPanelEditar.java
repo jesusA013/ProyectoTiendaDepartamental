@@ -5,7 +5,7 @@ import DTOs.ProveedorInformacionBasicaDTO;
 import DTOs.ProveedorInformacionComercialDTO;
 import DTOs.ProveedorInformacionContactoDTO;
 import DTOs.ProveedorInformacionGestionDTO;
-import Exception.ProveedorException;
+import Excepciones.ProveedorException;
 import Implementaciones.IManejadorProveedor;
 import control.ControlNavegacion;
 import javax.swing.JOptionPane;

@@ -7,9 +7,9 @@ import DTOs.ProductoVentaDTO;
 import DTOs.VentaDTO;
 import Excepciones.NegocioException;
 import Interface.IRegistroVenta;
+import Interfaces.INavegador;
 import Interfaces.IVentasBO;
 import RegistroVentaException.RegistroException;
-import control.ControlNavegacion;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -26,7 +26,11 @@ public class ManejadorVenta implements IRegistroVenta {
     
     private final IVentasBO ventasNegocio = new VentasBO();
     private static ManejadorVenta instancia;
-
+    INavegador navegacion;
+    @Override
+    public void setNavegador(INavegador navegador){
+        this.navegacion = navegador;
+    }
     public static ManejadorVenta getInstance() {
         if (instancia == null) {
             instancia = new ManejadorVenta();
@@ -43,7 +47,7 @@ public class ManejadorVenta implements IRegistroVenta {
         try {
             VentaDTO resultado = this.ventasNegocio.insertarVenta(ventaDTO);
             JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getId());
-            ControlNavegacion.getInstance().irASeleccionMetodoPago();
+            navegacion.irASeleccionMetodoPago();
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(frame, "Error al registrar la venta: " + ex.getMessage());
         }

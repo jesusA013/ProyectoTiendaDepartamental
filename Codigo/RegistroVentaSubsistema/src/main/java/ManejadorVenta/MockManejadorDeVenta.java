@@ -4,6 +4,7 @@ import BOs.ProductoBO;
 import DTOs.ProductoDTO;
 import DTOs.ProductoVentaDTO;
 import Interface.IRegistroVenta;
+import Interfaces.INavegador;
 import RegistroVentaException.RegistroException;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,6 +19,11 @@ public class MockManejadorDeVenta implements IRegistroVenta {
 
     @Override
     public void registrarVenta(JFrame frame, List<ProductoVentaDTO> productos) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void setNavegador(INavegador navegador) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

@@ -1,7 +1,8 @@
 package Implementaciones;
 
 import DTOs.ProveedorDTO;
-import Exception.ProveedorException;
+import Excepciones.ProveedorException;
+import Interfaces.INavegador;
 import java.util.Date;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -12,6 +13,7 @@ import org.bson.types.ObjectId;
  * @author Ángel Ruíz García - 00000248171
  */
 public interface IManejadorProveedor {
+    void setNavegador(INavegador navegador);
     
     void configuracionInicialTabla(JTable tablaProveedores);
     
