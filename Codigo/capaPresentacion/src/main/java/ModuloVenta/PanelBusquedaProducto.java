@@ -1,29 +1,30 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package ModuloVenta;
 
 import DTOs.ProductoDTO;
 import DTOs.ProductoVentaDTO;
 import Interface.IRegistroVenta;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Jesus
+ * @author Ángel Ruíz García - 00000248171
  */
 public class PanelBusquedaProducto extends javax.swing.JPanel {
-    
+
     IRegistroVenta controlVenta;
     LinkedList<PanelProductosCarrito> panelesProductoCarrito;
-    
+    ProductoDTO productoDTO;
+
     /**
      * Creates new form PanelBusquedaProducto
+     *
+     * @param controlVenta
+     * @param productoDTO
      */
     public PanelBusquedaProducto(IRegistroVenta controlVenta, ProductoDTO productoDTO) {
         this.controlVenta = controlVenta;
-//        this.panelesProductoCarrito = panelesProductoCarrito;
+        this.productoDTO = productoDTO;
         initComponents();
         this.lblNombre.setText(productoDTO.getNombre());
         this.lblMarca.setText(productoDTO.getMarca());
@@ -50,23 +51,30 @@ public class PanelBusquedaProducto extends javax.swing.JPanel {
         btnAgregarCarrito = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblMarca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblMarca.setText("Marca");
+        add(lblMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 61, 129, -1));
 
         lblProducto.setText("Producto");
+        add(lblProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 27, 65, -1));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblNombre.setText("Nombre");
+        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 32, 160, -1));
 
         lblColor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblColor.setText("Color");
+        add(lblColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 87, 121, -1));
 
         lblSKU.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblSKU.setText("SKU");
+        add(lblSKU, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 113, 149, -1));
 
         lblPrecio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblPrecio.setText("Precio");
+        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 139, 118, -1));
 
         btnAgregarCarrito.setBackground(new java.awt.Color(103, 80, 164));
         btnAgregarCarrito.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -76,62 +84,19 @@ public class PanelBusquedaProducto extends javax.swing.JPanel {
                 btnAgregarCarritoActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(lblProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSKU, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblColor, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, Short.MAX_VALUE)
-                        .addComponent(btnAgregarCarrito)
-                        .addGap(68, 68, 68))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(lblProducto)
-                        .addGap(44, 44, 44))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblNombre)
-                        .addGap(7, 7, 7)
-                        .addComponent(lblMarca)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblColor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblSKU))
-                    .addComponent(btnAgregarCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblPrecio)
-                .addGap(50, 50, 50))
-        );
+        add(btnAgregarCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(579, 87, -1, 46));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCarritoActionPerformed
         ProductoDTO producto = new ProductoDTO("Lentes de sol", "123456", "Gucci", "azules");
-        ProductoVentaDTO productoVenta = new ProductoVentaDTO(producto, 2, 100.0);
-        
-//        panelesProductoCarrito.add(this);
-        CarritoCompra.getInstance(controlVenta).getPanelesProductoCarrito();
+        ProductoVentaDTO productoVenta = new ProductoVentaDTO(producto, 1, productoDTO.getPrecio());
+
+        PanelProductosCarrito productoPanel = new PanelProductosCarrito(CarritoCompra.getInstance(controlVenta).getPanelCambiante(), productoVenta);
+
+        panelesProductoCarrito = CarritoCompra.getInstance(controlVenta).getPanelesProductoCarrito();
+        panelesProductoCarrito.add(productoPanel);
+        CarritoCompra.getInstance(controlVenta).setPanelesProductoCarrito(panelesProductoCarrito);
+        JOptionPane.showMessageDialog(this, "Producto registrado en el carrito: ");
     }//GEN-LAST:event_btnAgregarCarritoActionPerformed
 
 

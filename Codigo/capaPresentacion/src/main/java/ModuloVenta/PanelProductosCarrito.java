@@ -22,7 +22,6 @@ public class PanelProductosCarrito extends JPanel {
     /**
      * Creates new form JpanelProductosBO
      *
-     * @param controlVenta
      * @param panel
      * @param producto
      */

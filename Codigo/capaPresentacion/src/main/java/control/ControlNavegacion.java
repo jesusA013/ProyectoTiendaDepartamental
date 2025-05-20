@@ -135,7 +135,6 @@ public class ControlNavegacion implements INavegador{
     }
 
     public void irABusquedaProducto(String busqueda) throws RegistroException {
-        pantallaBusquedaProducto.busquedaProducto(busqueda);
         mostrarPantalla(pantallaBusquedaProducto);
     }
     

@@ -8,14 +8,13 @@ import RegistroVentaException.RegistroException;
 import control.ControlNavegacion;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
- * @author Jesus
+ * @author Ángel Ruíz García - 00000248171
  */
 public class CarritoCompra extends javax.swing.JFrame {
 
@@ -101,6 +100,14 @@ public class CarritoCompra extends javax.swing.JFrame {
 
     public void setPanelesProductoCarrito(LinkedList<PanelProductosCarrito> panelesProductoCarrito) {
         this.panelesProductoCarrito = panelesProductoCarrito;
+    }
+
+    public JPanel getPanelCambiante() {
+        return panelCambiante;
+    }
+
+    public void setPanelCambiante(JPanel panelCambiante) {
+        this.panelCambiante = panelCambiante;
     }
 
     private void pagar() {

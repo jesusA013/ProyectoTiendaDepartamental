@@ -1,26 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package ModuloVenta;
 
+import DTOs.ProductoDTO;
 import Interface.IRegistroVenta;
 import RegistroVentaException.RegistroException;
 import control.ControlNavegacion;
 import java.awt.Color;
 import java.util.LinkedList;
+import java.util.List;
+import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Jesus
+ * @author Ángel Ruíz García - 00000248171
  */
 public class BusquedaProducto extends javax.swing.JFrame {
-    
-    LinkedList<PanelProductosCarrito> panelesProductoCarrito;
+    LinkedList<PanelBusquedaProducto> panelBusquedaProducto;
+    List<ProductoDTO> productos;
     IRegistroVenta manejadorVenta;
     
     /**
      * Creates new form BusquedaManual
+     * @param manejadorVenta
      */
     public BusquedaProducto(IRegistroVenta manejadorVenta) {
         this.manejadorVenta = manejadorVenta;
@@ -29,11 +30,40 @@ public class BusquedaProducto extends javax.swing.JFrame {
         this.setTitle("Busqueda de Producto");
 
         this.lbl_ID.setText("ID: 00000000000");
-
+        this.panelBusquedaProducto = new LinkedList<>();
+        
+        ProductoDTO producto4 = new ProductoDTO("gorra", "44577", "NY", "negra");
+        PanelBusquedaProducto productoPanel1 = new PanelBusquedaProducto(manejadorVenta, producto4);
+        panelBusquedaProducto.add(productoPanel1);
+        panelBusquedaProducto.add(productoPanel1);
+        
+        for (PanelBusquedaProducto panelProducto : panelBusquedaProducto) {
+            panelCambiante.add(panelProducto);
+        }
+        
     }
 
     public void busquedaProducto(String busqueda) throws RegistroException {
-        manejadorVenta.buscarProductos(busqueda);
+        productos = manejadorVenta.buscarProductos(busqueda);
+        
+        // Limpiar antes de agregar nuevos paneles
+        this.panelBusquedaProducto.clear();
+        this.panelCambiante.removeAll();
+        this.panelCambiante.revalidate();
+        this.panelCambiante.repaint();
+        
+        for (ProductoDTO producto : productos) {
+            ProductoDTO producto4 = new ProductoDTO("gorra", "44577", "NY", "negra");
+            PanelBusquedaProducto panel = new PanelBusquedaProducto(manejadorVenta, producto4);
+            panelBusquedaProducto.add(panel);
+        }
+        
+        for (PanelBusquedaProducto panelProducto : panelBusquedaProducto) {
+            panelCambiante.add(panelProducto);
+        }
+        
+        this.panelCambiante.revalidate();
+        this.panelCambiante.repaint();
     }
 
     /**
@@ -50,6 +80,7 @@ public class BusquedaProducto extends javax.swing.JFrame {
         lbl_ID = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         panelProductos = new javax.swing.JPanel();
+        panelCambiante = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         txtBuscarProducto = new javax.swing.JTextField();
@@ -88,17 +119,10 @@ public class BusquedaProducto extends javax.swing.JFrame {
 
         panelProductos.setBackground(new java.awt.Color(255, 255, 255));
         panelProductos.setPreferredSize(new java.awt.Dimension(800, 603));
+        panelProductos.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout panelProductosLayout = new javax.swing.GroupLayout(panelProductos);
-        panelProductos.setLayout(panelProductosLayout);
-        panelProductosLayout.setHorizontalGroup(
-            panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 816, Short.MAX_VALUE)
-        );
-        panelProductosLayout.setVerticalGroup(
-            panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 603, Short.MAX_VALUE)
-        );
+        panelCambiante.setLayout(new javax.swing.BoxLayout(panelCambiante, javax.swing.BoxLayout.LINE_AXIS));
+        panelProductos.add(panelCambiante, java.awt.BorderLayout.CENTER);
 
         jScrollPane1.setViewportView(panelProductos);
 
@@ -154,8 +178,9 @@ public class BusquedaProducto extends javax.swing.JFrame {
                         .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                         .addComponent(txtBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -179,7 +204,11 @@ public class BusquedaProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
+        try {
+            this.busquedaProducto(txtBuscarProducto.getText());
+        } catch (RegistroException ex) {
+            JOptionPane.showMessageDialog(this, "Error al buscar el producto: " + ex.getMessage());
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
 
@@ -189,6 +218,7 @@ public class BusquedaProducto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_ID;
+    private javax.swing.JPanel panelCambiante;
     private javax.swing.JPanel panelProductos;
     private javax.swing.JPanel panelSuperior;
     private javax.swing.JTextField txtBuscarProducto;
