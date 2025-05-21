@@ -21,6 +21,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import org.bson.types.ObjectId;
 
@@ -307,6 +308,26 @@ public class ManejadorProveedor implements IManejadorProveedor {
             JOptionPane.showMessageDialog(panel, "Error al actualizado el proveedor: " + ex.getMessage());
         }
     }
+    
+//    @Override
+//    public void limpiarCamposProveedor() {
+//        txtNombreProveedor.setText("");
+//
+//        txtContacto.setText("");
+//        txtTelefono.setText("");
+//        txtCorreo.setText("");
+//        txtDireccion.setText("");
+//        txtPaginaWeb.setText("");
+//
+//        txtRFC.setText("");
+//        txtFormaPago.getText();
+//        txtTerminoPago.getText();
+//        cboMoneda.setSelectedIndex(0);
+//
+//        cboEstado.setSelectedIndex(0);
+//        txtComentarios.setText("");
+//    }
+    
     
     private boolean validarNombre(String nombreProveedor) {
         return !(nombreProveedor == null || nombreProveedor.trim().isEmpty());

@@ -41,7 +41,7 @@ public class VentaDAOTest {
     public void testInsertarVenta() throws PersistenciaException {
         Producto p = new Producto("Lentes de Sol", "23SAD23", "WER", "Verde");
         ProductoVenta pv = new ProductoVenta(p, 2, 750);
-        Factura factura = new Factura("FAC-001", new Date(), "ASDW123987A2S", "Mexico");
+        Factura factura = new Factura("FAC-001", new Date());
         DetallesVenta detalles = new DetallesVenta(1500, 40, 1540, "Transferencia", "Pago en una sola exhibición");
 
         Venta venta = new Venta();
@@ -93,7 +93,7 @@ public class VentaDAOTest {
     private Venta crearVentaEjemplo() {
         Producto p = new Producto("Casa de Campaña", "AD3V23", "KULE", "Azul");
         ProductoVenta pv = new ProductoVenta(p, 1, 500);
-        Factura factura = new Factura("FAC-123", new Date(), "DCDE573287V4Z", "Argentina");
+        Factura factura = new Factura("FAC-123", new Date());
         DetallesVenta detalles = new DetallesVenta(500, 80, 580, "Efectivo", "Pago único");
 
         Venta venta = new Venta();

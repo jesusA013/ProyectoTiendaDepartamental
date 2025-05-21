@@ -18,7 +18,6 @@ import ManejadorVenta.ManejadorVenta;
 import ModuloAdministracion.AdministradorMenu;
 import ModuloAlmacen.GestionProveedores.*;
 import ModuloAlmacen.MenuAlmacen;
-import ModuloVenta.FacturaFinalizada;
 import ModuloVenta.VentaFinalizada;
 import RegistroVentaException.RegistroException;
 import gestionVendedores.*;
@@ -34,12 +33,15 @@ public class ControlNavegacion implements INavegador{
     private JPanel panelActual;
     
     //Instancias unicas de cada pantalla
+    private InicioSesion pantallaInicioSesion;
     private MenuPrincipal pantallaMenuPrincipal;
     
     // Gestión Venta
     private final IRegistroVenta manejadorVenta;
+    private FacturaDatos pantallaFactura;
     private BusquedaProducto pantallaBusquedaProducto;
     private SeleccionMetodoPago pantallaSeleccionMetodoPago;
+    private VentaFinalizada pantallaVentaFinalizada;
     // Gestión Proveedores
     private final IManejadorProveedor manejadorProveedor;
     private JPanel panelCambiante;
@@ -56,12 +58,15 @@ public class ControlNavegacion implements INavegador{
      * 
      */
     public ControlNavegacion() {
+        this.pantallaInicioSesion = new InicioSesion();
         this.pantallaMenuPrincipal = new MenuPrincipal();
         // Gestión Venta
         this.manejadorVenta = new ManejadorVenta();
         manejadorVenta.setNavegador(this);
+        this.pantallaFactura = new FacturaDatos();
         this.pantallaBusquedaProducto = new BusquedaProducto(manejadorVenta);
         this.pantallaSeleccionMetodoPago = new SeleccionMetodoPago(manejadorVenta);
+        this.pantallaVentaFinalizada = new VentaFinalizada(manejadorVenta);
         // Gestión Proveedores
         this.manejadorProveedor = new ManejadorProveedor();
         manejadorProveedor.setNavegador(this);
@@ -107,7 +112,6 @@ public class ControlNavegacion implements INavegador{
     }
 
     public void irAInicioSesion(String tipo) {
-        InicioSesion pantallaInicioSesion = InicioSesion.getInstance();
         pantallaInicioSesion.setTipo(tipo);
         pantallaInicioSesion.LimpiarCampos();
         mostrarPantalla(pantallaInicioSesion);
@@ -124,9 +128,7 @@ public class ControlNavegacion implements INavegador{
         mostrarPantalla(carrito);
     }
 
-    public void irAFacturaDatos(ObjectId id) {
-        FacturaDatos pantallaFactura = FacturaDatos.getInstance(manejadorVenta);
-        pantallaFactura.setId(id);
+    public void irAFacturaDatos() {
         mostrarPantalla(pantallaFactura);
     }
 
@@ -140,18 +142,9 @@ public class ControlNavegacion implements INavegador{
     }
     
     @Override
-    public void irVentaFinalizada(ObjectId id){
-        VentaFinalizada pantallaVentaFinalizada = VentaFinalizada.getInstance(manejadorVenta);
-        pantallaVentaFinalizada.setId(id);
-        pantallaVentaFinalizada.actualizarDatos();
+    public void irVentaFinalizada(){
         mostrarPantalla(pantallaVentaFinalizada);
-    }
-    
-    @Override
-    public void irFacturaFinalizada(ObjectId id){
-        FacturaFinalizada pantallaFacturaFinalizada = FacturaFinalizada.getInstance(manejadorVenta, id);
-        pantallaFacturaFinalizada.actualizarDatos();
-        mostrarPantalla(pantallaFacturaFinalizada);
+        
     }
     
     ///////////////////////////////////////////////////////

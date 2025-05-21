@@ -1,6 +1,7 @@
 package DTOs;
 
 import java.util.Date;
+import org.bson.types.ObjectId;
 
 /**
  * ProveedorInformacionGestionDTO.java
@@ -12,6 +13,7 @@ import java.util.Date;
  */
 public class ProveedorInformacionGestionDTO {
 
+    private ObjectId idGestion;
     private Date fechaAlta;
     private String estado;
     private String comentarios;
@@ -25,14 +27,34 @@ public class ProveedorInformacionGestionDTO {
     /**
      * Inicializa los atributos al valor de sus parámetros.
      *
+     * @param idGestion ID de la información de historial y gestión
      * @param fechaAlta Fecha de alta del proveedor
      * @param estado Estado del proveedor
      * @param comentarios Comentarios sobre el proveedor
      */
-    public ProveedorInformacionGestionDTO(Date fechaAlta, String estado, String comentarios) {
+    public ProveedorInformacionGestionDTO(ObjectId idGestion, Date fechaAlta, String estado, String comentarios) {
+        this.idGestion = idGestion;
         this.fechaAlta = fechaAlta;
         this.estado = estado;
         this.comentarios = comentarios;
+    }
+
+    /**
+     * Regresa el ID de la información de historial y gestión.
+     *
+     * @return ID de la información de historial y gestión
+     */
+    public ObjectId getIdGestion() {
+        return idGestion;
+    }
+
+    /**
+     * Establece el ID de la información de historial y gestión.
+     *
+     * @param idGestion ID de la información de historial y gestión
+     */
+    public void setIdGestion(ObjectId idGestion) {
+        this.idGestion = idGestion;
     }
 
     /**
@@ -96,6 +118,6 @@ public class ProveedorInformacionGestionDTO {
      */
     @Override
     public String toString() {
-        return "ProveedorInformacionGestion{" + "fechaAlta=" + fechaAlta + ", estado=" + estado + ", comentarios=" + comentarios + '}';
+        return "ProveedorInformacionGestion{" + "idGestion=" + idGestion + ", fechaAlta=" + fechaAlta + ", estado=" + estado + ", comentarios=" + comentarios + '}';
     }
 }

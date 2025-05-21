@@ -1,5 +1,8 @@
 package Entidades;
 
+import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.types.ObjectId;
+
 /**
  * ProveedorInformacionContacto.java
  *
@@ -9,6 +12,8 @@ package Entidades;
  */
 public class ProveedorInformacionContacto {
 
+    @BsonId
+    private ObjectId idContacto;
     private String contacto;
     private String telefono;
     private String correo;
@@ -36,6 +41,24 @@ public class ProveedorInformacionContacto {
         this.correo = correo;
         this.direccion = direccion;
         this.paginaWeb = paginaWeb;
+    }
+
+    /**
+     * Regresa el ID de la información de contacto.
+     *
+     * @return ID de la información de contacto
+     */
+    public ObjectId getIdContacto() {
+        return idContacto;
+    }
+
+    /**
+     * Establece el ID de la información de contacto.
+     *
+     * @param idContacto ID de la información de contacto
+     */
+    public void setIdContacto(ObjectId idContacto) {
+        this.idContacto = idContacto;
     }
 
     /**
@@ -135,6 +158,6 @@ public class ProveedorInformacionContacto {
      */
     @Override
     public String toString() {
-        return "ProveedorInformacionContacto{" + "contacto=" + contacto + ", telefono=" + telefono + ", correo=" + correo + ", direccion=" + direccion + ", paginaWeb=" + paginaWeb + '}';
+        return "ProveedorInformacionContacto{" + "idContacto=" + idContacto + ", contacto=" + contacto + ", telefono=" + telefono + ", correo=" + correo + ", direccion=" + direccion + ", paginaWeb=" + paginaWeb + '}';
     }
 }

@@ -1,5 +1,8 @@
 package Entidades;
 
+import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.types.ObjectId;
+
 /**
  * ProveedorInformacionComercial.java
  *
@@ -9,6 +12,8 @@ package Entidades;
  */
 public class ProveedorInformacionComercial {
 
+    @BsonId
+    private ObjectId idComercial;
     private String rfc;
     private String formaPago;
     private String terminoPago;
@@ -33,6 +38,24 @@ public class ProveedorInformacionComercial {
         this.formaPago = formaPago;
         this.terminoPago = terminoPago;
         this.moneda = moneda;
+    }
+
+    /**
+     * Regresa el ID de la información comercial del proveedor.
+     *
+     * @return ID de la información comercial del proveedor
+     */
+    public ObjectId getIdComercial() {
+        return idComercial;
+    }
+
+    /**
+     * Establece el ID de la información comercial del proveedor.
+     *
+     * @param idComercial ID de la información comercial del proveedor
+     */
+    public void setIdComercial(ObjectId idComercial) {
+        this.idComercial = idComercial;
     }
 
     /**
@@ -114,6 +137,6 @@ public class ProveedorInformacionComercial {
      */
     @Override
     public String toString() {
-        return "ProveedorInformacionComercial{" + "rfc=" + rfc + ", formaPago=" + formaPago + ", terminoPago=" + terminoPago + ", moneda=" + moneda + '}';
+        return "ProveedorInformacionComercial{" + "idComercial=" + idComercial + ", rfc=" + rfc + ", formaPago=" + formaPago + ", terminoPago=" + terminoPago + ", moneda=" + moneda + '}';
     }
 }

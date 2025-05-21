@@ -1,11 +1,7 @@
 package ModuloVenta;
 
-import Inicio.InicioSesion;
 import Interface.IRegistroVenta;
 import control.ControlNavegacion;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import org.bson.types.ObjectId;
 
 /**
  *
@@ -13,35 +9,14 @@ import org.bson.types.ObjectId;
  */
 public class VentaFinalizada extends javax.swing.JFrame {
     
-    private static VentaFinalizada instancia;
     IRegistroVenta controlVenta;
-    private ObjectId id;
-
+    
     /**
      * Creates new form VentaFinalizada
-     *
-     * @param controlVenta
      */
     public VentaFinalizada(IRegistroVenta controlVenta) {
         this.controlVenta = controlVenta;
         initComponents();
-    }
-    
-    public static VentaFinalizada getInstance(IRegistroVenta controlVenta) {
-        if (instancia == null) {
-            instancia = new VentaFinalizada(controlVenta);
-        }
-        return instancia;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
-    public void actualizarDatos() {
-        lblUsuario.setText("Realizada por: " + InicioSesion.getInstance().getNombreUsuario());
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd 'de' MMMM 'de' yyyy");
-        lblFecha.setText("Fecha: " + formatoFecha.format(new Date()));
     }
 
     /**
@@ -53,20 +28,20 @@ public class VentaFinalizada extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelFondo = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lblUsuario = new javax.swing.JLabel();
-        lblFecha = new javax.swing.JLabel();
-        btnFacturar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        btnSalir1 = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblID = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        panelFondo.setBackground(new java.awt.Color(255, 255, 255));
-        panelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -77,27 +52,27 @@ public class VentaFinalizada extends javax.swing.JFrame {
         jLabel1.setText("VENTA FINALIZADA");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, -1));
 
-        lblUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblUsuario.setText("Realizada por:");
-        jPanel2.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 510, -1));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Realizada por:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 510, -1));
 
-        lblFecha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFecha.setText("Fecha:");
-        jPanel2.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 510, -1));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Fecha:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 510, -1));
 
-        panelFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 550, 270));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 550, 280));
 
-        btnFacturar.setBackground(new java.awt.Color(103, 80, 164));
-        btnFacturar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnFacturar.setText("Generar Factura");
-        btnFacturar.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir1.setBackground(new java.awt.Color(103, 80, 164));
+        btnSalir1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnSalir1.setText("Generar Factura");
+        btnSalir1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFacturarActionPerformed(evt);
+                btnSalir1ActionPerformed(evt);
             }
         });
-        panelFondo.add(btnFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
+        jPanel1.add(btnSalir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, -1, -1));
 
         btnSalir.setBackground(new java.awt.Color(255, 186, 186));
         btnSalir.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -107,7 +82,7 @@ public class VentaFinalizada extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        panelFondo.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 210, -1));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 210, -1));
 
         jPanel3.setBackground(new java.awt.Color(103, 80, 164));
         jPanel3.setPreferredSize(new java.awt.Dimension(570, 50));
@@ -133,44 +108,43 @@ public class VentaFinalizada extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panelFondo.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 50));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         CarritoCompra.getInstance(controlVenta).limpiarCarrito();
         ControlNavegacion.getInstance().irAMenuPrincipal();
+        dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturarActionPerformed
-        ControlNavegacion.getInstance().irAFacturaDatos(id);
-    }//GEN-LAST:event_btnFacturarActionPerformed
-
-
+    private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
+        ControlNavegacion.getInstance().irAFacturaDatos();
+    }//GEN-LAST:event_btnSalir1ActionPerformed
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFacturar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnSalir1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblID;
-    private javax.swing.JLabel lblUsuario;
-    private javax.swing.JPanel panelFondo;
     // End of variables declaration//GEN-END:variables
 }

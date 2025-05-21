@@ -1,5 +1,8 @@
 package Entidades;
 
+import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.types.ObjectId;
+
 /**
  * ProveedorInformacionBasica.java
  *
@@ -9,6 +12,8 @@ package Entidades;
  */
 public class ProveedorInformacionBasica {
 
+    @BsonId
+    private ObjectId idBasica;
     private String nombreProveedor;
 
     /**
@@ -24,6 +29,24 @@ public class ProveedorInformacionBasica {
      */
     public ProveedorInformacionBasica(String nombreProveedor) {
         this.nombreProveedor = nombreProveedor;
+    }
+
+    /**
+     * Regresa el ID de la información básica.
+     *
+     * @return ID de la información básica
+     */
+    public ObjectId getIdBasica() {
+        return idBasica;
+    }
+
+    /**
+     * Establece ID de la información básica.
+     *
+     * @param idBasica ID de la información básica
+     */
+    public void setIdBasica(ObjectId idBasica) {
+        this.idBasica = idBasica;
     }
 
     /**
@@ -51,6 +74,6 @@ public class ProveedorInformacionBasica {
      */
     @Override
     public String toString() {
-        return "ProveedorInformacionBasica{" + "nombreProveedor=" + nombreProveedor + '}';
+        return "ProveedorInformacionBasica{" + "idBasica=" + idBasica + ", nombreProveedor=" + nombreProveedor + '}';
     }
 }

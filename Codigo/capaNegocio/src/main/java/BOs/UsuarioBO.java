@@ -18,23 +18,19 @@ import Interfaz.IUsuarioDAO;
  *
  * @author gaspa
  */
-public class UsuarioBO implements IUsuarioBO {
-
+public class UsuarioBO implements IUsuarioBO{
     private final IUsuarioDAO usuarioDAO;
     IConexion Mongo = new Conexion();
-
     public UsuarioBO() {
         this.usuarioDAO = new UsuarioDAO(Mongo.conexion());
     }
-
-    @Override
     public UsuarioDTO verificarCredenciales(String idCuenta, String contrasena) throws NegocioException {
         try {
             Usuario usuario = usuarioDAO.obtenerUsuario(idCuenta);
             if (usuario == null || !usuario.getContrasena().equals(contrasena)) {
                 throw new NegocioException("Credenciales inválidas");
             }
-            return new UsuarioDTO(usuario.getIdCuenta(), usuario.getNombreUsuario(), usuario.getContrasena(), usuario.getTipo());
+            return new UsuarioDTO(usuario.getIdCuenta(), usuario.getContrasena(), usuario.getTipo());
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al acceder a los datos: " + e.getMessage());
         }

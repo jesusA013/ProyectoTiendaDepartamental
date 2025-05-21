@@ -5,62 +5,53 @@
 package ModuloVenta;
 
 import DTOs.ProductoVentaDTO;
-import Inicio.InicioSesion;
 import Interface.IRegistroVenta;
 import RegistroVentaException.RegistroException;
 import control.ControlNavegacion;
 import java.awt.BorderLayout;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import org.bson.types.ObjectId;
 
 /**
  *
  * @author Ángel Ruíz
  */
 public class SeleccionMetodoPago extends javax.swing.JFrame {
-
+    
     IRegistroVenta controlVenta;
     List<ProductoVentaDTO> carritoGlobal;
     private int cantidadProductos = 0;
     private double subtotalProductos = 0;
     private double impuestosProductos = 0;
     private double totalProductos = 0;
-
+    
     /**
      * Creates new form SeleccionMetodoPago
-     *
      * @param controlVenta
      */
     public SeleccionMetodoPago(IRegistroVenta controlVenta) {
         this.controlVenta = controlVenta;
         initComponents();
     }
-
-    private ObjectId pagarTarjeta() throws Exception {
+    
+    private void pagarTarjeta() {
         try {
-            return controlVenta.registrarVentaTarjeta(this, carritoGlobal, 
-                    InicioSesion.getInstance().getId(), 
-                    PanelMetodoTarjeta.getInstance().getTxtDigitosTarjeta(),
-                    PanelMetodoTarjeta.getInstance().getTxtFechaExpiracion(),
+            controlVenta.registrarVentaTarjeta(this, carritoGlobal, 
+                    PanelMetodoTarjeta.getInstance().getTxtDigitosTarjeta(), 
+                    PanelMetodoTarjeta.getInstance().getTxtFechaExpiracion(), 
                     PanelMetodoTarjeta.getInstance().getTxtCVC());
         } catch (RegistroException ex) {
             JOptionPane.showMessageDialog(this, "Error al realizar el pago: " + ex.getMessage());
-            throw new Exception("Error: " + ex.getMessage());
         }
     }
-
-    private ObjectId pagarEfectivo() throws Exception {
+    
+    private void pagarEfectivo() {
         try {
-            return controlVenta.registrarVentaEfectivo(this, carritoGlobal, 
-                    InicioSesion.getInstance().getId(),
-                    PanelMetodoEfectivo.getInstance().getTxtEfectivo(),
+            controlVenta.registrarVentaEfectivo(this, carritoGlobal, 
+                    PanelMetodoEfectivo.getInstance().getTxtEfectivo(), 
                     PanelMetodoEfectivo.getInstance().getTxtCambio());
         } catch (RegistroException ex) {
             JOptionPane.showMessageDialog(this, "Error al realizar el pago: " + ex.getMessage());
-            throw new Exception("Error: " + ex.getMessage());
         }
     }
 
@@ -339,25 +330,25 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     *
-     * @param evt
+     * 
+     * @param evt 
      */
     private void metodoTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metodoTarjetaActionPerformed
         carritoGlobal = CarritoCompra.getInstance(controlVenta).getCarritoGlobal();
-
+        
         for (ProductoVentaDTO producto : carritoGlobal) {
             cantidadProductos += producto.getCantidad();
             subtotalProductos += producto.getCantidad() * producto.getPrecioUnitario();
         }
         impuestosProductos = subtotalProductos * 0.06;
         totalProductos = subtotalProductos + impuestosProductos;
-
+        
         this.lblID.setText("ID: " + "123456");
         this.lblCantidadProducto.setText(Integer.toString(cantidadProductos));
         this.lblSubtotal.setText(Double.toString(subtotalProductos));
         this.lblImpuestos.setText(Double.toString(impuestosProductos));
         this.lblTotal.setText(Double.toString(totalProductos));
-
+        
         PanelMetodoTarjeta paneltarjeta = new PanelMetodoTarjeta();
         panelCambiante.setLayout(new BorderLayout());
         panelCambiante.removeAll();
@@ -367,25 +358,25 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
     }//GEN-LAST:event_metodoTarjetaActionPerformed
 
     /**
-     *
-     * @param evt
+     * 
+     * @param evt 
      */
     private void metodoEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metodoEfectivoActionPerformed
         carritoGlobal = CarritoCompra.getInstance(controlVenta).getCarritoGlobal();
-
+        
         for (ProductoVentaDTO producto : carritoGlobal) {
             cantidadProductos += producto.getCantidad();
             subtotalProductos += producto.getCantidad() * producto.getPrecioUnitario();
         }
         impuestosProductos = subtotalProductos * 0.06;
         totalProductos = subtotalProductos + impuestosProductos;
-
+        
         this.lblID.setText("ID: " + "123456");
         this.lblCantidadProducto.setText(Integer.toString(cantidadProductos));
         this.lblSubtotal.setText(Double.toString(subtotalProductos));
         this.lblImpuestos.setText(Double.toString(impuestosProductos));
         this.lblTotal.setText(Double.toString(totalProductos));
-
+        
         PanelMetodoEfectivo panelEfectivo = new PanelMetodoEfectivo();
         panelCambiante.setLayout(new BorderLayout());
         panelCambiante.removeAll();
@@ -395,8 +386,8 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
     }//GEN-LAST:event_metodoEfectivoActionPerformed
 
     /**
-     *
-     * @param evt
+     * 
+     * @param evt 
      */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         CarritoCompra.getInstance(controlVenta).limpiarCarrito();
@@ -404,38 +395,30 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
-     *
-     * @param evt
+     * 
+     * @param evt 
      */
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        
         ControlNavegacion.getInstance().irACarritoCompra();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
-     *
-     * @param evt
+     * 
+     * @param evt 
      */
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        ObjectId id;
         if (metodoEfectivo.isSelected()) {
-            try {
-                id = pagarEfectivo();
-                ControlNavegacion.getInstance().irVentaFinalizada(id);
-            } catch (Exception ex) {
-                System.err.println(ex.getMessage());
-            }
+            pagarEfectivo();
         } else if (metodoTarjeta.isSelected()) {
-            try {
-                id = pagarTarjeta();
-                ControlNavegacion.getInstance().irVentaFinalizada(id);
-            } catch (Exception ex) {
-                System.err.println(ex.getMessage());
-            }
+            pagarTarjeta();
         } else {
-            JOptionPane.showMessageDialog(this, "Seleccione un metodo de pago");
+            
         }
+        ControlNavegacion.getInstance().irVentaFinalizada();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup Metodo;

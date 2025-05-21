@@ -1,143 +1,44 @@
 package ManejadorVenta;
 
 import BOs.ProductoBO;
-import BOs.VentasBO;
-import DTOs.DetallesVentaDTO;
-import DTOs.FacturaDTO;
 import DTOs.ProductoDTO;
 import DTOs.ProductoVentaDTO;
-import DTOs.VentaDTO;
-import Excepciones.NegocioException;
 import Interface.IRegistroVenta;
 import Interfaces.INavegador;
-import Interfaces.IProductoBO;
-import Interfaces.IVentasBO;
 import RegistroVentaException.RegistroException;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
- *
- * @author gamae
+ * Mock para simular el comportamiento del subsistema de registro de ventas,
+ * enfocado en la funcionalidad de facturación.
  */
-public class ManejadorVenta implements IRegistroVenta {
-
-    private final IVentasBO ventasNegocio = new VentasBO();
-    private final IProductoBO productoNegocio = new ProductoBO();
-    private static ManejadorVenta instancia;
-    INavegador navegacion;
+public class MockManejadorDeVenta implements IRegistroVenta {
 
     @Override
-    public void setNavegador(INavegador navegador) {
-        this.navegacion = navegador;
+    public void registrarVentaTarjeta(JFrame frame, List<ProductoVentaDTO> productos, String digitosTarjeta, String fechaExpiracion, String CVC) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-    public static ManejadorVenta getInstance() {
-        if (instancia == null) {
-            instancia = new ManejadorVenta();
-        }
-        return instancia;
-    }
-
-    @Override
-    public void registrarVentaTarjeta(JFrame frame, List<ProductoVentaDTO> productos, String digitosTarjeta, String fechaExpiracion, String CVC) throws RegistroException {
-        double subtotalProductos = 0;
-        double impuestosProductos;
-        double totalProductos;
-
-        for (ProductoVentaDTO producto : productos) {
-            subtotalProductos += producto.getCantidad() * producto.getPrecioUnitario();
-        }
-        impuestosProductos = subtotalProductos * 0.06;
-        totalProductos = subtotalProductos + impuestosProductos;
-
-        VentaDTO ventaDTO = new VentaDTO();
-        ventaDTO.setFecha(new Date());
-        ventaDTO.setProductos(productos);
-
-//        FacturaDTO facturaDTO = new FacturaDTO("23-31-00-B", new Date());
-        FacturaDTO facturaDTO = new FacturaDTO();
-
-        DetallesVentaDTO detallesVentaDTO = new DetallesVentaDTO();
-        detallesVentaDTO.setSubtotal(subtotalProductos);
-        detallesVentaDTO.setIva(impuestosProductos);
-        detallesVentaDTO.setTotal(totalProductos);
-        detallesVentaDTO.setFormaPago("Transferencia");
-        detallesVentaDTO.setMetodoPago("Tarjeta");
-
-        ventaDTO.setFactura(facturaDTO);
-        ventaDTO.setDetallesVenta(detallesVentaDTO);
-
-        try {
-            VentaDTO resultado = this.ventasNegocio.insertarVenta(ventaDTO);
-            for (ProductoVentaDTO productoVenta : productos) {
-                productoVenta.getProducto().setStock(productoVenta.getProducto().getStock() - productoVenta.getCantidad());
-                this.productoNegocio.actualizarProducto(productoVenta.getProducto());
-            }
-            JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getId());
-            navegacion.irASeleccionMetodoPago();
-        } catch (NegocioException ex) {
-            JOptionPane.showMessageDialog(frame, "Error al registrar la venta: " + ex.getMessage());
-        }
-    }
-
+    
     @Override
     public void registrarVentaEfectivo(JFrame frame, List<ProductoVentaDTO> productos, String efectivoEntregado, String cambio) throws RegistroException {
-        double subtotalProductos = 0;
-        double impuestosProductos;
-        double totalProductos;
-
-        for (ProductoVentaDTO producto : productos) {
-            subtotalProductos += producto.getCantidad() * producto.getPrecioUnitario();
-        }
-        impuestosProductos = subtotalProductos * 0.06;
-        totalProductos = subtotalProductos + impuestosProductos;
-
-        VentaDTO ventaDTO = new VentaDTO();
-        ventaDTO.setFecha(new Date());
-        ventaDTO.setProductos(productos);
-
-//        FacturaDTO facturaDTO = new FacturaDTO("23-31-00-A", new Date());
-        FacturaDTO facturaDTO = new FacturaDTO();
-
-        DetallesVentaDTO detallesVentaDTO = new DetallesVentaDTO();
-        detallesVentaDTO.setSubtotal(subtotalProductos);
-        detallesVentaDTO.setIva(impuestosProductos);
-        detallesVentaDTO.setTotal(totalProductos);
-        detallesVentaDTO.setFormaPago("En caja");
-        detallesVentaDTO.setMetodoPago("Efectivo");
-
-        ventaDTO.setFactura(facturaDTO);
-        ventaDTO.setDetallesVenta(detallesVentaDTO);
-
-        try {
-            VentaDTO resultado = this.ventasNegocio.insertarVenta(ventaDTO);
-            for (ProductoVentaDTO productoVenta : productos) {
-                productoVenta.getProducto().setStock(productoVenta.getProducto().getStock() - productoVenta.getCantidad());
-                this.productoNegocio.actualizarProducto(productoVenta.getProducto());
-            }
-            JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getId());
-            navegacion.irASeleccionMetodoPago();
-        } catch (NegocioException ex) {
-            JOptionPane.showMessageDialog(frame, "Error al registrar la venta: " + ex.getMessage());
-        }
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    @Override
+    public void setNavegador(INavegador navegador) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public List<ProductoDTO> buscarProductos(String busqueda) throws RegistroException {
-        try {
-            return this.productoNegocio.buscarProductos(busqueda);
-        } catch (NegocioException ex) {
-            throw new RegistroException("Error al buscar productos: " + ex.getMessage());
-        }
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    private class Estados {
-
+    // Clase para los estados (copiada de ManejadorVenta)
+    private static class Estados {
         static LinkedList<String> estados = new LinkedList<>();
 
         public Estados() {
@@ -173,9 +74,87 @@ public class ManejadorVenta implements IRegistroVenta {
             estados.add("Veracruz");
             estados.add("Yucatán");
             estados.add("Zacatecas");
-
         }
+    }
 
+    @Override
+    public boolean validarPago() {
+        // 
+        return true;
+    }
+
+    @Override
+    public double calcularTotal() {
+        // 
+        return 1000.0;
+    }
+
+    @Override
+    public void cancelarVenta() {
+        // 
+    }
+
+    @Override
+    public void consultarHistorialVentas() {
+        // 
+    }
+
+    @Override
+    public void agregarProducto(ProductoDTO producto) {
+        // 
+    }
+
+    @Override
+    public void eliminarProducto(ProductoDTO producto) {
+        // 
+    }
+
+    @Override
+    public void incrementarCantidadProducto(int cant) {
+        // 
+    }
+
+    @Override
+    public void disminuirCantidadProducto(int cant) throws RegistroException {
+        // 
+    }
+
+    @Override
+    public ProductoBO consultarCatalogoProducto() {
+        // 
+        return null;
+    }
+
+    @Override
+    public boolean validarStock() {
+        // 
+        return true;
+    }
+
+    @Override
+    public boolean seleccionMetodoPagoTarjeta() {
+        // 
+        return true;
+    }
+
+    @Override
+    public boolean seleccionMetodoPagoEfectivo() {
+        // 
+        return false;
+    }
+
+    @Override
+    public void generarFactura() throws RegistroException {
+        // Se simula la generación de una factura
+        System.out.println("Factura generada exitosamente (mock).");
+        
+        // throw new RegistroException("Error simulado al generar factura");
+    }
+
+    @Override
+    public void cancelarFacturacion() {
+        // Se simula la cancelación de la facturación
+        System.out.println("Facturación cancelada (mock).");
     }
 
     @Override
@@ -234,7 +213,7 @@ public class ManejadorVenta implements IRegistroVenta {
             throw new RegistroException("La razón social debe tener entre 1 y 50 caracteres.");
         }
         if (!contenidoPattern.matcher(razonSocial).matches()) {
-            throw new RegistroException("La razón social no puede contener caracteres espciales");
+            throw new RegistroException("La razón social no puede contener caracteres especiales");
         }
         return true;
     }
@@ -251,7 +230,7 @@ public class ManejadorVenta implements IRegistroVenta {
             throw new RegistroException("La calle debe tener entre 1 y 100 caracteres.");
         }
         if (!contenidoPattern.matcher(calle).matches()) {
-            throw new RegistroException("La calle no puede contener caracteres espciales");
+            throw new RegistroException("La calle no puede contener caracteres especiales");
         }
         return true;
     }
@@ -269,9 +248,6 @@ public class ManejadorVenta implements IRegistroVenta {
         return true;
     }
 
-    /*
-    Si no ponemos un numero internos nos va a salir False, dejenlo así no pasa nada
-     */
     @Override
     public boolean validarNumeroInterior(String numInterior) throws RegistroException {
         if (numInterior == null) {
@@ -314,7 +290,6 @@ public class ManejadorVenta implements IRegistroVenta {
             throw new RegistroException("El código postal debe tener 5 dígitos.");
         }
         return true;
-
     }
 
     @Override
@@ -367,75 +342,4 @@ public class ManejadorVenta implements IRegistroVenta {
         }
         return true;
     }
-
-    @Override
-    public boolean validarPago() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public double calcularTotal() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void cancelarVenta() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void consultarHistorialVentas() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void agregarProducto(ProductoDTO producto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void eliminarProducto(ProductoDTO producto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void incrementarCantidadProducto(int cant) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void disminuirCantidadProducto(int cant) throws RegistroException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public ProductoBO consultarCatalogoProducto() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean validarStock() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean seleccionMetodoPagoTarjeta() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean seleccionMetodoPagoEfectivo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void generarFactura() throws RegistroException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void cancelarFacturacion() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
 }

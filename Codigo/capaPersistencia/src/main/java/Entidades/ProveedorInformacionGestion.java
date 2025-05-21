@@ -1,6 +1,8 @@
 package Entidades;
 
 import java.util.Date;
+import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.types.ObjectId;
 
 /**
  * ProveedorInformacionGestion.java
@@ -12,6 +14,8 @@ import java.util.Date;
  */
 public class ProveedorInformacionGestion {
 
+    @BsonId
+    private ObjectId idGestion;
     private Date fechaAlta;
     private String estado;
     private String comentarios;
@@ -33,6 +37,24 @@ public class ProveedorInformacionGestion {
         this.fechaAlta = fechaAlta;
         this.estado = estado;
         this.comentarios = comentarios;
+    }
+
+    /**
+     * Regresa el ID de la información de historial y gestión.
+     *
+     * @return ID de la información de historial y gestión
+     */
+    public ObjectId getIdGestion() {
+        return idGestion;
+    }
+
+    /**
+     * Establece el ID de la información de historial y gestión.
+     *
+     * @param idGestion ID de la información de historial y gestión
+     */
+    public void setIdGestion(ObjectId idGestion) {
+        this.idGestion = idGestion;
     }
 
     /**
@@ -96,6 +118,6 @@ public class ProveedorInformacionGestion {
      */
     @Override
     public String toString() {
-        return "ProveedorInformacionGestion{" + "fechaAlta=" + fechaAlta + ", estado=" + estado + ", comentarios=" + comentarios + '}';
+        return "ProveedorInformacionGestion{" + "idGestion=" + idGestion + ", fechaAlta=" + fechaAlta + ", estado=" + estado + ", comentarios=" + comentarios + '}';
     }
 }

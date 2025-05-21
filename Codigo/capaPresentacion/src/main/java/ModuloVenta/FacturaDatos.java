@@ -1,137 +1,16 @@
 package ModuloVenta;
 
-import Interface.IRegistroVenta;
-import RegistroVentaException.RegistroException;
-import control.ControlNavegacion;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.*;
-import javax.swing.JOptionPane;
-import org.bson.types.ObjectId;
-
 /**
  *
- * @author Ángel Ruíz García - 00000248171
+ * @author Knocmare
  */
 public class FacturaDatos extends javax.swing.JFrame {
 
-    IRegistroVenta controlVenta;
-    private static FacturaDatos instancia;
-    private Map<String, Map<String, Map<String, List<String>>>> datosUbicacion;
-    private ObjectId id;
-
     /**
      * Creates new form FacturaDatos
-     *
-     * @param controlVenta
      */
-    public FacturaDatos(IRegistroVenta controlVenta) {
-        this.controlVenta = controlVenta;
+    public FacturaDatos() {
         initComponents();
-
-        datosUbicacion = new HashMap<>();
-
-        // País: México
-        Map<String, Map<String, List<String>>> estadosMexico = new HashMap<>();
-
-        // Estado: Sonora
-        Map<String, List<String>> ciudadesSonora = new HashMap<>();
-        ciudadesSonora.put("Ciudad Obregón", Arrays.asList("Municipio Cajeme"));
-        ciudadesSonora.put("Hermosillo", Arrays.asList("Municipio Hermosillo"));
-        estadosMexico.put("Sonora", ciudadesSonora);
-
-        // Estado: Jalisco
-        Map<String, List<String>> ciudadesJalisco = new HashMap<>();
-        ciudadesJalisco.put("Guadalajara", Arrays.asList("Municipio Guadalajara"));
-        estadosMexico.put("Jalisco", ciudadesJalisco);
-
-        // Añadir México al mapa principal
-        datosUbicacion.put("México", estadosMexico);
-
-        // Llenar combo de países
-        for (String pais : datosUbicacion.keySet()) {
-            cboPais.addItem(pais);
-        }
-        cboPais.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String paisSeleccionado = (String) cboPais.getSelectedItem();
-                cboEstado.removeAllItems();
-                cboCiudadLocalidad.removeAllItems();
-                cboDelegacionMunicipio.removeAllItems();
-
-                if (paisSeleccionado != null && datosUbicacion.containsKey(paisSeleccionado)) {
-                    Map<String, Map<String, List<String>>> estados = datosUbicacion.get(paisSeleccionado);
-                    for (String estado : estados.keySet()) {
-                        cboEstado.addItem(estado);
-                    }
-                }
-            }
-        });
-
-        cboEstado.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String paisSeleccionado = (String) cboPais.getSelectedItem();
-                String estadoSeleccionado = (String) cboEstado.getSelectedItem();
-                cboCiudadLocalidad.removeAllItems();
-                cboDelegacionMunicipio.removeAllItems();
-
-                if (paisSeleccionado != null && estadoSeleccionado != null) {
-                    Map<String, Map<String, List<String>>> estados = datosUbicacion.get(paisSeleccionado);
-                    if (estados.containsKey(estadoSeleccionado)) {
-                        Map<String, List<String>> ciudades = estados.get(estadoSeleccionado);
-                        for (String ciudad : ciudades.keySet()) {
-                            cboCiudadLocalidad.addItem(ciudad);
-                        }
-                    }
-                }
-            }
-        });
-
-        cboCiudadLocalidad.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String paisSeleccionado = (String) cboPais.getSelectedItem();
-                String estadoSeleccionado = (String) cboEstado.getSelectedItem();
-                String ciudadSeleccionada = (String) cboCiudadLocalidad.getSelectedItem();
-                cboDelegacionMunicipio.removeAllItems();
-
-                if (paisSeleccionado != null && estadoSeleccionado != null && ciudadSeleccionada != null) {
-                    Map<String, List<String>> ciudades = datosUbicacion.get(paisSeleccionado).get(estadoSeleccionado);
-                    if (ciudades.containsKey(ciudadSeleccionada)) {
-                        for (String municipio : ciudades.get(ciudadSeleccionada)) {
-                            cboDelegacionMunicipio.addItem(municipio);
-                        }
-                    }
-                }
-            }
-        });
-
-        cboPais.setSelectedIndex(-1);
-    }
-
-    public static FacturaDatos getInstance(IRegistroVenta controlVenta) {
-        if (instancia == null) {
-            instancia = new FacturaDatos(controlVenta);
-        }
-        return instancia;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
-    private void facturar() throws RegistroException, Exception {
-
-        try {
-            controlVenta.facturarVenta(this, id, txtRFC.getText(),
-                    txtNombeRazonSocial.getText(), txtCalle.getText(),
-                    txtNumExt.getText(), txtNumInt.getText(), txtColonia.getText(),
-                    txtCodPostal.getText(), (String) cboPais.getSelectedItem(),
-                    (String) cboEstado.getSelectedItem(),
-                    (String) cboCiudadLocalidad.getSelectedItem(),
-                    (String) cboDelegacionMunicipio.getSelectedItem(), txtCorreo.getText());
-        } catch (RegistroException ex) {
-            JOptionPane.showMessageDialog(this, "Error al realizar la facturación: " + ex.getMessage());
-        }
     }
 
     /**
@@ -162,21 +41,21 @@ public class FacturaDatos extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtCodPostal = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        txtDelegMunicipio = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        txtCiudadLocalidad = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        txtEstado = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        txtPais = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         btnFacturar = new javax.swing.JButton();
-        btnCanelar = new javax.swing.JButton();
+        btnFacturar1 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
-        cboPais = new javax.swing.JComboBox<>();
-        cboEstado = new javax.swing.JComboBox<>();
-        cboCiudadLocalidad = new javax.swing.JComboBox<>();
-        cboDelegacionMunicipio = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -257,7 +136,7 @@ public class FacturaDatos extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Colonia");
-        panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 140, 30));
+        panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 210, 30));
 
         txtColonia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         panelFondo.add(txtColonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 360, -1));
@@ -272,26 +151,38 @@ public class FacturaDatos extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setText("País");
-        panelFondo.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 370, -1, 30));
+        jLabel9.setText("Delegación o Municipio");
+        panelFondo.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 210, 30));
+
+        txtDelegMunicipio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        panelFondo.add(txtDelegMunicipio, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 360, -1));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel10.setText("Estado");
-        panelFondo.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 90, 30));
+        jLabel10.setText("Ciudad o Localidad");
+        panelFondo.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 170, 30));
+
+        txtCiudadLocalidad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        panelFondo.add(txtCiudadLocalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 360, -1));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel11.setText("Ciudad o Localidad");
-        panelFondo.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 170, 30));
+        jLabel11.setText("Estado");
+        panelFondo.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 60, 30));
+
+        txtEstado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        panelFondo.add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 360, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel12.setText("Delegación o Municipio");
-        panelFondo.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 490, -1, 30));
+        jLabel12.setText("País");
+        panelFondo.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 490, 40, 30));
+
+        txtPais.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        panelFondo.add(txtPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 490, 360, -1));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asterisco_icono_10x10.png"))); // NOI18N
-        panelFondo.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, -1, -1));
+        panelFondo.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 500, -1, -1));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asterisco_icono_10x10.png"))); // NOI18N
         panelFondo.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 260, -1, -1));
@@ -315,16 +206,16 @@ public class FacturaDatos extends javax.swing.JFrame {
         });
         panelFondo.add(btnFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, 140, -1));
 
-        btnCanelar.setBackground(new java.awt.Color(255, 186, 186));
-        btnCanelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnCanelar.setForeground(new java.awt.Color(51, 51, 51));
-        btnCanelar.setText("Cancelar");
-        btnCanelar.addActionListener(new java.awt.event.ActionListener() {
+        btnFacturar1.setBackground(new java.awt.Color(255, 186, 186));
+        btnFacturar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnFacturar1.setForeground(new java.awt.Color(51, 51, 51));
+        btnFacturar1.setText("Cancelar");
+        btnFacturar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCanelarActionPerformed(evt);
+                btnFacturar1ActionPerformed(evt);
             }
         });
-        panelFondo.add(btnCanelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, 140, -1));
+        panelFondo.add(btnFacturar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, 140, -1));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -333,21 +224,6 @@ public class FacturaDatos extends javax.swing.JFrame {
 
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         panelFondo.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 530, 360, -1));
-
-        cboPais.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        panelFondo.add(cboPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 360, -1));
-
-        cboEstado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cboEstado.setSelectedIndex(-1);
-        panelFondo.add(cboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 360, -1));
-
-        cboCiudadLocalidad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cboCiudadLocalidad.setSelectedIndex(-1);
-        panelFondo.add(cboCiudadLocalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 360, -1));
-
-        cboDelegacionMunicipio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cboDelegacionMunicipio.setSelectedIndex(-1);
-        panelFondo.add(cboDelegacionMunicipio, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 490, 360, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -367,30 +243,19 @@ public class FacturaDatos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturarActionPerformed
-        try {
-            facturar();
-        } catch (Exception ex) {
-            System.err.println(ex.getMessage());
-        }
+        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnFacturarActionPerformed
 
-    private void btnCanelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCanelarActionPerformed
-        int confirm = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea cancelar?", "Confirmar", JOptionPane.YES_NO_OPTION);
-        if (confirm == JOptionPane.YES_OPTION) {
-            CarritoCompra.getInstance(controlVenta).limpiarCarrito();
-            setVisible(false);
-            control.ControlNavegacion.getInstance().irAMenuPrincipal();
-        }
-    }//GEN-LAST:event_btnCanelarActionPerformed
+    private void btnFacturar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturar1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnFacturar1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCanelar;
     private javax.swing.JButton btnFacturar;
-    private javax.swing.JComboBox<String> cboCiudadLocalidad;
-    private javax.swing.JComboBox<String> cboDelegacionMunicipio;
-    private javax.swing.JComboBox<String> cboEstado;
-    private javax.swing.JComboBox<String> cboPais;
+    private javax.swing.JButton btnFacturar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -412,12 +277,16 @@ public class FacturaDatos extends javax.swing.JFrame {
     private javax.swing.JPanel panelFondo;
     private javax.swing.JPanel panelSuperior;
     private javax.swing.JTextField txtCalle;
+    private javax.swing.JTextField txtCiudadLocalidad;
     private javax.swing.JTextField txtCodPostal;
     private javax.swing.JTextField txtColonia;
     private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtDelegMunicipio;
+    private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtNombeRazonSocial;
     private javax.swing.JTextField txtNumExt;
     private javax.swing.JTextField txtNumInt;
+    private javax.swing.JTextField txtPais;
     private javax.swing.JTextField txtRFC;
     // End of variables declaration//GEN-END:variables
 }

@@ -13,7 +13,7 @@ public class Usuario {
 
     private ObjectId idUsuario;
     private String idCuenta;
-    private String nombreUsuario;
+    //private String nombreUsuario;
     private String contrasena;
     private String tipo;
 
@@ -27,13 +27,11 @@ public class Usuario {
      * Constructor del usuario.
      *
      * @param idCuenta ID de la cuenta del usuario
-     * @param nombreUsuario Nombre del usuario
      * @param contrasena Contraseña del usuario
      * @param tipo Tipo de usuario
      */
-    public Usuario(String idCuenta, String nombreUsuario, String contrasena, String tipo) {
+    public Usuario(String idCuenta, String contrasena, String tipo) {
         this.idCuenta = idCuenta;
-        this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.tipo = tipo;
     }
@@ -72,24 +70,6 @@ public class Usuario {
      */
     public void setIdCuenta(String idCuenta) {
         this.idCuenta = idCuenta;
-    }
-
-    /**
-     * Regresa el nombre del usuario.
-     *
-     * @return Nombre del usuario
-     */
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    /**
-     * Establece el nombre del usuario.
-     *
-     * @param nombreUsuario Nombre del usuario
-     */
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
     }
 
     /**
@@ -135,6 +115,6 @@ public class Usuario {
      */
     @Override
     public String toString() {
-        return "Usuario{" + "idUsuario=" + idUsuario + ", idCuenta=" + idCuenta + ", nombreUsuario=" + nombreUsuario + ", contrasena=" + contrasena + ", tipo=" + tipo + '}';
+        return "Usuario{" + "idUsuario=" + idUsuario + ", idCuenta=" + idCuenta + ", contrase\u00f1a=" + contrasena + ", tipo=" + tipo + '}';
     }
 }
