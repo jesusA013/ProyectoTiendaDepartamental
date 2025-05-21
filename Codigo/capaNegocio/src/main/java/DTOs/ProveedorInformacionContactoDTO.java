@@ -1,7 +1,5 @@
 package DTOs;
 
-import org.bson.types.ObjectId;
-
 /**
  * ProveedorInformacionContactoDTO.java
  *
@@ -12,7 +10,6 @@ import org.bson.types.ObjectId;
  */
 public class ProveedorInformacionContactoDTO {
 
-    private ObjectId idContacto;
     private String contacto;
     private String telefono;
     private String correo;
@@ -29,38 +26,18 @@ public class ProveedorInformacionContactoDTO {
      * Constructor de la información de contacto del proveedor de objeto de
      * transferencia de datos.
      *
-     * @param idContacto ID de la información de contacto
      * @param contacto Contacto del proveedor
      * @param telefono Telefono del proveedor
      * @param correo Correo del proveedor
      * @param direccion Direccion del proveedor
      * @param paginaWeb Pagina web del proveedor
      */
-    public ProveedorInformacionContactoDTO(ObjectId idContacto, String contacto, String telefono, String correo, String direccion, String paginaWeb) {
-        this.idContacto = idContacto;
+    public ProveedorInformacionContactoDTO(String contacto, String telefono, String correo, String direccion, String paginaWeb) {
         this.contacto = contacto;
         this.telefono = telefono;
         this.correo = correo;
         this.direccion = direccion;
         this.paginaWeb = paginaWeb;
-    }
-
-    /**
-     * Regresa el ID de la información de contacto.
-     *
-     * @return ID de la información de contacto
-     */
-    public ObjectId getIdContacto() {
-        return idContacto;
-    }
-
-    /**
-     * Establece el ID de la información de contacto.
-     *
-     * @param idContacto ID de la información de contacto
-     */
-    public void setIdContacto(ObjectId idContacto) {
-        this.idContacto = idContacto;
     }
 
     /**
@@ -160,6 +137,6 @@ public class ProveedorInformacionContactoDTO {
      */
     @Override
     public String toString() {
-        return "ProveedorInformacionContacto{" + "idContacto=" + idContacto + ", contacto=" + contacto + ", telefono=" + telefono + ", correo=" + correo + ", direccion=" + direccion + ", paginaWeb=" + paginaWeb + '}';
+        return "ProveedorInformacionContacto{" + "contacto=" + contacto + ", telefono=" + telefono + ", correo=" + correo + ", direccion=" + direccion + ", paginaWeb=" + paginaWeb + '}';
     }
 }

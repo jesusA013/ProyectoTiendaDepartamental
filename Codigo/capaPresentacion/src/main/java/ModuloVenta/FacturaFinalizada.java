@@ -11,31 +11,27 @@ import org.bson.types.ObjectId;
  *
  * @author Knocmare
  */
-public class VentaFinalizada extends javax.swing.JFrame {
+public class FacturaFinalizada extends javax.swing.JFrame {
     
-    private static VentaFinalizada instancia;
+    private static FacturaFinalizada instancia;
     IRegistroVenta controlVenta;
-    private ObjectId id;
 
     /**
      * Creates new form VentaFinalizada
      *
      * @param controlVenta
+     * @param id
      */
-    public VentaFinalizada(IRegistroVenta controlVenta) {
+    public FacturaFinalizada(IRegistroVenta controlVenta, ObjectId id) {
         this.controlVenta = controlVenta;
         initComponents();
     }
     
-    public static VentaFinalizada getInstance(IRegistroVenta controlVenta) {
+    public static FacturaFinalizada getInstance(IRegistroVenta controlVenta, ObjectId id) {
         if (instancia == null) {
-            instancia = new VentaFinalizada(controlVenta);
+            instancia = new FacturaFinalizada(controlVenta, id);
         }
         return instancia;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
     }
 
     public void actualizarDatos() {
@@ -58,7 +54,6 @@ public class VentaFinalizada extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
-        btnFacturar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblID = new javax.swing.JLabel();
@@ -89,16 +84,6 @@ public class VentaFinalizada extends javax.swing.JFrame {
 
         panelFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 550, 270));
 
-        btnFacturar.setBackground(new java.awt.Color(103, 80, 164));
-        btnFacturar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnFacturar.setText("Generar Factura");
-        btnFacturar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFacturarActionPerformed(evt);
-            }
-        });
-        panelFondo.add(btnFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
-
         btnSalir.setBackground(new java.awt.Color(255, 186, 186));
         btnSalir.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnSalir.setText("Salir");
@@ -107,7 +92,7 @@ public class VentaFinalizada extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        panelFondo.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 210, -1));
+        panelFondo.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, 210, -1));
 
         jPanel3.setBackground(new java.awt.Color(103, 80, 164));
         jPanel3.setPreferredSize(new java.awt.Dimension(570, 50));
@@ -153,17 +138,11 @@ public class VentaFinalizada extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        CarritoCompra.getInstance(controlVenta).limpiarCarrito();
         ControlNavegacion.getInstance().irAMenuPrincipal();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturarActionPerformed
-        ControlNavegacion.getInstance().irAFacturaDatos(id);
-    }//GEN-LAST:event_btnFacturarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFacturar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
