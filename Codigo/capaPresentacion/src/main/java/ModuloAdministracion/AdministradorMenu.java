@@ -12,7 +12,6 @@ import Interfaz.IConexion;
 import ModuloAdministracion.GestionProductos.PanelAdministradorMenu;
 import ModuloAdministracion.GestionProductos.PanelListadoProductos;
 import control.ControlNavegacion;
-import ModuloAdministracion.GestionProductos.PanelMenuGestionProductos;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.util.logging.Level;
@@ -30,6 +29,7 @@ public class AdministradorMenu extends javax.swing.JFrame {
      */
     public AdministradorMenu() {
         initComponents();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.llamarPanelMenu();
         
     }
@@ -81,7 +81,8 @@ public class AdministradorMenu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setMinimumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(1000, 600));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
 
         panelSuperior1.setBackground(new java.awt.Color(103, 80, 164));
         panelSuperior1.setPreferredSize(new java.awt.Dimension(800, 50));
@@ -97,7 +98,7 @@ public class AdministradorMenu extends javax.swing.JFrame {
             .addGroup(panelSuperior1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(lbl_ID1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(556, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelSuperior1Layout.setVerticalGroup(
             panelSuperior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,14 +110,15 @@ public class AdministradorMenu extends javax.swing.JFrame {
 
         PanelAdministradorMenu.setBackground(new java.awt.Color(255, 255, 255));
         PanelAdministradorMenu.setForeground(new java.awt.Color(255, 255, 255));
-        PanelAdministradorMenu.setMinimumSize(new java.awt.Dimension(800, 550));
+        PanelAdministradorMenu.setMinimumSize(new java.awt.Dimension(1000, 550));
+        PanelAdministradorMenu.setPreferredSize(new java.awt.Dimension(1000, 550));
         PanelAdministradorMenu.setRequestFocusEnabled(false);
 
         javax.swing.GroupLayout PanelAdministradorMenuLayout = new javax.swing.GroupLayout(PanelAdministradorMenu);
         PanelAdministradorMenu.setLayout(PanelAdministradorMenuLayout);
         PanelAdministradorMenuLayout.setHorizontalGroup(
             PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
         PanelAdministradorMenuLayout.setVerticalGroup(
             PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,8 +129,10 @@ public class AdministradorMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelSuperior1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(PanelAdministradorMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(PanelAdministradorMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelSuperior1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

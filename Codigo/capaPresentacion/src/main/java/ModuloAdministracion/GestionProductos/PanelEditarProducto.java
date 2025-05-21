@@ -105,16 +105,19 @@ public class PanelEditarProducto extends javax.swing.JPanel {
         gestionProductosBTN1 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
 
+        setMinimumSize(new java.awt.Dimension(1000, 550));
+        setPreferredSize(new java.awt.Dimension(1000, 550));
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setText("Editar nuevo producto");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Imagen (opcional)");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 100, -1, -1));
 
         nombreTextField.setColumns(15);
         nombreTextField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -155,7 +158,7 @@ public class PanelEditarProducto extends javax.swing.JPanel {
             .addComponent(imagenLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 210, 180));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 160, 210, 180));
 
         volverBTN.setBackground(new java.awt.Color(103, 80, 164));
         volverBTN.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -193,7 +196,7 @@ public class PanelEditarProducto extends javax.swing.JPanel {
                 gestionProductosBTN1ActionPerformed(evt);
             }
         });
-        jPanel1.add(gestionProductosBTN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 210, -1));
+        jPanel1.add(gestionProductosBTN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 410, 210, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel9.setText("Nombre");

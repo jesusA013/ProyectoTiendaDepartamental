@@ -5,7 +5,6 @@
 package DAOs;
 
 import Entidades.Vendedor;
-import Interfaz.IUsuarioDAO;
 import Interfaz.IVendedorDAO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;

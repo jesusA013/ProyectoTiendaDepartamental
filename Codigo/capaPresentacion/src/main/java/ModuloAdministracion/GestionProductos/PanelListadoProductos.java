@@ -188,8 +188,8 @@ public class PanelListadoProductos extends javax.swing.JPanel {
         volverBTN = new javax.swing.JButton();
         registrarBTN = new javax.swing.JButton();
 
-        setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(1000, 550));
+        setPreferredSize(new java.awt.Dimension(1000, 550));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -205,7 +205,7 @@ public class PanelListadoProductos extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tablaProductos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 740, 280));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 940, 280));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setText("Listado de Productos");
@@ -231,7 +231,7 @@ public class PanelListadoProductos extends javax.swing.JPanel {
                 registrarBTNActionPerformed(evt);
             }
         });
-        jPanel1.add(registrarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, -1, -1));
+        jPanel1.add(registrarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 30, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

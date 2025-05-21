@@ -87,8 +87,8 @@ public class PanelRegistrarProducto extends javax.swing.JPanel {
         stoclTextField1 = new javax.swing.JTextField();
         gestionProductosBTN1 = new javax.swing.JButton();
 
-        setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(1000, 550));
+        setPreferredSize(new java.awt.Dimension(1000, 550));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -188,7 +188,7 @@ public class PanelRegistrarProducto extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
