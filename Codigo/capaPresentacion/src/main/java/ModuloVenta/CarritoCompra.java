@@ -38,7 +38,6 @@ public class CarritoCompra extends javax.swing.JFrame {
         setTitle("Carrito de compra"); // nombre venata
         panelesProductoCarrito = new LinkedList<>();
         carritoGlobal = new ArrayList<>();
-        cargarCarrito();
         
         cantidadProductos = 0;
         subtotalProductos = 0;
@@ -89,7 +88,7 @@ public class CarritoCompra extends javax.swing.JFrame {
             cantidadProductos += producto.getCantidad();
             subtotalProductos += producto.getCantidad() * producto.getPrecioUnitario();
 
-            PanelProductosCarrito panel = new PanelProductosCarrito(panelCambiante, producto);
+            PanelProductosCarrito panel = new PanelProductosCarrito(controlVenta, panelCambiante, producto);
             panelesProductoCarrito.add(panel);
         }
 
@@ -383,10 +382,11 @@ public class CarritoCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagoActionPerformed
-        if (!carritoGlobal.isEmpty()) {
-            ControlNavegacion.getInstance().irASeleccionMetodoPago();
-        } else {
+        if (carritoGlobal.isEmpty()) {
+            System.out.println(carritoGlobal.size() + " productos");
             JOptionPane.showMessageDialog(this, "El carrito esta vacio");
+        } else {
+            ControlNavegacion.getInstance().irASeleccionMetodoPago();
         }
     }//GEN-LAST:event_btnPagoActionPerformed
 

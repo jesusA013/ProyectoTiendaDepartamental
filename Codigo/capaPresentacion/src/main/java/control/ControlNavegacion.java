@@ -38,7 +38,6 @@ public class ControlNavegacion implements INavegador{
     
     // Gestión Venta
     private final IRegistroVenta manejadorVenta;
-    private CarritoCompra pantallaCarritoCompra;
     private FacturaDatos pantallaFactura;
     private BusquedaProducto pantallaBusquedaProducto;
     private SeleccionMetodoPago pantallaSeleccionMetodoPago;
@@ -69,7 +68,6 @@ public class ControlNavegacion implements INavegador{
         // Gestión Venta
         this.manejadorVenta = new ManejadorVenta();
         manejadorVenta.setNavegador(this);
-        this.pantallaCarritoCompra = new CarritoCompra(manejadorVenta);
         this.pantallaFactura = new FacturaDatos();
         this.pantallaBusquedaProducto = new BusquedaProducto(manejadorVenta);
         this.pantallaSeleccionMetodoPago = new SeleccionMetodoPago(manejadorVenta);
@@ -135,7 +133,9 @@ public class ControlNavegacion implements INavegador{
     }
 
     public void irACarritoCompra() {
-        mostrarPantalla(pantallaCarritoCompra);
+        CarritoCompra carrito = CarritoCompra.getInstance(manejadorVenta);
+        carrito.cargarCarrito();
+        mostrarPantalla(carrito);
     }
 
     public void irAFacturaDatos() {

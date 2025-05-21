@@ -38,7 +38,7 @@ public class ProveedoresPanelNuevo extends javax.swing.JPanel {
             controlProveedor.registrarProveedor(this, txtNombreProveedor.getText(),
                     txtContacto.getText(), txtTelefono.getText(), txtCorreo.getText(),
                     txtDireccion.getText(), txtPaginaWeb.getText(), txtRFC.getText(),
-                    txtFormaPago.getText(), txtTerminoPago.getText(),
+                    (String) cboFormaPago.getSelectedItem(), txtTerminoPago.getText(),
                     (String) cboMoneda.getSelectedItem(), (String) cboEstado.getSelectedItem(), 
                     txtComentarios.getText());
         } catch (ProveedorException ex) {
@@ -56,7 +56,7 @@ public class ProveedoresPanelNuevo extends javax.swing.JPanel {
         txtPaginaWeb.setText("");
         
         txtRFC.setText("");
-        txtFormaPago.getText();
+        cboFormaPago.setSelectedIndex(0);
         txtTerminoPago.getText();
         cboMoneda.setSelectedIndex(0);
         
@@ -106,7 +106,6 @@ public class ProveedoresPanelNuevo extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         txtRFC = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        txtFormaPago = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         txtTerminoPago = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -125,6 +124,7 @@ public class ProveedoresPanelNuevo extends javax.swing.JPanel {
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         btnRestaurar = new javax.swing.JButton();
+        cboFormaPago = new javax.swing.JComboBox<>();
 
         setPreferredSize(new java.awt.Dimension(1117, 517));
 
@@ -374,8 +374,6 @@ public class ProveedoresPanelNuevo extends javax.swing.JPanel {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel14.setText("Forma de Pago");
 
-        txtFormaPago.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel15.setText("Término Pago");
 
@@ -438,6 +436,9 @@ public class ProveedoresPanelNuevo extends javax.swing.JPanel {
                 btnRestaurarActionPerformed(evt);
             }
         });
+
+        cboFormaPago.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        cboFormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OXXO", "Transferencia", "Efectivo" }));
 
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
         panelFondo.setLayout(panelFondoLayout);
@@ -503,28 +504,31 @@ public class ProveedoresPanelNuevo extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel21)))
                         .addGap(34, 34, 34)
-                        .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFondoLayout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cboMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFondoLayout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFondoLayout.createSequentialGroup()
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtFormaPago))
+                                .addComponent(cboFormaPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(panelFondoLayout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTerminoPago)))
+                                .addComponent(txtTerminoPago))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFondoLayout.createSequentialGroup()
+                                .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFondoLayout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cboMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFondoLayout.createSequentialGroup()
+                                        .addComponent(jLabel13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel24)
                             .addComponent(jLabel25))
-                        .addGap(0, 28, Short.MAX_VALUE))
+                        .addGap(28, 28, 28))
                     .addGroup(panelFondoLayout.createSequentialGroup()
                         .addGap(110, 110, 110)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -554,8 +558,8 @@ public class ProveedoresPanelNuevo extends javax.swing.JPanel {
                         .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel14)
-                                .addComponent(txtFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtNombreProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtNombreProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cboFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel25)
                             .addComponent(jLabel21))
                         .addGap(9, 9, 9)
@@ -653,6 +657,7 @@ public class ProveedoresPanelNuevo extends javax.swing.JPanel {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnRestaurar;
     private javax.swing.JComboBox<String> cboEstado;
+    private javax.swing.JComboBox<String> cboFormaPago;
     private javax.swing.JComboBox<String> cboMoneda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -695,7 +700,6 @@ public class ProveedoresPanelNuevo extends javax.swing.JPanel {
     private javax.swing.JTextField txtContacto;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtFormaPago;
     private javax.swing.JTextField txtNombreProveedor;
     private javax.swing.JTextField txtPaginaWeb;
     private javax.swing.JTextField txtRFC;

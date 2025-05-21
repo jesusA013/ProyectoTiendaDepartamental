@@ -18,6 +18,7 @@ public class PanelProductosCarrito extends JPanel {
     double precio;
     ProductoVentaDTO producto;
     JPanel panelCambiante;
+    IRegistroVenta controlVenta;
 
     /**
      * Creates new form JpanelProductosBO
@@ -25,9 +26,10 @@ public class PanelProductosCarrito extends JPanel {
      * @param panel
      * @param producto
      */
-    public PanelProductosCarrito(JPanel panel, ProductoVentaDTO producto) {
+    public PanelProductosCarrito(IRegistroVenta controlVenta, JPanel panel, ProductoVentaDTO producto) {
         panelCambiante = panel;
         this.producto = producto;
+        this.controlVenta = controlVenta;
         initComponents();
         
         this.cantidad = producto.getCantidad();
@@ -152,6 +154,7 @@ public class PanelProductosCarrito extends JPanel {
 
         importe = cantidad * precio;
         lblImporte.setText(String.valueOf(importe));
+        CarritoCompra.getInstance(controlVenta).cargarCarrito();
     }//GEN-LAST:event_btnAumentarProductoActionPerformed
 
     private void btnDismunuirProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDismunuirProductoActionPerformed
@@ -162,6 +165,7 @@ public class PanelProductosCarrito extends JPanel {
 
             importe = cantidad * precio;
             lblImporte.setText(String.valueOf(importe));
+            CarritoCompra.getInstance(controlVenta).cargarCarrito();
         }
     }//GEN-LAST:event_btnDismunuirProductoActionPerformed
 

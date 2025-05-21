@@ -174,7 +174,7 @@ public class ManejadorProveedor implements IManejadorProveedor {
         ProveedorInformacionContactoDTO contactoNuevo = new ProveedorInformacionContactoDTO();
         contactoNuevo.setContacto(contacto);
         if (!validarTelefono(telefono)) {
-            JOptionPane.showMessageDialog(null, "El telefono no puede estar vacio ni tener letras", "Telefono", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El telefono no puede estar vacio ni tener letras, y deben ser 10 numeros", "Telefono", JOptionPane.ERROR_MESSAGE);
             return;
         } else {
             contactoNuevo.setTelefono(telefono);
@@ -273,7 +273,7 @@ public class ManejadorProveedor implements IManejadorProveedor {
         ProveedorInformacionContactoDTO contactoActualizado = new ProveedorInformacionContactoDTO();
         contactoActualizado.setContacto(contacto);
         if (!validarTelefono(telefono)) {
-            JOptionPane.showMessageDialog(null, "El telefono no puede estar vacio ni tener letras", "Telefono", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El telefono no puede estar vacio ni tener letras, y deben ser 10 numeros", "Telefono", JOptionPane.ERROR_MESSAGE);
             return;
         } else {
             contactoActualizado.setTelefono(telefono);

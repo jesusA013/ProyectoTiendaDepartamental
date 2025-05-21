@@ -93,11 +93,10 @@ public class PanelBusquedaProducto extends javax.swing.JPanel {
     private void btnAgregarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCarritoActionPerformed
         ProductoVentaDTO productoVenta = new ProductoVentaDTO(productoDTO, 1, productoDTO.getPrecio());
 
-        PanelProductosCarrito productoPanel = new PanelProductosCarrito(CarritoCompra.getInstance(controlVenta).getPanelCambiante(), productoVenta);
+        PanelProductosCarrito productoPanel = new PanelProductosCarrito(controlVenta, CarritoCompra.getInstance(controlVenta).getPanelCambiante(), productoVenta);
 
         CarritoCompra.getInstance(controlVenta).getPanelesProductoCarrito().add(productoPanel);
         CarritoCompra.getInstance(controlVenta).getCarritoGlobal().add(productoVenta);
-        CarritoCompra.getInstance(controlVenta).cargarCarrito();
         JOptionPane.showMessageDialog(this, "Producto registrado en el carrito: " + productoVenta.getProducto().getNombre());
     }//GEN-LAST:event_btnAgregarCarritoActionPerformed
 
