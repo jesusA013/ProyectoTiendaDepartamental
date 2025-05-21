@@ -5,7 +5,9 @@
 package Interfaces;
 
 import Entidades.Vendedor;
-
+import Excepciones.NegocioException;
+import java.util.List;
+import org.bson.types.ObjectId;
 import java.util.List;
 
 /**
@@ -13,31 +15,19 @@ import java.util.List;
  * @author melis
  */
 public interface IVendedorBO {
-    void registrarVendedor(Vendedor vendedor);
 
-    Vendedor obtenerVendedorPorId(String id);
+    void registrarVendedor(Vendedor vendedor) throws NegocioException;
+    // Vendedor obtenerVendedorPorId(String id)throws NegocioException;
 
-    List<Vendedor> obtenerVendedores();
+    List<Vendedor> obtenerVendedores() throws NegocioException;
 
     double calcularPromedioVentas(String idVendedor);
 
-    void actualizarVendedor(Vendedor vendedor);
+    void actualizarVendedor(Vendedor vendedor) throws NegocioException;
+//    void eliminarVendedor(int id);
 
-    void eliminarVendedor(int id);
-
-import Excepciones.NegocioException;
-import java.util.List;
-import org.bson.types.ObjectId;
-
-/**
- *
- * @author gaspa
- */
-public interface IVendedorBO {
-    Vendedor registrarVendedor(Vendedor vendedor) throws NegocioException;
-    List<Vendedor> obtenerTodosLosVendedores() throws NegocioException;
     Vendedor obtenerVendedorPorId(ObjectId id) throws NegocioException;
-    Vendedor actualizarVendedor(Vendedor vendedor) throws NegocioException;
+
     Vendedor eliminarVendedor(ObjectId id) throws NegocioException;
 
 }

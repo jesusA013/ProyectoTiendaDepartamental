@@ -6,7 +6,6 @@ package BOs;
 
 import java.util.*;
 
-
 import DAOs.Conexion;
 import DAOs.VendedorDAO;
 import Entidades.Vendedor;
@@ -17,48 +16,48 @@ import Interfaz.IVendedorDAO;
 import java.util.List;
 import org.bson.types.ObjectId;
 
-
 /**
  *
  * @author melis
  * @author Ilian Gastelum
  * @version 1.2
  */
-
-public class VendedorBO {
+public abstract class VendedorBO implements IVendedorBO {
     private int id;
     private String nombre;
     private double totalVentas;
-    private List<VentasBO>ventas; // clase venta realizada para modulo venta
+    private List<VentasBO> ventas; // clase venta realizada para modulo venta
 
     public VendedorBO(int id, String nombre, double totalVentas) {
         this.id = id;
         this.nombre = nombre;
         this.totalVentas = totalVentas;
+        this.vendedorDAO = new VendedorDAO(mongo.conexion());
+
     }
 
     public VendedorBO() {
     }
-   //gestion v
-     public void agregarVneta(VentasBO venta){
-    ventas.add(venta);
-    totalVentas +=venta.getMonto();
-    }
-    
-    public double calcularPromedioVentas(){
-    return ventas.isEmpty()?0:totalVentas/ventas.size();
-    }
-    
-    /////
-    
-    
+    //gestion v
 
-public class VendedorBO implements IVendedorBO{
+    public void agregarVneta(VentasBO venta) {
+        ventas.add(venta);
+        totalVentas += venta.getMonto();
+    }
+
+    public double calcularPromedioVentas() {
+        return ventas.isEmpty() ? 0 : totalVentas / ventas.size();
+    }
+
+    /////
+   
+
     private final IVendedorDAO vendedorDAO;
     private final IConexion mongo = new Conexion();
-    public VendedorBO(){
-        this.vendedorDAO=new VendedorDAO(mongo.conexion());
-    }
+//    public VendedorBO(){
+//        this.vendedorDAO=new VendedorDAO(mongo.conexion());
+//    }
+
     @Override
     public Vendedor registrarVendedor(Vendedor vendedor) throws NegocioException {
         validarVendedorNoNulo(vendedor);
@@ -68,7 +67,6 @@ public class VendedorBO implements IVendedorBO{
         return vendedorDAO.insertarVendedor(vendedor);
     }
 
-    @Override
     public List<Vendedor> obtenerTodosLosVendedores() throws NegocioException {
         List<Vendedor> lista = vendedorDAO.obtenerTodos();
         if (lista.isEmpty()) {
@@ -77,7 +75,6 @@ public class VendedorBO implements IVendedorBO{
         return lista;
     }
 
-    @Override
     public Vendedor obtenerVendedorPorId(ObjectId id) throws NegocioException {
         Vendedor vendedor = vendedorDAO.buscarPorId(id);
         if (vendedor == null) {
@@ -86,7 +83,7 @@ public class VendedorBO implements IVendedorBO{
         return vendedor;
     }
 
-    @Override
+    
     public Vendedor actualizarVendedor(Vendedor vendedor) throws NegocioException {
         validarVendedorNoNulo(vendedor);
         validarIdPresente(vendedor);
@@ -103,7 +100,6 @@ public class VendedorBO implements IVendedorBO{
         return eliminado;
     }
 
-   
     private void validarVendedorNoNulo(Vendedor vendedor) throws NegocioException {
         if (vendedor == null) {
             throw new NegocioException("El vendedor no puede ser nulo.");
