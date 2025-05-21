@@ -60,7 +60,6 @@ public class DAOPruebas {
         detalles.setSubtotal(1500);
         detalles.setIva(40);
         detalles.setTotal(1540);
-        detalles.setFormaPago("Transferencia");
         detalles.setMetodoPago("Pago en una sola exhibición");
 
         Venta venta = new Venta();

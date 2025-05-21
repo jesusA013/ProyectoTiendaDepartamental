@@ -12,17 +12,15 @@ public class DetallesVenta {
     private double subtotal;
     private double iva;
     private double total;
-    private String formaPago;
     private String metodoPago;
 
     public DetallesVenta() {
     }
 
-    public DetallesVenta(double subtotal, double iva, double total, String formaPago, String metodoPago) {
+    public DetallesVenta(double subtotal, double iva, double total, String metodoPago) {
         this.subtotal = subtotal;
         this.iva = iva;
         this.total = total;
-        this.formaPago = formaPago;
         this.metodoPago = metodoPago;
     }
 
@@ -50,14 +48,6 @@ public class DetallesVenta {
         this.total = total;
     }
 
-    public String getFormaPago() {
-        return formaPago;
-    }
-
-    public void setFormaPago(String formaPago) {
-        this.formaPago = formaPago;
-    }
-
     public String getMetodoPago() {
         return metodoPago;
     }
@@ -68,7 +58,7 @@ public class DetallesVenta {
 
     @Override
     public String toString() {
-        return "DetallesVenta{" + "subtotal=" + subtotal + ", iva=" + iva + ", total=" + total + ", formaPago=" + formaPago + ", metodoPago=" + metodoPago + '}';
+        return "DetallesVenta{" + "subtotal=" + subtotal + ", iva=" + iva + ", total=" + total + ", metodoPago=" + metodoPago + '}';
     }
     
 }

@@ -215,10 +215,6 @@ public class ManejadorVenta implements IRegistroVenta {
     }
 
     private boolean validarEmail(String email) throws RegistroException {
-        if (email == null || email.trim().isEmpty()) {
-            return false;
-        }
-
         // Expresión regular simple para validar formato de correo electrónico
         return email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
     }
