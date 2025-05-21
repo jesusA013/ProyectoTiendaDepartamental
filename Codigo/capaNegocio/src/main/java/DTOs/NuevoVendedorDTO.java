@@ -91,11 +91,11 @@ public class NuevoVendedorDTO {
     }
 
     public String getRutaFoto() {
-        return rutaFoto;
+        return foto;
     }
 
     public void setRutaFoto(String rutaFoto) {
-        this.rutaFoto = rutaFoto;
+        this.foto = rutaFoto;
     }
    
 }
