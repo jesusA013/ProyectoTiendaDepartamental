@@ -120,7 +120,6 @@ public class FacturaDatos extends javax.swing.JFrame {
     }
 
     private void facturar() throws RegistroException, Exception {
-
         try {
             controlVenta.facturarVenta(this, id, txtRFC.getText(),
                     txtNombeRazonSocial.getText(), txtCalle.getText(),
