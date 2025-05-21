@@ -11,13 +11,17 @@ import Interfaces.IUsuarioBO;
 import control.ControlNavegacion;
 import javax.swing.*;
 import java.awt.*;
+import org.bson.types.ObjectId;
 
 public class InicioSesion extends JFrame {
-
+    
+    private static InicioSesion instancia;
+    
     private JTextField txtId;
     private JPasswordField txtContrasena;
     private JButton btnIngresar, btnCancelar;
-    private String tipo, id, nombre;
+    private String tipo, nombre;
+    private ObjectId idUsuario;
     private IUsuarioBO usuarioBO;
 
     public InicioSesion() {
@@ -131,15 +135,15 @@ public class InicioSesion extends JFrame {
 
                 switch (tipo) {
                     case "Vendedor":
-                        setId(id);
+                        setId(usuario.getId());
                         ControlNavegacion.getInstance().irACarritoCompra();
                         break;
                     case "Administrador":
-                        setId(id);
+                        setId(usuario.getId());
                         ControlNavegacion.getInstance().mostrarMenuAdministrador();
                         break;
                     case "Almacen":
-                        setId(id);
+                        setId(usuario.getId());
                         ControlNavegacion.getInstance().mostrarMenuAlmacen();
                         break;
                     default:
@@ -162,7 +166,6 @@ public class InicioSesion extends JFrame {
             setVisible(false);
             control.ControlNavegacion.getInstance().irAMenuPrincipal();
         }
-
     }
     
     public void LimpiarCampos(){
@@ -170,12 +173,12 @@ public class InicioSesion extends JFrame {
         txtContrasena.setText("");
     }
 
-    public String getId() {
-        return id;
+    public ObjectId getId() {
+        return idUsuario;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(ObjectId id) {
+        this.idUsuario = id;
     }
 
     public String getNombreUsuario() {
@@ -184,5 +187,12 @@ public class InicioSesion extends JFrame {
 
     public void setNombreUsuario(String nombre) {
         this.nombre = nombre;
+    }
+    
+    public static InicioSesion getInstance() {
+        if (instancia == null) {
+            instancia = new InicioSesion();
+        }
+        return instancia;
     }
 }
