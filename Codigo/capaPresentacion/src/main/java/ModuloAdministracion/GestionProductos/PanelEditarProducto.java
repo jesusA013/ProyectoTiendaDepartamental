@@ -41,7 +41,6 @@ public class PanelEditarProducto extends javax.swing.JPanel {
         } catch (NegocioException ex) {
             System.out.println("Error: " + ex.getMessage());
         }
-        this.idLabel.setText(id.toString());
         this.nombreTextField.setText(this.productoDTO.getNombre());
         this.MarcaTextField.setText(this.productoDTO.getMarca());
         this.SKUTextField.setText(this.productoDTO.getSKU());
@@ -69,10 +68,10 @@ public class PanelEditarProducto extends javax.swing.JPanel {
         }
     }
     public void volver(){
-        PanelMenuGestionProductos panelMenuGestionProductos = new PanelMenuGestionProductos(panelCambiante);
+        PanelListadoProductos panelListado = new PanelListadoProductos(panelCambiante, productoBO);
         panelCambiante.setLayout(new BorderLayout());
         panelCambiante.removeAll();
-        panelCambiante.add(panelMenuGestionProductos,BorderLayout.CENTER);
+        panelCambiante.add(panelListado,BorderLayout.CENTER);
         panelCambiante.revalidate();
         panelCambiante.repaint();
     }
@@ -96,7 +95,6 @@ public class PanelEditarProducto extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         colorTextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        idLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         imagenLabel = new javax.swing.JLabel();
         volverBTN = new javax.swing.JButton();
@@ -106,50 +104,45 @@ public class PanelEditarProducto extends javax.swing.JPanel {
         stoclTextField1 = new javax.swing.JTextField();
         gestionProductosBTN1 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setText("Editar nuevo producto");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Imagen (opcional)");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, -1, -1));
 
         nombreTextField.setColumns(15);
         nombreTextField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jPanel1.add(nombreTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
+        jPanel1.add(nombreTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, -1));
 
         SKUTextField.setColumns(15);
         SKUTextField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jPanel1.add(SKUTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
+        jPanel1.add(SKUTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setText("SKU");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
 
         MarcaTextField.setColumns(15);
         MarcaTextField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jPanel1.add(MarcaTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
+        jPanel1.add(MarcaTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setText("Marca");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
 
         colorTextField.setColumns(15);
         colorTextField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jPanel1.add(colorTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, -1, -1));
+        jPanel1.add(colorTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setText("Color");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
-
-        idLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        idLabel.setText("----");
-        jPanel1.add(idLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -162,7 +155,7 @@ public class PanelEditarProducto extends javax.swing.JPanel {
             .addComponent(imagenLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, 210, 180));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 210, 180));
 
         volverBTN.setBackground(new java.awt.Color(103, 80, 164));
         volverBTN.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -173,23 +166,23 @@ public class PanelEditarProducto extends javax.swing.JPanel {
                 volverBTNActionPerformed(evt);
             }
         });
-        jPanel1.add(volverBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 210, -1));
+        jPanel1.add(volverBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 210, -1));
 
         precioTextField.setColumns(15);
         precioTextField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jPanel1.add(precioTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, -1, -1));
+        jPanel1.add(precioTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setText("Precio");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setText("Stock Inicial");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
 
         stoclTextField1.setColumns(15);
         stoclTextField1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jPanel1.add(stoclTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, 160, -1));
+        jPanel1.add(stoclTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 160, -1));
 
         gestionProductosBTN1.setBackground(new java.awt.Color(103, 80, 164));
         gestionProductosBTN1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -200,15 +193,11 @@ public class PanelEditarProducto extends javax.swing.JPanel {
                 gestionProductosBTN1ActionPerformed(evt);
             }
         });
-        jPanel1.add(gestionProductosBTN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 490, 210, -1));
+        jPanel1.add(gestionProductosBTN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 210, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel9.setText("Nombre");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel10.setText("Id");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -238,10 +227,8 @@ public class PanelEditarProducto extends javax.swing.JPanel {
     private javax.swing.JTextField SKUTextField;
     private javax.swing.JTextField colorTextField;
     private javax.swing.JButton gestionProductosBTN1;
-    private javax.swing.JLabel idLabel;
     private javax.swing.JLabel imagenLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

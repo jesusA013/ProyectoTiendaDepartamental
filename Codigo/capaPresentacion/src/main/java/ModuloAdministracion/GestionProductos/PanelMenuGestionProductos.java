@@ -23,16 +23,12 @@ import javax.swing.JPanel;
  */
 public class PanelMenuGestionProductos extends javax.swing.JPanel {
     private final JPanel panelCambiante;
-    private final IProductoBO productoBO;
-    private final IConexion mongo;
     /**
      * Creates new form PanelBuscadorProductos
      */
     public PanelMenuGestionProductos(JPanel panelCambiante) {
         initComponents();
         this.panelCambiante = panelCambiante;
-        this.mongo = new Conexion();
-        this.productoBO = new ProductoBO();
         
     }
     public void volver(){
@@ -128,21 +124,11 @@ public class PanelMenuGestionProductos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void consultarProductosBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarProductosBTNActionPerformed
-        PanelListadoProductos panelListado = new PanelListadoProductos(panelCambiante, productoBO);
-        panelCambiante.setLayout(new BorderLayout());
-        panelCambiante.removeAll();
-        panelCambiante.add(panelListado,BorderLayout.CENTER);
-        panelCambiante.revalidate();
-        panelCambiante.repaint();
+        
     }//GEN-LAST:event_consultarProductosBTNActionPerformed
 
     private void registrarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBTNActionPerformed
-        PanelRegistrarProducto panelRegistrar = new PanelRegistrarProducto(panelCambiante, productoBO);
-        panelCambiante.setLayout(new BorderLayout());
-        panelCambiante.removeAll();
-        panelCambiante.add(panelRegistrar,BorderLayout.CENTER);
-        panelCambiante.revalidate();
-        panelCambiante.repaint();
+        
     }//GEN-LAST:event_registrarBTNActionPerformed
 
 

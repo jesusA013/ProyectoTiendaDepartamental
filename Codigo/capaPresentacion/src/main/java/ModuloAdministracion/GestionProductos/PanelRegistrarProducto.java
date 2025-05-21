@@ -50,10 +50,10 @@ public class PanelRegistrarProducto extends javax.swing.JPanel {
         }
     }
     public void volver(){
-        PanelMenuGestionProductos panelMenuGestionProductos = new PanelMenuGestionProductos(panelCambiante);
+        PanelListadoProductos panelListado = new PanelListadoProductos(panelCambiante, productoBO);
         panelCambiante.setLayout(new BorderLayout());
         panelCambiante.removeAll();
-        panelCambiante.add(panelMenuGestionProductos,BorderLayout.CENTER);
+        panelCambiante.add(panelListado,BorderLayout.CENTER);
         panelCambiante.revalidate();
         panelCambiante.repaint();
     }

@@ -9,6 +9,7 @@ import Excepciones.NegocioException;
 import Implementaciones.IManejadorProveedor;
 import Interfaces.IProductoBO;
 import Interfaz.IConexion;
+import ModuloAdministracion.AdministradorMenu;
 import Utilidades.JButtonCellEditor;
 import Utilidades.JButtonRenderer;
 import java.awt.BorderLayout;
@@ -163,10 +164,10 @@ public class PanelListadoProductos extends javax.swing.JPanel {
         
     }
     public void volver(){
-        PanelMenuGestionProductos panelMenuGestionProductos = new PanelMenuGestionProductos(panelCambiante);
+        PanelAdministradorMenu panelMenu = new PanelAdministradorMenu(panelCambiante);
         panelCambiante.setLayout(new BorderLayout());
         panelCambiante.removeAll();
-        panelCambiante.add(panelMenuGestionProductos,BorderLayout.CENTER);
+        panelCambiante.add(panelMenu,BorderLayout.CENTER);
         panelCambiante.revalidate();
         panelCambiante.repaint();
     }
@@ -185,6 +186,7 @@ public class PanelListadoProductos extends javax.swing.JPanel {
         tablaProductos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         volverBTN = new javax.swing.JButton();
+        registrarBTN = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -203,11 +205,11 @@ public class PanelListadoProductos extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tablaProductos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 740, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 740, 280));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setText("Listado de Productos");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         volverBTN.setBackground(new java.awt.Color(103, 80, 164));
         volverBTN.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -218,7 +220,18 @@ public class PanelListadoProductos extends javax.swing.JPanel {
                 volverBTNActionPerformed(evt);
             }
         });
-        jPanel1.add(volverBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 210, -1));
+        jPanel1.add(volverBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 210, -1));
+
+        registrarBTN.setBackground(new java.awt.Color(103, 80, 164));
+        registrarBTN.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        registrarBTN.setForeground(new java.awt.Color(255, 255, 255));
+        registrarBTN.setText("Nuevo Producto");
+        registrarBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarBTNActionPerformed(evt);
+            }
+        });
+        jPanel1.add(registrarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -236,11 +249,21 @@ public class PanelListadoProductos extends javax.swing.JPanel {
         this.volver();
     }//GEN-LAST:event_volverBTNActionPerformed
 
+    private void registrarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBTNActionPerformed
+        PanelRegistrarProducto panelRegistrar = new PanelRegistrarProducto(panelCambiante, productoBO);
+        panelCambiante.setLayout(new BorderLayout());
+        panelCambiante.removeAll();
+        panelCambiante.add(panelRegistrar,BorderLayout.CENTER);
+        panelCambiante.revalidate();
+        panelCambiante.repaint();
+    }//GEN-LAST:event_registrarBTNActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton registrarBTN;
     private javax.swing.JTable tablaProductos;
     private javax.swing.JButton volverBTN;
     // End of variables declaration//GEN-END:variables

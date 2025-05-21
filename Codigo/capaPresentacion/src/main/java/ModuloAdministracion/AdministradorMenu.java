@@ -4,7 +4,13 @@
  */
 package ModuloAdministracion;
 
+import BOs.ProductoBO;
+import DAOs.Conexion;
 import Excepciones.NegocioException;
+import Interfaces.IProductoBO;
+import Interfaz.IConexion;
+import ModuloAdministracion.GestionProductos.PanelAdministradorMenu;
+import ModuloAdministracion.GestionProductos.PanelListadoProductos;
 import control.ControlNavegacion;
 import ModuloAdministracion.GestionProductos.PanelMenuGestionProductos;
 import java.awt.BorderLayout;
@@ -19,13 +25,22 @@ import javax.swing.JPanel;
  * @author gaspa
  */
 public class AdministradorMenu extends javax.swing.JFrame {
-    
     /**
      * Creates new form MenuPrincipal
      */
     public AdministradorMenu() {
         initComponents();
-   }
+        this.llamarPanelMenu();
+        
+    }
+    public final void llamarPanelMenu(){
+        PanelAdministradorMenu panelAdmin = new PanelAdministradorMenu(PanelAdministradorMenu);
+        PanelAdministradorMenu.setLayout(new BorderLayout());
+        PanelAdministradorMenu.removeAll();
+        PanelAdministradorMenu.add(panelAdmin,BorderLayout.CENTER);
+        PanelAdministradorMenu.revalidate();
+        PanelAdministradorMenu.repaint();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,12 +56,6 @@ public class AdministradorMenu extends javax.swing.JFrame {
         panelSuperior1 = new javax.swing.JPanel();
         lbl_ID1 = new javax.swing.JLabel();
         PanelAdministradorMenu = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        gestionProductosBTN = new javax.swing.JButton();
-        gestionVendedoresBTN = new javax.swing.JButton();
-        ReportesBTN = new javax.swing.JButton();
-        promocionesBTN = new javax.swing.JButton();
-        btnCerrarSesion = new javax.swing.JButton();
 
         panelSuperior.setBackground(new java.awt.Color(103, 80, 164));
         panelSuperior.setPreferredSize(new java.awt.Dimension(800, 50));
@@ -72,7 +81,7 @@ public class AdministradorMenu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
 
         panelSuperior1.setBackground(new java.awt.Color(103, 80, 164));
         panelSuperior1.setPreferredSize(new java.awt.Dimension(800, 50));
@@ -100,93 +109,18 @@ public class AdministradorMenu extends javax.swing.JFrame {
 
         PanelAdministradorMenu.setBackground(new java.awt.Color(255, 255, 255));
         PanelAdministradorMenu.setForeground(new java.awt.Color(255, 255, 255));
+        PanelAdministradorMenu.setMinimumSize(new java.awt.Dimension(800, 550));
         PanelAdministradorMenu.setRequestFocusEnabled(false);
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel1.setText("Menu Principal");
-
-        gestionProductosBTN.setBackground(new java.awt.Color(103, 80, 164));
-        gestionProductosBTN.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        gestionProductosBTN.setForeground(new java.awt.Color(255, 255, 255));
-        gestionProductosBTN.setText("Gestion de Productos");
-        gestionProductosBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gestionProductosBTNActionPerformed(evt);
-            }
-        });
-
-        gestionVendedoresBTN.setBackground(new java.awt.Color(103, 80, 164));
-        gestionVendedoresBTN.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        gestionVendedoresBTN.setForeground(new java.awt.Color(255, 255, 255));
-        gestionVendedoresBTN.setText("Gestion de Vendedores");
-
-        ReportesBTN.setBackground(new java.awt.Color(103, 80, 164));
-        ReportesBTN.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        ReportesBTN.setForeground(new java.awt.Color(255, 255, 255));
-        ReportesBTN.setText("Reportes");
-        ReportesBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReportesBTNActionPerformed(evt);
-            }
-        });
-
-        promocionesBTN.setBackground(new java.awt.Color(103, 80, 164));
-        promocionesBTN.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        promocionesBTN.setForeground(new java.awt.Color(255, 255, 255));
-        promocionesBTN.setText("Promociones y paquetes");
-
-        btnCerrarSesion.setBackground(new java.awt.Color(243, 183, 183));
-        btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCerrarSesion.setText("Cerrar Sesión");
-        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarSesionActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout PanelAdministradorMenuLayout = new javax.swing.GroupLayout(PanelAdministradorMenu);
         PanelAdministradorMenu.setLayout(PanelAdministradorMenuLayout);
         PanelAdministradorMenuLayout.setHorizontalGroup(
             PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAdministradorMenuLayout.createSequentialGroup()
-                .addContainerGap(125, Short.MAX_VALUE)
-                .addGroup(PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAdministradorMenuLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(238, 238, 238))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAdministradorMenuLayout.createSequentialGroup()
-                        .addGroup(PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(gestionVendedoresBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(gestionProductosBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(101, 101, 101)
-                        .addGroup(PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(promocionesBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ReportesBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(133, 133, 133))))
-            .addGroup(PanelAdministradorMenuLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(btnCerrarSesion)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         PanelAdministradorMenuLayout.setVerticalGroup(
             PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelAdministradorMenuLayout.createSequentialGroup()
-                .addGroup(PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelAdministradorMenuLayout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(jLabel1)
-                        .addGap(67, 67, 67)
-                        .addGroup(PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(gestionProductosBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ReportesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(PanelAdministradorMenuLayout.createSequentialGroup()
-                        .addGap(417, 417, 417)
-                        .addGroup(PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(promocionesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(gestionVendedoresBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(btnCerrarSesion)
-                .addGap(21, 21, 21))
+            .addGap(0, 550, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -203,40 +137,15 @@ public class AdministradorMenu extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(PanelAdministradorMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ReportesBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ReportesBTNActionPerformed
-
-    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        ControlNavegacion.getInstance().irAMenuPrincipal();
-    }//GEN-LAST:event_btnCerrarSesionActionPerformed
-
-    private void gestionProductosBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionProductosBTNActionPerformed
-        PanelMenuGestionProductos panelMenuGestion = new PanelMenuGestionProductos(PanelAdministradorMenu);
-        PanelAdministradorMenu.setLayout(new BorderLayout());
-        PanelAdministradorMenu.removeAll();
-        PanelAdministradorMenu.add(panelMenuGestion,BorderLayout.CENTER);
-        PanelAdministradorMenu.revalidate();
-        PanelAdministradorMenu.repaint();
-    }//GEN-LAST:event_gestionProductosBTNActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelAdministradorMenu;
-    private javax.swing.JButton ReportesBTN;
-    private javax.swing.JButton btnCerrarSesion;
-    private javax.swing.JButton gestionProductosBTN;
-    private javax.swing.JButton gestionVendedoresBTN;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbl_ID;
     private javax.swing.JLabel lbl_ID1;
     private javax.swing.JPanel panelSuperior;
     private javax.swing.JPanel panelSuperior1;
-    private javax.swing.JButton promocionesBTN;
     // End of variables declaration//GEN-END:variables
 }
