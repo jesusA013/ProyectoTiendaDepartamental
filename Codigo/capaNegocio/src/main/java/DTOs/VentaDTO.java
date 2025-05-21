@@ -21,7 +21,9 @@ public class VentaDTO {
     private ObjectId vendedorId;
     private FacturaDTO factura;
     private DetallesVentaDTO detallesVenta;
-
+    
+    //idventa, monto de la venta, fecha de la venta????
+    
     /**
      * Constructor que inicializa la lista.
      */

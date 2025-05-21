@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
 
+
 /**
  * VentaBO.java
  *
@@ -28,11 +29,48 @@ import org.bson.types.ObjectId;
  *
  * @author
  */
+import java.time.LocalDate;//gv
 public class VentasBO implements IVentasBO {
 
     private final IVentasDAO ventaDAO;
     IConexion Mongo = new Conexion();
+    //gestionVendedores- cositas que ocupo
+    private int idVenta;
+    private double monto;
+    private LocalDate fechaVenta;
+    
+    public boolean validaVenta(){
+    return monto>0;
+    }
 
+
+    public int getIdVenta() {
+        return idVenta;
+    }
+
+    public void setIdVenta(int idVenta) {
+        this.idVenta = idVenta;
+    }
+
+    public double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+
+    public LocalDate getFechaVenta() {
+        return fechaVenta;
+    }
+
+    public void setFechaVenta(LocalDate fechaVenta) {
+        this.fechaVenta = fechaVenta;
+    }
+    
+    
+    //gv
+    
     /**
      * Inicializa el atributo para usar la DAO.
      */

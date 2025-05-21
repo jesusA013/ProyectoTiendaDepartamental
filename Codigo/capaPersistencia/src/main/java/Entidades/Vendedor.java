@@ -22,7 +22,11 @@ public class Vendedor {
     private Seguro seguro;
     private Date fechaRegistro;
     private boolean activo;
-
+private String ciudad;
+private String municipio;
+private String foto;
+private String rfc;
+    
     public Vendedor() {
     }
 
