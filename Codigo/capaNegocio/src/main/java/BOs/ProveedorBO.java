@@ -128,11 +128,9 @@ public class ProveedorBO implements IProveedorBO {
      */
     private ProveedorDTO convertirDTO(Proveedor proveedor) {
         ProveedorInformacionBasicaDTO basicaDTO = new ProveedorInformacionBasicaDTO(
-                proveedor.getBasica().getIdBasica(),
                 proveedor.getBasica().getNombreProveedor());
 
         ProveedorInformacionContactoDTO contactoDTO = new ProveedorInformacionContactoDTO(
-                proveedor.getContacto().getIdContacto(),
                 proveedor.getContacto().getContacto(),
                 proveedor.getContacto().getTelefono(),
                 proveedor.getContacto().getCorreo(),
@@ -140,14 +138,12 @@ public class ProveedorBO implements IProveedorBO {
                 proveedor.getContacto().getPaginaWeb());
 
         ProveedorInformacionComercialDTO comercialDTO = new ProveedorInformacionComercialDTO(
-                proveedor.getComercial().getIdComercial(),
                 proveedor.getComercial().getRfc(),
                 proveedor.getComercial().getFormaPago(),
                 proveedor.getComercial().getTerminoPago(),
                 proveedor.getComercial().getMoneda());
 
         ProveedorInformacionGestionDTO gestionDTO = new ProveedorInformacionGestionDTO(
-                proveedor.getGestion().getIdGestion(),
                 proveedor.getGestion().getFechaAlta(),
                 proveedor.getGestion().getEstado(),
                 proveedor.getGestion().getComentarios());

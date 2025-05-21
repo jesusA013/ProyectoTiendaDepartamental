@@ -1,7 +1,5 @@
 package DTOs;
 
-import org.bson.types.ObjectId;
-
 /**
  * ProveedorInformacionComercialDTO.java
  *
@@ -12,7 +10,6 @@ import org.bson.types.ObjectId;
  */
 public class ProveedorInformacionComercialDTO {
 
-    private ObjectId idComercial;
     private String rfc;
     private String formaPago;
     private String terminoPago;
@@ -28,36 +25,16 @@ public class ProveedorInformacionComercialDTO {
      * Constructor de la información comercial del proveedor de objeto de
      * transferencia de datos.
      *
-     * @param idComercial ID de la información comercial del proveedor
      * @param rfc RFC del proveedor
      * @param formaPago Forma de pago del proveedor
      * @param terminoPago Termino de pago del proveedor
      * @param moneda Tipo de moneda
      */
-    public ProveedorInformacionComercialDTO(ObjectId idComercial, String rfc, String formaPago, String terminoPago, String moneda) {
-        this.idComercial = idComercial;
+    public ProveedorInformacionComercialDTO(String rfc, String formaPago, String terminoPago, String moneda) {
         this.rfc = rfc;
         this.formaPago = formaPago;
         this.terminoPago = terminoPago;
         this.moneda = moneda;
-    }
-
-    /**
-     * Regresa el ID de la información comercial del proveedor.
-     *
-     * @return ID de la información comercial del proveedor
-     */
-    public ObjectId getIdComercial() {
-        return idComercial;
-    }
-
-    /**
-     * Establece el ID de la información comercial del proveedor.
-     *
-     * @param idComercial ID de la información comercial del proveedor
-     */
-    public void setIdComercial(ObjectId idComercial) {
-        this.idComercial = idComercial;
     }
 
     /**
@@ -139,6 +116,6 @@ public class ProveedorInformacionComercialDTO {
      */
     @Override
     public String toString() {
-        return "ProveedorInformacionComercial{" + "idComercial=" + idComercial + ", rfc=" + rfc + ", formaPago=" + formaPago + ", terminoPago=" + terminoPago + ", moneda=" + moneda + '}';
+        return "ProveedorInformacionComercial{" + "rfc=" + rfc + ", formaPago=" + formaPago + ", terminoPago=" + terminoPago + ", moneda=" + moneda + '}';
     }
 }
