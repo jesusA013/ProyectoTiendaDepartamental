@@ -4,6 +4,7 @@ import BOs.ProductoBO;
 import DTOs.ProductoDTO;
 import DTOs.ProductoVentaDTO;
 import Interface.IRegistroVenta;
+import Interfaces.INavegador;
 import RegistroVentaException.RegistroException;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +18,22 @@ import javax.swing.JFrame;
 public class MockManejadorDeVenta implements IRegistroVenta {
 
     @Override
-    public void registrarVenta(JFrame frame, List<ProductoVentaDTO> productos) {
+    public void registrarVentaTarjeta(JFrame frame, List<ProductoVentaDTO> productos, String digitosTarjeta, String fechaExpiracion, String CVC) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    @Override
+    public void registrarVentaEfectivo(JFrame frame, List<ProductoVentaDTO> productos, String efectivoEntregado, String cambio) throws RegistroException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    @Override
+    public void setNavegador(INavegador navegador) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<ProductoDTO> buscarProductos(String busqueda) throws RegistroException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -125,11 +141,6 @@ public class MockManejadorDeVenta implements IRegistroVenta {
     public boolean seleccionMetodoPagoEfectivo() {
         // 
         return false;
-    }
-
-    @Override
-    public void regresarMetodoPago() throws RegistroException {
-        // 
     }
 
     @Override

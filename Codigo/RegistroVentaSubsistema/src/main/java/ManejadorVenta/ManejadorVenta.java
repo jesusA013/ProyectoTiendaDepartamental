@@ -2,15 +2,17 @@ package ManejadorVenta;
 
 import BOs.ProductoBO;
 import BOs.VentasBO;
+import DTOs.DetallesVentaDTO;
+import DTOs.FacturaDTO;
 import DTOs.ProductoDTO;
 import DTOs.ProductoVentaDTO;
 import DTOs.VentaDTO;
 import Excepciones.NegocioException;
 import Interface.IRegistroVenta;
+import Interfaces.INavegador;
+import Interfaces.IProductoBO;
 import Interfaces.IVentasBO;
 import RegistroVentaException.RegistroException;
-import control.ControlNavegacion;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,9 +25,16 @@ import javax.swing.JOptionPane;
  * @author gamae
  */
 public class ManejadorVenta implements IRegistroVenta {
-    
+
     private final IVentasBO ventasNegocio = new VentasBO();
+    private final IProductoBO productoNegocio = new ProductoBO();
     private static ManejadorVenta instancia;
+    INavegador navegacion;
+
+    @Override
+    public void setNavegador(INavegador navegador) {
+        this.navegacion = navegador;
+    }
 
     public static ManejadorVenta getInstance() {
         if (instancia == null) {
@@ -33,35 +42,141 @@ public class ManejadorVenta implements IRegistroVenta {
         }
         return instancia;
     }
-    
+
     @Override
-    public void registrarVenta(JFrame frame, List<ProductoVentaDTO> productos) throws RegistroException {
+    public void registrarVentaTarjeta(JFrame frame, List<ProductoVentaDTO> productos, String digitosTarjeta, String fechaExpiracion, String CVC) throws RegistroException {
+        double subtotalProductos = 0;
+        double impuestosProductos;
+        double totalProductos;
+
+        for (ProductoVentaDTO producto : productos) {
+            subtotalProductos += producto.getCantidad() * producto.getPrecioUnitario();
+        }
+        impuestosProductos = subtotalProductos * 0.06;
+        totalProductos = subtotalProductos + impuestosProductos;
+
         VentaDTO ventaDTO = new VentaDTO();
         ventaDTO.setFecha(new Date());
         ventaDTO.setProductos(productos);
-        
+
+//        FacturaDTO facturaDTO = new FacturaDTO("23-31-00-B", new Date());
+        FacturaDTO facturaDTO = new FacturaDTO();
+
+        DetallesVentaDTO detallesVentaDTO = new DetallesVentaDTO();
+        detallesVentaDTO.setSubtotal(subtotalProductos);
+        detallesVentaDTO.setIva(impuestosProductos);
+        detallesVentaDTO.setTotal(totalProductos);
+        detallesVentaDTO.setFormaPago("Transferencia");
+        detallesVentaDTO.setMetodoPago("Tarjeta");
+
+        ventaDTO.setFactura(facturaDTO);
+        ventaDTO.setDetallesVenta(detallesVentaDTO);
+
         try {
             VentaDTO resultado = this.ventasNegocio.insertarVenta(ventaDTO);
+            for (ProductoVentaDTO productoVenta : productos) {
+                productoVenta.getProducto().setStock(productoVenta.getProducto().getStock() - productoVenta.getCantidad());
+                this.productoNegocio.actualizarProducto(productoVenta.getProducto());
+            }
             JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getId());
-            ControlNavegacion.getInstance().irASeleccionMetodoPago();
+            navegacion.irASeleccionMetodoPago();
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(frame, "Error al registrar la venta: " + ex.getMessage());
         }
     }
-    
-    //Lista de ProductoDTOs que se mostraran en los JFrames
-//    private List<ProductoDTO> productos = new ArrayList<>();
-    
-//    private ProductoDTO p = new ProductoDTO();
-//    private ProductoDTO producto1 = new ProductoDTO("Tenis Air Force 1", "1511617", 100.00, "Nike", "Blanco", 5);
-//    private ProductoDTO producto2 = new ProductoDTO("Camiseta Adidas", "1511622", 40.00, "Adidas", "Negro", 10);
-//    private ProductoDTO producto3 = new ProductoDTO("Mochila Under Armour", "1511633", 30.00, "Under Armour", "Azul", 7);
-//    private ProductoDTO producto4 = new ProductoDTO("Lentes de sol Gucci", "1511634", 80.00, "Gucci", "Negro", 4);
-//    private ProductoDTO producto5 = new ProductoDTO("Sudadera Puma", "1511644", 50.00, "Puma", "Rojo", 8);
 
-//    public List<ProductoDTO> obtenerProductos() {
-//        return productos;
-//    }
+    @Override
+    public void registrarVentaEfectivo(JFrame frame, List<ProductoVentaDTO> productos, String efectivoEntregado, String cambio) throws RegistroException {
+        double subtotalProductos = 0;
+        double impuestosProductos;
+        double totalProductos;
+
+        for (ProductoVentaDTO producto : productos) {
+            subtotalProductos += producto.getCantidad() * producto.getPrecioUnitario();
+        }
+        impuestosProductos = subtotalProductos * 0.06;
+        totalProductos = subtotalProductos + impuestosProductos;
+
+        VentaDTO ventaDTO = new VentaDTO();
+        ventaDTO.setFecha(new Date());
+        ventaDTO.setProductos(productos);
+
+//        FacturaDTO facturaDTO = new FacturaDTO("23-31-00-A", new Date());
+        FacturaDTO facturaDTO = new FacturaDTO();
+
+        DetallesVentaDTO detallesVentaDTO = new DetallesVentaDTO();
+        detallesVentaDTO.setSubtotal(subtotalProductos);
+        detallesVentaDTO.setIva(impuestosProductos);
+        detallesVentaDTO.setTotal(totalProductos);
+        detallesVentaDTO.setFormaPago("En caja");
+        detallesVentaDTO.setMetodoPago("Efectivo");
+
+        ventaDTO.setFactura(facturaDTO);
+        ventaDTO.setDetallesVenta(detallesVentaDTO);
+
+        try {
+            VentaDTO resultado = this.ventasNegocio.insertarVenta(ventaDTO);
+            for (ProductoVentaDTO productoVenta : productos) {
+                productoVenta.getProducto().setStock(productoVenta.getProducto().getStock() - productoVenta.getCantidad());
+                this.productoNegocio.actualizarProducto(productoVenta.getProducto());
+            }
+            JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getId());
+            navegacion.irASeleccionMetodoPago();
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(frame, "Error al registrar la venta: " + ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<ProductoDTO> buscarProductos(String busqueda) throws RegistroException {
+        try {
+            return this.productoNegocio.buscarProductos(busqueda);
+        } catch (NegocioException ex) {
+            throw new RegistroException("Error al buscar productos: " + ex.getMessage());
+        }
+    }
+
+    private class Estados {
+
+        static LinkedList<String> estados = new LinkedList<>();
+
+        public Estados() {
+            estados.add("Aguascalientes");
+            estados.add("Baja California");
+            estados.add("Baja California Sur");
+            estados.add("Campeche");
+            estados.add("Chiapas");
+            estados.add("Chihuahua");
+            estados.add("Ciudad de México");
+            estados.add("Coahuila");
+            estados.add("Colima");
+            estados.add("Durango");
+            estados.add("Estado de México");
+            estados.add("Guanajuato");
+            estados.add("Guerrero");
+            estados.add("Hidalgo");
+            estados.add("Jalisco");
+            estados.add("Michoacán");
+            estados.add("Morelos");
+            estados.add("Nayarit");
+            estados.add("Nuevo León");
+            estados.add("Oaxaca");
+            estados.add("Puebla");
+            estados.add("Querétaro");
+            estados.add("Quintana Roo");
+            estados.add("San Luis Potosí");
+            estados.add("Sinaloa");
+            estados.add("Sonora");
+            estados.add("Tabasco");
+            estados.add("Tamaulipas");
+            estados.add("Tlaxcala");
+            estados.add("Veracruz");
+            estados.add("Yucatán");
+            estados.add("Zacatecas");
+
+        }
+
+    }
 
     @Override
     public boolean validarRFC(String RFC) throws RegistroException {
@@ -236,48 +351,6 @@ public class ManejadorVenta implements IRegistroVenta {
         return true;
     }
 
-    private class Estados {
-
-        static LinkedList<String> estados = new LinkedList<>();
-
-        public Estados() {
-            estados.add("Aguascalientes");
-            estados.add("Baja California");
-            estados.add("Baja California Sur");
-            estados.add("Campeche");
-            estados.add("Chiapas");
-            estados.add("Chihuahua");
-            estados.add("Ciudad de México");
-            estados.add("Coahuila");
-            estados.add("Colima");
-            estados.add("Durango");
-            estados.add("Estado de México");
-            estados.add("Guanajuato");
-            estados.add("Guerrero");
-            estados.add("Hidalgo");
-            estados.add("Jalisco");
-            estados.add("Michoacán");
-            estados.add("Morelos");
-            estados.add("Nayarit");
-            estados.add("Nuevo León");
-            estados.add("Oaxaca");
-            estados.add("Puebla");
-            estados.add("Querétaro");
-            estados.add("Quintana Roo");
-            estados.add("San Luis Potosí");
-            estados.add("Sinaloa");
-            estados.add("Sonora");
-            estados.add("Tabasco");
-            estados.add("Tamaulipas");
-            estados.add("Tlaxcala");
-            estados.add("Veracruz");
-            estados.add("Yucatán");
-            estados.add("Zacatecas");
-
-        }
-
-    }
-
     @Override
     public boolean validarEstado(String estado) throws RegistroException {
         if (estado == null || estado.isEmpty()) {
@@ -352,11 +425,6 @@ public class ManejadorVenta implements IRegistroVenta {
 
     @Override
     public boolean seleccionMetodoPagoEfectivo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void regresarMetodoPago() throws RegistroException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

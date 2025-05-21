@@ -1,11 +1,7 @@
 package ModuloAlmacen.GestionProveedores;
 
 import DTOs.ProveedorDTO;
-import DTOs.ProveedorInformacionBasicaDTO;
-import DTOs.ProveedorInformacionComercialDTO;
-import DTOs.ProveedorInformacionContactoDTO;
-import DTOs.ProveedorInformacionGestionDTO;
-import Exception.ProveedorException;
+import Excepciones.ProveedorException;
 import Implementaciones.IManejadorProveedor;
 import control.ControlNavegacion;
 import javax.swing.JOptionPane;
@@ -58,7 +54,7 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
         txtPaginaWeb.setText(proveedor.getContacto().getPaginaWeb());
         
         txtRFC.setText(proveedor.getComercial().getRfc());
-        txtFormaPago.setText(proveedor.getComercial().getFormaPago());
+        cboFormaPago.setSelectedItem(proveedor.getComercial().getFormaPago());
         txtTerminoPago.setText(proveedor.getComercial().getTerminoPago());
         cboMoneda.setSelectedItem(proveedor.getComercial().getMoneda());
         
@@ -77,7 +73,7 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
                 controlProveedor.editarProveedor(this, proveedor.getIdProveedor(), txtNombreProveedor.getText(),
                         txtContacto.getText(), txtTelefono.getText(), txtCorreo.getText(),
                         txtDireccion.getText(), txtPaginaWeb.getText(), txtRFC.getText(),
-                        txtFormaPago.getText(), txtTerminoPago.getText(),
+                        (String) cboFormaPago.getSelectedItem(), txtTerminoPago.getText(),
                         (String) cboMoneda.getSelectedItem(), proveedor.getGestion().getFechaAlta(),
                         (String) cboEstado.getSelectedItem(), txtComentarios.getText());
             } catch (ProveedorException e) {
@@ -132,7 +128,6 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         txtRFC = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        txtFormaPago = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         txtTerminoPago = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -153,6 +148,7 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         btnRestaurar = new javax.swing.JButton();
+        cboFormaPago = new javax.swing.JComboBox<>();
 
         setPreferredSize(new java.awt.Dimension(1117, 517));
 
@@ -409,8 +405,6 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel14.setText("Forma de Pago");
 
-        txtFormaPago.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel15.setText("Término Pago");
 
@@ -479,6 +473,9 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
                 btnRestaurarActionPerformed(evt);
             }
         });
+
+        cboFormaPago.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        cboFormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OXXO", "Transferencia", "Efectivo" }));
 
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
         panelFondo.setLayout(panelFondoLayout);
@@ -565,7 +562,7 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFondoLayout.createSequentialGroup()
                                         .addComponent(jLabel14)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtFormaPago))
+                                        .addComponent(cboFormaPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(panelFondoLayout.createSequentialGroup()
                                         .addComponent(jLabel15)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -617,11 +614,11 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
                                 .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel24))
-                        .addGap(9, 9, 9)
+                        .addGap(6, 6, 6)
                         .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel14)
-                                .addComponent(txtFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cboFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel25))
                         .addGap(9, 9, 9)
                         .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -716,6 +713,7 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnRestaurar;
     private javax.swing.JComboBox<String> cboEstado;
+    private javax.swing.JComboBox<String> cboFormaPago;
     private javax.swing.JComboBox<String> cboMoneda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -761,7 +759,6 @@ public class ProveedoresPanelEditar extends javax.swing.JPanel {
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtFecha;
-    private javax.swing.JTextField txtFormaPago;
     private javax.swing.JTextField txtIdProveedor;
     private javax.swing.JTextField txtNombreProveedor;
     private javax.swing.JTextField txtPaginaWeb;

@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package Interfaz;
 
 import Entidades.Producto;
+import Exception.PersistenciaException;
+import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
@@ -12,8 +10,18 @@ import org.bson.types.ObjectId;
  * @author Knocmare
  */
 public interface IProductoDAO {
-    Producto insertarProducto(Producto producto);
-    Producto buscarPorId(ObjectId id);
-    Producto actualizarProducto(Producto producto);
-    Producto eliminarProducto(ObjectId id);
+
+    Producto insertarProducto(Producto producto) throws PersistenciaException;
+
+    Producto buscarPorId(ObjectId id) throws PersistenciaException;
+
+    List<Producto> buscarProductos(String producto) throws PersistenciaException;
+
+    Producto actualizarProducto(Producto producto) throws PersistenciaException;
+
+    Producto eliminarProducto(ObjectId id) throws PersistenciaException;
+    
+    List<Producto> buscarTodos()throws PersistenciaException;
+     
+
 }

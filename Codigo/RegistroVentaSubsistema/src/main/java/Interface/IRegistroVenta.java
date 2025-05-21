@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package Interface;
 
 import DTOs.ProductoDTO;
 import BOs.ProductoBO;
 import DTOs.ProductoVentaDTO;
+import Interfaces.INavegador;
 import RegistroVentaException.RegistroException;
 import java.util.List;
 import javax.swing.JFrame;
@@ -17,7 +14,11 @@ import javax.swing.JFrame;
  */
 public interface IRegistroVenta {
 
-    void registrarVenta(JFrame frame, List<ProductoVentaDTO> productos) throws RegistroException;
+    void registrarVentaTarjeta(JFrame frame, List<ProductoVentaDTO> productos, String digitosTarjeta, String fechaExpiracion, String CVC) throws RegistroException;
+    
+    void registrarVentaEfectivo(JFrame frame, List<ProductoVentaDTO> productos, String efectivoEntregado, String cambio) throws RegistroException;
+    
+    List<ProductoDTO> buscarProductos(String busqueda) throws RegistroException;
 
     boolean validarPago();
 
@@ -38,7 +39,7 @@ public interface IRegistroVenta {
     ProductoBO consultarCatalogoProducto();
 
     boolean validarStock();
-
+    void setNavegador(INavegador navegador);
     /**
      * Este metodo hace las operaciones necesarias si nuestra compra se realiza
      * con el metodo de pago tarjeta
@@ -56,16 +57,6 @@ public interface IRegistroVenta {
      * metodo regresarMetodoPago())
      */
     boolean seleccionMetodoPagoEfectivo();
-
-    /**
-     * Este metodo regresa el metodo de pago antes utilizando validandolo la
-     * opción con un Boolean de los metodos seleccionMetodoPagoEfectivo() y
-     * seleccionMetodoPagoTarjeta().
-     *
-     * @throws RegistroException realiza una exception cuando ninguno de los
-     * metodos mencionado no han sido usados
-     */
-    void regresarMetodoPago() throws RegistroException;
 
     /**
      *

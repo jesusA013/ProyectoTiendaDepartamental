@@ -1,8 +1,18 @@
 package ModuloAlmacen.GestionProveedores;
 
+import DTOs.ProveedorTablaDTO;
+import Excepciones.ProveedorException;
 import Implementaciones.IManejadorProveedor;
+import Utilidades.JButtonCellEditor;
+import Utilidades.JButtonRenderer;
 import control.ControlNavegacion;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+import org.bson.types.ObjectId;
 
 /**
  * ProveedoresPanelListado.java
@@ -14,15 +24,59 @@ import javax.swing.JTable;
 public class ProveedoresPanelListado extends javax.swing.JPanel {
     
     private static ProveedoresPanelListado instancia;
+    IManejadorProveedor controlProveedor;
+    
     
     /**
      * Creates new form ProveedoresPanelListado
      * @param controlProveedor
      */
     public ProveedoresPanelListado(IManejadorProveedor controlProveedor) {
+        this.controlProveedor = controlProveedor;
         initComponents();
-        controlProveedor.configuracionInicialTabla(tablaProveedores);
-        controlProveedor.buscarTabla(tablaProveedores);
+        ActionListener onDetallesClickListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    //Metodo para detalles
+                    int fila = Integer.parseInt(e.getActionCommand());
+                    String idStr = tablaProveedores.getValueAt(fila, 0).toString();
+                    ObjectId id = new ObjectId(idStr);
+                    System.out.println(id);
+                    ControlNavegacion.getInstance().mostrarPanelProveedorDetalles(id);
+                } catch (ProveedorException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        };
+        int indiceColumnaDetalles = 5;
+        TableColumnModel modeloColumnas = tablaProveedores.getColumnModel();
+        modeloColumnas.getColumn(indiceColumnaDetalles)
+                .setCellRenderer(new JButtonRenderer("Detalles"));
+        modeloColumnas.getColumn(indiceColumnaDetalles)
+                .setCellEditor(new JButtonCellEditor("Detalles", onDetallesClickListener));
+
+        ActionListener onEditarClickListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    //Metodo para editar
+                    int fila = Integer.parseInt(e.getActionCommand());
+                    String idStr = tablaProveedores.getValueAt(fila, 0).toString();
+                    ObjectId id = new ObjectId(idStr);
+                    System.out.println(id);
+                    ControlNavegacion.getInstance().mostrarPanelProveedorEditar(id);
+                } catch (ProveedorException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        };
+        int indiceColumnaEditar = 6;
+        modeloColumnas = tablaProveedores.getColumnModel();
+        modeloColumnas.getColumn(indiceColumnaEditar)
+                .setCellRenderer(new JButtonRenderer("Editar"));
+        modeloColumnas.getColumn(indiceColumnaEditar)
+                .setCellEditor(new JButtonCellEditor("Editar", onEditarClickListener));
     }
     
     public static ProveedoresPanelListado getInstance(IManejadorProveedor controlProveedor) {
@@ -31,9 +85,26 @@ public class ProveedoresPanelListado extends javax.swing.JPanel {
         }
         return instancia;
     }
+    
+    public void cargarListaProveedores() {
+        List<ProveedorTablaDTO> listaProveedores = controlProveedor.obtenerDatosParaTabla();
+        DefaultTableModel modeloTabla = (DefaultTableModel) tablaProveedores.getModel();
+        
+        // Limpia la tabla
+        modeloTabla.setRowCount(0);
+        
+        if (!listaProveedores.isEmpty()) {
+            listaProveedores.forEach(row -> {
+                Object[] fila = new Object[5];
+                fila[0] = row.getIdProveedor();
+                fila[1] = row.getNombreProveedor();
+                fila[2] = row.getTelefono();
+                fila[3] = row.getCorreo();
+                fila[4] = row.getEstado();
 
-    public JTable getTablaProveedores() {
-        return tablaProveedores;
+                modeloTabla.addRow(fila);
+            });
+        }
     }
 
     /**
@@ -57,10 +128,7 @@ public class ProveedoresPanelListado extends javax.swing.JPanel {
         tablaProveedores.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tablaProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nombre", "Teléfono", "Correo Electrónico", "Estado", "Detalles", "Editar"

@@ -4,17 +4,40 @@
  */
 package ModuloVenta;
 
+import javax.swing.JTextField;
+
 /**
  *
  * @author Knocmare
  */
 public class PanelMetodoTarjeta extends javax.swing.JPanel {
-
+    
+    public static PanelMetodoTarjeta instancia;
+    
     /**
      * Creates new form PanelTarjeta
      */
     public PanelMetodoTarjeta() {
         initComponents();
+    }
+    
+    public static PanelMetodoTarjeta getInstance() {
+        if (instancia == null) {
+            instancia = new PanelMetodoTarjeta();
+        }
+        return instancia;
+    }
+
+    public String getTxtCVC() {
+        return txtCVC.getText();
+    }
+
+    public String getTxtDigitosTarjeta() {
+        return txtDigitosTarjeta.getText();
+    }
+
+    public String getTxtFechaExpiracion() {
+        return txtFechaExpiracion.getText();
     }
 
     /**

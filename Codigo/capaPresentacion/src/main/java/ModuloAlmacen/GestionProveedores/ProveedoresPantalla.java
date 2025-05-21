@@ -12,15 +12,12 @@ import Implementaciones.IManejadorProveedor;
 public class ProveedoresPantalla extends javax.swing.JFrame {
 
     private static ProveedoresPantalla instancia;
-    private static ProveedoresPanelListado lista;
 
     /**
      * Creates new form ListaProveedores
      */
     public ProveedoresPantalla(IManejadorProveedor controlProveedor) {
         initComponents();
-        lista = new ProveedoresPanelListado(controlProveedor);
-        panelCambiante.add(lista);
     }
 
     public static ProveedoresPantalla getInstancia(IManejadorProveedor controlProveedor) {

@@ -27,4 +27,8 @@ public class ReporteBO {
 
     
 
+package BOs;
+
+public class ReporteBO {
+
 }

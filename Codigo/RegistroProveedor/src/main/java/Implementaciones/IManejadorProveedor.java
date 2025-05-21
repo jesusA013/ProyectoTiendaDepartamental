@@ -1,8 +1,11 @@
 package Implementaciones;
 
 import DTOs.ProveedorDTO;
-import Exception.ProveedorException;
+import DTOs.ProveedorTablaDTO;
+import Excepciones.ProveedorException;
+import Interfaces.INavegador;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import org.bson.types.ObjectId;
@@ -12,12 +15,11 @@ import org.bson.types.ObjectId;
  * @author Ángel Ruíz García - 00000248171
  */
 public interface IManejadorProveedor {
+    void setNavegador(INavegador navegador);
     
     void configuracionInicialTabla(JTable tablaProveedores);
     
-    ObjectId getIdSeleccionadoTabla(JTable tablaProveedores);
-    
-    void buscarTabla(JTable tablaProveedores);
+    List<ProveedorTablaDTO> obtenerDatosParaTabla();
     
     void registrarProveedor(JPanel panel, String nombreProveedor, 
             String contacto, String telefono, String correo, String direccion, 
@@ -33,8 +35,8 @@ public interface IManejadorProveedor {
     
 //    void limpiarCamposProveedor();
     
-    void restaurarCamposEditar(ObjectId id);
+//    void restaurarCamposEditar(ObjectId id);
     
-    void restaurarCamposDetalles(ObjectId id);
+//    void restaurarCamposDetalles(ObjectId id);
     
 }

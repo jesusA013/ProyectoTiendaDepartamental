@@ -1,7 +1,7 @@
 package ModuloAlmacen.GestionProveedores;
 
 import DTOs.ProveedorDTO;
-import Exception.ProveedorException;
+import Excepciones.ProveedorException;
 import Implementaciones.IManejadorProveedor;
 import control.ControlNavegacion;
 import org.bson.types.ObjectId;
