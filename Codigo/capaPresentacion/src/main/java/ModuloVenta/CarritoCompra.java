@@ -383,7 +383,11 @@ public class CarritoCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagoActionPerformed
-        ControlNavegacion.getInstance().irASeleccionMetodoPago();
+        if (!carritoGlobal.isEmpty()) {
+            ControlNavegacion.getInstance().irASeleccionMetodoPago();
+        } else {
+            JOptionPane.showMessageDialog(this, "El carrito esta vacio");
+        }
     }//GEN-LAST:event_btnPagoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
