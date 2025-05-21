@@ -1,7 +1,5 @@
 package DTOs;
 
-import org.bson.types.ObjectId;
-
 /**
  * ProveedorInformacionBasicaDTO.java
  *
@@ -12,7 +10,6 @@ import org.bson.types.ObjectId;
  */
 public class ProveedorInformacionBasicaDTO {
 
-    ObjectId idBasica;
     private String nombreProveedor;
 
     /**
@@ -25,30 +22,10 @@ public class ProveedorInformacionBasicaDTO {
      * Constructor de la informacion basica del proveedor de objeto de
      * transferencia de datos.
      *
-     * @param idBasica ID de la información básica
      * @param nombreProveedor Nombre del proveedor
      */
-    public ProveedorInformacionBasicaDTO(ObjectId idBasica, String nombreProveedor) {
-        this.idBasica = idBasica;
+    public ProveedorInformacionBasicaDTO(String nombreProveedor) {
         this.nombreProveedor = nombreProveedor;
-    }
-
-    /**
-     * Regresa el ID de la información básica.
-     *
-     * @return ID de la información básica
-     */
-    public ObjectId getIdBasica() {
-        return idBasica;
-    }
-
-    /**
-     * Establece ID de la información básica.
-     *
-     * @param idBasica ID de la información básica
-     */
-    public void setIdBasica(ObjectId idBasica) {
-        this.idBasica = idBasica;
     }
 
     /**
@@ -76,6 +53,6 @@ public class ProveedorInformacionBasicaDTO {
      */
     @Override
     public String toString() {
-        return "ProveedorInformacionBasica{" + "idBasica=" + idBasica + ", nombreProveedor=" + nombreProveedor + '}';
+        return "ProveedorInformacionBasica{" + "nombreProveedor=" + nombreProveedor + '}';
     }
 }
