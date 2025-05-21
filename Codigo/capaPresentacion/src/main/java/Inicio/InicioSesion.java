@@ -17,7 +17,7 @@ public class InicioSesion extends JFrame {
     private JTextField txtId;
     private JPasswordField txtContrasena;
     private JButton btnIngresar, btnCancelar;
-    private String tipo;
+    private String tipo, id, nombre;
     private IUsuarioBO usuarioBO;
 
     public InicioSesion() {
@@ -131,12 +131,15 @@ public class InicioSesion extends JFrame {
 
                 switch (tipo) {
                     case "Vendedor":
+                        setId(id);
                         ControlNavegacion.getInstance().irACarritoCompra();
                         break;
                     case "Administrador":
+                        setId(id);
                         ControlNavegacion.getInstance().mostrarMenuAdministrador();
                         break;
                     case "Almacen":
+                        setId(id);
                         ControlNavegacion.getInstance().mostrarMenuAlmacen();
                         break;
                     default:
@@ -165,7 +168,21 @@ public class InicioSesion extends JFrame {
     public void LimpiarCampos(){
         txtId.setText("");
         txtContrasena.setText("");
-        
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNombreUsuario() {
+        return nombre;
+    }
+
+    public void setNombreUsuario(String nombre) {
+        this.nombre = nombre;
+    }
 }

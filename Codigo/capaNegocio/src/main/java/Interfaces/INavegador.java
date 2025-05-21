@@ -14,7 +14,7 @@ import org.bson.types.ObjectId;
 public interface INavegador {
     void irAMenuPrincipal();
     void irASeleccionMetodoPago();
-    void irAGraciasPorSuCompra();
+    void irVentaFinalizada();
     void mostrarPanelProveedorDetalles(ObjectId id) throws ProveedorException;
     void mostrarPanelProveedorEditar(ObjectId id) throws ProveedorException;
     public void mostrarPanelProveedorNuevo();

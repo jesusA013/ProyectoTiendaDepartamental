@@ -6,7 +6,6 @@ package control;
  */
 import Excepciones.ProveedorException;
 import ModuloVenta.FacturaDatos;
-import ModuloVenta.GraciasPorSuCompra;
 import ModuloVenta.SeleccionMetodoPago;
 import ModuloVenta.BusquedaProducto;
 import ModuloVenta.CarritoCompra;
@@ -19,6 +18,7 @@ import ManejadorVenta.ManejadorVenta;
 import ModuloAdministracion.AdministradorMenu;
 import ModuloAlmacen.GestionProveedores.*;
 import ModuloAlmacen.MenuAlmacen;
+import ModuloVenta.VentaFinalizada;
 import RegistroVentaException.RegistroException;
 import gestionVendedores.*;
 import java.awt.BorderLayout;
@@ -41,21 +41,16 @@ public class ControlNavegacion implements INavegador{
     private FacturaDatos pantallaFactura;
     private BusquedaProducto pantallaBusquedaProducto;
     private SeleccionMetodoPago pantallaSeleccionMetodoPago;
-    private GraciasPorSuCompra pantallaGraciasCompra;
+    private VentaFinalizada pantallaVentaFinalizada;
     // Gestión Proveedores
     private final IManejadorProveedor manejadorProveedor;
     private JPanel panelCambiante;
-    private final ProveedoresPantalla pantallaProveedores;
     private final MenuAlmacen pantallaAlmacen;
     //Gestion Vendedores
     private GenerarInforme pantallaGeneraInforme;
     private InformacionVendedor panatallaInformacionVendedor;
     private ListadoVendedores pantallaListadoVendedores;
     private RegistrarVendedor pantallaRegistraVendedor;
-    private final ProveedoresPanelListado proveedorPanelListado;
-    private final ProveedoresPanelNuevo proveedorPanelNuevo;
-    private final ProveedoresPanelEditar proveedorPanelEditar;
-    private final ProveedoresPanelDetalles proveedorPanelDetalles;
     //productos
     private AdministradorMenu pantallaAdministradorMenu;
 
@@ -71,16 +66,11 @@ public class ControlNavegacion implements INavegador{
         this.pantallaFactura = new FacturaDatos();
         this.pantallaBusquedaProducto = new BusquedaProducto(manejadorVenta);
         this.pantallaSeleccionMetodoPago = new SeleccionMetodoPago(manejadorVenta);
-        this.pantallaGraciasCompra= new GraciasPorSuCompra(manejadorVenta);
+        this.pantallaVentaFinalizada = new VentaFinalizada(manejadorVenta);
         // Gestión Proveedores
         this.manejadorProveedor = new ManejadorProveedor();
-        this.pantallaProveedores = ProveedoresPantalla.getInstancia(manejadorProveedor);
         manejadorProveedor.setNavegador(this);
         this.pantallaAlmacen = new MenuAlmacen();
-        this.proveedorPanelListado = ProveedoresPanelListado.getInstance(manejadorProveedor);
-        this.proveedorPanelNuevo = ProveedoresPanelNuevo.getInstance(manejadorProveedor);
-        this.proveedorPanelEditar = ProveedoresPanelEditar.getInstance(manejadorProveedor);
-        this.proveedorPanelDetalles = ProveedoresPanelDetalles.getInstance(manejadorProveedor);
         //productos
         this.pantallaAdministradorMenu = new AdministradorMenu();
         //Gestion Vendedores
@@ -152,8 +142,8 @@ public class ControlNavegacion implements INavegador{
     }
     
     @Override
-    public void irAGraciasPorSuCompra(){
-        mostrarPantalla(pantallaGraciasCompra);
+    public void irVentaFinalizada(){
+        mostrarPantalla(pantallaVentaFinalizada);
         
     }
     
@@ -173,7 +163,7 @@ public class ControlNavegacion implements INavegador{
      * Muestra la pantalla de proveedores con la lista.
      */
     public void mostrarFormListaProveedores() {
-        // Panel Listado
+        ProveedoresPantalla pantallaProveedores = ProveedoresPantalla.getInstancia(manejadorProveedor);
         mostrarPanelProveedoresLista();
         mostrarPantalla(pantallaProveedores);
     }
@@ -181,12 +171,12 @@ public class ControlNavegacion implements INavegador{
     /**
      * Muestra el panel con la lista de proveedores.
      */
+    @Override
     public void mostrarPanelProveedoresLista() {
         // Panel Listado
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
-        JTable tablaProveedores = proveedorPanelListado.getTablaProveedores();
-        manejadorProveedor.configuracionInicialTabla(tablaProveedores);
-        manejadorProveedor.buscarTabla(tablaProveedores);
+        ProveedoresPanelListado proveedorPanelListado = ProveedoresPanelListado.getInstance(manejadorProveedor);
+        proveedorPanelListado.cargarListaProveedores();
         mostrarPanel(panelCambiante, proveedorPanelListado);
 
     }
@@ -196,6 +186,7 @@ public class ControlNavegacion implements INavegador{
      */
     public void mostrarPanelProveedorNuevo() {
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
+        ProveedoresPanelNuevo proveedorPanelNuevo = ProveedoresPanelNuevo.getInstance(manejadorProveedor);
         mostrarPanel(panelCambiante, proveedorPanelNuevo);
     }
     
@@ -207,6 +198,7 @@ public class ControlNavegacion implements INavegador{
     @Override
     public void mostrarPanelProveedorEditar(ObjectId id) throws ProveedorException {
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
+        ProveedoresPanelEditar proveedorPanelEditar = ProveedoresPanelEditar.getInstance(manejadorProveedor);
         proveedorPanelEditar.actualizarDatos(id);
         mostrarPanel(panelCambiante, proveedorPanelEditar);
     }
@@ -219,6 +211,7 @@ public class ControlNavegacion implements INavegador{
     @Override
     public void mostrarPanelProveedorDetalles(ObjectId id) throws ProveedorException {
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
+        ProveedoresPanelDetalles proveedorPanelDetalles = ProveedoresPanelDetalles.getInstance(manejadorProveedor);
         proveedorPanelDetalles.actualizarDatos(id);
         mostrarPanel(panelCambiante, proveedorPanelDetalles);
     }

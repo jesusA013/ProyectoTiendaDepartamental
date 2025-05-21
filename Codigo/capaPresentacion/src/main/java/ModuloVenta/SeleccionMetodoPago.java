@@ -415,7 +415,7 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
         } else {
             
         }
-        ControlNavegacion.getInstance().irAGraciasPorSuCompra();
+        ControlNavegacion.getInstance().irVentaFinalizada();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     

@@ -15,6 +15,7 @@ import Utilidades.JButtonCellEditor;
 import Utilidades.JButtonRenderer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -59,12 +60,20 @@ public class ManejadorProveedor implements IManejadorProveedor {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    
                     //Metodo para detalles
-                    navegacion.mostrarPanelProveedorDetalles(getIdSeleccionadoTabla(tablaProveedores));
+                    navegacion.mostrarPanelProveedorDetalles(this.getIdSeleccionadoTabla(tablaProveedores));
                 } catch (ProveedorException ex) {
                     System.out.println(ex.getMessage());
                 }
+            }
+
+            private ObjectId getIdSeleccionadoTabla(JTable tablaProveedores) {
+                int filaSeleccionada = tablaProveedores.getSelectedRow();
+                if (filaSeleccionada != -1) {
+                    String idStr = tablaProveedores.getValueAt(filaSeleccionada, 0).toString();
+                    return new ObjectId(idStr);
+                }
+                return null;
             }
         };
         int indiceColumnaDetalles = 5;
@@ -79,10 +88,19 @@ public class ManejadorProveedor implements IManejadorProveedor {
             public void actionPerformed(ActionEvent e) {
                 try {
                     //Metodo para editar
-                    navegacion.mostrarPanelProveedorEditar(getIdSeleccionadoTabla(tablaProveedores));
+                    navegacion.mostrarPanelProveedorEditar(this.getIdSeleccionadoTabla(tablaProveedores));
                 } catch (ProveedorException ex) {
                     System.out.println(ex.getMessage());
                 }
+            }
+            
+            private ObjectId getIdSeleccionadoTabla(JTable tablaProveedores) {
+                int filaSeleccionada = tablaProveedores.getSelectedRow();
+                if (filaSeleccionada != -1) {
+                    String idStr = tablaProveedores.getValueAt(filaSeleccionada, 0).toString();
+                    return new ObjectId(idStr);
+                }
+                return null;
             }
         };
         int indiceColumnaEditar = 6;
@@ -92,52 +110,14 @@ public class ManejadorProveedor implements IManejadorProveedor {
         modeloColumnas.getColumn(indiceColumnaEditar)
                 .setCellEditor(new JButtonCellEditor("Editar", onEditarClickListener));
     }
-
+    
     @Override
-    public ObjectId getIdSeleccionadoTabla(JTable tablaProveedores) {
-        int filaSeleccionada = tablaProveedores.getSelectedRow();
-        if (filaSeleccionada != -1) {
-            String idStr = tablaProveedores.getValueAt(filaSeleccionada, 0).toString();
-            return new ObjectId(idStr);
-        }
-        return null;
-    }
-
-    /**
-     * 
-     * @param tablaProveedores 
-     */
-    @Override
-    public void buscarTabla(JTable tablaProveedores) {
+    public List<ProveedorTablaDTO> obtenerDatosParaTabla() {
         try {
-            List<ProveedorTablaDTO> proveedorTablaLista = this.proveedorNegocio.obtenerListaProveedores();
-            DefaultTableModel modelo = (DefaultTableModel) tablaProveedores.getModel();
-            modelo.setRowCount(0);
-            this.cargarListaProveedores(proveedorTablaLista, tablaProveedores);
+            return proveedorNegocio.obtenerListaProveedores();
         } catch (NegocioException ex) {
             System.out.println(ex.getMessage());
-        }
-    }
-    
-    /**
-     * 
-     * @param listaProveedores
-     * @param tablaProveedores 
-     */
-    private void cargarListaProveedores(List<ProveedorTablaDTO> listaProveedores, JTable tablaProveedores) {
-        DefaultTableModel modeloTabla = (DefaultTableModel) tablaProveedores.getModel();
-
-        if (!listaProveedores.isEmpty()) {
-            listaProveedores.forEach(row -> {
-                Object[] fila = new Object[5];
-                fila[0] = row.getIdProveedor();
-                fila[1] = row.getNombreProveedor();
-                fila[2] = row.getTelefono();
-                fila[3] = row.getCorreo();
-                fila[4] = row.getEstado();
-
-                modeloTabla.addRow(fila);
-            });
+            return new ArrayList<>(); // o null, según tu diseño
         }
     }
 
@@ -348,29 +328,6 @@ public class ManejadorProveedor implements IManejadorProveedor {
 //        txtComentarios.setText("");
 //    }
     
-    @Override
-    public void restaurarCamposEditar(ObjectId id) {
-        try {
-            ProveedorDTO proveedor = obtenerProveedor(id);
-            //ProveedoresPanelEditar.getInstancia(this).setCampos(proveedor);
-        } catch (ProveedorException ex) {
-            System.err.println("Error al obtener proveedor: " + ex.getMessage());
-        }
-    }
-    
-    /**
-     * 
-     * @param id ID del proveedor
-     */
-    @Override
-    public void restaurarCamposDetalles(ObjectId id) {
-        try {
-            ProveedorDTO proveedor = obtenerProveedor(id);
-            //ProveedoresPanelDetalles.getInstancia(this).setCampos(proveedor);
-        } catch (ProveedorException ex) {
-            System.err.println("Error al obtener proveedor: " + ex.getMessage());
-        }
-    }
     
     private boolean validarNombre(String nombreProveedor) {
         return !(nombreProveedor == null || nombreProveedor.trim().isEmpty());
