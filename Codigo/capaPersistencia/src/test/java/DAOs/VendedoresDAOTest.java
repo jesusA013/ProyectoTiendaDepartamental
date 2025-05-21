@@ -6,7 +6,6 @@ package DAOs;
 
 import Entidades.DatosFiscales;
 import Entidades.Domicilio;
-import Entidades.DomicilioFiscal;
 import Entidades.NombreCompleto;
 import Entidades.Vendedor;
 import Interfaz.IConexion;
@@ -58,7 +57,7 @@ public class VendedoresDAOTest {
 
         DatosFiscales datosFiscales = new DatosFiscales();
         datosFiscales.setRfc("JUAP800101XXX");
-        DomicilioFiscal domicilioFiscal = new DomicilioFiscal();
+        Domicilio domicilioFiscal = new Domicilio();
         domicilioFiscal.setCalle("Av. Reforma 123");
         domicilioFiscal.setCiudadLocalidad("Ciudad de México");
         domicilioFiscal.setDelegacionMunicipio("Benito Juárez");

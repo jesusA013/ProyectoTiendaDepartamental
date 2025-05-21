@@ -8,12 +8,12 @@ public class DatosFiscales {
 
     private String correo;
     private String rfc;
-    private DomicilioFiscal domicilioFiscal;
+    private Domicilio domicilioFiscal;
 
     public DatosFiscales() {
     }
 
-    public DatosFiscales(String correo, String rfc, DomicilioFiscal domicilioFiscal) {
+    public DatosFiscales(String correo, String rfc, Domicilio domicilioFiscal) {
         this.correo = correo;
         this.rfc = rfc;
         this.domicilioFiscal = domicilioFiscal;
@@ -35,11 +35,11 @@ public class DatosFiscales {
         this.rfc = rfc;
     }
 
-    public DomicilioFiscal getDomicilioFiscal() {
+    public Domicilio getDomicilioFiscal() {
         return domicilioFiscal;
     }
 
-    public void setDomicilioFiscal(DomicilioFiscal domicilioFiscal) {
+    public void setDomicilioFiscal(Domicilio domicilioFiscal) {
         this.domicilioFiscal = domicilioFiscal;
     }
 

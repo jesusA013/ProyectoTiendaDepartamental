@@ -6,12 +6,22 @@ package BOs;
 
 import DAOs.Conexion;
 import DAOs.VendedorDAO;
+import DTOs.DatosFiscalesDTO;
+import DTOs.DomicilioDTO;
+import DTOs.NombreCompletoDTO;
+import DTOs.SeguroDTO;
+import DTOs.VendedorDTO;
+import Entidades.DatosFiscales;
+import Entidades.Domicilio;
+import Entidades.NombreCompleto;
+import Entidades.Seguro;
 import Entidades.Vendedor;
 import Excepciones.NegocioException;
 import Interfaces.IVendedorBO;
 import Interfaz.IConexion;
 import Interfaz.IVendedorDAO;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.bson.types.ObjectId;
 
 /**
@@ -27,51 +37,56 @@ public class VendedorBO implements IVendedorBO{
         this.vendedorDAO=new VendedorDAO(mongo.conexion());
     }
     @Override
-    public Vendedor registrarVendedor(Vendedor vendedor) throws NegocioException {
-        validarVendedorNoNulo(vendedor);
-        validarCURP(vendedor.getCurp());
-        validarCURPUnico(vendedor.getCurp());
+    public VendedorDTO registrarVendedor(VendedorDTO dto) throws NegocioException {
+        validarVendedorNoNulo(dto);
+        validarCURP(dto.getCurp());
+        validarCURPUnico(dto.getCurp());
 
-        return vendedorDAO.insertarVendedor(vendedor);
+        Vendedor entidad = aEntidad(dto);
+        Vendedor resultado = vendedorDAO.insertarVendedor(entidad);
+        return aDTO(resultado);
     }
 
     @Override
-    public List<Vendedor> obtenerTodosLosVendedores() throws NegocioException {
+    public List<VendedorDTO> obtenerTodosLosVendedores() throws NegocioException {
         List<Vendedor> lista = vendedorDAO.obtenerTodos();
         if (lista.isEmpty()) {
             throw new NegocioException("No hay vendedores registrados.");
         }
-        return lista;
+        return lista.stream().map(this::aDTO).collect(Collectors.toList());
     }
 
     @Override
-    public Vendedor obtenerVendedorPorId(ObjectId id) throws NegocioException {
+    public VendedorDTO obtenerVendedorPorId(ObjectId id) throws NegocioException {
         Vendedor vendedor = vendedorDAO.buscarPorId(id);
         if (vendedor == null) {
             throw new NegocioException("No se encontró el vendedor con el ID proporcionado.");
         }
-        return vendedor;
+        return aDTO(vendedor);
     }
 
     @Override
-    public Vendedor actualizarVendedor(Vendedor vendedor) throws NegocioException {
-        validarVendedorNoNulo(vendedor);
-        validarIdPresente(vendedor);
+    public VendedorDTO actualizarVendedor(VendedorDTO dto) throws NegocioException {
+        validarVendedorNoNulo(dto);
+        if (dto.getId()== null) {
+            throw new NegocioException("El ID del vendedor es obligatorio para la actualización.");
+        }
 
-        return vendedorDAO.actualizarVendedor(vendedor);
+        Vendedor actualizado = vendedorDAO.actualizarVendedor(aEntidad(dto));
+        return aDTO(actualizado);
     }
 
     @Override
-    public Vendedor eliminarVendedor(ObjectId id) throws NegocioException {
+    public VendedorDTO eliminarVendedor(ObjectId id) throws NegocioException {
         Vendedor eliminado = vendedorDAO.eliminarVendedor(id);
         if (eliminado == null) {
             throw new NegocioException("No se pudo eliminar el vendedor. Puede que no exista.");
         }
-        return eliminado;
+        return aDTO(eliminado);
     }
 
-   
-    private void validarVendedorNoNulo(Vendedor vendedor) throws NegocioException {
+    // ==== Validaciones ====
+    private void validarVendedorNoNulo(VendedorDTO vendedor) throws NegocioException {
         if (vendedor == null) {
             throw new NegocioException("El vendedor no puede ser nulo.");
         }
@@ -90,9 +105,91 @@ public class VendedorBO implements IVendedorBO{
         }
     }
 
-    private void validarIdPresente(Vendedor vendedor) throws NegocioException {
-        if (vendedor.getId() == null) {
-            throw new NegocioException("El ID del vendedor es obligatorio para la actualización.");
-        }
+    private Vendedor aEntidad(VendedorDTO dto) {
+        return new Vendedor(
+            dto.getCurp(),
+            aEntidad(dto.getDatosFiscales()),
+            aEntidad(dto.getNombreCompleto()),
+            dto.getFechaNacimiento(),
+            dto.getEstadoCivil(),
+            aEntidad(dto.getDomicilio()),
+            aEntidad(dto.getSeguro()),
+            dto.getFechaRegistro()
+        );
+    }
+    private VendedorDTO aDTO(Vendedor v) {
+        return new VendedorDTO(
+            v.getCurp(),
+            aDTO(v.getNombreCompleto()),
+            v.getFechaNacimiento(),
+                v.getEstadoCivil(),
+                aDTO(v.getDomicilio()),
+            aDTO(v.getDatosFiscales()),
+            aDTO(v.getSeguro()),
+            v.getFechaRegistro(),
+                v.isActivo()
+        );
+    }
+    private NombreCompleto aEntidad(NombreCompletoDTO nombre){
+        return new NombreCompleto(
+                nombre.getNombres(), 
+                nombre.getApellidoPaterno(),
+                nombre.getApellidoMaterno()
+        );
+    }
+    private NombreCompletoDTO aDTO(NombreCompleto nombre){
+        return new NombreCompletoDTO(
+                nombre.getNombres(), 
+                nombre.getApellidoPaterno(),
+                nombre.getApellidoMaterno()
+        );
+    }
+    private DatosFiscales aEntidad(DatosFiscalesDTO dto) {
+        return new DatosFiscales(
+            dto.getCorreo(),
+            dto.getRfc(),
+            aEntidad(dto.getDomicilioFiscal())
+            
+        );
+    }
+
+    private DatosFiscalesDTO aDTO(DatosFiscales entidad) {
+        return new DatosFiscalesDTO(
+            entidad.getRfc(),
+            aDTO(entidad.getDomicilioFiscal()),
+            entidad.getCorreo()
+        );
+    }
+
+    private Domicilio aEntidad(DomicilioDTO dto) {
+        return new Domicilio(
+                dto.getCalle(),
+                dto.getDelegacionMunicipio(),
+                dto.getCiudadLocalidad(),
+                dto.getCodigoPostal()
+        );
+    }
+
+    private DomicilioDTO aDTO(Domicilio entidad) {
+        return new DomicilioDTO(
+            entidad.getCalle(),
+            entidad.getDelegacionMunicipio(),
+            entidad.getCiudadLocalidad(),
+            entidad.getCodigoPostal()
+        );
+    }
+
+    private Seguro aEntidad(SeguroDTO dto) {
+        return new Seguro(
+            dto.getNumeroSeguro(),
+            dto.getTipo()
+        );
+    }
+
+    private SeguroDTO aDTO(Seguro entidad) {
+        return new SeguroDTO(
+            entidad.getNumeroSeguro(),
+            entidad.getTipo()
+        );
     }
 }

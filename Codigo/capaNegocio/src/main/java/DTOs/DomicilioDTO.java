@@ -2,25 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Entidades;
-
-import org.bson.Document;
+package DTOs;
 
 /**
  *
  * @author gaspa
  */
-public class DomicilioFiscal {
+public class DomicilioDTO {
     private String calle;
     private String delegacionMunicipio;
     private String ciudadLocalidad;
     private String codigoPostal;
-    
-    
-    public DomicilioFiscal() {
+
+    public DomicilioDTO() {
     }
 
-    public DomicilioFiscal(String calle, String delegacionMunicipio, String ciudadLocalidad, String codigoPostal) {
+    public DomicilioDTO(String calle, String delegacionMunicipio, String ciudadLocalidad, String codigoPostal) {
         this.calle = calle;
         this.delegacionMunicipio = delegacionMunicipio;
         this.ciudadLocalidad = ciudadLocalidad;
@@ -38,7 +35,7 @@ public class DomicilioFiscal {
     public String getDelegacionMunicipio() {
         return delegacionMunicipio;
     }
-    
+
     public void setDelegacionMunicipio(String delegacionMunicipio) {
         this.delegacionMunicipio = delegacionMunicipio;
     }
@@ -58,10 +55,5 @@ public class DomicilioFiscal {
     public void setCodigoPostal(String codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
-
-
-    @Override
-    public String toString() {
-        return "DomicilioFiscal{" + "calle=" + calle + ", delegacionMunicipio=" + delegacionMunicipio + ", ciudadLocalidad=" + ciudadLocalidad + ", codigoPostal=" + codigoPostal + ", correo=" + '}';
-    }
+    
 }

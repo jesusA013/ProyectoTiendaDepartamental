@@ -4,6 +4,7 @@
  */
 package ModuloAdministracion.GestionVendedores;
 
+import DTOs.VendedorDTO;
 import Entidades.Vendedor;
 import Excepciones.NegocioException;
 import Interfaces.IVendedorBO;
@@ -54,10 +55,10 @@ public class PanelListadoVendedores extends javax.swing.JPanel {
     }
     private void cargarVendedores() {
         try {
-            List<Vendedor> vendedores = vendedorBO.obtenerTodosLosVendedores();
+            List<VendedorDTO> vendedores = vendedorBO.obtenerTodosLosVendedores();
             System.out.println("Total de vendedores: " + vendedores.size());
 
-            for (Vendedor vendedor : vendedores) {
+            for (VendedorDTO vendedor : vendedores) {
                 JPanel fila = crearFilaVendedor(vendedor);
                 panelListado.add(fila);
             }
@@ -69,7 +70,7 @@ public class PanelListadoVendedores extends javax.swing.JPanel {
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    private JPanel crearFilaVendedor(Vendedor vendedor) {
+    private JPanel crearFilaVendedor(VendedorDTO vendedor) {
         JPanel fila = new JPanel(new FlowLayout(FlowLayout.LEFT));
         fila.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
         fila.setBackground(Color.WHITE);
@@ -81,25 +82,40 @@ public class PanelListadoVendedores extends javax.swing.JPanel {
         JLabel lblNombre = new JLabel("Nombre: " + nombre);
         JLabel lblCURP = new JLabel("CURP: " + vendedor.getCurp());
 
+        JButton btnEditar = new JButton("Editar");
+        btnEditar.addActionListener(e -> editarVendedor(vendedor));
+
+        JButton btnEliminar = new JButton("Eliminar");
+        btnEliminar.addActionListener(e -> {
+            try {
+                eliminarVendedor(vendedor);
+            } catch (NegocioException ex) {
+                JOptionPane.showMessageDialog(this, "Error al eliminar: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
         fila.add(lblNombre);
-        fila.add(Box.createHorizontalStrut(20)); // Espaciado entre columnas
+        fila.add(Box.createHorizontalStrut(20));
         fila.add(lblCURP);
+        fila.add(Box.createHorizontalStrut(20));
+        fila.add(btnEditar);
+        fila.add(btnEliminar);
 
         return fila;
     }
-    private void editarVendedor(Vendedor vendedor) {
+    private void editarVendedor(VendedorDTO vendedor) {
         JOptionPane.showMessageDialog(this, "Editar: " + vendedor.getCurp());
         // Aquí puedes abrir un formulario de edición
     }
 
-    private void eliminarVendedor(Vendedor vendedor) throws NegocioException {
+    private void eliminarVendedor(VendedorDTO vendedor) throws NegocioException {
         int confirm = JOptionPane.showConfirmDialog(this,
                 "¿Seguro que deseas eliminar a " + vendedor.getCurp() + "?",
                 "Confirmar eliminación",
                 JOptionPane.YES_NO_OPTION);
 
         if (confirm == JOptionPane.YES_OPTION) {
-            Vendedor eliminado = vendedorBO.eliminarVendedor(vendedor.getId());
+            VendedorDTO eliminado = vendedorBO.eliminarVendedor(vendedor.getId());
             if (eliminado!=null) {
                 JOptionPane.showMessageDialog(this, "Vendedor eliminado correctamente.");
                 cargarVendedores(); // Recarga la lista
