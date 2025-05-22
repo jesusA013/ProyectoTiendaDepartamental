@@ -1,31 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Inicio;
 
 import BOs.UsuarioBO;
+import BOs.VendedorBO;
 import DTOs.UsuarioDTO;
+import DTOs.VendedorDTO;
 import Excepciones.NegocioException;
 import Interfaces.IUsuarioBO;
+import Interfaces.IVendedorBO;
 import control.ControlNavegacion;
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 import org.bson.types.ObjectId;
 
 public class InicioSesion extends JFrame {
     
     private static InicioSesion instancia;
     
-    private JTextField txtId;
-    private JPasswordField txtContrasena;
-    private JButton btnIngresar, btnCancelar;
-    private String tipo, nombre;
+    private final JTextField txtId;
+    private final JPasswordField txtContrasena;
+    private final JButton btnIngresar;
+    private final JButton btnCancelar;
+    private String tipo, nombreUsuario, idCuenta;
     private ObjectId idUsuario;
-    private IUsuarioBO usuarioBO;
+    private final IUsuarioBO usuarioBO;
+//    private final IVendedorBO vendedorBO;
 
     public InicioSesion() {
         usuarioBO = new UsuarioBO();
+//        vendedorBO = new VendedorBO();
         // Configuración básica de la ventana
         setTitle("Inicio de Sesión");
         setSize(800, 600);
@@ -122,6 +125,16 @@ public class InicioSesion extends JFrame {
         this.tipo = tipo;
     }
     
+//    public ObjectId getVendedor() throws NegocioException{
+//        List<VendedorDTO> listaVendedores = vendedorBO.obtenerTodosLosVendedores();
+//        for (VendedorDTO listaVendedore : listaVendedores) {
+//            if(listaVendedore.getUsuario().getId()==idUsuario){
+//                return listaVendedore.getId();
+//            }
+//        }
+//        throw new NegocioException("No se encontraron vendedores");
+//    }
+    
     public void iniciarSesion() {
         String id = txtId.getText();
         String contrasena = new String(txtContrasena.getPassword());
@@ -136,17 +149,16 @@ public class InicioSesion extends JFrame {
                 switch (tipo) {
                     case "Vendedor":
                         setIdUsuario(usuario.getId());
-                        setNombreUsuario(usuario.getNombreUsuario());
                         ControlNavegacion.getInstance().irACarritoCompra();
                         break;
                     case "Administrador":
                         setIdUsuario(usuario.getId());
-                        setNombreUsuario(usuario.getNombreUsuario());
+
                         ControlNavegacion.getInstance().mostrarMenuAdministrador();
                         break;
                     case "Almacen":
                         setIdUsuario(usuario.getId());
-                        setNombreUsuario(usuario.getNombreUsuario());
+
                         ControlNavegacion.getInstance().mostrarMenuAlmacen();
                         break;
                     default:
@@ -184,12 +196,20 @@ public class InicioSesion extends JFrame {
         this.idUsuario = id;
     }
 
-    public String getNombreUsuario() {
-        return nombre;
+    public String getIdCuenta() {
+        return idCuenta;
     }
 
-    public void setNombreUsuario(String nombre) {
-        this.nombre = nombre;
+    public void setIdCuenta(String idCuenta) {
+        this.idCuenta = idCuenta;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
     
     public static InicioSesion getInstance() {
