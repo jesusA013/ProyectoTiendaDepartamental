@@ -70,7 +70,23 @@ public class MovimientoBO implements IMovimientoBO {
     }
 
     @Override
-    public List<MovimientoTablaDTO> obtenerListaMovimientos() throws NegocioException {
+    public List<MovimientoDTO> obtenerListaMovimientos() throws NegocioException {
+        try {
+            List<Movimiento> listaMovimientos = this.movimientoDAO.listaMovimientos();
+
+            List<MovimientoDTO> dtos = new ArrayList<>();
+            for (Movimiento movimiento : listaMovimientos) {
+                dtos.add(this.obtenerMovimientoPorId(movimiento.getId()));
+            }
+
+            return dtos;
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error " + ex.getMessage());
+        }
+    }
+    
+    @Override
+    public List<MovimientoTablaDTO> obtenerTablaMovimientos() throws NegocioException {
         try {
             List<Movimiento> listaMovimientos = this.movimientoDAO.listaMovimientos();
 

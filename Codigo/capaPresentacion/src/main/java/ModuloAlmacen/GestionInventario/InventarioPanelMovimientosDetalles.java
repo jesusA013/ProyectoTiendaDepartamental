@@ -60,7 +60,7 @@ public class InventarioPanelMovimientosDetalles extends javax.swing.JPanel {
         this.lblID.setText(String.valueOf(this.movimientoDTO.getId()));
         this.lblFecha.setText(String.valueOf(this.movimientoDTO.getFecha()));
         this.lblCuenta.setText(this.movimientoDTO.getIdCuenta());
-        this.lblResponsable.setText(this.movimientoDTO.getNombreProducto());
+        this.lblResponsable.setText(this.movimientoDTO.getUsuarioResponsable());
         this.lblProducto.setText(this.movimientoDTO.getNombreProducto());
         this.lblTipoOperacion.setText(this.movimientoDTO.getTipoOperacion());
         this.lblCantidad.setText(String.valueOf(this.movimientoDTO.getCantidad()));
@@ -68,7 +68,7 @@ public class InventarioPanelMovimientosDetalles extends javax.swing.JPanel {
     }
 
     public void volver() {
-        InventarioPanelListado panelListado = new InventarioPanelListado(pantalla, panelCambiante, movimientoBO, productoBO);
+        InventarioPanelMovimientos panelListado = new InventarioPanelMovimientos(pantalla, panelCambiante, movimientoBO, productoBO);
         panelCambiante.setLayout(new BorderLayout());
         panelCambiante.removeAll();
         panelCambiante.add(panelListado, BorderLayout.CENTER);
@@ -142,7 +142,7 @@ public class InventarioPanelMovimientosDetalles extends javax.swing.JPanel {
         lblID.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblID.setText("id");
-        jPanel1.add(lblID, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 290, -1));
+        jPanel1.add(lblID, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 390, -1));
 
         lblFecha.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblFecha.setForeground(new java.awt.Color(153, 153, 153));

@@ -1,18 +1,17 @@
 package ModuloAlmacen.GestionInventario;
 
 import DTOs.MovimientoTablaDTO;
-import DTOs.ProductoTablaDTO;
 import Excepciones.NegocioException;
 import Interfaces.IMovimientoBO;
 import Interfaces.IProductoBO;
 import Utilidades.JButtonCellEditor;
 import Utilidades.JButtonRenderer;
-import control.ControlNavegacion;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -28,6 +27,7 @@ public class InventarioPanelMovimientos extends javax.swing.JPanel {
     private final JFrame pantalla;
     private final IMovimientoBO movimientoBO;
     private final IProductoBO productoBO;
+    private final ReportePDFMovimientos reporte = new ReportePDFMovimientos();
 
     /**
      * Creates new form PanelListadoProductos
@@ -104,7 +104,7 @@ public class InventarioPanelMovimientos extends javax.swing.JPanel {
 
     private void buscarTabla() {
         try {
-            List<MovimientoTablaDTO> movimientosTablaLista = this.movimientoBO.obtenerListaMovimientos();
+            List<MovimientoTablaDTO> movimientosTablaLista = this.movimientoBO.obtenerTablaMovimientos();
             DefaultTableModel modelo = (DefaultTableModel) this.tablaMovimientos.getModel();
             modelo.setRowCount(0);
             this.agregarRegistrosTabla(movimientosTablaLista);
@@ -144,6 +144,7 @@ public class InventarioPanelMovimientos extends javax.swing.JPanel {
         tablaMovimientos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(1000, 494));
         setPreferredSize(new java.awt.Dimension(1000, 494));
@@ -188,6 +189,17 @@ public class InventarioPanelMovimientos extends javax.swing.JPanel {
         });
         panelFondo.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 210, 50));
 
+        btnReporte.setBackground(new java.awt.Color(103, 80, 164));
+        btnReporte.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnReporte.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporte.setText("Generar Reporte");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteActionPerformed(evt);
+            }
+        });
+        panelFondo.add(btnReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 380, 230, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -209,8 +221,20 @@ public class InventarioPanelMovimientos extends javax.swing.JPanel {
         panelCambiante.repaint();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        try {
+            reporte.generarReporteMovimientos(movimientoBO.obtenerListaMovimientos(), "reporte_movimientos.pdf");
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(this, "Error al generar el reporte: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnReporteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMovimientos;
+    private javax.swing.JButton btnMovimientos1;
+    private javax.swing.JButton btnMovimientos2;
+    private javax.swing.JButton btnReporte;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

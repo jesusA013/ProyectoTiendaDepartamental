@@ -74,6 +74,7 @@ public class InventarioPanelAumentar extends javax.swing.JPanel {
         movimientoDTO.setTipoOperacion("Ingreso");
         movimientoDTO.setCantidad(cantidad - productoDTO.getStock());
         movimientoDTO.setMotivo(txtMotivo.getText());
+        System.out.println(movimientoDTO);
         productoDTO.setStock(cantidad);
         
         try {

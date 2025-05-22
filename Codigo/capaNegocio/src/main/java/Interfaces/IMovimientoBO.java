@@ -22,6 +22,8 @@ public interface IMovimientoBO {
     
     MovimientoDTO obtenerMovimientoPorId(ObjectId idMovimiento) throws NegocioException;
     
-    List<MovimientoTablaDTO> obtenerListaMovimientos() throws NegocioException;
+    List<MovimientoDTO> obtenerListaMovimientos() throws NegocioException;
+    
+    List<MovimientoTablaDTO> obtenerTablaMovimientos() throws NegocioException;
     
 }

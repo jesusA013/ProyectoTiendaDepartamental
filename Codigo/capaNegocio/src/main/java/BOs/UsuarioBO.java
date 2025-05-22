@@ -34,11 +34,12 @@ public class UsuarioBO implements IUsuarioBO {
             if (usuario == null || !usuario.getContrasena().equals(contrasena)) {
                 throw new NegocioException("Credenciales inválidas");
             }
-            return new UsuarioDTO(usuario.getIdCuenta(), usuario.getContrasena(), usuario.getTipo());
+            return new UsuarioDTO(usuario.getIdCuenta(), usuario.getNombreUsuario(), usuario.getContrasena(), usuario.getTipo());
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al acceder a los datos: " + e.getMessage());
         }
     }
+
     @Override
     public UsuarioDTO registrarUsuario(UsuarioDTO dto) throws NegocioException {
 
@@ -47,13 +48,14 @@ public class UsuarioBO implements IUsuarioBO {
             Usuario resultado = usuarioDAO.insertarUsuario(entidad);
             return aDTO(resultado);
         } catch (PersistenciaException ex) {
-            throw new NegocioException("Error "+ex.getMessage());
+            throw new NegocioException("Error " + ex.getMessage());
         }
     }
+
     private Usuario aEntidad(UsuarioDTO dto) {
         return new Usuario(
-            
                 dto.getIdCuenta(),
+                dto.getNombreUsuario(),
                 dto.getContrasena(),
                 dto.getRol()
         );
@@ -62,9 +64,10 @@ public class UsuarioBO implements IUsuarioBO {
     private UsuarioDTO aDTO(Usuario entidad) {
         return new UsuarioDTO(
                 entidad.getIdCuenta(),
+                entidad.getNombreUsuario(),
                 entidad.getContrasena(),
                 entidad.getTipo()
         );
     }
-    
+
 }

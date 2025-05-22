@@ -74,6 +74,7 @@ public class InventarioPanelDisminuir extends javax.swing.JPanel {
         movimientoDTO.setTipoOperacion("Perdida");
         movimientoDTO.setCantidad(productoDTO.getStock() - cantidad);
         movimientoDTO.setMotivo(txtMotivo.getText());
+        System.out.println(movimientoDTO);
         productoDTO.setStock(cantidad);
         
         try {

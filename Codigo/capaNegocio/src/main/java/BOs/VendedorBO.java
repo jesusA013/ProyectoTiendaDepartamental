@@ -141,6 +141,7 @@ public class VendedorBO implements IVendedorBO{
         return new Usuario(
                 usuario.getId(),
                 usuario.getIdCuenta(),
+                usuario.getNombreUsuario(),
                 usuario.getContrasena(),
                 usuario.getRol()
         );
@@ -149,6 +150,7 @@ public class VendedorBO implements IVendedorBO{
         return new UsuarioDTO(
                 usuario.getId(),
                 usuario.getIdCuenta(),
+                usuario.getNombreUsuario(),
                 usuario.getContrasena(),
                 usuario.getTipo()
         );
