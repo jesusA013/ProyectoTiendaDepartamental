@@ -20,6 +20,7 @@ public class FacturaDatos extends javax.swing.JFrame {
     private static FacturaDatos instancia;
     private Map<String, Map<String, Map<String, List<String>>>> datosUbicacion;
     private ObjectId id;
+    private int pantallAnterior;
 
     /**
      * Creates new form FacturaDatos
@@ -120,6 +121,9 @@ public class FacturaDatos extends javax.swing.JFrame {
     public void setId(ObjectId id) {
         this.id = id;
         lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
+    }
+    public void setPantallaAnterior(int pantallAnterior){
+        this.pantallAnterior = pantallAnterior;
     }
 
     private void facturar() throws RegistroException, Exception {
@@ -379,9 +383,14 @@ public class FacturaDatos extends javax.swing.JFrame {
     private void btnCanelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCanelarActionPerformed
         int confirm = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea cancelar?", "Confirmar", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
-            CarritoCompra.getInstance(controlVenta).limpiarCarrito();
+            if(pantallAnterior==2){
+               CarritoCompra.getInstance(controlVenta).limpiarCarrito();
             setVisible(false);
-            control.ControlNavegacion.getInstance().irAMenuPrincipal();
+            control.ControlNavegacion.getInstance().irAMenuPrincipal(); 
+            }else{
+                ControlNavegacion.getInstance().mostrarMenuAdministrador();
+            }
+            
         }
     }//GEN-LAST:event_btnCanelarActionPerformed
 

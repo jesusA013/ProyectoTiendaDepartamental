@@ -160,7 +160,7 @@ public class VentaFinalizada extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturarActionPerformed
-        ControlNavegacion.getInstance().irAFacturaDatos(id);
+        ControlNavegacion.getInstance().irAFacturaDatos(id,2);
     }//GEN-LAST:event_btnFacturarActionPerformed
 
 

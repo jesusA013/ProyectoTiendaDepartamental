@@ -6,11 +6,14 @@ package ModuloAdministracion.GestionProductos;
 
 import BOs.ProductoBO;
 import BOs.VendedorBO;
+import BOs.VentasBO;
 import DAOs.Conexion;
 import Interfaces.IProductoBO;
 import Interfaces.IVendedorBO;
+import Interfaces.IVentasBO;
 import Interfaz.IConexion;
 import ModuloAdministracion.GestionVendedores.PanelListadoVendedores;
+import ModuloVenta.PanelListadoVentas;
 import control.ControlNavegacion;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
@@ -22,6 +25,7 @@ import javax.swing.JPanel;
 public class PanelAdministradorMenu extends javax.swing.JPanel {
     private final IProductoBO productoBO;
     private final IVendedorBO vendedoresBO;
+    private final IVentasBO ventasBO;
     private final IConexion mongo;
     private final JPanel panelCambiante;
     /**
@@ -32,6 +36,7 @@ public class PanelAdministradorMenu extends javax.swing.JPanel {
         this.mongo = new Conexion();
         this.productoBO = new ProductoBO();
         this.vendedoresBO = new VendedorBO();
+        this.ventasBO = new VentasBO();
         this.panelCambiante = panelCambiante;
     }
 
@@ -95,7 +100,12 @@ public class PanelAdministradorMenu extends javax.swing.JPanel {
         promocionesBTN.setBackground(new java.awt.Color(103, 80, 164));
         promocionesBTN.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         promocionesBTN.setForeground(new java.awt.Color(255, 255, 255));
-        promocionesBTN.setText("Promociones y paquetes");
+        promocionesBTN.setText("Gestion Ventas");
+        promocionesBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                promocionesBTNActionPerformed(evt);
+            }
+        });
 
         btnCerrarSesion.setBackground(new java.awt.Color(243, 183, 183));
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -189,6 +199,15 @@ public class PanelAdministradorMenu extends javax.swing.JPanel {
         panelCambiante.revalidate();
         panelCambiante.repaint();
     }//GEN-LAST:event_gestionVendedoresBTNActionPerformed
+
+    private void promocionesBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_promocionesBTNActionPerformed
+        PanelListadoVentas panelVendedores = new PanelListadoVentas(panelCambiante,ventasBO,vendedoresBO);
+        panelCambiante.setLayout(new BorderLayout());
+        panelCambiante.removeAll();
+        panelCambiante.add(panelVendedores,BorderLayout.CENTER);
+        panelCambiante.revalidate();
+        panelCambiante.repaint();
+    }//GEN-LAST:event_promocionesBTNActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

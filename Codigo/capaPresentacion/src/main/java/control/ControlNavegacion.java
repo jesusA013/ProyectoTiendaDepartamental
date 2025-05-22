@@ -127,9 +127,10 @@ public class ControlNavegacion implements INavegador{
         mostrarPantalla(carrito);
     }
 
-    public void irAFacturaDatos(ObjectId id) {
+    public void irAFacturaDatos(ObjectId id,int pantallaAnterior) {
         FacturaDatos pantallaFactura = FacturaDatos.getInstance(manejadorVenta);
         pantallaFactura.setId(id);
+        pantallaFactura.setPantallaAnterior(pantallaAnterior); 
         mostrarPantalla(pantallaFactura);
     }
 
