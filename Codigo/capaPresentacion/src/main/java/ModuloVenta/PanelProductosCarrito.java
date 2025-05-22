@@ -118,6 +118,7 @@ public class PanelProductosCarrito extends JPanel {
         lblPrecio.setText("Precio");
         add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 100, -1));
 
+        btnAumentarProducto.setBackground(new java.awt.Color(158, 255, 139));
         btnAumentarProducto.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btnAumentarProducto.setText("+");
         btnAumentarProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -127,6 +128,7 @@ public class PanelProductosCarrito extends JPanel {
         });
         add(btnAumentarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 50, 30));
 
+        btnDismunuirProducto.setBackground(new java.awt.Color(243, 183, 183));
         btnDismunuirProducto.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btnDismunuirProducto.setText("-");
         btnDismunuirProducto.addActionListener(new java.awt.event.ActionListener() {

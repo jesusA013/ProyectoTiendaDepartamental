@@ -1,5 +1,10 @@
 package ModuloAlmacen;
 
+import BOs.MovimientoBO;
+import BOs.ProductoBO;
+import Interfaces.IMovimientoBO;
+import Interfaces.IProductoBO;
+import ModuloAlmacen.GestionInventario.InventarioPantalla;
 import control.ControlNavegacion;
 
 /**
@@ -10,12 +15,16 @@ import control.ControlNavegacion;
  * @author Ángel Ruíz García - 00000248171
  */
 public class MenuAlmacen extends javax.swing.JFrame {
-
+    
+    private final IMovimientoBO movimientoNegocio = new MovimientoBO();
+    private final IProductoBO productoNegocio = new ProductoBO();
+    
     /**
      * Creates new form me
      */
     public MenuAlmacen() {
         initComponents();
+        
     }
 
     /**
@@ -142,7 +151,13 @@ public class MenuAlmacen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
-        // TODO add your handling code here:
+        if (this != null) {
+            this.setVisible(false);
+        }
+        
+        InventarioPantalla pantallaInventario = new InventarioPantalla(movimientoNegocio, productoNegocio);
+        pantallaInventario.setLocationRelativeTo(null);
+        pantallaInventario.setVisible(true);
     }//GEN-LAST:event_btnInventarioActionPerformed
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed

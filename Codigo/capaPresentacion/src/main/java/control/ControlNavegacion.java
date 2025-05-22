@@ -4,6 +4,8 @@ package control;
  *
  * @author Jesus
  */
+import BOs.MovimientoBO;
+import BOs.ProductoBO;
 import Excepciones.ProveedorException;
 import ModuloVenta.FacturaDatos;
 import ModuloVenta.SeleccionMetodoPago;
@@ -51,6 +53,7 @@ public class ControlNavegacion implements INavegador{
     private RegistrarVendedor pantallaRegistraVendedor;
     //productos
     private AdministradorMenu pantallaAdministradorMenu;
+    // Inventario
 
     /**
      * 
@@ -228,5 +231,5 @@ public class ControlNavegacion implements INavegador{
     public void mostrarGenerarInoforme(){}
     public void mostrarRegistroVendedor(){}
     
-
+    // Inventario
 }

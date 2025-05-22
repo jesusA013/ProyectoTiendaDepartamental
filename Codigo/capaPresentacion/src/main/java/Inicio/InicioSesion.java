@@ -20,7 +20,7 @@ public class InicioSesion extends JFrame {
     private JTextField txtId;
     private JPasswordField txtContrasena;
     private JButton btnIngresar, btnCancelar;
-    private String tipo, nombre;
+    private String tipo, nombreUsuario, idCuenta;
     private ObjectId idUsuario;
     private IUsuarioBO usuarioBO;
 
@@ -136,16 +136,19 @@ public class InicioSesion extends JFrame {
                 switch (tipo) {
                     case "Vendedor":
                         setIdUsuario(usuario.getId());
+                        setIdCuenta(usuario.getIdCuenta());
                         setNombreUsuario(usuario.getNombreUsuario());
                         ControlNavegacion.getInstance().irACarritoCompra();
                         break;
                     case "Administrador":
                         setIdUsuario(usuario.getId());
+                        setIdCuenta(usuario.getIdCuenta());
                         setNombreUsuario(usuario.getNombreUsuario());
                         ControlNavegacion.getInstance().mostrarMenuAdministrador();
                         break;
                     case "Almacen":
                         setIdUsuario(usuario.getId());
+                        setIdCuenta(usuario.getIdCuenta());
                         setNombreUsuario(usuario.getNombreUsuario());
                         ControlNavegacion.getInstance().mostrarMenuAlmacen();
                         break;
@@ -184,12 +187,20 @@ public class InicioSesion extends JFrame {
         this.idUsuario = id;
     }
 
-    public String getNombreUsuario() {
-        return nombre;
+    public String getIdCuenta() {
+        return idCuenta;
     }
 
-    public void setNombreUsuario(String nombre) {
-        this.nombre = nombre;
+    public void setIdCuenta(String idCuenta) {
+        this.idCuenta = idCuenta;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
     
     public static InicioSesion getInstance() {
