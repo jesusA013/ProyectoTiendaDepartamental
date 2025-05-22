@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Inicio;
 
 import BOs.UsuarioBO;
@@ -21,13 +17,14 @@ public class InicioSesion extends JFrame {
     
     private static InicioSesion instancia;
     
-    private JTextField txtId;
-    private JPasswordField txtContrasena;
-    private JButton btnIngresar, btnCancelar;
+    private final JTextField txtId;
+    private final JPasswordField txtContrasena;
+    private final JButton btnIngresar;
+    private final JButton btnCancelar;
     private String tipo, nombreUsuario, idCuenta;
     private ObjectId idUsuario;
-    private IUsuarioBO usuarioBO;
-    private IVendedorBO vendedorBO;
+    private final IUsuarioBO usuarioBO;
+    private final IVendedorBO vendedorBO;
 
     public InicioSesion() {
         usuarioBO = new UsuarioBO();
