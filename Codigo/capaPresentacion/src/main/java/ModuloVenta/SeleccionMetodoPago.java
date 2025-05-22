@@ -42,7 +42,7 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
     private ObjectId pagarTarjeta() throws Exception {
         try {
             return controlVenta.registrarVentaTarjeta(this, carritoGlobal, 
-                    InicioSesion.getInstance().getId(), 
+                    InicioSesion.getInstance().getIdUsuario(), 
                     PanelMetodoTarjeta.getInstance().getTxtDigitosTarjeta(),
                     PanelMetodoTarjeta.getInstance().getTxtFechaExpiracion(),
                     PanelMetodoTarjeta.getInstance().getTxtCVC());
@@ -55,7 +55,7 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
     private ObjectId pagarEfectivo() throws Exception {
         try {
             return controlVenta.registrarVentaEfectivo(this, carritoGlobal, 
-                    InicioSesion.getInstance().getId(),
+                    InicioSesion.getInstance().getIdUsuario(),
                     PanelMetodoEfectivo.getInstance().getTxtEfectivo(),
                     PanelMetodoEfectivo.getInstance().getTxtCambio());
         } catch (RegistroException ex) {
