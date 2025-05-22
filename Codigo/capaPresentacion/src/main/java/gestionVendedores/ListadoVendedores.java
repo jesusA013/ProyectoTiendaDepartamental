@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gestionVendedores;
-
+import control.ControlNavegacion;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -170,10 +170,13 @@ public class ListadoVendedores extends javax.swing.JFrame {
 
     private void BotonAgregarVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarVendedorActionPerformed
         // TODO add your handling code here:
+        ControlNavegacion.getInstance().mostrarRegistroVendedor();
+        
     }//GEN-LAST:event_BotonAgregarVendedorActionPerformed
 
     private void BotonGenerarInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGenerarInformeActionPerformed
         // TODO add your handling code here:
+        ControlNavegacion.getInstance().mostrarGenerarInforme();
     }//GEN-LAST:event_BotonGenerarInformeActionPerformed
 
     /**
