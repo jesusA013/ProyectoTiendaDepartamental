@@ -5,22 +5,26 @@
 package Entidades;
 
 import java.util.Date;
+import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author melis
  */
 public class ReporteVendedores {
-    private int idReporte;
-    private int idVendedor;
-   private float promedioVentasDiaria;
+
+    @BsonId
+    private ObjectId idReporte;
+    private ObjectId idVendedor;
+    private float promedioVentasDiaria;
     private float promedioVentaSemanal;
     private float promedioVentaMensual;
     private float promedioVentaTrimestral;
     private Date fechaReporte;
     private String ciudad;
 
-    public ReporteVendedores(int idReporte, int idVendedor, float promedioVentasDiaria, float promedioVentaSemanal, float promedioVentaMensual, float promedioVentaTrimestral, Date fechaReporte) {
+    public ReporteVendedores(ObjectId idReporte, ObjectId idVendedor, float promedioVentasDiaria, float promedioVentaSemanal, float promedioVentaMensual, float promedioVentaTrimestral, Date fechaReporte) {
         this.idReporte = idReporte;
         this.idVendedor = idVendedor;
         this.promedioVentasDiaria = promedioVentasDiaria;
@@ -33,19 +37,19 @@ public class ReporteVendedores {
     public ReporteVendedores() {
     }
 
-    public int getIdReporte() {
+    public ObjectId getIdReporte() {
         return idReporte;
     }
 
-    public void setIdReporte(int idReporte) {
+    public void setIdReporte(ObjectId idReporte) {
         this.idReporte = idReporte;
     }
 
-    public int getIdVendedor() {
+    public ObjectId getIdVendedor() {
         return idVendedor;
     }
 
-    public void setIdVendedor(int idVendedor) {
+    public void setIdVendedor(ObjectId idVendedor) {
         this.idVendedor = idVendedor;
     }
 
@@ -88,7 +92,5 @@ public class ReporteVendedores {
     public void setFechaReporte(Date fechaReporte) {
         this.fechaReporte = fechaReporte;
     }
-
-
 
 }

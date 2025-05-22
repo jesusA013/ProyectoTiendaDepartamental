@@ -28,7 +28,7 @@ public abstract class VendedorBO implements IVendedorBO {
     private double totalVentas;
     private List<VentasBO> ventas; // lista inicializada
     
-     private final IVendedorDAO vendedorDAO;// se necesita inicializar
+     private  IVendedorDAO vendedorDAO;// se necesita inicializar
     private final IConexion mongo = new Conexion();
 
     public VendedorBO(int id, String nombre, double totalVentas, List<VentasBO> ventas, IVendedorDAO vendedorDAO) {

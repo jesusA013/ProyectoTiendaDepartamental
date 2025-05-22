@@ -5,10 +5,8 @@
 package ModuloAdministracion;
 
 import BOs.ProductoBO;
-import DAOs.Conexion;
 import Excepciones.NegocioException;
 import Interfaces.IProductoBO;
-import Interfaz.IConexion;
 import ModuloAdministracion.GestionProductos.PanelAdministradorMenu;
 import ModuloAdministracion.GestionProductos.PanelListadoProductos;
 import control.ControlNavegacion;
