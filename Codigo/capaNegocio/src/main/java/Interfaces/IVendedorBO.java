@@ -16,17 +16,16 @@ import java.util.List;
  */
 public interface IVendedorBO {
 
-    void registrarVendedor(Vendedor vendedor) throws NegocioException;
+    Vendedor registrarVendedor(Vendedor vendedor) throws NegocioException;
     // Vendedor obtenerVendedorPorId(String id)throws NegocioException;
 
     List<Vendedor> obtenerVendedores() throws NegocioException;
 
     double calcularPromedioVentas(String idVendedor);
 
-    void actualizarVendedor(Vendedor vendedor) throws NegocioException;
-//    void eliminarVendedor(int id);
-
     Vendedor obtenerVendedorPorId(ObjectId id) throws NegocioException;
+
+    Vendedor actualizarVendedor(Vendedor vendedor) throws NegocioException;
 
     Vendedor eliminarVendedor(ObjectId id) throws NegocioException;
 

@@ -4,7 +4,7 @@
  */
 package Entidades;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  *
@@ -17,10 +17,10 @@ public class ReporteVendedores {
     private float promedioVentaSemanal;
     private float promedioVentaMensual;
     private float promedioVentaTrimestral;
-    private LocalDateTime fechaReporte;
+    private Date fechaReporte;
     private String ciudad;
 
-    public ReporteVendedores(int idReporte, int idVendedor, float promedioVentasDiaria, float promedioVentaSemanal, float promedioVentaMensual, float promedioVentaTrimestral, LocalDateTime fechaReporte) {
+    public ReporteVendedores(int idReporte, int idVendedor, float promedioVentasDiaria, float promedioVentaSemanal, float promedioVentaMensual, float promedioVentaTrimestral, Date fechaReporte) {
         this.idReporte = idReporte;
         this.idVendedor = idVendedor;
         this.promedioVentasDiaria = promedioVentasDiaria;
@@ -81,11 +81,11 @@ public class ReporteVendedores {
         this.promedioVentaTrimestral = promedioVentaTrimestral;
     }
 
-    public LocalDateTime getFechaReporte() {
+    public Date getFechaReporte() {
         return fechaReporte;
     }
 
-    public void setFechaReporte(LocalDateTime fechaReporte) {
+    public void setFechaReporte(Date fechaReporte) {
         this.fechaReporte = fechaReporte;
     }
 

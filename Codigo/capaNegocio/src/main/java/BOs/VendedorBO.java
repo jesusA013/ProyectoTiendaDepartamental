@@ -26,18 +26,27 @@ public abstract class VendedorBO implements IVendedorBO {
     private int id;
     private String nombre;
     private double totalVentas;
-    private List<VentasBO> ventas; // clase venta realizada para modulo venta
+    private List<VentasBO> ventas; // lista inicializada
+    
+     private final IVendedorDAO vendedorDAO;// se necesita inicializar
+    private final IConexion mongo = new Conexion();
 
-    public VendedorBO(int id, String nombre, double totalVentas) {
+    public VendedorBO(int id, String nombre, double totalVentas, List<VentasBO> ventas, IVendedorDAO vendedorDAO) {
         this.id = id;
         this.nombre = nombre;
         this.totalVentas = totalVentas;
-        this.vendedorDAO = new VendedorDAO(mongo.conexion());
-
+        this.ventas = new ArrayList<>();// inicializacion de la lista
+        this.vendedorDAO = vendedorDAO;
     }
 
-    public VendedorBO() {
+   
+
+    public VendedorBO(List<VentasBO> ventas) {
+        this.ventas = new ArrayList<>();// evita un nullPointer en caso de usar constructor vacio 
     }
+
+//    public VendedorBO() {
+//    }
     //gestion v
 
     public void agregarVneta(VentasBO venta) {
@@ -52,13 +61,13 @@ public abstract class VendedorBO implements IVendedorBO {
     /////
    
 
-    private final IVendedorDAO vendedorDAO;
-    private final IConexion mongo = new Conexion();
-//    public VendedorBO(){
-//        this.vendedorDAO=new VendedorDAO(mongo.conexion());
-//    }
+//    private final IVendedorDAO vendedorDAO;
+//    private final IConexion mongo = new Conexion();
+    public VendedorBO(){
+        this.vendedorDAO=new VendedorDAO(mongo.conexion());
+    }
 
-    @Override
+    
     public Vendedor registrarVendedor(Vendedor vendedor) throws NegocioException {
         validarVendedorNoNulo(vendedor);
         validarCURP(vendedor.getCurp());

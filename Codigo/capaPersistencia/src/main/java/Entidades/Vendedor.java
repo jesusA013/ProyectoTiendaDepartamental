@@ -12,6 +12,7 @@ import org.bson.types.ObjectId;
  * @author gaspa
  */
 public class Vendedor {
+
     private ObjectId _id;
     private String curp;
     private DatosFiscales datosFiscales;
@@ -22,36 +23,75 @@ public class Vendedor {
     private Seguro seguro;
     private Date fechaRegistro;
     private boolean activo;
-private String ciudad;
-private String municipio;
-private String foto;
-private String rfc;
-    
+    private String ciudad;
+    private String municipio;
+    private String foto;
+    private String rfc;
+    private double totalventas;
+    private int raiting;
+
     public Vendedor() {
     }
+//
+//    public Vendedor(String curp, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
+//        this.curp = curp;
+//        this.nombreCompleto = nombreCompleto;
+//        this.fechaNacimiento = fechaNacimiento;
+//        this.estadoCivil = estadoCivil;
+//        this.domicilio = domicilio;
+//        this.seguro = seguro;
+//        this.fechaRegistro = fechaRegistro;
+//        this.activo = true;
+//    }
 
-    public Vendedor(String curp, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
+//    public Vendedor(ObjectId _id, String curp, DatosFiscales datosFiscales, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro, boolean activo, String ciudad, String municipio, String foto, String rfc, double totalventas, int raiting) {
+//        this._id = _id;
+//        this.curp = curp;
+//        this.datosFiscales = datosFiscales;
+//        this.nombreCompleto = nombreCompleto;
+//        this.fechaNacimiento = fechaNacimiento;
+//        this.estadoCivil = estadoCivil;
+//        this.domicilio = domicilio;
+//        this.seguro = seguro;
+//        this.fechaRegistro = fechaRegistro;
+//        this.activo = activo;
+//        this.ciudad = ciudad;
+//        this.municipio = municipio;
+//        this.foto = foto;
+//        this.rfc = rfc;
+//        this.totalventas = totalventas;
+//        this.raiting = raiting;
+//                this.activo = true;
+//
+//    }
+
+    public Vendedor(String curp, NombreCompleto nombreCompleto, Date fechaNacimiento, Domicilio domicilio, boolean activo, String ciudad, String municipio, String foto, String rfc, double totalventas, int raiting) {
         this.curp = curp;
         this.nombreCompleto = nombreCompleto;
         this.fechaNacimiento = fechaNacimiento;
-        this.estadoCivil = estadoCivil;
         this.domicilio = domicilio;
-        this.seguro = seguro;
-        this.fechaRegistro = fechaRegistro;
-        this.activo = true;
+        this.activo = activo;
+        this.ciudad = ciudad;
+        this.municipio = municipio;
+        this.foto = foto;
+        this.rfc = rfc;
+        this.totalventas = totalventas;
+        this.raiting = raiting;
     }
 
-    public Vendedor(String curp, DatosFiscales datosFiscales, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
-        this.curp = curp;
-        this.datosFiscales = datosFiscales;
-        this.nombreCompleto = nombreCompleto;
-        this.fechaNacimiento = fechaNacimiento;
-        this.estadoCivil = estadoCivil;
-        this.domicilio = domicilio;
-        this.seguro = seguro;
-        this.fechaRegistro = fechaRegistro;
-        this.activo = true;
-    }
+    
+    
+//    public Vendedor(String curp, DatosFiscales datosFiscales, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
+//        this.curp = curp;
+//        this.datosFiscales = datosFiscales;
+//        this.nombreCompleto = nombreCompleto;
+//        this.fechaNacimiento = fechaNacimiento;
+//        this.estadoCivil = estadoCivil;
+//        this.domicilio = domicilio;
+//        this.seguro = seguro;
+//        this.fechaRegistro = fechaRegistro;
+//        this.activo = true;
+//    }
 
     public ObjectId getId() {
         return _id;
@@ -66,6 +106,7 @@ private String rfc;
     }
 
     public void setCurp(String curp) {
+        
         this.curp = curp;
     }
 
@@ -132,12 +173,63 @@ private String rfc;
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-    
+//gv
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public String getRfc() {
+        return rfc;
+    }
+
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
+    }
+
+    public double getTotalventas() {
+        return totalventas;
+    }
+
+    public void setTotalventas(double totalventas) {
+        if (totalventas<0) {
+            throw new IllegalArgumentException("la venta no puede ser negatuva");
+        }
+        this.totalventas = totalventas;
+    }
+
+    public int getRaiting() {
+        return raiting;
+    }
+
+    public void setRaiting(int raiting) {
+        this.raiting = raiting;
+    }
+    //
 
     @Override
     public String toString() {
         return "Vendedor{" + "_id=" + _id + ", curp=" + curp + ", datosFiscales=" + datosFiscales + ", nombreCompleto=" + nombreCompleto + ", fechaNacimiento=" + fechaNacimiento + ", estadoCivil=" + estadoCivil + ", domicilio=" + domicilio + ", seguro=" + seguro + ", fechaRegistro=" + fechaRegistro + ", activo=" + activo + '}';
     }
-    
-    
+
 }

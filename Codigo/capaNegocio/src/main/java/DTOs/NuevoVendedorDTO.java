@@ -4,23 +4,23 @@
  */
 package DTOs;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 /**
  *
  * @author melis
  */
 public class NuevoVendedorDTO {
-     public String nombre;
-    public String rfc;
-    public String domicilio;
-    public String curp;
-    public LocalDate fechaNacimiento;
-    public String ciudad;
-    public String municipio;
-    public String foto;
+     private String nombre;
+    private String rfc;
+    private String domicilio;
+    private String curp;
+    private Date fechaNacimiento;
+    private String ciudad;
+    private String municipio;
+    private String foto;
 
-    public NuevoVendedorDTO(String nombre, String rfc, String domicilio, String curp, LocalDate fechaNacimiento, String ciudad, String municipio, String rutaFoto) {
+    public NuevoVendedorDTO(String nombre, String rfc, String domicilio, String curp, Date fechaNacimiento, String ciudad, String municipio, String foto) {
         this.nombre = nombre;
         this.rfc = rfc;
         this.domicilio = domicilio;
@@ -28,7 +28,7 @@ public class NuevoVendedorDTO {
         this.fechaNacimiento = fechaNacimiento;
         this.ciudad = ciudad;
         this.municipio = municipio;
-        this.foto = rutaFoto;
+        this.foto = foto;
     }
 
     public NuevoVendedorDTO() {
@@ -66,11 +66,11 @@ public class NuevoVendedorDTO {
         this.curp = curp;
     }
 
-    public LocalDate getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -90,12 +90,17 @@ public class NuevoVendedorDTO {
         this.municipio = municipio;
     }
 
-    public String getRutaFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setRutaFoto(String rutaFoto) {
-        this.foto = rutaFoto;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
-   
+
+    @Override
+    public String toString() {
+        return "NuevoVendedorDTO{" + "nombre=" + nombre + ", rfc=" + rfc + ", domicilio=" + domicilio + ", curp=" + curp + ", fechaNacimiento=" + fechaNacimiento + ", ciudad=" + ciudad + ", municipio=" + municipio + ", foto=" + foto + '}';
+    }
+   //metodo para validacoines de datos no vacios
 }
