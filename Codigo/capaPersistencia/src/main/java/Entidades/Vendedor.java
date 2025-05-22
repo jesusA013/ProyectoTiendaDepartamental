@@ -32,38 +32,19 @@ public class Vendedor {
 
     public Vendedor() {
     }
-//
-//    public Vendedor(String curp, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
-//        this.curp = curp;
-//        this.nombreCompleto = nombreCompleto;
-//        this.fechaNacimiento = fechaNacimiento;
-//        this.estadoCivil = estadoCivil;
-//        this.domicilio = domicilio;
-//        this.seguro = seguro;
-//        this.fechaRegistro = fechaRegistro;
-//        this.activo = true;
-//    }
 
-//    public Vendedor(ObjectId _id, String curp, DatosFiscales datosFiscales, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro, boolean activo, String ciudad, String municipio, String foto, String rfc, double totalventas, int raiting) {
-//        this._id = _id;
-//        this.curp = curp;
-//        this.datosFiscales = datosFiscales;
-//        this.nombreCompleto = nombreCompleto;
-//        this.fechaNacimiento = fechaNacimiento;
-//        this.estadoCivil = estadoCivil;
-//        this.domicilio = domicilio;
-//        this.seguro = seguro;
-//        this.fechaRegistro = fechaRegistro;
-//        this.activo = activo;
-//        this.ciudad = ciudad;
-//        this.municipio = municipio;
-//        this.foto = foto;
-//        this.rfc = rfc;
-//        this.totalventas = totalventas;
-//        this.raiting = raiting;
-//                this.activo = true;
-//
-//    }
+    public Vendedor(String curp, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
+        this.curp = curp;
+        this.nombreCompleto = nombreCompleto;
+        this.fechaNacimiento = fechaNacimiento;
+        this.estadoCivil = estadoCivil;
+        this.domicilio = domicilio;
+        this.seguro = seguro;
+        this.fechaRegistro = fechaRegistro;
+        this.activo = true;
+    }
+
+
 
     public Vendedor(String curp, NombreCompleto nombreCompleto, Date fechaNacimiento, Domicilio domicilio, boolean activo, String ciudad, String municipio, String foto, String rfc, double totalventas, int raiting) {
         this.curp = curp;
@@ -81,17 +62,17 @@ public class Vendedor {
 
     
     
-//    public Vendedor(String curp, DatosFiscales datosFiscales, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
-//        this.curp = curp;
-//        this.datosFiscales = datosFiscales;
-//        this.nombreCompleto = nombreCompleto;
-//        this.fechaNacimiento = fechaNacimiento;
-//        this.estadoCivil = estadoCivil;
-//        this.domicilio = domicilio;
-//        this.seguro = seguro;
-//        this.fechaRegistro = fechaRegistro;
-//        this.activo = true;
-//    }
+    public Vendedor(String curp, DatosFiscales datosFiscales, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
+        this.curp = curp;
+        this.datosFiscales = datosFiscales;
+        this.nombreCompleto = nombreCompleto;
+        this.fechaNacimiento = fechaNacimiento;
+        this.estadoCivil = estadoCivil;
+        this.domicilio = domicilio;
+        this.seguro = seguro;
+        this.fechaRegistro = fechaRegistro;
+        this.activo = true;
+    }
 
     public ObjectId getId() {
         return _id;

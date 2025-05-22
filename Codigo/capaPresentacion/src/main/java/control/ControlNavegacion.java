@@ -223,10 +223,18 @@ public class ControlNavegacion implements INavegador{
         mostrarPanel(panelCambiante, proveedorPanelDetalles);
     }
 //GestionVendedores
-    public void mostrarListadoVendedores(){}
-    public void mostrarInformacionVendedor(){}
-    public void mostrarGenerarInoforme(){}
-    public void mostrarRegistroVendedor(){}
+    public void mostrarListadoVendedores(){
+        mostrarPantalla(pantallaListadoVendedores);
+    }
+    public void mostrarInformacionVendedor(){
+        mostrarPantalla(panatallaInformacionVendedor);
+    }
+    public void mostrarGenerarInforme(){
+        mostrarPantalla(pantallaGeneraInforme);
+    }
+    public void mostrarRegistroVendedor(){
+        mostrarPantalla(pantallaRegistraVendedor);
+    }
     
 
 }
