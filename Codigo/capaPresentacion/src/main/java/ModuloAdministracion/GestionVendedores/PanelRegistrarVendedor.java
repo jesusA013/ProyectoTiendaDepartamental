@@ -40,7 +40,6 @@ public class PanelRegistrarVendedor extends javax.swing.JPanel {
     private JTextField txtCURP = new JTextField(20);
     private JTextField txtFechaNacimiento = new JTextField(10);
     private JComboBox<String> comboEstadoCivil = new JComboBox<>(new String[]{"Soltero", "Casado", "Divorciado", "Viudo"});
-    private JCheckBox chkActivo = new JCheckBox("¿Activo?", true);
 
     // Nombre completo
     private JTextField txtNombres = new JTextField(15);
@@ -84,8 +83,7 @@ public class PanelRegistrarVendedor extends javax.swing.JPanel {
         panelVendedores.add(seccion("Datos Personales", new JComponent[][]{
             {new JLabel("CURP:"), txtCURP},
             {new JLabel("Fecha Nacimiento (yyyy-MM-dd):"), txtFechaNacimiento},
-            {new JLabel("Estado Civil:"), comboEstadoCivil},
-            {chkActivo}
+            {new JLabel("Estado Civil:"), comboEstadoCivil}
         }));
 
         panelVendedores.add(seccion("Nombre Completo", new JComponent[][]{
@@ -209,13 +207,12 @@ public class PanelRegistrarVendedor extends javax.swing.JPanel {
             vendedor.setSeguro(seguro);
             vendedor.setFechaNacimiento(fechaNacimiento);
             vendedor.setEstadoCivil(comboEstadoCivil.getSelectedItem().toString());
-            vendedor.setActivo(chkActivo.isSelected());
-
-            // Insertar
+            vendedor.setActivo(true);
+            
             VendedorDTO vendedorInsertado = vendedorBO.registrarVendedor(vendedor);
 
             JOptionPane.showMessageDialog(this, "Vendedor registrado con éxito.\nID: " + vendedorInsertado.getId());
-
+            this.volver();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al registrar vendedor:\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
@@ -266,7 +263,7 @@ public class PanelRegistrarVendedor extends javax.swing.JPanel {
         );
         panelContenedorLayout.setVerticalGroup(
             panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         gestionProductosBTN1.setBackground(new java.awt.Color(103, 80, 164));
@@ -312,12 +309,12 @@ public class PanelRegistrarVendedor extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(panelContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(volverBTN)
                     .addComponent(gestionProductosBTN1))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

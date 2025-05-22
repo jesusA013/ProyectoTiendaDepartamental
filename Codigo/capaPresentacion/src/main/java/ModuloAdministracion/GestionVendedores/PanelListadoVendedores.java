@@ -54,20 +54,40 @@ public class PanelListadoVendedores extends javax.swing.JPanel {
         
     }
     private void cargarVendedores() {
+        // Limpia la lista primero
+        panelListado.removeAll();
+        panelListado.revalidate();
+        panelListado.repaint();
+
         try {
             List<VendedorDTO> vendedores = vendedorBO.obtenerTodosLosVendedores();
             System.out.println("Total de vendedores: " + vendedores.size());
 
-            for (VendedorDTO vendedor : vendedores) {
-                JPanel fila = crearFilaVendedor(vendedor);
-                panelListado.add(fila);
+            if (vendedores.isEmpty()) {
+                // Muestra un mensaje cuando no hay vendedores
+                JLabel lblSinVendedores = new JLabel("No hay vendedores registrados.");
+                lblSinVendedores.setForeground(Color.WHITE);
+                panelListado.add(lblSinVendedores);
+            } else {
+                for (VendedorDTO vendedor : vendedores) {
+                    JPanel fila = crearFilaVendedor(vendedor);
+                    panelListado.add(fila);
+                }
             }
 
             panelListado.revalidate();
             panelListado.repaint();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al cargar vendedores: " + e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
+
+        } catch (NegocioException e) {
+            System.out.println("Error al obtener vendedores: " + e.getMessage());
+
+            // También muestra el mensaje en el panel
+            JLabel lblError = new JLabel("No hay vendedores registrados.");
+            lblError.setForeground(Color.WHITE);
+            panelListado.add(lblError);
+
+            panelListado.revalidate();
+            panelListado.repaint();
         }
     }
     private JPanel crearFilaVendedor(VendedorDTO vendedor) {
@@ -105,7 +125,12 @@ public class PanelListadoVendedores extends javax.swing.JPanel {
     }
     private void editarVendedor(VendedorDTO vendedor) {
         JOptionPane.showMessageDialog(this, "Editar: " + vendedor.getCurp());
-        // Aquí puedes abrir un formulario de edición
+        PanelEditarVendedor panelEditar = new PanelEditarVendedor(panelCambiante, vendedorBO,vendedor);
+        panelCambiante.setLayout(new BorderLayout());
+        panelCambiante.removeAll();
+        panelCambiante.add(panelEditar,BorderLayout.CENTER);
+        panelCambiante.revalidate();
+        panelCambiante.repaint();
     }
 
     private void eliminarVendedor(VendedorDTO vendedor) throws NegocioException {

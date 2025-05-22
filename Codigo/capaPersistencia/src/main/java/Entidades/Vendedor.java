@@ -26,6 +26,19 @@ public class Vendedor {
     public Vendedor() {
     }
 
+    public Vendedor(ObjectId _id, String curp, DatosFiscales datosFiscales, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro, boolean activo) {
+        this._id = _id;
+        this.curp = curp;
+        this.datosFiscales = datosFiscales;
+        this.nombreCompleto = nombreCompleto;
+        this.fechaNacimiento = fechaNacimiento;
+        this.estadoCivil = estadoCivil;
+        this.domicilio = domicilio;
+        this.seguro = seguro;
+        this.fechaRegistro = fechaRegistro;
+        this.activo = activo;
+    }
+    
     public Vendedor(String curp, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
         this.curp = curp;
         this.nombreCompleto = nombreCompleto;

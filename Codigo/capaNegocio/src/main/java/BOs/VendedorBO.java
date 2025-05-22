@@ -107,6 +107,7 @@ public class VendedorBO implements IVendedorBO{
 
     private Vendedor aEntidad(VendedorDTO dto) {
         return new Vendedor(
+                dto.getId(),
             dto.getCurp(),
             aEntidad(dto.getDatosFiscales()),
             aEntidad(dto.getNombreCompleto()),
@@ -114,11 +115,13 @@ public class VendedorBO implements IVendedorBO{
             dto.getEstadoCivil(),
             aEntidad(dto.getDomicilio()),
             aEntidad(dto.getSeguro()),
-            dto.getFechaRegistro()
+            dto.getFechaRegistro(),
+                dto.isActivo()
         );
     }
     private VendedorDTO aDTO(Vendedor v) {
         return new VendedorDTO(
+                v.getId(),
             v.getCurp(),
             aDTO(v.getNombreCompleto()),
             v.getFechaNacimiento(),

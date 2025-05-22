@@ -26,7 +26,8 @@ public class VendedorDTO {
     public VendedorDTO() {
     }
 
-    public VendedorDTO(String curp, NombreCompletoDTO nombreCompleto, Date fechaNacimiento, String estadoCivil, DomicilioDTO domicilio, DatosFiscalesDTO datosFiscales, SeguroDTO seguro, Date fechaRegistro, boolean activo) {
+    public VendedorDTO(ObjectId id,String curp, NombreCompletoDTO nombreCompleto, Date fechaNacimiento, String estadoCivil, DomicilioDTO domicilio, DatosFiscalesDTO datosFiscales, SeguroDTO seguro, Date fechaRegistro, boolean activo) {
+        this.id = id;
         this.curp = curp;
         this.nombreCompleto = nombreCompleto;
         this.fechaNacimiento = fechaNacimiento;
