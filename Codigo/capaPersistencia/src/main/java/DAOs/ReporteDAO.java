@@ -8,21 +8,26 @@ import Entidades.EntidadFolio;
 import Entidades.EntidadProducto;
 import DTOs.ReporteBajosDTO;
 import DTOs.ReporteStockDTO;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import Entidades.ReporteVendedores;
+import  Interfaz.IReporteDAO;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
+import java.util.*;
+import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
 
 /**
  * ReporteDAO.java
  *
  * Esta clase simula un DAO para manejar operaciones relacionadas con reportes, usando el patrón Singleton.
  */
-public class ReporteDAO {
+public abstract class ReporteDAO implements IReporteDAO {
 
     private static ReporteDAO instance; // Instancia única
     private FolioDAO folioDAO;
     private ProductoDAO productoDAO;
+private final MongoCollection<ReporteVendedores> coleccion;
 
     /**
      * Constructor privado para evitar instanciación directa.
@@ -90,4 +95,35 @@ public class ReporteDAO {
 
         return reporte;
     }
+    ////////gv
+    public ReporteDAO(MongoDatabase database) {
+        this.coleccion = database.getCollection("ReportesVendedores", ReporteVendedores.class);
+    }
+
+    public void guardarReporte(String idVendedor, ReporteVendedores reporte) {
+        reporte.setIdVendedor(new ObjectId());
+        coleccion.insertOne(reporte);
+    }
+
+    @Override
+    public ReporteVendedores obtenerReportePorVendedor(String idVendedor) {
+        return coleccion.find(eq("idVendedor", new ObjectId(idVendedor))).first();
+    }
+     @Override
+    public List<ReporteVendedores> obtenerTodosLosReportes() {
+        return coleccion.find().into(new ArrayList<>());
+    }
+
+    @Override
+    public void actualizarReporte(String idVendedor, ReporteVendedores reporte) {
+        coleccion.updateOne(eq("idVendedor", new ObjectId(idVendedor)), (List<? extends Bson>) new com.mongodb.client.model.UpdateOptions().upsert(true));
+    }
+
+    @Override
+    public void eliminarReporte(String idVendedor) {
+        coleccion.deleteOne(eq("idVendedor", new ObjectId(idVendedor)));
+    }
+
+
+///////////
 }
