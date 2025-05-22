@@ -58,6 +58,7 @@ public class ManejadorVenta implements IRegistroVenta {
         VentaDTO ventaDTO = new VentaDTO();
         ventaDTO.setFecha(new Date());
         ventaDTO.setProductos(productos);
+        ventaDTO.setVendedorId(idVendedor);
 
         FacturaDTO facturaDTO = new FacturaDTO();
         DetallesVentaDTO detallesVentaDTO = new DetallesVentaDTO();
@@ -100,6 +101,7 @@ public class ManejadorVenta implements IRegistroVenta {
         VentaDTO ventaDTO = new VentaDTO();
         ventaDTO.setFecha(new Date());
         ventaDTO.setProductos(productos);
+        ventaDTO.setVendedorId(idVendedor);
 
         FacturaDTO facturaDTO = new FacturaDTO();
         DetallesVentaDTO detallesVentaDTO = new DetallesVentaDTO();

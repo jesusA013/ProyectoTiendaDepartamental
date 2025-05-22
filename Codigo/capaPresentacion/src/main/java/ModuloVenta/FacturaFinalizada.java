@@ -138,6 +138,7 @@ public class FacturaFinalizada extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        CarritoCompra.getInstance(controlVenta).limpiarCarrito();
         ControlNavegacion.getInstance().irAMenuPrincipal();
     }//GEN-LAST:event_btnSalirActionPerformed
 
