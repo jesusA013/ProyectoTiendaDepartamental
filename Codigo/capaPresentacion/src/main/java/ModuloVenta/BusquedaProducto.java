@@ -1,6 +1,7 @@
 package ModuloVenta;
 
 import DTOs.ProductoDTO;
+import Inicio.InicioSesion;
 import Interface.IRegistroVenta;
 import RegistroVentaException.RegistroException;
 import control.ControlNavegacion;
@@ -31,14 +32,15 @@ public class BusquedaProducto extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.WHITE);
         this.setTitle("Busqueda de Producto");
 
-        this.lbl_ID.setText("ID: 00000000000");
+        lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
         this.panelBusquedaProducto = new LinkedList<>();
 
     }
 
     public void busquedaProducto(String busqueda) throws RegistroException {
         productos = manejadorVenta.buscarProductos(busqueda);
-
+        lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
+        
         // Limpiar antes de agregar nuevos paneles
         this.panelBusquedaProducto.clear();
         this.panelCambiante.removeAll();
@@ -71,7 +73,7 @@ public class BusquedaProducto extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         panelSuperior = new javax.swing.JPanel();
-        lbl_ID = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
         ScrollProductos = new javax.swing.JScrollPane();
         PanelProductosScroll = new javax.swing.JPanel();
         panelCambiante = new javax.swing.JPanel();
@@ -87,9 +89,9 @@ public class BusquedaProducto extends javax.swing.JFrame {
         panelSuperior.setBackground(new java.awt.Color(103, 80, 164));
         panelSuperior.setPreferredSize(new java.awt.Dimension(800, 50));
 
-        lbl_ID.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        lbl_ID.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_ID.setText("ID: 00000000000");
+        lblID.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        lblID.setForeground(new java.awt.Color(255, 255, 255));
+        lblID.setText("ID: 00000000000");
 
         javax.swing.GroupLayout panelSuperiorLayout = new javax.swing.GroupLayout(panelSuperior);
         panelSuperior.setLayout(panelSuperiorLayout);
@@ -97,14 +99,14 @@ public class BusquedaProducto extends javax.swing.JFrame {
             panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSuperiorLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(lbl_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelSuperiorLayout.setVerticalGroup(
             panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSuperiorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -209,7 +211,7 @@ public class BusquedaProducto extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbl_ID;
+    private javax.swing.JLabel lblID;
     private javax.swing.JPanel panelCambiante;
     private javax.swing.JPanel panelSuperior;
     private javax.swing.JTextField txtBuscarProducto;

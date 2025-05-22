@@ -1,5 +1,6 @@
 package ModuloVenta;
 
+import Inicio.InicioSesion;
 import Interface.IRegistroVenta;
 import RegistroVentaException.RegistroException;
 import control.ControlNavegacion;
@@ -28,6 +29,7 @@ public class FacturaDatos extends javax.swing.JFrame {
     public FacturaDatos(IRegistroVenta controlVenta) {
         this.controlVenta = controlVenta;
         initComponents();
+        lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
 
         datosUbicacion = new HashMap<>();
 
@@ -117,6 +119,7 @@ public class FacturaDatos extends javax.swing.JFrame {
 
     public void setId(ObjectId id) {
         this.id = id;
+        lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
     }
 
     private void facturar() throws RegistroException, Exception {

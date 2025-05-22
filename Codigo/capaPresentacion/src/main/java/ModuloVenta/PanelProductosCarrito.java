@@ -174,6 +174,7 @@ public class PanelProductosCarrito extends JPanel {
     }//GEN-LAST:event_btnDismunuirProductoActionPerformed
 
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
+        CarritoCompra.getInstance(controlVenta).getCarritoGlobal().remove(producto);
         panelCambiante.remove(this);
         panelCambiante.revalidate(); // Actualizar diseño
         panelCambiante.repaint(); // Redibujar
