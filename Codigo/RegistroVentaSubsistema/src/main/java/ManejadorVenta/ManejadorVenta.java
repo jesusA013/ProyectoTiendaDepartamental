@@ -78,6 +78,7 @@ public class ManejadorVenta implements IRegistroVenta {
                 productoVenta.getProducto().setStock(productoVenta.getProducto().getStock() - productoVenta.getCantidad());
                 this.productoNegocio.actualizarProducto(productoVenta.getProducto());
             }
+            mostrarTicketVenta(frame, resultado);
             JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getId());
             navegacion.irASeleccionMetodoPago();
             return resultado.getId();
@@ -122,6 +123,7 @@ public class ManejadorVenta implements IRegistroVenta {
                 productoVenta.getProducto().setStock(productoVenta.getProducto().getStock() - productoVenta.getCantidad());
                 this.productoNegocio.actualizarProducto(productoVenta.getProducto());
             }
+            mostrarTicketVenta(frame, resultado);
             JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getId());
             navegacion.irASeleccionMetodoPago();
             return resultado.getId();
@@ -221,5 +223,29 @@ public class ManejadorVenta implements IRegistroVenta {
     private boolean validarEmail(String email) throws RegistroException {
         // Expresión regular simple para validar formato de correo electrónico
         return email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
+    }
+    private void mostrarTicketVenta(JFrame frame, VentaDTO venta) {
+        StringBuilder ticket = new StringBuilder();
+        ticket.append("===== TICKET DE VENTA =====\n");
+        ticket.append("ID Venta: ").append(venta.getId()).append("\n");
+        ticket.append("Fecha: ").append(venta.getFecha()).append("\n");
+        ticket.append("Método de pago: ").append(venta.getDetallesVenta().getMetodoPago()).append("\n");
+        ticket.append("Forma de pago: ").append(venta.getDetallesVenta().getFormaPago()).append("\n");
+        ticket.append("\n--- Productos ---\n");
+
+        for (ProductoVentaDTO producto : venta.getProductos()) {
+            ticket.append(producto.getProducto().getNombre())
+                  .append(" x").append(producto.getCantidad())
+                  .append(" @ $").append(String.format("%.2f", producto.getPrecioUnitario()))
+                  .append(" = $").append(String.format("%.2f", producto.getCantidad() * producto.getPrecioUnitario()))
+                  .append("\n");
+        }
+
+        ticket.append("\nSubtotal: $").append(String.format("%.2f", venta.getDetallesVenta().getSubtotal())).append("\n");
+        ticket.append("IVA (6%): $").append(String.format("%.2f", venta.getDetallesVenta().getIva())).append("\n");
+        ticket.append("Total: $").append(String.format("%.2f", venta.getDetallesVenta().getTotal())).append("\n");
+        ticket.append("===========================");
+
+        JOptionPane.showMessageDialog(frame, ticket.toString(), "Ticket de Venta", JOptionPane.INFORMATION_MESSAGE);
     }
 }
