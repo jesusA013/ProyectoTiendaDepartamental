@@ -24,6 +24,7 @@ public class ReporteBO {
     public double calcularTotalVentas() {
         return 00; // cambiar a regreso de un map to double(??
     }
+}
 
     
 
