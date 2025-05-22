@@ -139,6 +139,21 @@ public class FacturaDatos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al realizar la facturación: " + ex.getMessage());
         }
     }
+    
+    private void limpiar() {
+        txtRFC.setText("");
+        txtNombeRazonSocial.setText("");
+        txtCalle.setText("");
+        txtNumExt.setText("");
+        txtNumInt.setText("");
+        txtColonia.setText("");
+        txtCodPostal.setText("");
+        cboPais.setSelectedIndex(-1);
+        cboEstado.setSelectedIndex(-1);
+        cboCiudadLocalidad.setSelectedIndex(-1);
+        cboDelegacionMunicipio.setSelectedIndex(-1);
+        txtCorreo.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -375,6 +390,7 @@ public class FacturaDatos extends javax.swing.JFrame {
     private void btnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturarActionPerformed
         try {
             facturar();
+            limpiar();
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
