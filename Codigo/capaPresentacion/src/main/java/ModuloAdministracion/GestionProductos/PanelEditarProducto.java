@@ -8,8 +8,14 @@ import DTOs.ProductoDTO;
 import Excepciones.NegocioException;
 import Interfaces.IProductoBO;
 import java.awt.BorderLayout;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import org.bson.types.ObjectId;
 
 /**
@@ -72,6 +78,27 @@ public class PanelEditarProducto extends javax.swing.JPanel {
         panelCambiante.add(panelListado,BorderLayout.CENTER);
         panelCambiante.revalidate();
         panelCambiante.repaint();
+    }
+    public void subirYMostrarImagen(JLabel labelDestino) {
+        JFileChooser selectorArchivo = new JFileChooser();
+
+        // Filtro para mostrar solo imágenes
+        FileNameExtensionFilter filtroImagen = new FileNameExtensionFilter(
+            "Imágenes JPG, PNG y JPEG", "jpg", "jpeg", "png");
+        selectorArchivo.setFileFilter(filtroImagen);
+
+        int resultado = selectorArchivo.showOpenDialog(null);
+
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            File archivoSeleccionado = selectorArchivo.getSelectedFile();
+            ImageIcon imagenOriginal = new ImageIcon(archivoSeleccionado.getAbsolutePath());
+
+            // Redimensionamos la imagen para que quepa en el JLabel
+            Image imagenEscalada = imagenOriginal.getImage().getScaledInstance(
+                labelDestino.getWidth(), labelDestino.getHeight(), Image.SCALE_SMOOTH);
+
+            labelDestino.setIcon(new ImageIcon(imagenEscalada));
+        }
     }
 
     /**
@@ -143,6 +170,12 @@ public class PanelEditarProducto extends javax.swing.JPanel {
         jLabel5.setText("Color");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
 
+        imagenLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imagenLabelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -211,6 +244,10 @@ public class PanelEditarProducto extends javax.swing.JPanel {
     private void gestionProductosBTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionProductosBTN1ActionPerformed
         this.editarProducto();
     }//GEN-LAST:event_gestionProductosBTN1ActionPerformed
+
+    private void imagenLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imagenLabelMouseClicked
+        subirYMostrarImagen(imagenLabel);
+    }//GEN-LAST:event_imagenLabelMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -199,6 +199,9 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JLabel" name="imagenLabel">
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="imagenLabelMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
