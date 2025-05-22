@@ -148,6 +148,7 @@ public class PanelProductosCarrito extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAumentarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAumentarProductoActionPerformed
+        if (cantidad < producto.getProducto().getStock()) {
         cantidad++;
         producto.setCantidad(cantidad);
         txtCantidadProducto.setText(String.valueOf(cantidad));
@@ -155,6 +156,7 @@ public class PanelProductosCarrito extends JPanel {
         importe = cantidad * precio;
         lblImporte.setText(String.valueOf(importe));
         CarritoCompra.getInstance(controlVenta).cargarCarrito();
+        }
     }//GEN-LAST:event_btnAumentarProductoActionPerformed
 
     private void btnDismunuirProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDismunuirProductoActionPerformed

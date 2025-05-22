@@ -151,13 +151,24 @@ public class VentasBO implements IVentasBO {
         FacturaDTO factura = new FacturaDTO();
         factura.setFolioFactura(venta.getFactura().getFolioFactura());
         factura.setFechaEmision(venta.getFactura().getFechaEmision());
+        factura.setRfc(venta.getFactura().getRfc());
+        factura.setNombreRazon(venta.getFactura().getNombreRazon());
+        factura.setCalle(venta.getFactura().getCalle());
+        factura.setNumExt(venta.getFactura().getNumExt());
+        factura.setNumInt(venta.getFactura().getNumInt());
+        factura.setColonia(venta.getFactura().getColonia());
+        factura.setCodigoPostal(venta.getFactura().getCodigoPostal());
+        factura.setPais(venta.getFactura().getPais());
+        factura.setEstado(venta.getFactura().getEstado());
+        factura.setCiudadLocalidad(venta.getFactura().getCiudadLocalidad());
+        factura.setDelegacionMunicipio(venta.getFactura().getDelegacionMunicipio());
+        factura.setCorreo(venta.getFactura().getCorreo());
         ventaDTO.setFactura(factura);
 
         DetallesVentaDTO detallesVentaDTO = new DetallesVentaDTO();
         detallesVentaDTO.setSubtotal(venta.getDetallesVenta().getSubtotal());
         detallesVentaDTO.setIva(venta.getDetallesVenta().getIva());
         detallesVentaDTO.setTotal(venta.getDetallesVenta().getTotal());
-        detallesVentaDTO.setFormaPago(venta.getDetallesVenta().getFormaPago());
         detallesVentaDTO.setMetodoPago(venta.getDetallesVenta().getMetodoPago());
         ventaDTO.setDetallesVenta(detallesVentaDTO);
 
@@ -191,13 +202,24 @@ public class VentasBO implements IVentasBO {
         Factura factura = new Factura();
         factura.setFolioFactura(ventaDTO.getFactura().getFolioFactura());
         factura.setFechaEmision(ventaDTO.getFactura().getFechaEmision());
+        factura.setRfc(ventaDTO.getFactura().getRfc());
+        factura.setNombreRazon(ventaDTO.getFactura().getNombreRazon());
+        factura.setCalle(ventaDTO.getFactura().getCalle());
+        factura.setNumExt(ventaDTO.getFactura().getNumExt());
+        factura.setNumInt(ventaDTO.getFactura().getNumInt());
+        factura.setColonia(ventaDTO.getFactura().getColonia());
+        factura.setCodigoPostal(ventaDTO.getFactura().getCodigoPostal());
+        factura.setPais(ventaDTO.getFactura().getPais());
+        factura.setEstado(ventaDTO.getFactura().getEstado());
+        factura.setCiudadLocalidad(ventaDTO.getFactura().getCiudadLocalidad());
+        factura.setDelegacionMunicipio(ventaDTO.getFactura().getDelegacionMunicipio());
+        factura.setCorreo(ventaDTO.getFactura().getCorreo());
         venta.setFactura(factura);
 
         DetallesVenta detallesVenta = new DetallesVenta();
         detallesVenta.setSubtotal(ventaDTO.getDetallesVenta().getSubtotal());
         detallesVenta.setIva(ventaDTO.getDetallesVenta().getIva());
         detallesVenta.setTotal(ventaDTO.getDetallesVenta().getTotal());
-        detallesVenta.setFormaPago(ventaDTO.getDetallesVenta().getFormaPago());
         detallesVenta.setMetodoPago(ventaDTO.getDetallesVenta().getMetodoPago());
         venta.setDetallesVenta(detallesVenta);
 

@@ -42,7 +42,7 @@ public class VentaDAOTest {
         Producto p = new Producto("Lentes de Sol", "23SAD23", "WER", "Verde");
         ProductoVenta pv = new ProductoVenta(p, 2, 750);
         Factura factura = new Factura("FAC-001", new Date(), "ASDW123987A2S", "Mexico");
-        DetallesVenta detalles = new DetallesVenta(1500, 40, 1540, "Transferencia", "Pago en una sola exhibición");
+        DetallesVenta detalles = new DetallesVenta(1500, 40, 1540, "Tarjeta");
 
         Venta venta = new Venta();
         venta.setFecha(new Date());
@@ -94,7 +94,7 @@ public class VentaDAOTest {
         Producto p = new Producto("Casa de Campaña", "AD3V23", "KULE", "Azul");
         ProductoVenta pv = new ProductoVenta(p, 1, 500);
         Factura factura = new Factura("FAC-123", new Date(), "DCDE573287V4Z", "Argentina");
-        DetallesVenta detalles = new DetallesVenta(500, 80, 580, "Efectivo", "Pago único");
+        DetallesVenta detalles = new DetallesVenta(500, 80, 580, "Efectivo");
 
         Venta venta = new Venta();
         venta.setFecha(new Date());

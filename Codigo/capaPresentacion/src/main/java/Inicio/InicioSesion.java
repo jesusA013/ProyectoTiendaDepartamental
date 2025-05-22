@@ -135,15 +135,18 @@ public class InicioSesion extends JFrame {
 
                 switch (tipo) {
                     case "Vendedor":
-                        setId(usuario.getId());
+                        setIdUsuario(usuario.getId());
+                        setNombreUsuario(usuario.getNombreUsuario());
                         ControlNavegacion.getInstance().irACarritoCompra();
                         break;
                     case "Administrador":
-                        setId(usuario.getId());
+                        setIdUsuario(usuario.getId());
+                        setNombreUsuario(usuario.getNombreUsuario());
                         ControlNavegacion.getInstance().mostrarMenuAdministrador();
                         break;
                     case "Almacen":
-                        setId(usuario.getId());
+                        setIdUsuario(usuario.getId());
+                        setNombreUsuario(usuario.getNombreUsuario());
                         ControlNavegacion.getInstance().mostrarMenuAlmacen();
                         break;
                     default:
@@ -173,11 +176,11 @@ public class InicioSesion extends JFrame {
         txtContrasena.setText("");
     }
 
-    public ObjectId getId() {
+    public ObjectId getIdUsuario() {
         return idUsuario;
     }
 
-    public void setId(ObjectId id) {
+    public void setIdUsuario(ObjectId id) {
         this.idUsuario = id;
     }
 

@@ -58,6 +58,7 @@ public class ManejadorVenta implements IRegistroVenta {
         VentaDTO ventaDTO = new VentaDTO();
         ventaDTO.setFecha(new Date());
         ventaDTO.setProductos(productos);
+        ventaDTO.setVendedorId(idVendedor);
 
         FacturaDTO facturaDTO = new FacturaDTO();
         DetallesVentaDTO detallesVentaDTO = new DetallesVentaDTO();
@@ -100,6 +101,7 @@ public class ManejadorVenta implements IRegistroVenta {
         VentaDTO ventaDTO = new VentaDTO();
         ventaDTO.setFecha(new Date());
         ventaDTO.setProductos(productos);
+        ventaDTO.setVendedorId(idVendedor);
 
         FacturaDTO facturaDTO = new FacturaDTO();
         DetallesVentaDTO detallesVentaDTO = new DetallesVentaDTO();
@@ -215,10 +217,6 @@ public class ManejadorVenta implements IRegistroVenta {
     }
 
     private boolean validarEmail(String email) throws RegistroException {
-        if (email == null || email.trim().isEmpty()) {
-            return false;
-        }
-
         // Expresión regular simple para validar formato de correo electrónico
         return email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
     }
