@@ -11,8 +11,6 @@ import RegistroVentaException.RegistroException;
 import control.ControlNavegacion;
 import java.awt.BorderLayout;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.bson.types.ObjectId;
 
@@ -37,6 +35,7 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
     public SeleccionMetodoPago(IRegistroVenta controlVenta) {
         this.controlVenta = controlVenta;
         initComponents();
+        lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
     }
 
     private ObjectId pagarTarjeta() throws Exception {
@@ -344,6 +343,12 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
      */
     private void metodoTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metodoTarjetaActionPerformed
         carritoGlobal = CarritoCompra.getInstance(controlVenta).getCarritoGlobal();
+        lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
+        
+        cantidadProductos = 0;
+        subtotalProductos = 0;
+        impuestosProductos = 0;
+        totalProductos = 0;
 
         for (ProductoVentaDTO producto : carritoGlobal) {
             cantidadProductos += producto.getCantidad();
@@ -372,7 +377,13 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
      */
     private void metodoEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metodoEfectivoActionPerformed
         carritoGlobal = CarritoCompra.getInstance(controlVenta).getCarritoGlobal();
-
+        lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
+        
+        cantidadProductos = 0;
+        subtotalProductos = 0;
+        impuestosProductos = 0;
+        totalProductos = 0;
+        
         for (ProductoVentaDTO producto : carritoGlobal) {
             cantidadProductos += producto.getCantidad();
             subtotalProductos += producto.getCantidad() * producto.getPrecioUnitario();
@@ -385,7 +396,9 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
         this.lblSubtotal.setText(Double.toString(subtotalProductos));
         this.lblImpuestos.setText(Double.toString(impuestosProductos));
         this.lblTotal.setText(Double.toString(totalProductos));
-
+        
+        PanelMetodoEfectivo.getInstance().setTotalProductos(totalProductos);
+        
         PanelMetodoEfectivo panelEfectivo = new PanelMetodoEfectivo();
         panelCambiante.setLayout(new BorderLayout());
         panelCambiante.removeAll();

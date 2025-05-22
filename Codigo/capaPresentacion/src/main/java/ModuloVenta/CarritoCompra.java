@@ -1,6 +1,7 @@
 package ModuloVenta;
 
 import DTOs.ProductoVentaDTO;
+import Inicio.InicioSesion;
 import Interface.IRegistroVenta;
 import RegistroVentaException.RegistroException;
 import control.ControlNavegacion;
@@ -74,6 +75,7 @@ public class CarritoCompra extends javax.swing.JFrame {
     }
 
     public void cargarCarrito() {
+        lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
         System.out.println("Se llamó a cargarCarrito()");
         cantidadProductos = 0;
         subtotalProductos = 0;
@@ -142,7 +144,7 @@ public class CarritoCompra extends javax.swing.JFrame {
         PanelProductosScroll = new javax.swing.JPanel();
         panelCambiante = new javax.swing.JPanel();
         panelSuperior = new javax.swing.JPanel();
-        lbl_ID = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
         txtBuscarProducto = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
 
@@ -290,9 +292,9 @@ public class CarritoCompra extends javax.swing.JFrame {
 
         panelSuperior.setBackground(new java.awt.Color(103, 80, 164));
 
-        lbl_ID.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        lbl_ID.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_ID.setText("ID: 123456");
+        lblID.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        lblID.setForeground(new java.awt.Color(255, 255, 255));
+        lblID.setText("ID: 00000000");
 
         txtBuscarProducto.setBackground(new java.awt.Color(208, 188, 255));
         txtBuscarProducto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -315,7 +317,7 @@ public class CarritoCompra extends javax.swing.JFrame {
             panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSuperiorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -334,7 +336,7 @@ public class CarritoCompra extends javax.swing.JFrame {
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSuperiorLayout.createSequentialGroup()
-                        .addComponent(lbl_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
 
@@ -415,9 +417,9 @@ public class CarritoCompra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCantProductos;
+    private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblImpuestos;
     private javax.swing.JLabel lblSubProductos;
-    private javax.swing.JLabel lbl_ID;
     private javax.swing.JPanel panelCambiante;
     private javax.swing.JPanel panelResumen;
     private javax.swing.JPanel panelSuperior;

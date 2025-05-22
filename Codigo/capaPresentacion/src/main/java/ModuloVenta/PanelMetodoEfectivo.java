@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 public class PanelMetodoEfectivo extends javax.swing.JPanel {
     
     public static PanelMetodoEfectivo instancia;
+    private double totalProductos = 0;
     
     /**
      * Creates new form PanelMetodoEfectivo
@@ -35,6 +36,10 @@ public class PanelMetodoEfectivo extends javax.swing.JPanel {
 
     public String getTxtCambio() {
         return txtCambio.getText();
+    }
+
+    public void setTotalProductos(double totalProductos) {
+        this.totalProductos = totalProductos;
     }
 
     /**
@@ -69,6 +74,8 @@ public class PanelMetodoEfectivo extends javax.swing.JPanel {
         txtCambio.setEditable(false);
         txtCambio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        btn_cambio.setBackground(new java.awt.Color(103, 80, 164));
+        btn_cambio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_cambio.setText("Generar Diferencia");
         btn_cambio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,20 +88,16 @@ public class PanelMetodoEfectivo extends javax.swing.JPanel {
         PrincipalLayout.setHorizontalGroup(
             PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PrincipalLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addGroup(PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PrincipalLayout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(PrincipalLayout.createSequentialGroup()
-                        .addGap(208, 208, 208)
-                        .addComponent(btn_cambio)))
-                .addContainerGap(65, Short.MAX_VALUE))
+                    .addComponent(btn_cambio, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         PrincipalLayout.setVerticalGroup(
             PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,9 +106,9 @@ public class PanelMetodoEfectivo extends javax.swing.JPanel {
                 .addGroup(PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(41, 41, 41)
+                .addGap(40, 40, 40)
                 .addComponent(btn_cambio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtCambio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -120,7 +123,7 @@ public class PanelMetodoEfectivo extends javax.swing.JPanel {
 
         double efectivo = Integer.parseInt(txtEfectivo.getText());
 
-        String sCambio = String.valueOf(efectivo);
+        String sCambio = String.valueOf(efectivo - totalProductos);
 
         txtCambio.setText(sCambio);
 
