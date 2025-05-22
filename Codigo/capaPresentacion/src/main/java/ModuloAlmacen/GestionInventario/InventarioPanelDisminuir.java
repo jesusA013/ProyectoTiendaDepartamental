@@ -1,7 +1,6 @@
 package ModuloAlmacen.GestionInventario;
 
 import DTOs.MovimientoDTO;
-import ModuloAdministracion.GestionProductos.*;
 import DTOs.ProductoDTO;
 import Excepciones.NegocioException;
 import Exception.PersistenciaException;
@@ -71,11 +70,12 @@ public class InventarioPanelDisminuir extends javax.swing.JPanel {
         MovimientoDTO movimientoDTO = new MovimientoDTO();
         movimientoDTO.setIdCuenta(InicioSesion.getInstance().getIdCuenta());
         movimientoDTO.setUsuarioResponsable(InicioSesion.getInstance().getNombreUsuario());
-        movimientoDTO.setCodigoProducto(productoDTO.getCodigo());
+        movimientoDTO.setNombreProducto(productoDTO.getNombre());
         movimientoDTO.setTipoOperacion("Perdida");
-        movimientoDTO.setCantidad(cantidad);
+        movimientoDTO.setCantidad(productoDTO.getStock() - cantidad);
         movimientoDTO.setMotivo(txtMotivo.getText());
-
+        productoDTO.setStock(cantidad);
+        
         try {
             MovimientoDTO resultado = movimientoBO.registrarMovimiento(movimientoDTO);
             productoBO.actualizarProducto(productoDTO);
@@ -270,7 +270,6 @@ public class InventarioPanelDisminuir extends javax.swing.JPanel {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
-            productoDTO.setStock(cantidad);
             this.realizarMovimiento();
             this.volver();
         } catch (NegocioException | PersistenciaException ex) {

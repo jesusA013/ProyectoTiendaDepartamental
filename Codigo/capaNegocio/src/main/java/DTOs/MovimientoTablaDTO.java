@@ -13,13 +13,13 @@ import org.bson.types.ObjectId;
 public class MovimientoTablaDTO {
 
     private final ObjectId _id;
-    private final String codigoProducto;
+    private final String nombreProducto;
     private final String tipoMovimiento;
     private final int cantidad;
 
-    public MovimientoTablaDTO(ObjectId _id, String codigoProducto, String tipoMovimiento, int cantidad) {
+    public MovimientoTablaDTO(ObjectId _id, String nombreProducto, String tipoMovimiento, int cantidad) {
         this._id = _id;
-        this.codigoProducto = codigoProducto;
+        this.nombreProducto = nombreProducto;
         this.tipoMovimiento = tipoMovimiento;
         this.cantidad = cantidad;
     }
@@ -28,8 +28,8 @@ public class MovimientoTablaDTO {
         return _id;
     }
 
-    public String getCodigoProducto() {
-        return codigoProducto;
+    public String getNombreProducto() {
+        return nombreProducto;
     }
 
     public String getTipoMovimiento() {

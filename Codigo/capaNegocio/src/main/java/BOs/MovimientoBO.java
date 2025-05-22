@@ -97,7 +97,7 @@ public class MovimientoBO implements IMovimientoBO {
         movimientoDTO.setFecha(movimiento.getFecha());
         movimientoDTO.setIdCuenta(movimiento.getIdCuenta());
         movimientoDTO.setUsuarioResponsable(movimiento.getUsuarioResponsable());
-        movimientoDTO.setCodigoProducto(movimiento.getCodigoProducto());
+        movimientoDTO.setNombreProducto(movimiento.getNombreProducto());
         movimientoDTO.setTipoOperacion(movimiento.getTipoOperacion());
         movimientoDTO.setCantidad(movimiento.getCantidad());
         movimientoDTO.setMotivo(movimiento.getMotivo());
@@ -117,7 +117,7 @@ public class MovimientoBO implements IMovimientoBO {
         movimiento.setFecha(movimientoDTO.getFecha());
         movimiento.setIdCuenta(movimientoDTO.getIdCuenta());
         movimiento.setUsuarioResponsable(movimientoDTO.getUsuarioResponsable());
-        movimiento.setCodigoProducto(movimientoDTO.getCodigoProducto());
+        movimiento.setNombreProducto(movimientoDTO.getNombreProducto());
         movimiento.setTipoOperacion(movimientoDTO.getTipoOperacion());
         movimiento.setCantidad(movimientoDTO.getCantidad());
         movimiento.setMotivo(movimientoDTO.getMotivo());
@@ -139,10 +139,10 @@ public class MovimientoBO implements IMovimientoBO {
         List<MovimientoTablaDTO> movimientosDTO = new ArrayList<>();
         for (MovimientoDTO movimiento : movimientos) {
             ObjectId _id = movimiento.getId();
-            String codigoProducto = movimiento.getCodigoProducto();
+            String nombreProducto = movimiento.getNombreProducto();
             String tipoMovimiento = movimiento.getTipoOperacion();
             int cantidad = movimiento.getCantidad();
-            MovimientoTablaDTO dato = new MovimientoTablaDTO(_id, codigoProducto, tipoMovimiento, cantidad);
+            MovimientoTablaDTO dato = new MovimientoTablaDTO(_id, nombreProducto, tipoMovimiento, cantidad);
             movimientosDTO.add(dato);
         }
         return movimientosDTO;

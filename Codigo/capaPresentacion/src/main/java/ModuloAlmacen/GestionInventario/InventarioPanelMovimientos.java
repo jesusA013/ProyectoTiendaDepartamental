@@ -1,5 +1,6 @@
 package ModuloAlmacen.GestionInventario;
 
+import DTOs.MovimientoTablaDTO;
 import DTOs.ProductoTablaDTO;
 import Excepciones.NegocioException;
 import Interfaces.IMovimientoBO;
@@ -21,7 +22,7 @@ import org.bson.types.ObjectId;
  *
  * @author Ángel Ruíz García - 00000248171
  */
-public class InventarioPanelListado extends javax.swing.JPanel {
+public class InventarioPanelMovimientos extends javax.swing.JPanel {
 
     private final JPanel panelCambiante;
     private final JFrame pantalla;
@@ -36,7 +37,7 @@ public class InventarioPanelListado extends javax.swing.JPanel {
      * @param movimientoBO
      * @param productoBO
      */
-    public InventarioPanelListado(JFrame pantalla, JPanel panelCambiante, IMovimientoBO movimientoBO, IProductoBO productoBO) {
+    public InventarioPanelMovimientos(JFrame pantalla, JPanel panelCambiante, IMovimientoBO movimientoBO, IProductoBO productoBO) {
         initComponents();
         this.movimientoBO = movimientoBO;
         this.productoBO = productoBO;
@@ -51,67 +52,42 @@ public class InventarioPanelListado extends javax.swing.JPanel {
     }
 
     private void configuracionInicialTabla() {
-        ActionListener onDisminuirClickListener = new ActionListener() {
+        ActionListener onDetallesClickListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     //Metodo para disminuir
-                    disminuir();
+                    detalles();
                     metodosIniciales();
                 } catch (NegocioException ex) {
                     System.out.println("Error: " + ex.getMessage());
                 }
             }
         };
-        int indiceColumnaDisminuir = 7;
-        TableColumnModel modeloColumnas = this.tablaProductos.getColumnModel();
-        modeloColumnas.getColumn(indiceColumnaDisminuir)
-                .setCellRenderer(new JButtonRenderer("Disminuir"));
-        modeloColumnas.getColumn(indiceColumnaDisminuir)
-                .setCellEditor(new JButtonCellEditor("Disminuir", onDisminuirClickListener));
-
-        ActionListener onAumentarClickListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //Metodo para aumentar
-                aumentar();
-                metodosIniciales();
-            }
-        };
-        int indiceColumnaAumentar = 8;
-        modeloColumnas = this.tablaProductos.getColumnModel();
-        modeloColumnas.getColumn(indiceColumnaAumentar)
-                .setCellRenderer(new JButtonRenderer("Aumentar"));
-        modeloColumnas.getColumn(indiceColumnaAumentar)
-                .setCellEditor(new JButtonCellEditor("Aumentar", onAumentarClickListener));
+        int indiceColumnaDetalles = 4;
+        TableColumnModel modeloColumnas = this.tablaMovimientos.getColumnModel();
+        modeloColumnas.getColumn(indiceColumnaDetalles)
+                .setCellRenderer(new JButtonRenderer("Detalles"));
+        modeloColumnas.getColumn(indiceColumnaDetalles)
+                .setCellEditor(new JButtonCellEditor("Detalles", onDetallesClickListener));
+        
     }
 
-    private void disminuir() throws NegocioException {
+    private void detalles() throws NegocioException {
         ObjectId id = this.getIdSeleccionadoTabla();
 
-        InventarioPanelDisminuir panelDisminuir = new InventarioPanelDisminuir(pantalla, panelCambiante, movimientoBO, productoBO, id);
+        InventarioPanelMovimientosDetalles panelMovimiento = new InventarioPanelMovimientosDetalles(pantalla, panelCambiante, movimientoBO, productoBO, id);
         this.setLayout(new BorderLayout());
         this.removeAll();
-        this.add(panelDisminuir, BorderLayout.CENTER);
-        this.revalidate();
-        this.repaint();
-    }
-
-    private void aumentar() {
-        ObjectId id = this.getIdSeleccionadoTabla();
-
-        InventarioPanelAumentar panelAumentar = new InventarioPanelAumentar(pantalla, panelCambiante, movimientoBO, productoBO, id);
-        this.setLayout(new BorderLayout());
-        this.removeAll();
-        this.add(panelAumentar, BorderLayout.CENTER);
+        this.add(panelMovimiento, BorderLayout.CENTER);
         this.revalidate();
         this.repaint();
     }
 
     private ObjectId getIdSeleccionadoTabla() {
-        int indiceFilaSeleccionada = this.tablaProductos.getSelectedRow();
+        int indiceFilaSeleccionada = this.tablaMovimientos.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {
-            DefaultTableModel modelo = (DefaultTableModel) this.tablaProductos.getModel();
+            DefaultTableModel modelo = (DefaultTableModel) this.tablaMovimientos.getModel();
             int indiceColumnaId = 0;
             Object valor = modelo.getValueAt(indiceFilaSeleccionada, indiceColumnaId);
             if (valor instanceof ObjectId) {
@@ -128,38 +104,30 @@ public class InventarioPanelListado extends javax.swing.JPanel {
 
     private void buscarTabla() {
         try {
-            List<ProductoTablaDTO> productosTablaLista = this.productoBO.obtenerTodosParaTabla();
-            DefaultTableModel modelo = (DefaultTableModel) this.tablaProductos.getModel();
+            List<MovimientoTablaDTO> movimientosTablaLista = this.movimientoBO.obtenerListaMovimientos();
+            DefaultTableModel modelo = (DefaultTableModel) this.tablaMovimientos.getModel();
             modelo.setRowCount(0);
-            this.agregarRegistrosTabla(productosTablaLista);
+            this.agregarRegistrosTabla(movimientosTablaLista);
         } catch (NegocioException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-    private void agregarRegistrosTabla(List<ProductoTablaDTO> productosLista) {
+    private void agregarRegistrosTabla(List<MovimientoTablaDTO> movimientosLista) {
 
-        DefaultTableModel modeloTabla = (DefaultTableModel) this.tablaProductos.getModel();
-        if (!productosLista.isEmpty()) {
-            productosLista.forEach(row -> {
+        DefaultTableModel modeloTabla = (DefaultTableModel) this.tablaMovimientos.getModel();
+        if (!movimientosLista.isEmpty()) {
+            movimientosLista.forEach(row -> {
                 Object[] fila = new Object[7];
                 fila[0] = row.getId();
-                fila[1] = row.getCodigo();
-                fila[2] = row.getNombre();
-                fila[3] = row.getMarca();
-                fila[4] = row.getColor();
-                fila[5] = row.getPrecio();
-                fila[6] = row.getStock();
+                fila[1] = row.getNombreProducto();
+                fila[2] = row.getTipoMovimiento();
+                fila[3] = row.getCantidad();
 
                 modeloTabla.addRow(fila);
             });
         }
 
-    }
-
-    public void volver() {
-        pantalla.dispose();
-        ControlNavegacion.getInstance().mostrarMenuAlmacen();
     }
 
     /**
@@ -173,10 +141,9 @@ public class InventarioPanelListado extends javax.swing.JPanel {
 
         panelFondo = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaProductos = new javax.swing.JTable();
+        tablaMovimientos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
-        btnMovimientos = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(1000, 494));
         setPreferredSize(new java.awt.Dimension(1000, 494));
@@ -186,34 +153,29 @@ public class InventarioPanelListado extends javax.swing.JPanel {
         panelFondo.setPreferredSize(new java.awt.Dimension(1000, 494));
         panelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tablaProductos.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaMovimientos.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        tablaMovimientos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Codigo", "Nombre", "Marca", "Color", "Precio", "Stock", "Disminuir", "Aumentar"
+                "ID", "Producto", "Tipo Movimiento", "Cantidad", "Detalles"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true, true
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tablaProductos);
-        if (tablaProductos.getColumnModel().getColumnCount() > 0) {
-            tablaProductos.getColumnModel().getColumn(1).setHeaderValue("Codigo");
-            tablaProductos.getColumnModel().getColumn(2).setHeaderValue("Nombre");
-            tablaProductos.getColumnModel().getColumn(3).setHeaderValue("Marca");
-        }
+        jScrollPane1.setViewportView(tablaMovimientos);
 
         panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 940, 280));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel1.setText("Listado de Productos");
+        jLabel1.setText("Listado de Movimientos");
         panelFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         btnVolver.setBackground(new java.awt.Color(243, 183, 183));
@@ -225,17 +187,6 @@ public class InventarioPanelListado extends javax.swing.JPanel {
             }
         });
         panelFondo.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 210, 50));
-
-        btnMovimientos.setBackground(new java.awt.Color(103, 80, 164));
-        btnMovimientos.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnMovimientos.setForeground(new java.awt.Color(255, 255, 255));
-        btnMovimientos.setText("Movimientos");
-        btnMovimientos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMovimientosActionPerformed(evt);
-            }
-        });
-        panelFondo.add(btnMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 380, 210, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -250,25 +201,20 @@ public class InventarioPanelListado extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        this.volver();
-    }//GEN-LAST:event_btnVolverActionPerformed
-
-    private void btnMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovimientosActionPerformed
-        InventarioPanelMovimientos panelMovimientos = new InventarioPanelMovimientos(pantalla, panelCambiante, movimientoBO, productoBO);
+        InventarioPanelListado panelInventario = new InventarioPanelListado(pantalla, panelCambiante, movimientoBO, productoBO);
         panelCambiante.setLayout(new BorderLayout());
         panelCambiante.removeAll();
-        panelCambiante.add(panelMovimientos, BorderLayout.CENTER);
+        panelCambiante.add(panelInventario, BorderLayout.CENTER);
         panelCambiante.revalidate();
         panelCambiante.repaint();
-    }//GEN-LAST:event_btnMovimientosActionPerformed
+    }//GEN-LAST:event_btnVolverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMovimientos;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelFondo;
-    private javax.swing.JTable tablaProductos;
+    private javax.swing.JTable tablaMovimientos;
     // End of variables declaration//GEN-END:variables
 }

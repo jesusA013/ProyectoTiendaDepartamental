@@ -16,7 +16,7 @@ public class Movimiento {
     private Date fecha;
     private String idCuenta;
     private String usuarioResponsable;
-    private String codigoProducto;
+    private String nombreProducto;
     private String tipoOperacion;
     private int cantidad;
     private String motivo;
@@ -27,11 +27,11 @@ public class Movimiento {
     public Movimiento() {
     }
 
-    public Movimiento(Date fecha, String idCuenta, String usuarioResponsable, String codigoProducto, String tipoOperacion, int cantidad, String motivo) {
+    public Movimiento(Date fecha, String idCuenta, String usuarioResponsable, String nombreProducto, String tipoOperacion, int cantidad, String motivo) {
         this.fecha = fecha;
         this.idCuenta = idCuenta;
         this.usuarioResponsable = usuarioResponsable;
-        this.codigoProducto = codigoProducto;
+        this.nombreProducto = nombreProducto;
         this.tipoOperacion = tipoOperacion;
         this.cantidad = cantidad;
         this.motivo = motivo;
@@ -69,12 +69,12 @@ public class Movimiento {
         this.usuarioResponsable = usuarioResponsable;
     }
 
-    public String getCodigoProducto() {
-        return codigoProducto;
+    public String getNombreProducto() {
+        return nombreProducto;
     }
 
-    public void setCodigoProducto(String codigoProducto) {
-        this.codigoProducto = codigoProducto;
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
     }
 
     public String getTipoOperacion() {
@@ -108,6 +108,6 @@ public class Movimiento {
      */
     @Override
     public String toString() {
-        return "Movimiento{" + "_id=" + _id + ", fecha=" + fecha + ", idCuenta=" + idCuenta + ", usuarioResponsable=" + usuarioResponsable + ", codigoProducto=" + codigoProducto + ", tipoOperacion=" + tipoOperacion + ", cantidad=" + cantidad + ", motivo=" + motivo + '}';
+        return "Movimiento{" + "_id=" + _id + ", fecha=" + fecha + ", idCuenta=" + idCuenta + ", usuarioResponsable=" + usuarioResponsable + ", nombreProducto=" + nombreProducto + ", tipoOperacion=" + tipoOperacion + ", cantidad=" + cantidad + ", motivo=" + motivo + '}';
     }
 }

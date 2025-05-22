@@ -12,33 +12,33 @@ import org.bson.types.ObjectId;
  * @author Ángel Ruíz García - 00000248171
  */
 public class MovimientoDTO {
-    
+
     private ObjectId _id;
     private Date fecha;
     private String idCuenta;
     private String usuarioResponsable;
-    private String codigoProducto;
+    private String nombreProducto;
     private String tipoOperacion;
     private int cantidad;
     private String motivo;
-    
+
     /**
      * Constructor por omision.
      */
     public MovimientoDTO() {
     }
-    
-    public MovimientoDTO(ObjectId _id, Date fecha, String idCuenta, String usuarioResponsable, String codigoProducto, String tipoOperacion, int cantidad, String motivo) {
+
+    public MovimientoDTO(ObjectId _id, Date fecha, String idCuenta, String usuarioResponsable, String nombreProducto, String tipoOperacion, int cantidad, String motivo) {
         this._id = _id;
         this.fecha = fecha;
         this.idCuenta = idCuenta;
         this.usuarioResponsable = usuarioResponsable;
-        this.codigoProducto = codigoProducto;
+        this.nombreProducto = nombreProducto;
         this.tipoOperacion = tipoOperacion;
         this.cantidad = cantidad;
         this.motivo = motivo;
     }
-    
+
     public ObjectId getId() {
         return _id;
     }
@@ -71,12 +71,12 @@ public class MovimientoDTO {
         this.usuarioResponsable = usuarioResponsable;
     }
 
-    public String getCodigoProducto() {
-        return codigoProducto;
+    public String getNombreProducto() {
+        return nombreProducto;
     }
 
-    public void setCodigoProducto(String codigoProducto) {
-        this.codigoProducto = codigoProducto;
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
     }
 
     public String getTipoOperacion() {
@@ -110,6 +110,6 @@ public class MovimientoDTO {
      */
     @Override
     public String toString() {
-        return "MovimientoDTO{" + "_id=" + _id + ", fecha=" + fecha + ", idCuenta=" + idCuenta + ", usuarioResponsable=" + usuarioResponsable + ", codigoProducto=" + codigoProducto + ", tipoOperacion=" + tipoOperacion + ", cantidad=" + cantidad + ", motivo=" + motivo + '}';
+        return "MovimientoDTO{" + "_id=" + _id + ", fecha=" + fecha + ", idCuenta=" + idCuenta + ", usuarioResponsable=" + usuarioResponsable + ", nombreProducto=" + nombreProducto + ", tipoOperacion=" + tipoOperacion + ", cantidad=" + cantidad + ", motivo=" + motivo + '}';
     }
 }
