@@ -289,6 +289,7 @@ public class PanelEditarVendedor extends javax.swing.JPanel {
 
         setMinimumSize(new java.awt.Dimension(1000, 550));
         setPreferredSize(new java.awt.Dimension(1000, 550));
+        setRequestFocusEnabled(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(1000, 550));

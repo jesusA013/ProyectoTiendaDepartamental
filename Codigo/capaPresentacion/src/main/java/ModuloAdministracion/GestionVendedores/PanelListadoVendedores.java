@@ -4,16 +4,20 @@
  */
 package ModuloAdministracion.GestionVendedores;
 
+import BOs.VentasBO;
 import DTOs.VendedorDTO;
+import DTOs.VentaDTO;
 import Entidades.Vendedor;
 import Excepciones.NegocioException;
 import Interfaces.IVendedorBO;
+import Interfaces.IVentasBO;
 import ModuloAdministracion.GestionProductos.PanelAdministradorMenu;
 import ModuloAdministracion.GestionProductos.PanelRegistrarProducto;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -31,6 +35,7 @@ import javax.swing.JScrollPane;
 public class PanelListadoVendedores extends javax.swing.JPanel {
     private final JPanel panelCambiante;
     private final IVendedorBO vendedorBO;
+    private final IVentasBO ventasBO;
     private final JPanel panelListado;
     /**
      * Creates new form PanelListadoVendedores
@@ -39,6 +44,7 @@ public class PanelListadoVendedores extends javax.swing.JPanel {
         initComponents();
         this.panelCambiante = panelCambiante;
         this.vendedorBO = vendedorBO;
+        this.ventasBO = new VentasBO();
         
         panelListado = new JPanel();
         
@@ -113,6 +119,15 @@ public class PanelListadoVendedores extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Error al eliminar: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
+        
+        JButton btnReporte = new JButton("Generar Reporte");
+        btnReporte.addActionListener(e -> {
+            try {
+                generarReporte(vendedor);
+            } catch (NegocioException ex) {
+                System.getLogger(PanelListadoVendedores.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            }
+        });
 
         fila.add(lblNombre);
         fila.add(Box.createHorizontalStrut(20));
@@ -120,8 +135,31 @@ public class PanelListadoVendedores extends javax.swing.JPanel {
         fila.add(Box.createHorizontalStrut(20));
         fila.add(btnEditar);
         fila.add(btnEliminar);
+        fila.add(btnReporte);
 
         return fila;
+    }
+    private List<VentaDTO> buscarVentas(VendedorDTO vendedorDTO) throws NegocioException{
+        try {
+            List<VentaDTO> listaVentas = ventasBO.obtenerVentas();
+            List<VentaDTO> nuevaLista = new ArrayList<>();
+            for (VentaDTO listaVenta : listaVentas) {
+                
+                if(listaVenta.getVendedorId().equals(vendedorDTO.getId())){
+                    nuevaLista.add(listaVenta);
+                }
+            }
+            return nuevaLista;
+        } catch (NegocioException ex) {
+            throw new NegocioException("Error: "+ex.getMessage());
+        }
+        
+    }
+    private void generarReporte(VendedorDTO vendedor) throws NegocioException{
+        JOptionPane.showMessageDialog(this, "Generando reporte del vendedor: " + vendedor.getCurp());
+        ReportePDFVendedor reporte = new ReportePDFVendedor();
+        String ruta = System.getProperty("user.home") + "/Desktop/reporteVendedor.pdf";
+        reporte.generarReporteVendedor(vendedor, this.buscarVentas(vendedor), ruta);
     }
     private void editarVendedor(VendedorDTO vendedor) {
         JOptionPane.showMessageDialog(this, "Editar: " + vendedor.getCurp());

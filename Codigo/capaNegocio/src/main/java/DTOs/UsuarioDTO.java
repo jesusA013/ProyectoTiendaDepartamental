@@ -14,7 +14,6 @@ public class UsuarioDTO {
     
     private ObjectId _id;
     private String idCuenta;
-    private String nombreUsuario;
     private String contrasena;
     private String rol;
 
@@ -32,12 +31,19 @@ public class UsuarioDTO {
      * @param contrasena Contraseña del usuario
      * @param rol Tipo de usuario
      */
-    public UsuarioDTO(String idCuenta, String nombreUsuario, String contrasena, String rol) {
+    public UsuarioDTO(String idCuenta, String contrasena, String rol) {
         this.idCuenta = idCuenta;
-        this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.rol = rol;
     }
+
+    public UsuarioDTO(ObjectId _id, String idCuenta, String contrasena, String rol) {
+        this._id = _id;
+        this.idCuenta = idCuenta;
+        this.contrasena = contrasena;
+        this.rol = rol;
+    }
+    
 
     public ObjectId getId() {
         return _id;
@@ -53,24 +59,6 @@ public class UsuarioDTO {
 
     public void setIdCuenta(String idCuenta) {
         this.idCuenta = idCuenta;
-    }
-
-    /**
-     * Regresa el nombre del usuario.
-     *
-     * @return Nombre del usuario
-     */
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    /**
-     * Establece el nombre del usuario.
-     *
-     * @param nombreUsuario Nombre del usuario
-     */
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
     }
 
     public String getContrasena() {
@@ -96,6 +84,6 @@ public class UsuarioDTO {
      */
     @Override
     public String toString() {
-        return "UsuarioDTO{" + "idCuenta=" + idCuenta + ", nombreUsuario=" + nombreUsuario + ", contrasena=" + contrasena + ", rol=" + rol + '}';
+        return "UsuarioDTO{" + "idCuenta=" + idCuenta + ", contrasena=" + contrasena + ", rol=" + rol + '}';
     }
 }

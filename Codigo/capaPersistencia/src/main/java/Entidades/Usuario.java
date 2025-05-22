@@ -11,9 +11,8 @@ import org.bson.types.ObjectId;
  */
 public class Usuario {
 
-    private ObjectId idUsuario;
+    private ObjectId id;
     private String idCuenta;
-    private String nombreUsuario;
     private String contrasena;
     private String tipo;
 
@@ -21,6 +20,13 @@ public class Usuario {
      * Constructor por ausencia
      */
     public Usuario() {
+    }
+
+    public Usuario(ObjectId idUsuario, String idCuenta, String contrasena, String tipo) {
+        this.id = idUsuario;
+        this.idCuenta = idCuenta;
+        this.contrasena = contrasena;
+        this.tipo = tipo;
     }
 
     /**
@@ -31,9 +37,8 @@ public class Usuario {
      * @param contrasena Contraseña del usuario
      * @param tipo Tipo de usuario
      */
-    public Usuario(String idCuenta, String nombreUsuario, String contrasena, String tipo) {
+    public Usuario(String idCuenta, String contrasena, String tipo) {
         this.idCuenta = idCuenta;
-        this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.tipo = tipo;
     }
@@ -43,17 +48,12 @@ public class Usuario {
      *
      * @return ID del usuario
      */
-    public ObjectId getIdUsuario() {
-        return idUsuario;
+    public ObjectId getId() {
+        return id;
     }
 
-    /**
-     * Establece el ID del usuario.
-     *
-     * @param idUsuario ID del usuario
-     */
-    public void setIdUsuario(ObjectId idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     /**
@@ -72,24 +72,6 @@ public class Usuario {
      */
     public void setIdCuenta(String idCuenta) {
         this.idCuenta = idCuenta;
-    }
-
-    /**
-     * Regresa el nombre del usuario.
-     *
-     * @return Nombre del usuario
-     */
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    /**
-     * Establece el nombre del usuario.
-     *
-     * @param nombreUsuario Nombre del usuario
-     */
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
     }
 
     /**
@@ -135,6 +117,6 @@ public class Usuario {
      */
     @Override
     public String toString() {
-        return "Usuario{" + "idUsuario=" + idUsuario + ", idCuenta=" + idCuenta + ", nombreUsuario=" + nombreUsuario + ", contrasena=" + contrasena + ", tipo=" + tipo + '}';
+        return "Usuario{" + "idUsuario=" + id + ", idCuenta=" + idCuenta + ", contrasena=" + contrasena + ", tipo=" + tipo + '}';
     }
 }

@@ -6,6 +6,8 @@ import Interfaz.IVentasDAO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
+import java.util.ArrayList;
+import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
@@ -40,6 +42,10 @@ public class VentasDAO implements IVentasDAO {
     @Override
     public Venta eliminarVenta(ObjectId id) throws PersistenciaException {
         return coleccion.findOneAndDelete(eq("_id", id));
+    }
+    @Override
+    public List<Venta> obtenerVentas()throws PersistenciaException{
+        return coleccion.find().into(new ArrayList<>());
     }
     
 }

@@ -13,4 +13,5 @@ import Exception.PersistenciaException;
  */
 public interface IUsuarioDAO {
     Usuario obtenerUsuario(String id) throws PersistenciaException;
+    Usuario insertarUsuario(Usuario usuario)throws PersistenciaException;
 }

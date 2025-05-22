@@ -19,6 +19,7 @@ import Interfaz.IConexion;
 import Interfaz.IVentasDAO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.bson.types.ObjectId;
 
 /**
@@ -85,6 +86,7 @@ public class VentasBO implements IVentasBO {
             throw new NegocioException("Error " + ex.getMessage());
         }
     }
+    
 
     /**
      * Convierte la entidad a DTO.
@@ -186,5 +188,18 @@ public class VentasBO implements IVentasBO {
         venta.setDetallesVenta(detallesVenta);
 
         return venta;
+    }
+
+    @Override
+    public List<VentaDTO> obtenerVentas() throws NegocioException {
+        try {
+            List<Venta> lista = ventaDAO.obtenerVentas();
+            if (lista.isEmpty()) {
+                throw new NegocioException("No hay ventas registradas.");
+            }
+            return lista.stream().map(this::convertirDTO).collect(Collectors.toList());
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No hay ventas registradas.");
+        }
     }
 }

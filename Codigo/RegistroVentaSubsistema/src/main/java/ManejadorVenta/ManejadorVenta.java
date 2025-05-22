@@ -1,4 +1,4 @@
-package ManejadorVenta;
+ package ManejadorVenta;
 
 import BOs.ProductoBO;
 import BOs.VentasBO;
@@ -72,6 +72,7 @@ public class ManejadorVenta implements IRegistroVenta {
         ventaDTO.setDetallesVenta(detallesVentaDTO);
 
         try {
+            System.out.println("MANEJADOR VENTA ID VENDEDOR: "+ventaDTO.getVendedorId());
             VentaDTO resultado = this.ventasNegocio.insertarVenta(ventaDTO);
             for (ProductoVentaDTO productoVenta : productos) {
                 productoVenta.getProducto().setStock(productoVenta.getProducto().getStock() - productoVenta.getCantidad());
@@ -115,6 +116,7 @@ public class ManejadorVenta implements IRegistroVenta {
         ventaDTO.setDetallesVenta(detallesVentaDTO);
 
         try {
+            System.out.println("MANEJADOR VENTA ID VENDEDOR: "+ventaDTO.getVendedorId());
             VentaDTO resultado = this.ventasNegocio.insertarVenta(ventaDTO);
             for (ProductoVentaDTO productoVenta : productos) {
                 productoVenta.getProducto().setStock(productoVenta.getProducto().getStock() - productoVenta.getCantidad());

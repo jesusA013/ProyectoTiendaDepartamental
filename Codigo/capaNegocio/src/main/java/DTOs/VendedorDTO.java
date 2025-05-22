@@ -22,11 +22,11 @@ public class VendedorDTO {
     private SeguroDTO seguro;
     private Date fechaRegistro;
     private boolean activo;
-
+    private UsuarioDTO usuario;
     public VendedorDTO() {
     }
 
-    public VendedorDTO(ObjectId id,String curp, NombreCompletoDTO nombreCompleto, Date fechaNacimiento, String estadoCivil, DomicilioDTO domicilio, DatosFiscalesDTO datosFiscales, SeguroDTO seguro, Date fechaRegistro, boolean activo) {
+    public VendedorDTO(ObjectId id,String curp, NombreCompletoDTO nombreCompleto, Date fechaNacimiento, String estadoCivil, DomicilioDTO domicilio, DatosFiscalesDTO datosFiscales, SeguroDTO seguro, Date fechaRegistro, boolean activo,UsuarioDTO usuario) {
         this.id = id;
         this.curp = curp;
         this.nombreCompleto = nombreCompleto;
@@ -37,6 +37,7 @@ public class VendedorDTO {
         this.seguro = seguro;
         this.fechaRegistro = fechaRegistro;
         this.activo = activo;
+        this.usuario = usuario;
     }
 
     public ObjectId getId() {
@@ -45,6 +46,14 @@ public class VendedorDTO {
 
     public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public void setUsuario(UsuarioDTO usuario) {
+        this.usuario = usuario;
+    }
+
+    public UsuarioDTO getUsuario() {
+        return usuario;
     }
 
     public String getCurp() {

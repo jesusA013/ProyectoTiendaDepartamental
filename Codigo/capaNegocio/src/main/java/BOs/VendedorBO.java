@@ -10,11 +10,13 @@ import DTOs.DatosFiscalesDTO;
 import DTOs.DomicilioDTO;
 import DTOs.NombreCompletoDTO;
 import DTOs.SeguroDTO;
+import DTOs.UsuarioDTO;
 import DTOs.VendedorDTO;
 import Entidades.DatosFiscales;
 import Entidades.Domicilio;
 import Entidades.NombreCompleto;
 import Entidades.Seguro;
+import Entidades.Usuario;
 import Entidades.Vendedor;
 import Excepciones.NegocioException;
 import Interfaces.IVendedorBO;
@@ -116,7 +118,8 @@ public class VendedorBO implements IVendedorBO{
             aEntidad(dto.getDomicilio()),
             aEntidad(dto.getSeguro()),
             dto.getFechaRegistro(),
-                dto.isActivo()
+                dto.isActivo(),
+                aEntidad(dto.getUsuario())
         );
     }
     private VendedorDTO aDTO(Vendedor v) {
@@ -130,7 +133,24 @@ public class VendedorBO implements IVendedorBO{
             aDTO(v.getDatosFiscales()),
             aDTO(v.getSeguro()),
             v.getFechaRegistro(),
-                v.isActivo()
+                v.isActivo(),
+                aDTO(v.getUsuario())
+        );
+    }
+    private Usuario aEntidad(UsuarioDTO usuario){
+        return new Usuario(
+                usuario.getId(),
+                usuario.getIdCuenta(),
+                usuario.getContrasena(),
+                usuario.getRol()
+        );
+    }
+    private UsuarioDTO aDTO(Usuario usuario){
+        return new UsuarioDTO(
+                usuario.getId(),
+                usuario.getIdCuenta(),
+                usuario.getContrasena(),
+                usuario.getTipo()
         );
     }
     private NombreCompleto aEntidad(NombreCompletoDTO nombre){

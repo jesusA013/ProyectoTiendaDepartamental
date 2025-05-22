@@ -13,4 +13,5 @@ import Excepciones.NegocioException;
  */
 public interface IUsuarioBO {
     UsuarioDTO verificarCredenciales(String idCuenta, String contrasena) throws NegocioException;
+    UsuarioDTO registrarUsuario(UsuarioDTO dto) throws NegocioException;
 }

@@ -4,11 +4,14 @@
  */
 package ModuloAdministracion.GestionVendedores;
 
+import BOs.UsuarioBO;
 import DTOs.DatosFiscalesDTO;
 import DTOs.DomicilioDTO;
 import DTOs.NombreCompletoDTO;
 import DTOs.SeguroDTO;
+import DTOs.UsuarioDTO;
 import DTOs.VendedorDTO;
+import Interfaces.IUsuarioBO;
 import Interfaces.IVendedorBO;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -25,6 +28,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
@@ -34,10 +38,13 @@ import javax.swing.JTextField;
  */
 public class PanelRegistrarVendedor extends javax.swing.JPanel {
     private final JPanel panelCambiante;
+    private final IUsuarioBO usuarioBO;
     private final IVendedorBO vendedorBO;
     private JPanel panelVendedores;
     
     private JTextField txtCURP = new JTextField(20);
+    private JTextField txtIdUsuario = new JTextField(20);
+    private JTextField txtContrasenia = new JPasswordField(20);
     private JTextField txtFechaNacimiento = new JTextField(10);
     private JComboBox<String> comboEstadoCivil = new JComboBox<>(new String[]{"Soltero", "Casado", "Divorciado", "Viudo"});
 
@@ -70,6 +77,7 @@ public class PanelRegistrarVendedor extends javax.swing.JPanel {
         initComponents();
         this.panelCambiante=panelCambiante;
         this.vendedorBO=vendedorBO;
+        this.usuarioBO = new UsuarioBO();
         
         panelVendedores = new JPanel();
         
@@ -79,19 +87,18 @@ public class PanelRegistrarVendedor extends javax.swing.JPanel {
         JScrollPane scrollPane = new JScrollPane(panelVendedores);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panelVendedores.add(seccion("Nombre Completo", new JComponent[][]{
+            {new JLabel("Nombres:"), txtNombres},
+            {new JLabel("Apellido Paterno:"), txtApellidoPaterno},
+            {new JLabel("Apellido Materno:"), txtApellidoMaterno}
+        }));
         
         panelVendedores.add(seccion("Datos Personales", new JComponent[][]{
             {new JLabel("CURP:"), txtCURP},
             {new JLabel("Fecha Nacimiento (yyyy-MM-dd):"), txtFechaNacimiento},
             {new JLabel("Estado Civil:"), comboEstadoCivil}
         }));
-
-        panelVendedores.add(seccion("Nombre Completo", new JComponent[][]{
-            {new JLabel("Nombres:"), txtNombres},
-            {new JLabel("Apellido Paterno:"), txtApellidoPaterno},
-            {new JLabel("Apellido Materno:"), txtApellidoMaterno}
-        }));
-
+        
         panelVendedores.add(seccion("Domicilio Personal", new JComponent[][]{
             {new JLabel("Calle:"), txtCalleDom},
             {new JLabel("Municipio:"), txtMunicipioDom},
@@ -112,6 +119,12 @@ public class PanelRegistrarVendedor extends javax.swing.JPanel {
             {new JLabel("Número de Seguro:"), txtNumSeguro},
             {new JLabel("Tipo de Seguro:"), comboTipoSeguro}
         }));
+        
+        panelVendedores.add(seccion("Usuario", new JComponent[][]{
+            {new JLabel("Id del Usuario"),txtIdUsuario},
+            {new JLabel("Contrasena"),txtContrasenia}
+        }));
+        
         panelContenedor.setLayout(new BorderLayout());
         panelContenedor.add(scrollPane);
     }
@@ -208,7 +221,12 @@ public class PanelRegistrarVendedor extends javax.swing.JPanel {
             vendedor.setFechaNacimiento(fechaNacimiento);
             vendedor.setEstadoCivil(comboEstadoCivil.getSelectedItem().toString());
             vendedor.setActivo(true);
-            
+            UsuarioDTO usuario = new UsuarioDTO();
+            usuario.setIdCuenta(txtIdUsuario.getText());
+            usuario.setContrasena(txtContrasenia.getText());
+            usuario.setRol("Vendedor");
+            UsuarioDTO usuarioRegistrado = usuarioBO.registrarUsuario(usuario);
+            vendedor.setUsuario(usuarioRegistrado);
             VendedorDTO vendedorInsertado = vendedorBO.registrarVendedor(vendedor);
 
             JOptionPane.showMessageDialog(this, "Vendedor registrado con éxito.\nID: " + vendedorInsertado.getId());

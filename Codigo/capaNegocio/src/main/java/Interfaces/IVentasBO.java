@@ -2,6 +2,7 @@ package Interfaces;
 
 import DTOs.VentaDTO;
 import Excepciones.NegocioException;
+import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
@@ -13,4 +14,5 @@ public interface IVentasBO {
     VentaDTO buscarPorId(ObjectId id) throws NegocioException;
     VentaDTO actualizarVenta(VentaDTO ventaDTO) throws NegocioException;
     VentaDTO eliminarVenta(ObjectId id) throws NegocioException;
+    List<VentaDTO> obtenerVentas()throws NegocioException;
 }

@@ -22,11 +22,12 @@ public class Vendedor {
     private Seguro seguro;
     private Date fechaRegistro;
     private boolean activo;
+    private Usuario usuario;
 
     public Vendedor() {
     }
 
-    public Vendedor(ObjectId _id, String curp, DatosFiscales datosFiscales, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro, boolean activo) {
+    public Vendedor(ObjectId _id, String curp, DatosFiscales datosFiscales, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro, boolean activo,Usuario usuario) {
         this._id = _id;
         this.curp = curp;
         this.datosFiscales = datosFiscales;
@@ -37,6 +38,7 @@ public class Vendedor {
         this.seguro = seguro;
         this.fechaRegistro = fechaRegistro;
         this.activo = activo;
+        this.usuario = usuario;
     }
     
     public Vendedor(String curp, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
@@ -140,6 +142,14 @@ public class Vendedor {
 
     public void setActivo(boolean activo) {
         this.activo = activo;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     
 
