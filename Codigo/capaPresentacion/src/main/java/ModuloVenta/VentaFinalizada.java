@@ -25,6 +25,7 @@ public class VentaFinalizada extends javax.swing.JFrame {
     public VentaFinalizada(IRegistroVenta controlVenta) {
         this.controlVenta = controlVenta;
         initComponents();
+        lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
     }
     
     public static VentaFinalizada getInstance(IRegistroVenta controlVenta) {
@@ -36,6 +37,7 @@ public class VentaFinalizada extends javax.swing.JFrame {
 
     public void setId(ObjectId id) {
         this.id = id;
+        lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
     }
 
     public void actualizarDatos() {

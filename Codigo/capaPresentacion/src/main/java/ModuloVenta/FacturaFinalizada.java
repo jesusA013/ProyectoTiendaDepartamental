@@ -25,6 +25,7 @@ public class FacturaFinalizada extends javax.swing.JFrame {
     public FacturaFinalizada(IRegistroVenta controlVenta, ObjectId id) {
         this.controlVenta = controlVenta;
         initComponents();
+        lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
     }
     
     public static FacturaFinalizada getInstance(IRegistroVenta controlVenta, ObjectId id) {
@@ -35,6 +36,7 @@ public class FacturaFinalizada extends javax.swing.JFrame {
     }
 
     public void actualizarDatos() {
+        lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
         lblUsuario.setText("Realizada por: " + InicioSesion.getInstance().getNombreUsuario());
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd 'de' MMMM 'de' yyyy");
         lblFecha.setText("Fecha: " + formatoFecha.format(new Date()));
@@ -69,8 +71,8 @@ public class FacturaFinalizada extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("VENTA FINALIZADA");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, -1));
+        jLabel1.setText("FACTURA FINALIZADA");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
 
         lblUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
