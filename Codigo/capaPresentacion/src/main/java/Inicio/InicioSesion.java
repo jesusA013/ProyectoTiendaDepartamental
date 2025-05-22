@@ -149,16 +149,20 @@ public class InicioSesion extends JFrame {
                 switch (tipo) {
                     case "Vendedor":
                         setIdUsuario(usuario.getId());
+                        setIdCuenta(usuario.getIdCuenta());
+                        setNombreUsuario(usuario.getNombreUsuario());
                         ControlNavegacion.getInstance().irACarritoCompra();
                         break;
                     case "Administrador":
                         setIdUsuario(usuario.getId());
-
+                        setIdCuenta(usuario.getIdCuenta());
+                        setNombreUsuario(usuario.getNombreUsuario());
                         ControlNavegacion.getInstance().mostrarMenuAdministrador();
                         break;
                     case "Almacen":
                         setIdUsuario(usuario.getId());
-
+                        setIdCuenta(usuario.getIdCuenta());
+                        setNombreUsuario(usuario.getNombreUsuario());
                         ControlNavegacion.getInstance().mostrarMenuAlmacen();
                         break;
                     default:
