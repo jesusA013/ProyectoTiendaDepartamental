@@ -645,6 +645,7 @@ public class ProveedoresPanelNuevo extends javax.swing.JPanel {
 
     private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
         añadir();
+        restaurar();
     }//GEN-LAST:event_btnAñadirActionPerformed
 
     private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
