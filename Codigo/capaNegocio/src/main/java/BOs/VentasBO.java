@@ -2,24 +2,18 @@ package BOs;
 
 import DAOs.Conexion;
 import DAOs.VentasDAO;
-import DTOs.DetallesVentaDTO;
-import DTOs.FacturaDTO;
-import DTOs.ProductoDTO;
-import DTOs.ProductoVentaDTO;
-import DTOs.VentaDTO;
-import Entidades.DetallesVenta;
-import Entidades.Factura;
-import Entidades.Producto;
-import Entidades.ProductoVenta;
-import Entidades.Venta;
+import DTOs.*;
+import Entidades.*;
 import Excepciones.NegocioException;
 import Exception.PersistenciaException;
 import Interfaces.IVentasBO;
 import Interfaz.IConexion;
 import Interfaz.IVentasDAO;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
+import java.util.*;
 
 
 /**
@@ -29,7 +23,6 @@ import org.bson.types.ObjectId;
  *
  * @author
  */
-import java.time.LocalDate;//gv
 public class VentasBO implements IVentasBO {
 
     private final IVentasDAO ventaDAO;
@@ -38,11 +31,11 @@ public class VentasBO implements IVentasBO {
     private int idVenta;
     private double monto;
     private LocalDate fechaVenta;
-    
+        
     public boolean validaVenta(){
     return monto>0;
     }
-
+    
 
     public int getIdVenta() {
         return idVenta;
@@ -75,9 +68,10 @@ public class VentasBO implements IVentasBO {
      * Inicializa el atributo para usar la DAO.
      */
     public VentasBO() {
+        this.Mongo= new Conexion();
         this.ventaDAO = new VentasDAO(Mongo.conexion());
     }
-
+//venta con validaoiones
     @Override
     public VentaDTO insertarVenta(VentaDTO ventaDTO) throws NegocioException {
         try {
@@ -90,6 +84,7 @@ public class VentasBO implements IVentasBO {
         }
     }
 
+    //buscar venta por id
     @Override
     public VentaDTO buscarPorId(ObjectId id) throws NegocioException {
         try {
@@ -100,7 +95,7 @@ public class VentasBO implements IVentasBO {
             throw new NegocioException("Error " + ex.getMessage());
         }
     }
-
+//actualizar una venta
     @Override
     public VentaDTO actualizarVenta(VentaDTO ventaDTO) throws NegocioException {
         try {
@@ -112,7 +107,7 @@ public class VentasBO implements IVentasBO {
             throw new NegocioException("Error " + ex.getMessage());
         }
     }
-
+//eliminar una venta
     @Override
     public VentaDTO eliminarVenta(ObjectId id) throws NegocioException {
         try {

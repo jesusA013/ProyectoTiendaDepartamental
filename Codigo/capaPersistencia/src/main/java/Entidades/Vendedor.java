@@ -16,7 +16,7 @@ public class Vendedor {
     private ObjectId _id;
     private String curp;
     private DatosFiscales datosFiscales;
-    private NombreCompleto nombreCompleto;
+    private String nombreCompleto;
     private Date fechaNacimiento;
     private String estadoCivil;
     private Domicilio domicilio;
@@ -33,7 +33,7 @@ public class Vendedor {
     public Vendedor() {
     }
 
-    public Vendedor(String curp, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
+    public Vendedor(String curp, String nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
         this.curp = curp;
         this.nombreCompleto = nombreCompleto;
         this.fechaNacimiento = fechaNacimiento;
@@ -46,7 +46,7 @@ public class Vendedor {
 
 
 
-    public Vendedor(String curp, NombreCompleto nombreCompleto, Date fechaNacimiento, Domicilio domicilio, boolean activo, String ciudad, String municipio, String foto, String rfc, double totalventas, int raiting) {
+    public Vendedor(String curp, String nombreCompleto, Date fechaNacimiento, Domicilio domicilio, boolean activo, String ciudad, String municipio, String foto, String rfc, double totalventas, int raiting) {
         this.curp = curp;
         this.nombreCompleto = nombreCompleto;
         this.fechaNacimiento = fechaNacimiento;
@@ -62,7 +62,7 @@ public class Vendedor {
 
     
     
-    public Vendedor(String curp, DatosFiscales datosFiscales, NombreCompleto nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
+    public Vendedor(String curp, DatosFiscales datosFiscales, String nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
         this.curp = curp;
         this.datosFiscales = datosFiscales;
         this.nombreCompleto = nombreCompleto;
@@ -99,11 +99,11 @@ public class Vendedor {
         this.datosFiscales = datosFiscales;
     }
 
-    public NombreCompleto getNombreCompleto() {
+    public String getNombreCompleto() {
         return nombreCompleto;
     }
 
-    public void setNombreCompleto(NombreCompleto nombreCompleto) {
+    public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
     }
 
@@ -211,6 +211,14 @@ public class Vendedor {
     @Override
     public String toString() {
         return "Vendedor{" + "_id=" + _id + ", curp=" + curp + ", datosFiscales=" + datosFiscales + ", nombreCompleto=" + nombreCompleto + ", fechaNacimiento=" + fechaNacimiento + ", estadoCivil=" + estadoCivil + ", domicilio=" + domicilio + ", seguro=" + seguro + ", fechaRegistro=" + fechaRegistro + ", activo=" + activo + '}';
+    }
+
+    public Object getEmail() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Object getTelefono() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
