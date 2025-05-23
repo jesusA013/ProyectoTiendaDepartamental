@@ -10,7 +10,6 @@ import DAOs.Conexion;
 import Interfaces.IProductoBO;
 import Interfaces.IVendedorBO;
 import Interfaz.IConexion;
-import ModuloAdministracion.GestionVendedores.PanelListadoVendedores;
 import control.ControlNavegacion;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
@@ -21,7 +20,7 @@ import javax.swing.JPanel;
  */
 public class PanelAdministradorMenu extends javax.swing.JPanel {
     private final IProductoBO productoBO;
-    private final IVendedorBO vendedoresBO;
+//    private final IVendedorBO vendedoresBO;
     private final IConexion mongo;
     private final JPanel panelCambiante;
     /**
@@ -31,7 +30,7 @@ public class PanelAdministradorMenu extends javax.swing.JPanel {
         initComponents();
         this.mongo = new Conexion();
         this.productoBO = new ProductoBO();
-        this.vendedoresBO = new VendedorBO();
+//        this.vendedoresBO = new VendedorBO();
         this.panelCambiante = panelCambiante;
     }
 

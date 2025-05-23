@@ -194,6 +194,7 @@ public class ControlNavegacion implements INavegador{
     /**
      * Muestra el panel para registrar un proveedor.
      */
+    @Override
     public void mostrarPanelProveedorNuevo() {
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
         ProveedoresPanelNuevo proveedorPanelNuevo = ProveedoresPanelNuevo.getInstance(manejadorProveedor);
@@ -203,7 +204,7 @@ public class ControlNavegacion implements INavegador{
     /**
      * Muestra el panel para editar un proveedor ya registrado.
      * @param id
-     * @throws Exception.ProveedorException
+     * @throws Excepciones.ProveedorException
      */
     @Override
     public void mostrarPanelProveedorEditar(ObjectId id) throws ProveedorException {
@@ -216,7 +217,7 @@ public class ControlNavegacion implements INavegador{
     /**
      * Muestra el panel para ver los detalles un proveedor ya registrado.
      * @param id
-     * @throws Exception.ProveedorException
+     * @throws Excepciones.ProveedorException
      */
     @Override
     public void mostrarPanelProveedorDetalles(ObjectId id) throws ProveedorException {

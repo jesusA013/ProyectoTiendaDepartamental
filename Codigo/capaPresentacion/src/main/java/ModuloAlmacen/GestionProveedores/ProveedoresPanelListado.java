@@ -22,89 +22,73 @@ import org.bson.types.ObjectId;
  * @author Ángel Ruíz García - 00000248171
  */
 public class ProveedoresPanelListado extends javax.swing.JPanel {
-    
+
     private static ProveedoresPanelListado instancia;
     IManejadorProveedor controlProveedor;
-    
-    
+
     /**
      * Creates new form ProveedoresPanelListado
+     *
      * @param controlProveedor
      */
     public ProveedoresPanelListado(IManejadorProveedor controlProveedor) {
         this.controlProveedor = controlProveedor;
         initComponents();
-        ActionListener onDetallesClickListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    //Metodo para detalles
-                    int fila = Integer.parseInt(e.getActionCommand());
-                    String idStr = tablaProveedores.getValueAt(fila, 0).toString();
-                    ObjectId id = new ObjectId(idStr);
-                    System.out.println(id);
-                    ControlNavegacion.getInstance().mostrarPanelProveedorDetalles(id);
-                } catch (ProveedorException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
-        };
-        int indiceColumnaDetalles = 5;
-        TableColumnModel modeloColumnas = tablaProveedores.getColumnModel();
-        modeloColumnas.getColumn(indiceColumnaDetalles)
-                .setCellRenderer(new JButtonRenderer("Detalles"));
-        modeloColumnas.getColumn(indiceColumnaDetalles)
-                .setCellEditor(new JButtonCellEditor("Detalles", onDetallesClickListener));
-
-        ActionListener onEditarClickListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    //Metodo para editar
-                    int fila = Integer.parseInt(e.getActionCommand());
-                    String idStr = tablaProveedores.getValueAt(fila, 0).toString();
-                    ObjectId id = new ObjectId(idStr);
-                    System.out.println(id);
-                    ControlNavegacion.getInstance().mostrarPanelProveedorEditar(id);
-                } catch (ProveedorException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
-        };
-        int indiceColumnaEditar = 6;
-        modeloColumnas = tablaProveedores.getColumnModel();
-        modeloColumnas.getColumn(indiceColumnaEditar)
-                .setCellRenderer(new JButtonRenderer("Editar"));
-        modeloColumnas.getColumn(indiceColumnaEditar)
-                .setCellEditor(new JButtonCellEditor("Editar", onEditarClickListener));
+        configurarBotonesTabla();
     }
-    
+
     public static ProveedoresPanelListado getInstance(IManejadorProveedor controlProveedor) {
         if (instancia == null) {
             instancia = new ProveedoresPanelListado(controlProveedor);
         }
         return instancia;
     }
-    
+
+    private void configurarBotonesTabla() {
+        TableColumnModel modeloColumnas = tablaProveedores.getColumnModel();
+
+        // Botón Detalles
+        ActionListener onDetallesClickListener = e -> {
+            try {
+                int fila = Integer.parseInt(e.getActionCommand());
+                String idStr = tablaProveedores.getValueAt(fila, 0).toString();
+                ObjectId id = new ObjectId(idStr);
+                ControlNavegacion.getInstance().mostrarPanelProveedorDetalles(id);
+            } catch (ProveedorException ex) {
+                System.out.println(ex.getMessage());
+            }
+        };
+        int indiceColumnaDetalles = 5;
+        modeloColumnas.getColumn(indiceColumnaDetalles)
+                .setCellRenderer(new JButtonRenderer("Detalles"));
+        modeloColumnas.getColumn(indiceColumnaDetalles)
+                .setCellEditor(new JButtonCellEditor("Detalles", onDetallesClickListener));
+
+        // Botón Editar
+        ActionListener onEditarClickListener = e -> {
+            try {
+                int fila = Integer.parseInt(e.getActionCommand());
+                String idStr = tablaProveedores.getValueAt(fila, 0).toString();
+                ObjectId id = new ObjectId(idStr);
+                ControlNavegacion.getInstance().mostrarPanelProveedorEditar(id);
+            } catch (ProveedorException ex) {
+                System.out.println(ex.getMessage());
+            }
+        };
+        int indiceColumnaEditar = 6;
+        modeloColumnas.getColumn(indiceColumnaEditar)
+                .setCellRenderer(new JButtonRenderer("Editar"));
+        modeloColumnas.getColumn(indiceColumnaEditar)
+                .setCellEditor(new JButtonCellEditor("Editar", onEditarClickListener));
+    }
+
     public void cargarListaProveedores() {
         List<ProveedorTablaDTO> listaProveedores = controlProveedor.obtenerDatosParaTabla();
-        DefaultTableModel modeloTabla = (DefaultTableModel) tablaProveedores.getModel();
-        
-        // Limpia la tabla
-        modeloTabla.setRowCount(0);
-        
-        if (!listaProveedores.isEmpty()) {
-            listaProveedores.forEach(row -> {
-                Object[] fila = new Object[5];
-                fila[0] = row.getIdProveedor();
-                fila[1] = row.getNombreProveedor();
-                fila[2] = row.getTelefono();
-                fila[3] = row.getCorreo();
-                fila[4] = row.getEstado();
 
-                modeloTabla.addRow(fila);
-            });
-        }
+        DefaultTableModel modelo = controlProveedor.obtenerModeloTablaProveedores(listaProveedores);
+
+        tablaProveedores.setModel(modelo); // Establece el nuevo modelo
+        configurarBotonesTabla();          // Restablece los renderizadores y editores
     }
 
     /**

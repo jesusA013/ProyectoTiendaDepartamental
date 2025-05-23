@@ -21,6 +21,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import org.bson.types.ObjectId;
 
@@ -33,83 +34,45 @@ import org.bson.types.ObjectId;
  * @author Ángel Ruíz García - 00000248171
  */
 public class ManejadorProveedor implements IManejadorProveedor {
-    
+
     private final IProveedorBO proveedorNegocio = new ProveedorBO();
     private static ManejadorProveedor instancia;
     INavegador navegacion;
+
     @Override
-    public void setNavegador(INavegador navegador){
+    public void setNavegador(INavegador navegador) {
         this.navegacion = navegador;
     }
+
     public static ManejadorProveedor getInstance() {
         if (instancia == null) {
             instancia = new ManejadorProveedor();
         }
         return instancia;
     }
-    
-    /**
-     * Este metodo estable los botones de la tabla de proveedores.
-     *
-     * @param tablaProveedores
-     */
+
     @Override
-    public void configuracionInicialTabla(JTable tablaProveedores) {
-        ActionListener onDetallesClickListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    //Metodo para detalles
-                    navegacion.mostrarPanelProveedorDetalles(this.getIdSeleccionadoTabla(tablaProveedores));
-                } catch (ProveedorException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
+    public DefaultTableModel obtenerModeloTablaProveedores(List<ProveedorTablaDTO> listaProveedores) {
+        String[] columnas = {"ID", "Nombre", "Teléfono", "Correo", "Estado", "Detalles", "Editar"};
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
-            private ObjectId getIdSeleccionadoTabla(JTable tablaProveedores) {
-                int filaSeleccionada = tablaProveedores.getSelectedRow();
-                if (filaSeleccionada != -1) {
-                    String idStr = tablaProveedores.getValueAt(filaSeleccionada, 0).toString();
-                    return new ObjectId(idStr);
-                }
-                return null;
+        if (listaProveedores != null && !listaProveedores.isEmpty()) {
+            for (ProveedorTablaDTO row : listaProveedores) {
+                Object[] fila = new Object[7];
+                fila[0] = row.getIdProveedor();
+                fila[1] = row.getNombreProveedor();
+                fila[2] = row.getTelefono();
+                fila[3] = row.getCorreo();
+                fila[4] = row.getEstado();
+                fila[5] = ""; // para botón Detalles
+                fila[6] = ""; // para botón Editar
+                modelo.addRow(fila);
             }
-        };
-        int indiceColumnaDetalles = 5;
-        TableColumnModel modeloColumnas = tablaProveedores.getColumnModel();
-        modeloColumnas.getColumn(indiceColumnaDetalles)
-                .setCellRenderer(new JButtonRenderer("Detalles"));
-        modeloColumnas.getColumn(indiceColumnaDetalles)
-                .setCellEditor(new JButtonCellEditor("Detalles", onDetallesClickListener));
+        }
 
-        ActionListener onEditarClickListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    //Metodo para editar
-                    navegacion.mostrarPanelProveedorEditar(this.getIdSeleccionadoTabla(tablaProveedores));
-                } catch (ProveedorException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
-            
-            private ObjectId getIdSeleccionadoTabla(JTable tablaProveedores) {
-                int filaSeleccionada = tablaProveedores.getSelectedRow();
-                if (filaSeleccionada != -1) {
-                    String idStr = tablaProveedores.getValueAt(filaSeleccionada, 0).toString();
-                    return new ObjectId(idStr);
-                }
-                return null;
-            }
-        };
-        int indiceColumnaEditar = 6;
-        modeloColumnas = tablaProveedores.getColumnModel();
-        modeloColumnas.getColumn(indiceColumnaEditar)
-                .setCellRenderer(new JButtonRenderer("Editar"));
-        modeloColumnas.getColumn(indiceColumnaEditar)
-                .setCellEditor(new JButtonCellEditor("Editar", onEditarClickListener));
+        return modelo;
     }
-    
+
     @Override
     public List<ProveedorTablaDTO> obtenerDatosParaTabla() {
         try {
@@ -121,7 +84,7 @@ public class ManejadorProveedor implements IManejadorProveedor {
     }
 
     /**
-     * 
+     *
      * @param panel
      * @param nombreProveedor
      * @param contacto
@@ -135,7 +98,7 @@ public class ManejadorProveedor implements IManejadorProveedor {
      * @param moneda
      * @param estado
      * @param comentarios
-     * @throws ProveedorException 
+     * @throws ProveedorException
      */
     @Override
     public void registrarProveedor(JPanel panel, String nombreProveedor,
@@ -218,7 +181,7 @@ public class ManejadorProveedor implements IManejadorProveedor {
     }
 
     /**
-     * 
+     *
      * @param panel
      * @param id
      * @param nombreProveedor
@@ -234,7 +197,7 @@ public class ManejadorProveedor implements IManejadorProveedor {
      * @param fecha
      * @param estado
      * @param comentarios
-     * @throws ProveedorException 
+     * @throws ProveedorException
      */
     @Override
     public void editarProveedor(JPanel panel, ObjectId id, String nombreProveedor,
@@ -307,32 +270,32 @@ public class ManejadorProveedor implements IManejadorProveedor {
             JOptionPane.showMessageDialog(panel, "Error al actualizado el proveedor: " + ex.getMessage());
         }
     }
-    
+
     private boolean validarNombre(String nombreProveedor) {
         return !(nombreProveedor == null || nombreProveedor.trim().isEmpty());
     }
-    
+
     private boolean validarTelefono(String telefono) {
         if (telefono == null || telefono.trim().isEmpty()) {
             return false;
         }
-        
+
         return telefono.matches("\\d{10}");
     }
-    
+
     private boolean validarCorreo(String correo) {
         if (correo == null || correo.trim().isEmpty()) {
             return false;
         }
-        
+
         // Expresión regular simple para validar formato de correo electrónico
         return correo.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
     }
-    
+
     private boolean validarDireccion(String direccion) {
         return direccion != null && !direccion.trim().isEmpty();
     }
-    
+
     private boolean validarRFC(String rfc) {
         if (rfc == null || rfc.trim().isEmpty()) {
             return false;
@@ -341,9 +304,9 @@ public class ManejadorProveedor implements IManejadorProveedor {
         // Expresión regular para RFC válido (13 caracteres para personas físicas, 12 para morales)
         return rfc.matches("^[A-ZÑ&]{3,4}\\d{6}[A-Z0-9]{3}$");
     }
-    
+
     private boolean validarFormaPago(String formaPago) {
         return !(formaPago == null || formaPago.trim().isEmpty());
     }
-    
+
 }
