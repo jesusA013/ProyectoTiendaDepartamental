@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package gestionVendedores;
+package ModuloAdministracion.GestionVendedores;
 import control.ControlNavegacion;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -51,7 +51,6 @@ public class ListadoVendedores extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ListadoVendedores");
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         PanelListadoVendedores.setBackground(new java.awt.Color(255, 255, 255));
 

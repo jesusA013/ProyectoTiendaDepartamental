@@ -4,6 +4,10 @@ package control;
  *
  * @author Jesus
  */
+import ModuloAdministracion.GestionVendedores.InformacionVendedor;
+import ModuloAdministracion.GestionVendedores.GenerarInforme;
+import ModuloAdministracion.GestionVendedores.RegistrarVendedor;
+import ModuloAdministracion.GestionVendedores.ListadoVendedores;
 import Excepciones.ProveedorException;
 import ModuloVenta.FacturaDatos;
 import ModuloVenta.SeleccionMetodoPago;
@@ -21,7 +25,6 @@ import ModuloAlmacen.MenuAlmacen;
 import ModuloVenta.FacturaFinalizada;
 import ModuloVenta.VentaFinalizada;
 import RegistroVentaException.RegistroException;
-import gestionVendedores.*;
 import java.awt.BorderLayout;
 import javax.swing.*;
 import org.bson.types.ObjectId;
