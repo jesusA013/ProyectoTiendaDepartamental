@@ -6,12 +6,10 @@ package BOs;
 
 import java.util.*;
 
-import DAOs.Conexion;
 import DAOs.VendedorDAO;
 import Entidades.Vendedor;
 import Excepciones.NegocioException;
 import Interfaces.IVendedorBO;
-import Interfaz.IConexion;
 import Interfaz.IVendedorDAO;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -28,8 +26,7 @@ public abstract class VendedorBO implements IVendedorBO {
     private double totalVentas;
     private List<VentasBO> ventas; // lista inicializada
     
-     private  IVendedorDAO vendedorDAO;// se necesita inicializar
-    private final IConexion mongo = new Conexion();
+    private final IVendedorDAO vendedorDAO;// se necesita inicializar
 
     public VendedorBO(int id, String nombre, double totalVentas, List<VentasBO> ventas, IVendedorDAO vendedorDAO) {
         this.id = id;
@@ -57,12 +54,7 @@ public abstract class VendedorBO implements IVendedorBO {
     public double calcularPromedioVentas() {
         return ventas.isEmpty() ? 0 : totalVentas / ventas.size();
     }
-
-    /////
-   
-
-//    private final IVendedorDAO vendedorDAO;
-//    private final IConexion mongo = new Conexion();
+    
     public VendedorBO(){
         this.vendedorDAO = new VendedorDAO();
     }

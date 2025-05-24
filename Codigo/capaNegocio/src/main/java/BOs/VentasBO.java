@@ -1,19 +1,24 @@
 package BOs;
 
-import DAOs.Conexion;
 import DAOs.VentasDAO;
-import DTOs.*;
-import Entidades.*;
+import DTOs.DetallesVentaDTO;
+import DTOs.FacturaDTO;
+import DTOs.ProductoDTO;
+import DTOs.ProductoVentaDTO;
+import DTOs.VentaDTO;
+import Entidades.DetallesVenta;
+import Entidades.Factura;
+import Entidades.Producto;
+import Entidades.ProductoVenta;
+import Entidades.Venta;
 import Excepciones.NegocioException;
 import Exception.PersistenciaException;
 import Interfaces.IVentasBO;
-import Interfaz.IConexion;
 import Interfaz.IVentasDAO;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.bson.types.ObjectId;
-
 
 /**
  * VentaBO.java
@@ -25,52 +30,14 @@ import org.bson.types.ObjectId;
 public class VentasBO implements IVentasBO {
 
     private final IVentasDAO ventaDAO;
-    IConexion Mongo = new Conexion();
-    //gestionVendedores- cositas que ocupo
-    private int idVenta;
-    private double monto;
-    private LocalDate fechaVenta;
-        
-    public boolean validaVenta(){
-    return monto>0;
-    }
-    
 
-    public int getIdVenta() {
-        return idVenta;
-    }
-
-    public void setIdVenta(int idVenta) {
-        this.idVenta = idVenta;
-    }
-
-    public double getMonto() {
-        return monto;
-    }
-
-    public void setMonto(double monto) {
-        this.monto = monto;
-    }
-
-    public LocalDate getFechaVenta() {
-        return fechaVenta;
-    }
-
-    public void setFechaVenta(LocalDate fechaVenta) {
-        this.fechaVenta = fechaVenta;
-    }
-    
-    
-    //gv
-    
     /**
      * Inicializa el atributo para usar la DAO.
      */
     public VentasBO() {
-        this.Mongo= new Conexion();
-        this.ventaDAO = new VentasDAO(Mongo.conexion());
+        this.ventaDAO = new VentasDAO();
     }
-//venta con validaoiones
+
     @Override
     public VentaDTO insertarVenta(VentaDTO ventaDTO) throws NegocioException {
         try {
@@ -83,7 +50,6 @@ public class VentasBO implements IVentasBO {
         }
     }
 
-    //buscar venta por id
     @Override
     public VentaDTO buscarPorId(ObjectId id) throws NegocioException {
         try {
@@ -94,7 +60,7 @@ public class VentasBO implements IVentasBO {
             throw new NegocioException("Error " + ex.getMessage());
         }
     }
-//actualizar una venta
+
     @Override
     public VentaDTO actualizarVenta(VentaDTO ventaDTO) throws NegocioException {
         try {
@@ -106,7 +72,7 @@ public class VentasBO implements IVentasBO {
             throw new NegocioException("Error " + ex.getMessage());
         }
     }
-//eliminar una venta
+
     @Override
     public VentaDTO eliminarVenta(ObjectId id) throws NegocioException {
         try {
@@ -117,6 +83,7 @@ public class VentasBO implements IVentasBO {
             throw new NegocioException("Error " + ex.getMessage());
         }
     }
+    
 
     /**
      * Convierte la entidad a DTO.
@@ -218,5 +185,18 @@ public class VentasBO implements IVentasBO {
         venta.setDetallesVenta(detallesVenta);
 
         return venta;
+    }
+
+    @Override
+    public List<VentaDTO> obtenerVentas(ObjectId idVendedor) throws NegocioException {
+        try {
+            List<Venta> lista = ventaDAO.buscarVentas(idVendedor);
+            if (lista.isEmpty()) {
+                throw new NegocioException("No hay ventas registradas.");
+            }
+            return lista.stream().map(this::convertirDTO).collect(Collectors.toList());
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No hay ventas registradas.");
+        }
     }
 }
