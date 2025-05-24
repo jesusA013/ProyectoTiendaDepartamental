@@ -1,85 +1,91 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAOs;
 
 import Entidades.Vendedor;
 import Interfaz.IVendedorDAO;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import static com.mongodb.client.model.Filters.eq;
-import org.bson.Document;
-import org.bson.types.ObjectId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import org.bson.types.ObjectId;
+
 /**
+ * VendedorDAO.java
  *
- * @author Knocmare
+ * Implementación en memoria de IVendedorDAO. Simula persistencia con una lista
+ * interna.
+ *
+ * @author
  */
 public class VendedorDAO implements IVendedorDAO {
-    private final MongoCollection<Vendedor> coleccion;
 
-    public VendedorDAO(MongoDatabase database) {
-        this.coleccion = database.getCollection("Vendedores", Vendedor.class);
-    }
+    private final List<Vendedor> vendedores = new ArrayList<>();
 
     @Override
     public Vendedor insertarVendedor(Vendedor vendedor) {
         if (vendedor.getFechaRegistro() == null) {
             vendedor.setFechaRegistro(new Date());
         }
+        // Asigna un nuevo id
         ObjectId nuevoId = new ObjectId();
-        vendedor.setId(nuevoId); 
-        coleccion.insertOne(vendedor); 
-        return vendedor; 
+        vendedor.setId(nuevoId);
+        vendedores.add(vendedor);
+        return vendedor;
     }
 
     @Override
     public Vendedor buscarPorCURP(String curp) {
-        return coleccion.find(eq("curp", curp)).first();
+        return vendedores.stream()
+                .filter(v -> v.getCurp().equals(curp))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
     public List<Vendedor> obtenerTodos() {
-        return coleccion.find().into(new ArrayList<>());
+        return new ArrayList<>(vendedores);
     }
+
     @Override
     public Vendedor buscarPorId(ObjectId id) {
-        return coleccion.find(eq("_id", id)).first();
+        return vendedores.stream()
+                .filter(v -> v.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
-    /**
-     * Metodo que recibe un id en el caso de que se facilite mas usar solamente
-     * el id seleccionado de un vendedor
-     * @param id id seleccionado de una tabla
-     * @param vendedor datos nuevos del vendedor
-     * @return true si se pudo actualizar, false en caso contrario
-     */
+
     @Override
     public boolean actualizarVendedor(String id, Vendedor vendedor) {
-        return coleccion.updateOne(
-                eq("_id", new ObjectId(id)),
-                new Document("$set", vendedor)
-        ).getModifiedCount() > 0;
+        ObjectId objectId = new ObjectId(id);
+        for (int i = 0; i < vendedores.size(); i++) {
+            if (vendedores.get(i).getId().equals(objectId)) {
+                vendedor.setId(objectId); // Mantenemos el id
+                vendedores.set(i, vendedor);
+                return true;
+            }
+        }
+        return false;
     }
-    /**
-     * Este metoddo se usa en caso de que se seleccione un objeto de vendedor 
-     * con su id ya registrado
-     * @param vendedor Vendedor seleccionado y modificado
-     * @return Objeto de vendedor actualizado
-     */
+
     @Override
     public Vendedor actualizarVendedor(Vendedor vendedor) {
-        coleccion.replaceOne(eq("_id", vendedor.getId()), vendedor);
-        return buscarPorId(vendedor.getId());
+        for (int i = 0; i < vendedores.size(); i++) {
+            if (vendedores.get(i).getId().equals(vendedor.getId())) {
+                vendedores.set(i, vendedor);
+                return vendedor;
+            }
+        }
+        return null;
     }
+
     @Override
     public Vendedor eliminarVendedor(ObjectId id) {
-        Vendedor vendedor = buscarPorId(id);
-        if (vendedor != null) {
-            coleccion.deleteOne(eq("_id", id));
+        Optional<Vendedor> vendedorOpt = vendedores.stream()
+                .filter(v -> v.getId().equals(id))
+                .findFirst();
+        if (vendedorOpt.isPresent()) {
+            vendedores.remove(vendedorOpt.get());
+            return vendedorOpt.get();
         }
-        return vendedor;
+        return null;
     }
 }

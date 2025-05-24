@@ -21,10 +21,9 @@ import Interfaz.IUsuarioDAO;
 public class UsuarioBO implements IUsuarioBO {
 
     private final IUsuarioDAO usuarioDAO;
-    IConexion Mongo = new Conexion();
 
     public UsuarioBO() {
-        this.usuarioDAO = new UsuarioDAO(Mongo.conexion());
+        this.usuarioDAO = new UsuarioDAO();
     }
 
     @Override

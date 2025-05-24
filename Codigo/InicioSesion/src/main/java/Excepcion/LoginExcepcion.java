@@ -1,19 +1,19 @@
-package Excepciones;
+package Excepcion;
 
 /**
- * ProveedorException.java
- * 
+ * LoginExcepcion.java
+ *
  * Esta clase implementa la excepcion lanzada por los metodos de las clases que
- * implementan la interfaz IManejadorProveedor.
- * 
+ * implementan la interfaz IInicioSesion.
+ *
  * @author Ángel Ruíz García - 00000248171
  */
-public class ProveedorException extends Exception {
-    
+public class LoginExcepcion extends Exception {
+
     /**
      * Constructor por omision.
      */
-    public ProveedorException() {
+    public LoginExcepcion() {
     }
 
     /**
@@ -21,7 +21,8 @@ public class ProveedorException extends Exception {
      *
      * @param message Mensaje para la excepcion
      */
-    public ProveedorException(String message) {
+    public LoginExcepcion(String message) {
         super(message);
     }
+
 }

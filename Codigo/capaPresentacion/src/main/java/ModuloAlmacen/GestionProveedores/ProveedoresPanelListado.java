@@ -6,10 +6,8 @@ import Implementaciones.IManejadorProveedor;
 import Utilidades.JButtonCellEditor;
 import Utilidades.JButtonRenderer;
 import control.ControlNavegacion;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import org.bson.types.ObjectId;
@@ -24,7 +22,7 @@ import org.bson.types.ObjectId;
 public class ProveedoresPanelListado extends javax.swing.JPanel {
 
     private static ProveedoresPanelListado instancia;
-    IManejadorProveedor controlProveedor;
+    private final IManejadorProveedor controlProveedor;
 
     /**
      * Creates new form ProveedoresPanelListado

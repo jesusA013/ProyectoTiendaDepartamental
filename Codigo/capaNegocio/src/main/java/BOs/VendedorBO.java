@@ -64,7 +64,7 @@ public abstract class VendedorBO implements IVendedorBO {
 //    private final IVendedorDAO vendedorDAO;
 //    private final IConexion mongo = new Conexion();
     public VendedorBO(){
-        this.vendedorDAO=new VendedorDAO(mongo.conexion());
+        this.vendedorDAO = new VendedorDAO();
     }
 
     

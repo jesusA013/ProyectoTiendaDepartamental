@@ -1,82 +1,89 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAOs;
 
 import Entidades.Producto;
 import Exception.PersistenciaException;
 import Interfaz.IProductoDAO;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
-import static com.mongodb.client.model.Filters.eq;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
-import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 /**
+ * ProductoDAO.java
  *
- * @author Knocmare
+ * Implementación en memoria de IProductoDAO. Usa una lista interna para simular
+ * persistencia.
+ *
+ * @author Ángel Ruíz García - 00000248171
  */
 public class ProductoDAO implements IProductoDAO {
 
-    private final MongoCollection<Producto> coleccion;
-
-    public ProductoDAO(MongoDatabase database) {
-        this.coleccion = database.getCollection("Productos", Producto.class);
-    }
+    private final List<Producto> productos = new ArrayList<>();
 
     @Override
     public Producto insertarProducto(Producto producto) throws PersistenciaException {
         ObjectId nuevoId = new ObjectId();
         producto.setId(nuevoId);
-        coleccion.insertOne(producto);
-        return buscarPorId(producto.getId());
+        productos.add(producto);
+        return buscarPorId(nuevoId);
     }
 
     @Override
     public Producto buscarPorId(ObjectId id) throws PersistenciaException {
-        return coleccion.find(eq("_id", id)).first();
+        return productos.stream()
+                .filter(p -> p.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
      * Busca productos cuyo nombre contenga el texto especificado, sin
-     * distinguir entre mayúsculas y minúsculas. La búsqueda se realiza
-     * utilizando coincidencia parcial (similar a "contiene"). Solo se devuelven
-     * productos que tengan stock mayor a cero.
+     * distinguir entre mayúsculas y minúsculas. Solo devuelve productos con
+     * stock mayor a cero.
      *
-     * @param producto El texto que se desea buscar dentro del nombre de los
-     * productos.
-     * @return Regresa una lista de productos cuyo nombre coincide parcialmente
-     * con el texto proporcionado.
-     * @throws PersistenciaException Si ocurre un error durante la consulta a la
-     * base de datos.
+     * @param texto El texto a buscar.
+     * @return Lista de productos coincidentes.
+     * @throws PersistenciaException No se usa en esta implementación.
      */
     @Override
-    public List<Producto> buscarProductos(String producto) throws PersistenciaException {
-        Bson filtroNombre = Filters.regex("nombre", ".*" + Pattern.quote(producto) + ".*", "i");
-        Bson filtroStock = Filters.gt("stock", 0);
-        Bson filtroCompuesto = Filters.and(filtroNombre, filtroStock);
+    public List<Producto> buscarProductos(String texto) throws PersistenciaException {
+        List<Producto> resultado = new ArrayList<>();
+        Pattern patron = Pattern.compile(".*" + Pattern.quote(texto) + ".*", Pattern.CASE_INSENSITIVE);
 
-        return coleccion.find(filtroCompuesto).into(new ArrayList<>());
+        for (Producto producto : productos) {
+            if (producto.getStock() > 0 && patron.matcher(producto.getNombre()).matches()) {
+                resultado.add(producto);
+            }
+        }
+        return resultado;
     }
 
     @Override
     public Producto actualizarProducto(Producto producto) throws PersistenciaException {
-        coleccion.replaceOne(eq("_id", producto.getId()), producto);
-        return buscarPorId(producto.getId());
+        for (int i = 0; i < productos.size(); i++) {
+            if (productos.get(i).getId().equals(producto.getId())) {
+                productos.set(i, producto);
+                return producto;
+            }
+        }
+        return null;
     }
 
     @Override
     public Producto eliminarProducto(ObjectId id) throws PersistenciaException {
-        return coleccion.findOneAndDelete(eq("_id", id));
+        Optional<Producto> productoOpt = productos.stream()
+                .filter(p -> p.getId().equals(id))
+                .findFirst();
+        if (productoOpt.isPresent()) {
+            productos.remove(productoOpt.get());
+            return productoOpt.get();
+        }
+        return null;
     }
 
     @Override
-    public List<Producto> buscarTodos() throws PersistenciaException{
-        return coleccion.find().into(new ArrayList<>());
+    public List<Producto> buscarTodos() throws PersistenciaException {
+        return new ArrayList<>(productos);
     }
 }

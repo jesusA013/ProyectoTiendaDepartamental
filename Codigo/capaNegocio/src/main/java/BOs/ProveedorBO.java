@@ -33,13 +33,12 @@ import org.bson.types.ObjectId;
 public class ProveedorBO implements IProveedorBO {
 
     private final IProveedorDAO proveedorDAO;
-    IConexion Mongo = new Conexion();
 
     /**
      * Inicializa el atributo para usar la DAO.
      */
     public ProveedorBO() {
-        this.proveedorDAO = new ProveedorDAO(Mongo.conexion());
+        this.proveedorDAO = new ProveedorDAO();
     }
 
     /**

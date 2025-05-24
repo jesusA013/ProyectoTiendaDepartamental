@@ -13,8 +13,6 @@ import Interfaz.IConexion;
 import Interfaz.IProductoDAO;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 import org.bson.types.ObjectId;
 
 /**
@@ -28,13 +26,12 @@ import org.bson.types.ObjectId;
 public class ProductoBO implements IProductoBO {
 
     private final IProductoDAO productoDAO;
-    IConexion Mongo = new Conexion();
 
     /**
      * Inicializa el atributo para usar la DAO.
      */
     public ProductoBO() {
-        this.productoDAO = new ProductoDAO(Mongo.conexion());
+        this.productoDAO = new ProductoDAO();
     }
 
     @Override

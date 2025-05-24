@@ -3,25 +3,31 @@ package DAOs;
 import Entidades.Usuario;
 import Exception.PersistenciaException;
 import Interfaz.IUsuarioDAO;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import static com.mongodb.client.model.Filters.eq;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
+ * UsuarioDAO.java
  *
- * @author gaspa
+ * Implementación en memoria de IUsuarioDAO. Simula la persistencia de datos
+ * usando una lista interna.
+ *
+ * @author Ángel Ruíz García - 00000248171
  */
 public class UsuarioDAO implements IUsuarioDAO {
 
-    private final MongoCollection<Usuario> coleccion;
-
-    public UsuarioDAO(MongoDatabase database) {
-        this.coleccion = database.getCollection("Usuarios", Usuario.class);
-    }
+    private final List<Usuario> usuarios = new ArrayList<>();
 
     @Override
-    public Usuario obtenerUsuario(String id) throws PersistenciaException {
-        return coleccion.find(eq("idCuenta", id)).first();
+    public Usuario obtenerUsuario(String idCuenta) throws PersistenciaException {
+        return usuarios.stream()
+                .filter(u -> u.getIdCuenta().equals(idCuenta))
+                .findFirst()
+                .orElseThrow(() -> new PersistenciaException("Usuario no encontrado"));
     }
 
+    // Método adicional para agregar usuarios a la lista (opcional)
+    public void agregarUsuario(Usuario usuario) {
+        usuarios.add(usuario);
+    }
 }
