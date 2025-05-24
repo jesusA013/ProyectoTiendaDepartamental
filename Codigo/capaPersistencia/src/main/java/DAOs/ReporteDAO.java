@@ -4,11 +4,9 @@
  */
 package DAOs;
 
-import Entidades.EntidadFolio;
-import Entidades.EntidadProducto;
 import Entidades.ReporteVendedores;
+import Exception.PersistenciaException;
 import  Interfaz.IReporteDAO;
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
 import java.util.*;
@@ -18,7 +16,10 @@ import org.bson.types.ObjectId;
 /**
  * ReporteDAO.java
  *
- * Esta clase simula un DAO para manejar operaciones relacionadas con reportes, usando el patrón Singleton.
+ * Esta clase simula un DAO en memoria para manejar operaciones relacionadas
+ * con reportes.
+ * 
+ * @author
  */
 public abstract class ReporteDAO implements IReporteDAO {
 //
@@ -93,35 +94,75 @@ public abstract class ReporteDAO implements IReporteDAO {
 //
 //        return reporte;
 //    }
-    //////gv
-    public ReporteDAO(MongoDatabase database) {
-        this.coleccion = database.getCollection("ReportesVendedores", ReporteVendedores.class);
-    }
+    
+    
+    // Lista interna simulando la "base de datos"
+    private final List<ReporteVendedores> reportes = new ArrayList<>();
 
-    public void guardarReporte(String idVendedor, ReporteVendedores reporte) {
-        reporte.setIdVendedor(new ObjectId());
-        coleccion.insertOne(reporte);
-    }
-
+    /**
+     * Guarda un nuevo reporte en la lista.
+     * @param idVendedor
+     * @param reporte
+     * @throws Exception.PersistenciaException
+     */
     @Override
-    public ReporteVendedores obtenerReportePorVendedor(String idVendedor) {
-        return coleccion.find(eq("idVendedor", new ObjectId(idVendedor))).first();
-    }
-     @Override
-    public List<ReporteVendedores> obtenerTodosLosReportes() {
-        return coleccion.find().into(new ArrayList<>());
+    public void guardarReporte(String idVendedor, ReporteVendedores reporte) throws PersistenciaException {
+        reporte.setIdVendedor(idVendedor); // Asigna el ID del vendedor
+        reportes.add(reporte);
     }
 
+    /**
+     * Obtiene un reporte asociado a un vendedor por su ID.
+     * @param idVendedor
+     * @return 
+     * @throws Exception.PersistenciaException
+     */
     @Override
-    public void actualizarReporte(String idVendedor, ReporteVendedores reporte) {
-        coleccion.updateOne(eq("idVendedor", new ObjectId(idVendedor)), (List<? extends Bson>) new com.mongodb.client.model.UpdateOptions().upsert(true));
+    public ReporteVendedores obtenerReportePorVendedor(String idVendedor) throws PersistenciaException {
+        return reportes.stream()
+                .filter(r -> idVendedor.equals(r.getIdVendedor()))
+                .findFirst()
+                .orElse(null); // Retorna null si no se encuentra
     }
 
+    /**
+     * Obtiene todos los reportes.
+     * @return 
+     * @throws Exception.PersistenciaException
+     */
     @Override
-    public void eliminarReporte(String idVendedor) {
-        coleccion.deleteOne(eq("idVendedor", new ObjectId(idVendedor)));
+    public List<ReporteVendedores> obtenerTodosLosReportes() throws PersistenciaException {
+        return new ArrayList<>(reportes); // Retorna copia para evitar modificaciones externas
     }
 
+    /**
+     * Actualiza un reporte existente por el ID del vendedor.
+     * @param idVendedor
+     * @param nuevoReporte
+     * @throws Exception.PersistenciaException
+     */
+    @Override
+    public void actualizarReporte(String idVendedor, ReporteVendedores nuevoReporte) throws PersistenciaException {
+        Optional<ReporteVendedores> existenteOpt = reportes.stream()
+                .filter(r -> idVendedor.equals(r.getIdVendedor()))
+                .findFirst();
 
-///////////
+        existenteOpt.ifPresent(existente -> {
+            // Puedes ajustar qué campos se actualizan
+            existente.setVentas(nuevoReporte.getVentas());
+            existente.setFechaReporte(nuevoReporte.getFechaReporte());
+            existente.setDescripcion(nuevoReporte.getDescripcion());
+            // Otros campos que quieras actualizar
+        });
+    }
+
+    /**
+     * Elimina un reporte por el ID del vendedor.
+     * @param idVendedor
+     * @throws Exception.PersistenciaException
+     */
+    @Override
+    public void eliminarReporte(String idVendedor) throws PersistenciaException {
+        reportes.removeIf(r -> idVendedor.equals(r.getIdVendedor()));
+    }
 }

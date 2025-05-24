@@ -1,16 +1,15 @@
 package Inicio;
 
-import BOs.UsuarioBO;
-import BOs.VendedorBO;
 import DTOs.UsuarioDTO;
-import DTOs.VendedorDTO;
+import Excepcion.LoginExcepcion;
 import Excepciones.NegocioException;
-import Interfaces.IUsuarioBO;
-import Interfaces.IVendedorBO;
+import Implementaciones.AccesoUsuario;
+import Implementaciones.IAccesoUsuario;
 import control.ControlNavegacion;
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.bson.types.ObjectId;
 
 public class InicioSesion extends JFrame {
@@ -23,11 +22,11 @@ public class InicioSesion extends JFrame {
     private final JButton btnCancelar;
     private String tipo, nombreUsuario, idCuenta;
     private ObjectId idUsuario;
-    private final IUsuarioBO usuarioBO;
+    private final IAccesoUsuario controlUsuario;
 //    private final IVendedorBO vendedorBO;
 
     public InicioSesion() {
-        usuarioBO = new UsuarioBO();
+        controlUsuario = new AccesoUsuario();
 //        vendedorBO = new VendedorBO();
         // Configuración básica de la ventana
         setTitle("Inicio de Sesión");
@@ -116,7 +115,13 @@ public class InicioSesion extends JFrame {
         add(panelFormulario, BorderLayout.CENTER);
 
         // Eventos
-        btnIngresar.addActionListener(e -> iniciarSesion());
+        btnIngresar.addActionListener(e -> {
+            try {
+                iniciarSesion();
+            } catch (LoginExcepcion ex) {
+                System.out.println(ex.getMessage());
+            }
+        });
         btnCancelar.addActionListener(e -> cancelar());
 
     }
@@ -135,12 +140,12 @@ public class InicioSesion extends JFrame {
 //        throw new NegocioException("No se encontraron vendedores");
 //    }
     
-    public void iniciarSesion() {
+    public void iniciarSesion() throws LoginExcepcion {
         String id = txtId.getText();
         String contrasena = new String(txtContrasena.getPassword());
 
         try {
-            UsuarioDTO usuario = usuarioBO.verificarCredenciales(id, contrasena);
+            UsuarioDTO usuario = controlUsuario.verificarCredenciales(id, contrasena);
             String rol = usuario.getRol(); // Rol real obtenido de la base de datos
 
             if (rol.equalsIgnoreCase("Administrador") || rol.equalsIgnoreCase(tipo)) {
@@ -173,7 +178,7 @@ public class InicioSesion extends JFrame {
                 JOptionPane.showMessageDialog(this, "No tienes permisos para acceder como " + tipo, "Acceso denegado", JOptionPane.ERROR_MESSAGE);
             }
 
-        } catch (NegocioException ex) {
+        } catch (LoginExcepcion ex) {
             JOptionPane.showMessageDialog(this, "ID o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println("Error en inicio de sesión: " + ex.getMessage());
         }

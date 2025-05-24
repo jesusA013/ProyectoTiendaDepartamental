@@ -18,6 +18,12 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     private final List<Usuario> usuarios = new ArrayList<>();
 
+    /**
+     * 
+     * @param idCuenta
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public Usuario obtenerUsuario(String idCuenta) throws PersistenciaException {
         return usuarios.stream()
@@ -25,8 +31,11 @@ public class UsuarioDAO implements IUsuarioDAO {
                 .findFirst()
                 .orElseThrow(() -> new PersistenciaException("Usuario no encontrado"));
     }
-
-    // Método adicional para agregar usuarios a la lista (opcional)
+    
+    /**
+     * Registra un usuario en la lista interna.
+     * @param usuario Usuaria a registrar
+     */
     public void agregarUsuario(Usuario usuario) {
         usuarios.add(usuario);
     }
