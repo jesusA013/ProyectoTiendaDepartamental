@@ -5,14 +5,13 @@ import Interface.IRegistroVenta;
 import control.ControlNavegacion;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import org.bson.types.ObjectId;
 
 /**
  *
  * @author Knocmare
  */
 public class FacturaFinalizada extends javax.swing.JFrame {
-    
+
     private static FacturaFinalizada instancia;
     IRegistroVenta controlVenta;
 
@@ -22,13 +21,13 @@ public class FacturaFinalizada extends javax.swing.JFrame {
      * @param controlVenta
      * @param id
      */
-    public FacturaFinalizada(IRegistroVenta controlVenta, ObjectId id) {
+    public FacturaFinalizada(IRegistroVenta controlVenta, String id) {
         this.controlVenta = controlVenta;
         initComponents();
         lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
     }
-    
-    public static FacturaFinalizada getInstance(IRegistroVenta controlVenta, ObjectId id) {
+
+    public static FacturaFinalizada getInstance(IRegistroVenta controlVenta, String id) {
         if (instancia == null) {
             instancia = new FacturaFinalizada(controlVenta, id);
         }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAOs;
 
 import Entidades.DatosFiscales;
@@ -9,7 +5,6 @@ import Entidades.DetallesVenta;
 import Entidades.Domicilio;
 import Entidades.DomicilioFiscal;
 import Entidades.Factura;
-import Entidades.NombreCompleto;
 import Entidades.Producto;
 import Entidades.ProductoVenta;
 import Entidades.Proveedor;
@@ -24,7 +19,6 @@ import Interfaz.IProveedorDAO;
 import Interfaz.IVendedorDAO;
 import Interfaz.IVentasDAO;
 import java.util.Date;
-import org.bson.types.ObjectId;
 
 /**
  *
@@ -64,7 +58,7 @@ public class DAOPruebas {
         venta.setFecha(new Date());
         venta.getProductos().add(productoVenta1);
         venta.getProductos().add(productoVenta2);
-        venta.setVendedorId(new ObjectId("6823b93d2b4a9e356644152e"));
+        venta.setVendedorId("6823b93d2b4a9e356644152e");
         venta.setFactura(factura);
         venta.setDetallesVenta(detalles);
 

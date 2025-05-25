@@ -3,21 +3,20 @@ package Interfaces;
 import DTOs.VentaDTO;
 import Excepciones.NegocioException;
 import java.util.List;
-import org.bson.types.ObjectId;
 
 /**
  *
- * @author Knocmare
+ * @author Ángel Ruíz García - 00000248171
  */
 public interface IVentasBO {
 
     VentaDTO insertarVenta(VentaDTO ventaDTO) throws NegocioException;
 
-    VentaDTO buscarPorId(ObjectId id) throws NegocioException;
+    VentaDTO buscarPorId(String id) throws NegocioException;
 
     VentaDTO actualizarVenta(VentaDTO ventaDTO) throws NegocioException;
 
-    VentaDTO eliminarVenta(ObjectId id) throws NegocioException;
-    
-    List<VentaDTO> obtenerVentas(ObjectId idVendedor) throws NegocioException;
+    VentaDTO eliminarVenta(String id) throws NegocioException;
+
+    List<VentaDTO> obtenerVentas(String idVendedor) throws NegocioException;
 }

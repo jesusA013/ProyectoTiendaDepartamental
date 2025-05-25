@@ -6,6 +6,7 @@ import Interfaz.IProductoDAO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.regex.Pattern;
 import org.bson.types.ObjectId;
 
@@ -23,16 +24,16 @@ public class ProductoDAO implements IProductoDAO {
 
     @Override
     public Producto insertarProducto(Producto producto) throws PersistenciaException {
-        ObjectId nuevoId = new ObjectId();
-        producto.setId(nuevoId);
+        String nuevoId = UUID.randomUUID().toString();
+        producto.setIdProducto(nuevoId);
         productos.add(producto);
         return buscarPorId(nuevoId);
     }
 
     @Override
-    public Producto buscarPorId(ObjectId id) throws PersistenciaException {
+    public Producto buscarPorId(String id) throws PersistenciaException {
         return productos.stream()
-                .filter(p -> p.getId().equals(id))
+                .filter(p -> p.getIdProducto().equals(id))
                 .findFirst()
                 .orElse(null);
     }
@@ -62,7 +63,7 @@ public class ProductoDAO implements IProductoDAO {
     @Override
     public Producto actualizarProducto(Producto producto) throws PersistenciaException {
         for (int i = 0; i < productos.size(); i++) {
-            if (productos.get(i).getId().equals(producto.getId())) {
+            if (productos.get(i).getIdProducto().equals(producto.getIdProducto())) {
                 productos.set(i, producto);
                 return producto;
             }
@@ -71,9 +72,9 @@ public class ProductoDAO implements IProductoDAO {
     }
 
     @Override
-    public Producto eliminarProducto(ObjectId id) throws PersistenciaException {
+    public Producto eliminarProducto(String id) throws PersistenciaException {
         Optional<Producto> productoOpt = productos.stream()
-                .filter(p -> p.getId().equals(id))
+                .filter(p -> p.getIdProducto().equals(id))
                 .findFirst();
         if (productoOpt.isPresent()) {
             productos.remove(productoOpt.get());

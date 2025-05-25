@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DTOs;
 
 import java.util.Date;
@@ -11,7 +7,8 @@ import java.util.Date;
  * @author melis
  */
 public class NuevoVendedorDTO {
-     private String nombre;
+
+    private String nombre;
     private String rfc;
     private String domicilio;
     private String curp;
@@ -19,17 +16,16 @@ public class NuevoVendedorDTO {
     private String ciudad;
     private String municipio;
     private String foto;
-    
-      private String telefono;
+
+    private String telefono;
     private String email;
     private String datosFiscales;
     private Date fechaRegistro;
     private boolean activo;
 
-
     public NuevoVendedorDTO(String nombre, String rfc, String domicilio, String curp, Date fechaNacimiento,
-            String ciudad, String municipio, String foto, String telefono
-    , String email,String datosFiscales, Date fechaRegistro,boolean activo) {
+            String ciudad, String municipio, String foto, String telefono,
+             String email, String datosFiscales, Date fechaRegistro, boolean activo) {
         validarDatoNoVacio(nombre, "el nombre es obligatorio");
         validarDatoNoVacio(rfc, "el RFC es obligatorio");
         validarDatoNoVacio(domicilio, "el domicilio es obligatorio");
@@ -40,7 +36,6 @@ public class NuevoVendedorDTO {
         validarDatoNoVacio(email, "El correo electrónico es obligatorio.");
         validarDatoNoVacio(datosFiscales, "Los datos fiscales son obligatorios.");
 
-
         this.nombre = nombre;
         this.rfc = rfc;
         this.domicilio = domicilio;
@@ -49,7 +44,7 @@ public class NuevoVendedorDTO {
         this.ciudad = ciudad;
         this.municipio = municipio;
         this.foto = foto;
-          this.telefono = telefono;
+        this.telefono = telefono;
         this.email = email;
         this.datosFiscales = datosFiscales;
         this.fechaRegistro = fechaRegistro != null ? fechaRegistro : new Date();
@@ -59,7 +54,7 @@ public class NuevoVendedorDTO {
 
     public NuevoVendedorDTO() {
     }
-    
+
     public String getNombre() {
         return nombre;
     }
@@ -163,10 +158,9 @@ public class NuevoVendedorDTO {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-    
 
-    private void validarDatoNoVacio(String dato,String mensajeError){
-        if (dato==null || dato.trim().isEmpty()) {
+    private void validarDatoNoVacio(String dato, String mensajeError) {
+        if (dato == null || dato.trim().isEmpty()) {
             throw new IllegalArgumentException(mensajeError);
         }
     }

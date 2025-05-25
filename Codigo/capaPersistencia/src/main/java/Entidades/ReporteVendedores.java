@@ -1,12 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Entidades;
 
 import java.util.Date;
-import org.bson.codecs.pojo.annotations.BsonId;
-import org.bson.types.ObjectId;
 
 /**
  *
@@ -14,9 +8,8 @@ import org.bson.types.ObjectId;
  */
 public class ReporteVendedores {
 
-    @BsonId
-    private ObjectId idReporte;
-    private ObjectId idVendedor;
+    private String idReporte;
+    private String idVendedor;
     private float promedioVentasDiaria;
     private float promedioVentaSemanal;
     private float promedioVentaMensual;
@@ -24,7 +17,7 @@ public class ReporteVendedores {
     private Date fechaReporte;
     private String ciudad;
 
-    public ReporteVendedores(ObjectId idReporte, ObjectId idVendedor, float promedioVentasDiaria, float promedioVentaSemanal, float promedioVentaMensual, float promedioVentaTrimestral, Date fechaReporte) {
+    public ReporteVendedores(String idReporte, String idVendedor, float promedioVentasDiaria, float promedioVentaSemanal, float promedioVentaMensual, float promedioVentaTrimestral, Date fechaReporte) {
         this.idReporte = idReporte;
         this.idVendedor = idVendedor;
         this.promedioVentasDiaria = promedioVentasDiaria;
@@ -37,19 +30,19 @@ public class ReporteVendedores {
     public ReporteVendedores() {
     }
 
-    public ObjectId getIdReporte() {
+    public String getIdReporte() {
         return idReporte;
     }
 
-    public void setIdReporte(ObjectId idReporte) {
+    public void setIdReporte(String idReporte) {
         this.idReporte = idReporte;
     }
 
-    public ObjectId getIdVendedor() {
+    public String getIdVendedor() {
         return idVendedor;
     }
 
-    public void setIdVendedor(ObjectId idVendedor) {
+    public void setIdVendedor(String idVendedor) {
         this.idVendedor = idVendedor;
     }
 
@@ -91,6 +84,14 @@ public class ReporteVendedores {
 
     public void setFechaReporte(Date fechaReporte) {
         this.fechaReporte = fechaReporte;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 
 }

@@ -114,7 +114,7 @@ public class EntidadFolio {
      */
     @Override
     public String toString() {
-        return "Folio{" + "idFolio=" + idFolio + ", numeroFolio='" + numeroFolio + '\'' + 
-               ", fecha=" + (fecha != null ? fecha.getTime() : "null") + ", nombreProveedor='" + nombreProveedor + '\'' + '}';
+        return "Folio{" + "idFolio=" + idFolio + ", numeroFolio='" + numeroFolio + '\''
+                + ", fecha=" + (fecha != null ? fecha.getTime() : "null") + ", nombreProveedor='" + nombreProveedor + '\'' + '}';
     }
 }

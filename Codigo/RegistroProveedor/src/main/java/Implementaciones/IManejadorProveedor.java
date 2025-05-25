@@ -7,9 +7,7 @@ import Interfaces.INavegador;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import org.bson.types.ObjectId;
 
 /**
  *
@@ -28,9 +26,9 @@ public interface IManejadorProveedor {
             String paginaWeb, String rfc, String formaPago, String terminoPago, 
             String moneda, String estado, String comentarios) throws ProveedorException;
     
-    ProveedorDTO obtenerProveedor(ObjectId id) throws ProveedorException;
+    ProveedorDTO obtenerProveedor(String id) throws ProveedorException;
     
-    void editarProveedor(JPanel panel, ObjectId id, String nombreProveedor,
+    void editarProveedor(JPanel panel, String id, String nombreProveedor,
             String contacto, String telefono, String correo, String direccion,
             String paginaWeb, String rfc, String formaPago, String terminoPago,
             String moneda, Date fecha, String estado, String comentarios) throws ProveedorException;

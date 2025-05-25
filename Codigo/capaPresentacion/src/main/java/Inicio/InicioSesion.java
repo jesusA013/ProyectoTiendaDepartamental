@@ -2,26 +2,21 @@ package Inicio;
 
 import DTOs.UsuarioDTO;
 import Excepcion.LoginExcepcion;
-import Excepciones.NegocioException;
 import Implementaciones.AccesoUsuario;
 import Implementaciones.IAccesoUsuario;
 import control.ControlNavegacion;
 import javax.swing.*;
 import java.awt.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.bson.types.ObjectId;
 
 public class InicioSesion extends JFrame {
-    
+
     private static InicioSesion instancia;
-    
+
     private final JTextField txtId;
     private final JPasswordField txtContrasena;
     private final JButton btnIngresar;
     private final JButton btnCancelar;
-    private String tipo, nombreUsuario, idCuenta;
-    private ObjectId idUsuario;
+    private String tipo, idUsuario, nombreUsuario, idCuenta;
     private final IAccesoUsuario controlUsuario;
 //    private final IVendedorBO vendedorBO;
 
@@ -37,14 +32,14 @@ public class InicioSesion extends JFrame {
 
         // Panel superior: Título y borde morado
         JPanel panelTitulo = new JPanel();
-        panelTitulo.setBackground(new Color(103,80, 164)); // Morado
+        panelTitulo.setBackground(new Color(103, 80, 164)); // Morado
         panelTitulo.setPreferredSize(new Dimension(400, 40));
         add(panelTitulo, BorderLayout.NORTH);
-        
+
         JLabel labelInicioSesion = new JLabel("Inicio de Sesion");
         panelTitulo.setLayout(new BorderLayout());
-        panelTitulo.add(labelInicioSesion,BorderLayout.WEST);
-        labelInicioSesion.setFont(new Font("Segoe UI",Font.PLAIN,22));
+        panelTitulo.add(labelInicioSesion, BorderLayout.WEST);
+        labelInicioSesion.setFont(new Font("Segoe UI", Font.PLAIN, 22));
 
         // Panel central: Formulario de inicio de sesión
         JPanel panelFormulario = new JPanel();
@@ -125,11 +120,11 @@ public class InicioSesion extends JFrame {
         btnCancelar.addActionListener(e -> cancelar());
 
     }
-    
-    public void setTipo(String tipo){
+
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
+
 //    public ObjectId getVendedor() throws NegocioException{
 //        List<VendedorDTO> listaVendedores = vendedorBO.obtenerTodosLosVendedores();
 //        for (VendedorDTO listaVendedore : listaVendedores) {
@@ -153,19 +148,19 @@ public class InicioSesion extends JFrame {
 
                 switch (tipo) {
                     case "Vendedor":
-                        setIdUsuario(usuario.getId());
+                        setIdUsuario(usuario.getIdUsuarioDTO());
                         setIdCuenta(usuario.getIdCuenta());
                         setNombreUsuario(usuario.getNombreUsuario());
                         ControlNavegacion.getInstance().irACarritoCompra();
                         break;
                     case "Administrador":
-                        setIdUsuario(usuario.getId());
+                        setIdUsuario(usuario.getIdUsuarioDTO());
                         setIdCuenta(usuario.getIdCuenta());
                         setNombreUsuario(usuario.getNombreUsuario());
                         ControlNavegacion.getInstance().mostrarMenuAdministrador();
                         break;
                     case "Almacen":
-                        setIdUsuario(usuario.getId());
+                        setIdUsuario(usuario.getIdUsuarioDTO());
                         setIdCuenta(usuario.getIdCuenta());
                         setNombreUsuario(usuario.getNombreUsuario());
                         ControlNavegacion.getInstance().mostrarMenuAlmacen();
@@ -191,17 +186,17 @@ public class InicioSesion extends JFrame {
             control.ControlNavegacion.getInstance().irAMenuPrincipal();
         }
     }
-    
-    public void LimpiarCampos(){
+
+    public void LimpiarCampos() {
         txtId.setText("");
         txtContrasena.setText("");
     }
 
-    public ObjectId getIdUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(ObjectId id) {
+    public void setIdUsuario(String id) {
         this.idUsuario = id;
     }
 
@@ -220,7 +215,7 @@ public class InicioSesion extends JFrame {
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
-    
+
     public static InicioSesion getInstance() {
         if (instancia == null) {
             instancia = new InicioSesion();

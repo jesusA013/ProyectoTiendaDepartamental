@@ -11,7 +11,7 @@ import org.bson.types.ObjectId;
  */
 public class Usuario {
 
-    private ObjectId idUsuario;
+    private String idUsuario;
     private String idCuenta;
     private String nombreUsuario;
     private String contrasena;
@@ -43,7 +43,7 @@ public class Usuario {
      *
      * @return ID del usuario
      */
-    public ObjectId getIdUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
@@ -52,7 +52,7 @@ public class Usuario {
      *
      * @param idUsuario ID del usuario
      */
-    public void setIdUsuario(ObjectId idUsuario) {
+    public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
     }
 

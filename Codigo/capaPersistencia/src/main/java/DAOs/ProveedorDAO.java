@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import org.bson.types.ObjectId;
+import java.util.UUID;
 
 /**
  * ProveedorDAO.java
@@ -27,7 +27,7 @@ public class ProveedorDAO implements IProveedorDAO {
         if (proveedor.getGestion().getFechaAlta() == null) {
             proveedor.getGestion().setFechaAlta(new Date());
         }
-        proveedor.setIdProveedor(new ObjectId());
+        proveedor.setIdProveedor(UUID.randomUUID().toString());
         proveedores.add(proveedor);
         return proveedor;
     }
@@ -50,7 +50,7 @@ public class ProveedorDAO implements IProveedorDAO {
     }
 
     @Override
-    public Proveedor obtenerProveedorPorId(ObjectId idProveedor) throws PersistenciaException {
+    public Proveedor obtenerProveedorPorId(String idProveedor) throws PersistenciaException {
         return proveedores.stream()
                 .filter(p -> p.getIdProveedor().equals(idProveedor))
                 .findFirst()

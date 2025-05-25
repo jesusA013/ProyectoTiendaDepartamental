@@ -4,7 +4,6 @@ import DTOs.ProveedorDTO;
 import DTOs.ProveedorTablaDTO;
 import Excepciones.NegocioException;
 import java.util.List;
-import org.bson.types.ObjectId;
 
 /**
  * IProveedorDAO.java
@@ -40,7 +39,7 @@ public interface IProveedorBO {
      * @return Regresa el proveedor encontrado
      * @throws NegocioException Excepcion si ocurre un error en el proceso
      */
-    ProveedorDTO obtenerProveedorPorId(ObjectId idProveedor) throws NegocioException;
+    ProveedorDTO obtenerProveedorPorId(String idProveedor) throws NegocioException;
     
     /**
      * Se encarga de llamar a la DAO para buscar a todos los proveedores.

@@ -1,19 +1,17 @@
 package DTOs;
 
-import org.bson.types.ObjectId;
-
 /**
  * ProductoDTO.java
  *
- * Esta clase representa un objeto de transferencia de datos (DTO) para un producto.
- * Contiene información relevante del producto como nombre, SKU, precio, marca,
- * color y stock disponible.
+ * Esta clase representa un objeto de transferencia de datos (DTO) para un
+ * producto. Contiene información relevante del producto como nombre, SKU,
+ * precio, marca, color y stock disponible.
  *
- * @author 
+ * @author
  */
 public class ProductoDTO {
-    
-    private ObjectId id; 
+
+    private String idProductoDTO;
     private String codigo;
     private String nombre;
     private String SKU;
@@ -22,7 +20,7 @@ public class ProductoDTO {
     private double precio;
     private int stock;
     private String descripcion;
-    private ObjectId proveedorId; 
+    private String idProveedor;
 
     /**
      * Constructor por omisión.
@@ -38,8 +36,8 @@ public class ProductoDTO {
      * @param stock Stock del producto
      * @param descripcion Descripcion del producto
      */
-    public ProductoDTO(ObjectId idProducto, String nombre, int stock, String descripcion) {
-        this.id = idProducto;
+    public ProductoDTO(String idProducto, String nombre, int stock, String descripcion) {
+        this.idProductoDTO = idProducto;
         this.nombre = nombre;
         this.stock = stock;
         this.descripcion = descripcion;
@@ -47,11 +45,12 @@ public class ProductoDTO {
 
     /**
      * Contructor que usa ProductoVenta para guardar productos.
+     *
      * @param nombre Nombre del producto
      * @param SKU
      * @param marca
-     * @param color 
-     * @param precio 
+     * @param color
+     * @param precio
      */
     public ProductoDTO(String nombre, String SKU, String marca, String color, double precio) {
         this.nombre = nombre;
@@ -61,7 +60,7 @@ public class ProductoDTO {
         this.precio = precio;
     }
 
-    public ProductoDTO(String codigo, String nombre, String SKU, String marca, String color, double precio, int stock, String descripcion, ObjectId proveedorId) {
+    public ProductoDTO(String codigo, String nombre, String SKU, String marca, String color, double precio, int stock, String descripcion, String idProveedor) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.SKU = SKU;
@@ -70,11 +69,11 @@ public class ProductoDTO {
         this.precio = precio;
         this.stock = stock;
         this.descripcion = descripcion;
-        this.proveedorId = proveedorId;
+        this.idProveedor = idProveedor;
     }
 
-    public ProductoDTO(ObjectId id, String codigo, String nombre, String SKU, String marca, String color, double precio, int stock, String descripcion, ObjectId proveedorId) {
-        this.id = id;
+    public ProductoDTO(String idProductoDTO, String codigo, String nombre, String SKU, String marca, String color, double precio, int stock, String descripcion, String idProveedor) {
+        this.idProductoDTO = idProductoDTO;
         this.codigo = codigo;
         this.nombre = nombre;
         this.SKU = SKU;
@@ -83,7 +82,7 @@ public class ProductoDTO {
         this.precio = precio;
         this.stock = stock;
         this.descripcion = descripcion;
-        this.proveedorId = proveedorId;
+        this.idProveedor = idProveedor;
     }
 
     /**
@@ -91,17 +90,17 @@ public class ProductoDTO {
      *
      * @return ID del producto
      */
-    public ObjectId getId() {
-        return id;
+    public String getIdProductoDTO() {
+        return idProductoDTO;
     }
 
     /**
      * Establece el ID del producto.
      *
-     * @param id
+     * @param idProductoDTO ID del producto
      */
-    public void setId(ObjectId id) {
-        this.id = id;
+    public void setIdProductoDTO(String idProductoDTO) {
+        this.idProductoDTO = idProductoDTO;
     }
 
     /**
@@ -198,12 +197,12 @@ public class ProductoDTO {
         this.precio = precio;
     }
 
-    public ObjectId getProveedorId() {
-        return proveedorId;
+    public String getIdProveedor() {
+        return idProveedor;
     }
 
-    public void setProveedorId(ObjectId proveedorId) {
-        this.proveedorId = proveedorId;
+    public void setIdProveedor(String idProveedor) {
+        this.idProveedor = idProveedor;
     }
 
     /**
@@ -213,6 +212,6 @@ public class ProductoDTO {
      */
     @Override
     public String toString() {
-        return "ProductoDTO{" + "id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", SKU=" + SKU + ", marca=" + marca + ", color=" + color + ", precio=" + precio + ", stock=" + stock + ", descripcion=" + descripcion + ", proveedorId=" + proveedorId + '}';
+        return "ProductoDTO{" + "idProductoDTO=" + idProductoDTO + ", codigo=" + codigo + ", nombre=" + nombre + ", SKU=" + SKU + ", marca=" + marca + ", color=" + color + ", precio=" + precio + ", stock=" + stock + ", descripcion=" + descripcion + ", idProveedor=" + idProveedor + '}';
     }
 }

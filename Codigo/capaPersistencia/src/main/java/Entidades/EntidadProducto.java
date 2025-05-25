@@ -1,4 +1,4 @@
- package Entidades;
+package Entidades;
 
 /**
  * Producto.java
@@ -112,11 +112,11 @@ public class EntidadProducto {
      */
     @Override
     public String toString() {
-        return "Producto{" +
-                "idProducto=" + idProducto +
-                ", sku='" + sku + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", stock=" + stock +
-                '}';
+        return "Producto{"
+                + "idProducto=" + idProducto
+                + ", sku='" + sku + '\''
+                + ", nombre='" + nombre + '\''
+                + ", stock=" + stock
+                + '}';
     }
 }

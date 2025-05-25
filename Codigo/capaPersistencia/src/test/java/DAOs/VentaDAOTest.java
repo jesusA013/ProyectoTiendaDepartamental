@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
- */
 package DAOs;
 
 import Entidades.DetallesVenta;
@@ -10,11 +6,10 @@ import Entidades.Producto;
 import Entidades.ProductoVenta;
 import Entidades.Venta;
 import Exception.PersistenciaException;
-import Interfaz.IConexion;
 import Interfaz.IVentasDAO;
 import java.util.Arrays;
 import java.util.Date;
-import org.bson.types.ObjectId;
+import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,19 +19,14 @@ import org.junit.jupiter.api.BeforeEach;
  * @author gaspa
  */
 public class VentaDAOTest {
-    IConexion Mongo = new Conexion();
-    IVentasDAO ventaDAO = new VentasDAO(Mongo.conexion());
-    public VentaDAOTest() {
-    }
-    
+
+    private IVentasDAO ventaDAO;
+
     @BeforeEach
     public void setup() {
-        Mongo = new Conexion();
-        Mongo.conexion().getCollection("Ventas").drop();
-        ventaDAO = new VentasDAO(Mongo.conexion());
-       
+        ventaDAO = new VentasDAO();
     }
-    
+
     @Test
     public void testInsertarVenta() throws PersistenciaException {
         Producto p = new Producto("Lentes de Sol", "23SAD23", "WER", "Verde");
@@ -47,7 +37,7 @@ public class VentaDAOTest {
         Venta venta = new Venta();
         venta.setFecha(new Date());
         venta.setProductos(Arrays.asList(pv));
-        venta.setVendedorId(new ObjectId());
+        venta.setVendedorId(UUID.randomUUID().toString());
         venta.setFactura(factura);
         venta.setDetallesVenta(detalles);
 
@@ -60,10 +50,10 @@ public class VentaDAOTest {
     public void testBuscarPorId() throws PersistenciaException {
         Venta venta = crearVentaEjemplo();
         Venta insertada = ventaDAO.insertarVenta(venta);
-        Venta encontrada = ventaDAO.buscarPorId(insertada.getId());
+        Venta encontrada = ventaDAO.buscarPorId(insertada.getIdVenta());
 
         assertNotNull(encontrada);
-        assertEquals(insertada.getId(), encontrada.getId());
+        assertEquals(insertada.getIdVenta(), encontrada.getIdVenta());
     }
 
     @Test
@@ -81,12 +71,12 @@ public class VentaDAOTest {
     public void testEliminarVenta() throws PersistenciaException {
         Venta venta = crearVentaEjemplo();
         Venta insertada = ventaDAO.insertarVenta(venta);
-        Venta eliminada = ventaDAO.eliminarVenta(insertada.getId());
+        Venta eliminada = ventaDAO.eliminarVenta(insertada.getIdVenta());
 
         assertNotNull(eliminada);
-        assertEquals(insertada.getId(), eliminada.getId());
+        assertEquals(insertada.getIdVenta(), eliminada.getIdVenta());
 
-        Venta buscada = ventaDAO.buscarPorId(insertada.getId());
+        Venta buscada = ventaDAO.buscarPorId(insertada.getIdVenta());
         assertNull(buscada);
     }
 
@@ -99,10 +89,9 @@ public class VentaDAOTest {
         Venta venta = new Venta();
         venta.setFecha(new Date());
         venta.setProductos(Arrays.asList(pv));
-        venta.setVendedorId(new ObjectId());
+        venta.setVendedorId(UUID.randomUUID().toString());
         venta.setFactura(factura);
         venta.setDetallesVenta(detalles);
         return venta;
     }
-    
 }

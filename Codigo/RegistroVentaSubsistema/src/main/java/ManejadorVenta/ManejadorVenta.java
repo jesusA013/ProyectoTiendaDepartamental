@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import org.bson.types.ObjectId;
 
 /**
  *
@@ -44,7 +43,7 @@ public class ManejadorVenta implements IRegistroVenta {
     }
 
     @Override
-    public ObjectId registrarVentaTarjeta(JFrame frame, List<ProductoVentaDTO> productos, ObjectId idVendedor, String digitosTarjeta, String fechaExpiracion, String CVC) throws RegistroException {
+    public String registrarVentaTarjeta(JFrame frame, List<ProductoVentaDTO> productos, String idVendedor, String digitosTarjeta, String fechaExpiracion, String CVC) throws RegistroException {
         double subtotalProductos = 0;
         double impuestosProductos;
         double totalProductos;
@@ -58,7 +57,7 @@ public class ManejadorVenta implements IRegistroVenta {
         VentaDTO ventaDTO = new VentaDTO();
         ventaDTO.setFecha(new Date());
         ventaDTO.setProductos(productos);
-        ventaDTO.setVendedorId(idVendedor);
+        ventaDTO.setIdVendedor(idVendedor);
 
         FacturaDTO facturaDTO = new FacturaDTO();
         DetallesVentaDTO detallesVentaDTO = new DetallesVentaDTO();
@@ -77,9 +76,9 @@ public class ManejadorVenta implements IRegistroVenta {
                 productoVenta.getProducto().setStock(productoVenta.getProducto().getStock() - productoVenta.getCantidad());
                 this.productoNegocio.actualizarProducto(productoVenta.getProducto());
             }
-            JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getId());
+            JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getIdVentaDTO());
             navegacion.irASeleccionMetodoPago();
-            return resultado.getId();
+            return resultado.getIdVentaDTO();
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(frame, "Error al registrar la venta: " + ex.getMessage());
             throw new RegistroException("Error " + ex.getMessage());
@@ -87,7 +86,7 @@ public class ManejadorVenta implements IRegistroVenta {
     }
 
     @Override
-    public ObjectId registrarVentaEfectivo(JFrame frame, List<ProductoVentaDTO> productos, ObjectId idVendedor, String efectivoEntregado, String cambio) throws RegistroException {
+    public String registrarVentaEfectivo(JFrame frame, List<ProductoVentaDTO> productos, String idVendedor, String efectivoEntregado, String cambio) throws RegistroException {
         double subtotalProductos = 0;
         double impuestosProductos;
         double totalProductos;
@@ -101,7 +100,7 @@ public class ManejadorVenta implements IRegistroVenta {
         VentaDTO ventaDTO = new VentaDTO();
         ventaDTO.setFecha(new Date());
         ventaDTO.setProductos(productos);
-        ventaDTO.setVendedorId(idVendedor);
+        ventaDTO.setIdVendedor(idVendedor);
 
         FacturaDTO facturaDTO = new FacturaDTO();
         DetallesVentaDTO detallesVentaDTO = new DetallesVentaDTO();
@@ -120,9 +119,9 @@ public class ManejadorVenta implements IRegistroVenta {
                 productoVenta.getProducto().setStock(productoVenta.getProducto().getStock() - productoVenta.getCantidad());
                 this.productoNegocio.actualizarProducto(productoVenta.getProducto());
             }
-            JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getId());
+            JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getIdVentaDTO());
             navegacion.irASeleccionMetodoPago();
-            return resultado.getId();
+            return resultado.getIdVentaDTO();
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(frame, "Error al registrar la venta: " + ex.getMessage());
             throw new RegistroException("Error " + ex.getMessage());
@@ -139,7 +138,7 @@ public class ManejadorVenta implements IRegistroVenta {
     }
 
     @Override
-    public void facturarVenta(JFrame frame, ObjectId id, String rfc,
+    public void facturarVenta(JFrame frame, String id, String rfc,
             String nombeRazonSocial, String calle, String numeroExt,
             String numeroInt, String colonia, String codPostal, String pais,
             String estado, String ciudadLocalidad, String delegacionMunicipio,
@@ -179,7 +178,7 @@ public class ManejadorVenta implements IRegistroVenta {
 
         try {
             VentaDTO resultado = this.ventasNegocio.actualizarVenta(ventaDTO);
-            JOptionPane.showMessageDialog(frame, "Venta facturada con éxito con el ID: " + resultado.getId());
+            JOptionPane.showMessageDialog(frame, "Venta facturada con éxito con el ID: " + resultado.getIdVentaDTO());
             navegacion.irFacturaFinalizada(id);
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(frame, "Error al facturar la venta: " + ex.getMessage());
@@ -188,7 +187,7 @@ public class ManejadorVenta implements IRegistroVenta {
     }
 
     @Override
-    public VentaDTO buscarVenta(ObjectId id) throws RegistroException {
+    public VentaDTO buscarVenta(String id) throws RegistroException {
         try {
             return this.ventasNegocio.buscarPorId(id);
         } catch (NegocioException ex) {

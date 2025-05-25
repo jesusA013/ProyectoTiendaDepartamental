@@ -51,7 +51,7 @@ public class VentasBO implements IVentasBO {
     }
 
     @Override
-    public VentaDTO buscarPorId(ObjectId id) throws NegocioException {
+    public VentaDTO buscarPorId(String id) throws NegocioException {
         try {
             VentaDTO ventaEncontrada = convertirDTO(ventaDAO.buscarPorId(id));
 
@@ -74,7 +74,7 @@ public class VentasBO implements IVentasBO {
     }
 
     @Override
-    public VentaDTO eliminarVenta(ObjectId id) throws NegocioException {
+    public VentaDTO eliminarVenta(String id) throws NegocioException {
         try {
             VentaDTO ventaEliminada = convertirDTO(ventaDAO.eliminarVenta(id));
 
@@ -83,7 +83,6 @@ public class VentasBO implements IVentasBO {
             throw new NegocioException("Error " + ex.getMessage());
         }
     }
-    
 
     /**
      * Convierte la entidad a DTO.
@@ -93,7 +92,7 @@ public class VentasBO implements IVentasBO {
      */
     private VentaDTO convertirDTO(Venta venta) {
         VentaDTO ventaDTO = new VentaDTO();
-        ventaDTO.setId(venta.getId());
+        ventaDTO.setIdVentaDTO(venta.getIdVenta());
         ventaDTO.setFecha(venta.getFecha());
 
         List<ProductoVentaDTO> productos = new ArrayList<>();
@@ -107,7 +106,7 @@ public class VentasBO implements IVentasBO {
         }
         ventaDTO.setProductos(productos);
 
-        ventaDTO.setVendedorId(venta.getVendedorId());
+        ventaDTO.setIdVendedor(venta.getVendedorId());
 
         FacturaDTO factura = new FacturaDTO();
         factura.setFolioFactura(venta.getFactura().getFolioFactura());
@@ -144,7 +143,7 @@ public class VentasBO implements IVentasBO {
      */
     private Venta convertirEntidad(VentaDTO ventaDTO) {
         Venta venta = new Venta();
-        venta.setId(ventaDTO.getId());
+        venta.setIdVenta(ventaDTO.getIdVentaDTO());
         venta.setFecha(ventaDTO.getFecha());
 
         List<ProductoVenta> productos = new ArrayList<>();
@@ -158,7 +157,7 @@ public class VentasBO implements IVentasBO {
         }
         venta.setProductos(productos);
 
-        venta.setVendedorId(ventaDTO.getVendedorId());
+        venta.setVendedorId(ventaDTO.getIdVendedor());
 
         Factura factura = new Factura();
         factura.setFolioFactura(ventaDTO.getFactura().getFolioFactura());
@@ -188,7 +187,7 @@ public class VentasBO implements IVentasBO {
     }
 
     @Override
-    public List<VentaDTO> obtenerVentas(ObjectId idVendedor) throws NegocioException {
+    public List<VentaDTO> obtenerVentas(String idVendedor) throws NegocioException {
         try {
             List<Venta> lista = ventaDAO.buscarVentas(idVendedor);
             if (lista.isEmpty()) {

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DTOs;
 
 import java.time.*;
@@ -11,15 +7,16 @@ import java.time.*;
  * @author melis
  */
 public class ReporteVendedoresDTO {
-    private int idReporte;
-    private int idVendedor;
+
+    private String idReporte;
+    private String idVendedor;
     private float promedioVentasDiarias;
     private float promedioVnetaSemanal;
     private float promedioVentaMnesual;
     private float promedioVnetaTrimestral;
     private LocalDateTime fechaReporte;
 
-    public ReporteVendedoresDTO(int idReporte, int idVendedor, float promedioVentasDiarias, float promedioVnetaSemanal, float promedioVentaMnesual, float promedioVnetaTrimestral, LocalDateTime fechaReporte) {
+    public ReporteVendedoresDTO(String idReporte, String idVendedor, float promedioVentasDiarias, float promedioVnetaSemanal, float promedioVentaMnesual, float promedioVnetaTrimestral, LocalDateTime fechaReporte) {
         this.idReporte = idReporte;
         this.idVendedor = idVendedor;
         this.promedioVentasDiarias = promedioVentasDiarias;
@@ -32,19 +29,19 @@ public class ReporteVendedoresDTO {
     public ReporteVendedoresDTO() {
     }
 
-    public int getIdReporte() {
+    public String getIdReporte() {
         return idReporte;
     }
 
-    public void setIdReporte(int idReporte) {
+    public void setIdReporte(String idReporte) {
         this.idReporte = idReporte;
     }
 
-    public int getIdVendedor() {
+    public String getIdVendedor() {
         return idVendedor;
     }
 
-    public void setIdVendedor(int idVendedor) {
+    public void setIdVendedor(String idVendedor) {
         this.idVendedor = idVendedor;
     }
 
@@ -87,10 +84,5 @@ public class ReporteVendedoresDTO {
     public void setFechaReporte(LocalDateTime fechaReporte) {
         this.fechaReporte = fechaReporte;
     }
-    
-    
-    
-
-
 
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import org.bson.types.ObjectId;
+import java.util.UUID;
 
 /**
  * VendedorDAO.java
@@ -26,8 +26,8 @@ public class VendedorDAO implements IVendedorDAO {
             vendedor.setFechaRegistro(new Date());
         }
         // Asigna un nuevo id
-        ObjectId nuevoId = new ObjectId();
-        vendedor.setId(nuevoId);
+        String nuevoId = UUID.randomUUID().toString();
+        vendedor.setIdVendedor(nuevoId);
         vendedores.add(vendedor);
         return vendedor;
     }
@@ -46,19 +46,18 @@ public class VendedorDAO implements IVendedorDAO {
     }
 
     @Override
-    public Vendedor buscarPorId(ObjectId id) {
+    public Vendedor buscarPorId(String id) {
         return vendedores.stream()
-                .filter(v -> v.getId().equals(id))
+                .filter(v -> v.getIdVendedor().equals(id))
                 .findFirst()
                 .orElse(null);
     }
 
     @Override
     public boolean actualizarVendedor(String id, Vendedor vendedor) {
-        ObjectId objectId = new ObjectId(id);
         for (int i = 0; i < vendedores.size(); i++) {
-            if (vendedores.get(i).getId().equals(objectId)) {
-                vendedor.setId(objectId); // Mantenemos el id
+            if (vendedores.get(i).getIdVendedor().equals(id)) {
+                vendedor.setIdVendedor(id); // Mantenemos el id
                 vendedores.set(i, vendedor);
                 return true;
             }
@@ -69,7 +68,7 @@ public class VendedorDAO implements IVendedorDAO {
     @Override
     public Vendedor actualizarVendedor(Vendedor vendedor) {
         for (int i = 0; i < vendedores.size(); i++) {
-            if (vendedores.get(i).getId().equals(vendedor.getId())) {
+            if (vendedores.get(i).getIdVendedor().equals(vendedor.getIdVendedor())) {
                 vendedores.set(i, vendedor);
                 return vendedor;
             }
@@ -78,9 +77,9 @@ public class VendedorDAO implements IVendedorDAO {
     }
 
     @Override
-    public Vendedor eliminarVendedor(ObjectId id) {
+    public Vendedor eliminarVendedor(String id) {
         Optional<Vendedor> vendedorOpt = vendedores.stream()
-                .filter(v -> v.getId().equals(id))
+                .filter(v -> v.getIdVendedor().equals(id))
                 .findFirst();
         if (vendedorOpt.isPresent()) {
             vendedores.remove(vendedorOpt.get());

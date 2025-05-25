@@ -1,26 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package ModuloAdministracion.GestionProductos;
 
 import DTOs.ProductoTablaDTO;
 import Excepciones.NegocioException;
-import Implementaciones.IManejadorProveedor;
 import Interfaces.IProductoBO;
-import Interfaz.IConexion;
-import ModuloAdministracion.AdministradorMenu;
 import Utilidades.JButtonCellEditor;
 import Utilidades.JButtonRenderer;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import org.bson.types.ObjectId;
@@ -30,22 +20,28 @@ import org.bson.types.ObjectId;
  * @author gaspa
  */
 public class PanelListadoProductos extends javax.swing.JPanel {
+
     private final JPanel panelCambiante;
     private final IProductoBO productoBO;
+
     /**
      * Creates new form PanelListadoProductos
+     * @param panelCambiante
+     * @param productoBO
      */
-    public PanelListadoProductos(JPanel panelCambiante,IProductoBO productoBO) {
+    public PanelListadoProductos(JPanel panelCambiante, IProductoBO productoBO) {
         initComponents();
-        this.productoBO=productoBO;
+        this.productoBO = productoBO;
         this.panelCambiante = panelCambiante;
         this.metodosIniciales();
 
     }
+
     private void metodosIniciales() {
         this.configuracionInicialTabla();
         this.buscarTabla();
     }
+
     private void configuracionInicialTabla() {
         ActionListener onEditarClickListener = new ActionListener() {
             @Override
@@ -80,9 +76,10 @@ public class PanelListadoProductos extends javax.swing.JPanel {
         modeloColumnas.getColumn(indiceColumnaEliminar)
                 .setCellEditor(new JButtonCellEditor("Eliminar", onEliminarClickListener));
     }
+
     private void editar() throws NegocioException {
-        ObjectId id = this.getIdSeleccionadoTabla();
-        
+        String id = this.getIdSeleccionadoTabla();
+
         PanelEditarProducto panelCarrera = new PanelEditarProducto(panelCambiante, productoBO, id);
         this.setLayout(new BorderLayout());
         this.removeAll();
@@ -92,14 +89,14 @@ public class PanelListadoProductos extends javax.swing.JPanel {
     }
 
     private void eliminar() {
-        ObjectId id = this.getIdSeleccionadoTabla();
+        String id = this.getIdSeleccionadoTabla();
 
         int confirmacion = JOptionPane.showConfirmDialog(
-            this,
-            "¿Estás seguro de que deseas eliminar este producto?",
-            "Confirmar eliminación",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE
+                this,
+                "¿Estás seguro de que deseas eliminar este producto?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
         );
 
         if (confirmacion == JOptionPane.YES_OPTION) {
@@ -114,17 +111,18 @@ public class PanelListadoProductos extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Eliminación cancelada.");
         }
     }
-    private ObjectId getIdSeleccionadoTabla() {
+
+    private String getIdSeleccionadoTabla() {
         int indiceFilaSeleccionada = this.tablaProductos.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {
             DefaultTableModel modelo = (DefaultTableModel) this.tablaProductos.getModel();
             int indiceColumnaId = 0;
             Object valor = modelo.getValueAt(indiceFilaSeleccionada, indiceColumnaId);
             if (valor instanceof ObjectId) {
-                return (ObjectId) valor;
+                return (String) valor;
             } else {
-                
-                System.out.println("El valor en la columna ID no es un ObjectId");
+
+                System.out.println("El valor en la columna ID no es un String");
                 return null;
             }
         } else {
@@ -144,30 +142,30 @@ public class PanelListadoProductos extends javax.swing.JPanel {
     }
 
     private void agregarRegistrosTabla(List<ProductoTablaDTO> carrerasLista) {
-        
 
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tablaProductos.getModel();
-        if(!carrerasLista.isEmpty()){
+        if (!carrerasLista.isEmpty()) {
             carrerasLista.forEach(row -> {
                 Object[] fila = new Object[7];
-                fila[0] = row.getId();
+                fila[0] = row.getIdProducto();
                 fila[1] = row.getCodigo();
                 fila[2] = row.getNombre();
                 fila[3] = row.getMarca();
                 fila[4] = row.getColor();
                 fila[5] = row.getPrecio();
                 fila[6] = row.getStock();
-                
+
                 modeloTabla.addRow(fila);
             });
-        } 
-        
+        }
+
     }
-    public void volver(){
+
+    public void volver() {
         PanelAdministradorMenu panelMenu = new PanelAdministradorMenu(panelCambiante);
         panelCambiante.setLayout(new BorderLayout());
         panelCambiante.removeAll();
-        panelCambiante.add(panelMenu,BorderLayout.CENTER);
+        panelCambiante.add(panelMenu, BorderLayout.CENTER);
         panelCambiante.revalidate();
         panelCambiante.repaint();
     }
@@ -253,7 +251,7 @@ public class PanelListadoProductos extends javax.swing.JPanel {
         PanelRegistrarProducto panelRegistrar = new PanelRegistrarProducto(panelCambiante, productoBO);
         panelCambiante.setLayout(new BorderLayout());
         panelCambiante.removeAll();
-        panelCambiante.add(panelRegistrar,BorderLayout.CENTER);
+        panelCambiante.add(panelRegistrar, BorderLayout.CENTER);
         panelCambiante.revalidate();
         panelCambiante.repaint();
     }//GEN-LAST:event_registrarBTNActionPerformed

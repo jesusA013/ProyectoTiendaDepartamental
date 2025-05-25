@@ -42,6 +42,7 @@ public class Factura {
 
     /**
      * Inicializa los atributos al valor de sus parámetros.
+     *
      * @param folioFactura
      * @param fechaEmision
      * @param rfc
@@ -55,7 +56,7 @@ public class Factura {
      * @param ciudadLocalidad
      * @param estado
      * @param pais
-     * @param correo 
+     * @param correo
      */
     public Factura(String folioFactura, Date fechaEmision, String rfc, String nombreRazon, String calle, String numExt, String numInt, String colonia, String codigoPostal, String delegacionMunicipio, String ciudadLocalidad, String estado, String pais, String correo) {
         this.folioFactura = folioFactura;

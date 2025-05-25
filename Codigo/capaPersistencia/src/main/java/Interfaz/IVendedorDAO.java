@@ -13,11 +13,18 @@ import org.bson.types.ObjectId;
  * @author gaspa
  */
 public interface IVendedorDAO {
+
     Vendedor insertarVendedor(Vendedor vendedor);
+
     Vendedor buscarPorCURP(String curp);
+
     List<Vendedor> obtenerTodos();
-    Vendedor buscarPorId(ObjectId id);
+
+    Vendedor buscarPorId(String id);
+
     boolean actualizarVendedor(String id, Vendedor vendedor);
+
     Vendedor actualizarVendedor(Vendedor vendedor);
-    Vendedor eliminarVendedor(ObjectId id);
+
+    Vendedor eliminarVendedor(String id);
 }

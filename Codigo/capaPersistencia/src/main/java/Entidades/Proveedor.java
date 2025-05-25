@@ -1,8 +1,5 @@
 package Entidades;
 
-import org.bson.codecs.pojo.annotations.BsonId;
-import org.bson.types.ObjectId;
-
 /**
  * Proveedor.java
  *
@@ -11,9 +8,8 @@ import org.bson.types.ObjectId;
  * @author Ángel Ruíz García - 00000248171
  */
 public class Proveedor {
-
-    @BsonId
-    private ObjectId idProveedor;
+    
+    private String idProveedor;
     private ProveedorInformacionBasica basica;
     private ProveedorInformacionContacto contacto;
     private ProveedorInformacionComercial comercial;
@@ -34,7 +30,7 @@ public class Proveedor {
      * @param comercial Información comercial del proveedor
      * @param gestion Información de historial y gestión del proveedor
      */
-    public Proveedor(ObjectId idProveedor, ProveedorInformacionBasica basica, ProveedorInformacionContacto contacto, ProveedorInformacionComercial comercial, ProveedorInformacionGestion gestion) {
+    public Proveedor(String idProveedor, ProveedorInformacionBasica basica, ProveedorInformacionContacto contacto, ProveedorInformacionComercial comercial, ProveedorInformacionGestion gestion) {
         this.idProveedor = idProveedor;
         this.basica = basica;
         this.contacto = contacto;
@@ -62,7 +58,7 @@ public class Proveedor {
      *
      * @return ID del proveedor
      */
-    public ObjectId getIdProveedor() {
+    public String getIdProveedor() {
         return idProveedor;
     }
 
@@ -71,7 +67,7 @@ public class Proveedor {
      *
      * @param idProveedor ID del proveedor
      */
-    public void setIdProveedor(ObjectId idProveedor) {
+    public void setIdProveedor(String idProveedor) {
         this.idProveedor = idProveedor;
     }
 

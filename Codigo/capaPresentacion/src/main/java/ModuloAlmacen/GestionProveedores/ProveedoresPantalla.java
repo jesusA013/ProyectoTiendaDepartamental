@@ -15,6 +15,7 @@ public class ProveedoresPantalla extends javax.swing.JFrame {
 
     /**
      * Creates new form ListaProveedores
+     * @param controlProveedor
      */
     public ProveedoresPantalla(IManejadorProveedor controlProveedor) {
         initComponents();

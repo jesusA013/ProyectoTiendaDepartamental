@@ -1,18 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DTOs;
-
-import org.bson.types.ObjectId;
 
 /**
  *
  * @author gaspa
  */
 public class UsuarioDTO {
-    
-    private ObjectId _id;
+
+    private String idUsuarioDTO;
     private String idCuenta;
     private String nombreUsuario;
     private String contrasena;
@@ -39,12 +33,12 @@ public class UsuarioDTO {
         this.rol = rol;
     }
 
-    public ObjectId getId() {
-        return _id;
+    public String getIdUsuarioDTO() {
+        return idUsuarioDTO;
     }
 
-    public void setId(ObjectId _id) {
-        this._id = _id;
+    public void setIdUsuarioDTO(String idUsuarioDTO) {
+        this.idUsuarioDTO = idUsuarioDTO;
     }
 
     public String getIdCuenta() {

@@ -1,16 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package ModuloAdministracion.GestionProductos;
 
 import DTOs.ProductoDTO;
 import Excepciones.NegocioException;
 import Interfaces.IProductoBO;
-import Interfaz.IConexion;
 import java.awt.BorderLayout;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -19,16 +12,19 @@ import javax.swing.JPanel;
  * @author gaspa
  */
 public class PanelRegistrarProducto extends javax.swing.JPanel {
+
     private final JPanel panelCambiante;
     private final IProductoBO productoBO;
+
     /**
      * Creates new form PanelRegistrarProducto
      */
-    public PanelRegistrarProducto(JPanel panelCambiante,IProductoBO productoBO) {
+    public PanelRegistrarProducto(JPanel panelCambiante, IProductoBO productoBO) {
         initComponents();
-        this.panelCambiante=panelCambiante;
-        this.productoBO=productoBO;
+        this.panelCambiante = panelCambiante;
+        this.productoBO = productoBO;
     }
+
     public void registrarProducto() {
         try {
             ProductoDTO productoDTO = new ProductoDTO();
@@ -49,11 +45,12 @@ public class PanelRegistrarProducto extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Error al registrar producto: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    public void volver(){
+
+    public void volver() {
         PanelListadoProductos panelListado = new PanelListadoProductos(panelCambiante, productoBO);
         panelCambiante.setLayout(new BorderLayout());
         panelCambiante.removeAll();
-        panelCambiante.add(panelListado,BorderLayout.CENTER);
+        panelCambiante.add(panelListado, BorderLayout.CENTER);
         panelCambiante.revalidate();
         panelCambiante.repaint();
     }

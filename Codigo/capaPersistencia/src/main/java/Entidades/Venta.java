@@ -3,7 +3,6 @@ package Entidades;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.bson.types.ObjectId;
 
 /**
  * Venta.java
@@ -14,10 +13,10 @@ import org.bson.types.ObjectId;
  */
 public class Venta {
 
-    private ObjectId _id;
+    private String idVenta;
     private Date fecha;
     private List<ProductoVenta> productos;
-    private ObjectId vendedorId;
+    private String vendedorId;
     private Factura factura;
     private DetallesVenta detallesVenta;
 
@@ -34,7 +33,7 @@ public class Venta {
      * @param factura
      * @param detallesVenta
      */
-    public Venta(Date fecha, List<ProductoVenta> productos, ObjectId vendedorId, Factura factura, DetallesVenta detallesVenta) {
+    public Venta(Date fecha, List<ProductoVenta> productos, String vendedorId, Factura factura, DetallesVenta detallesVenta) {
         this.fecha = fecha;
         this.productos = productos;
         this.vendedorId = vendedorId;
@@ -42,12 +41,12 @@ public class Venta {
         this.detallesVenta = detallesVenta;
     }
 
-    public ObjectId getId() {
-        return _id;
+    public String getIdVenta() {
+        return idVenta;
     }
 
-    public void setId(ObjectId _id) {
-        this._id = _id;
+    public void setIdVenta(String idVenta) {
+        this.idVenta = idVenta;
     }
 
     public List<ProductoVenta> getProductos() {
@@ -66,11 +65,11 @@ public class Venta {
         this.fecha = fecha;
     }
 
-    public ObjectId getVendedorId() {
+    public String getVendedorId() {
         return vendedorId;
     }
 
-    public void setVendedorId(ObjectId vendedorId) {
+    public void setVendedorId(String vendedorId) {
         this.vendedorId = vendedorId;
     }
 
@@ -92,7 +91,7 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "Venta{" + "_id=" + _id + ", fecha=" + fecha + ", productos=" + productos + ", vendedorId=" + vendedorId + ", factura=" + factura + ", detallesVenta=" + detallesVenta + '}';
+        return "Venta{" + "idVenta=" + idVenta + ", fecha=" + fecha + ", productos=" + productos + ", vendedorId=" + vendedorId + ", factura=" + factura + ", detallesVenta=" + detallesVenta + '}';
     }
 
 }

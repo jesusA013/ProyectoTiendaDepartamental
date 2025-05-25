@@ -15,54 +15,55 @@ import org.bson.types.ObjectId;
  * @author Ángel Ruíz García - 00000248171
  */
 public class ProveedoresPanelEditar extends javax.swing.JPanel {
-    
+
     IManejadorProveedor controlProveedor;
     ProveedorDTO proveedor;
     private static ProveedoresPanelEditar instancia;
-    
+
     /**
      * Creates new form ProveedoresPanelNuevo
+     *
      * @param controlProveedor
      */
-    public ProveedoresPanelEditar(IManejadorProveedor controlProveedor){
+    public ProveedoresPanelEditar(IManejadorProveedor controlProveedor) {
         initComponents();
         this.controlProveedor = controlProveedor;
     }
-    
+
     public static ProveedoresPanelEditar getInstance(IManejadorProveedor controlProveedor) {
         if (instancia == null) {
             instancia = new ProveedoresPanelEditar(controlProveedor);
         }
         return instancia;
     }
-    
-    public void actualizarDatos(ObjectId id) throws ProveedorException {
+
+    public void actualizarDatos(String id) throws ProveedorException {
         proveedor = controlProveedor.obtenerProveedor(id);
         setCampos(proveedor);
         this.revalidate();
         this.repaint();
     }
-    
+
     private void setCampos(ProveedorDTO proveedor) {
-        txtIdProveedor.setText(proveedor.getIdProveedor().toString());
+        txtIdProveedor.setText(proveedor.getIdProveedor());
         txtNombreProveedor.setText(proveedor.getBasica().getNombreProveedor());
-        
+
         txtContacto.setText(proveedor.getContacto().getContacto());
         txtTelefono.setText(proveedor.getContacto().getTelefono());
         txtCorreo.setText(proveedor.getContacto().getCorreo());
         txtDireccion.setText(proveedor.getContacto().getDireccion());
         txtPaginaWeb.setText(proveedor.getContacto().getPaginaWeb());
-        
+
         txtRFC.setText(proveedor.getComercial().getRfc());
         cboFormaPago.setSelectedItem(proveedor.getComercial().getFormaPago());
         txtTerminoPago.setText(proveedor.getComercial().getTerminoPago());
         cboMoneda.setSelectedItem(proveedor.getComercial().getMoneda());
-        
+
         txtFecha.setText(proveedor.getGestion().getFechaAlta().toString());
         cboEstado.setSelectedItem(proveedor.getGestion().getEstado());
         txtComentarios.setText(proveedor.getGestion().getComentarios());
     }
-    
+
     private void actualizar() {
         int confirmacion = JOptionPane.showConfirmDialog(this,
                 "¿Estás seguro de que deseas actualizar el proveedor?",

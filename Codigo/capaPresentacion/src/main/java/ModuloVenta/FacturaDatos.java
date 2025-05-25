@@ -3,7 +3,6 @@ package ModuloVenta;
 import Inicio.InicioSesion;
 import Interface.IRegistroVenta;
 import RegistroVentaException.RegistroException;
-import control.ControlNavegacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
@@ -19,7 +18,7 @@ public class FacturaDatos extends javax.swing.JFrame {
     IRegistroVenta controlVenta;
     private static FacturaDatos instancia;
     private Map<String, Map<String, Map<String, List<String>>>> datosUbicacion;
-    private ObjectId id;
+    private String id;
 
     /**
      * Creates new form FacturaDatos
@@ -117,7 +116,7 @@ public class FacturaDatos extends javax.swing.JFrame {
         return instancia;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
         lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
     }

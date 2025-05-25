@@ -50,8 +50,7 @@ public class ProveedoresPanelListado extends javax.swing.JPanel {
             try {
                 int fila = Integer.parseInt(e.getActionCommand());
                 String idStr = tablaProveedores.getValueAt(fila, 0).toString();
-                ObjectId id = new ObjectId(idStr);
-                ControlNavegacion.getInstance().mostrarPanelProveedorDetalles(id);
+                ControlNavegacion.getInstance().mostrarPanelProveedorDetalles(idStr);
             } catch (ProveedorException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -67,8 +66,7 @@ public class ProveedoresPanelListado extends javax.swing.JPanel {
             try {
                 int fila = Integer.parseInt(e.getActionCommand());
                 String idStr = tablaProveedores.getValueAt(fila, 0).toString();
-                ObjectId id = new ObjectId(idStr);
-                ControlNavegacion.getInstance().mostrarPanelProveedorEditar(id);
+                ControlNavegacion.getInstance().mostrarPanelProveedorEditar(idStr);
             } catch (ProveedorException ex) {
                 System.out.println(ex.getMessage());
             }

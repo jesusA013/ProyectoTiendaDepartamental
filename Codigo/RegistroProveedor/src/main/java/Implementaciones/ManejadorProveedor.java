@@ -166,7 +166,7 @@ public class ManejadorProveedor implements IManejadorProveedor {
     }
 
     @Override
-    public ProveedorDTO obtenerProveedor(ObjectId id) throws ProveedorException {
+    public ProveedorDTO obtenerProveedor(String id) throws ProveedorException {
         try {
             return this.proveedorNegocio.obtenerProveedorPorId(id);
         } catch (NegocioException ex) {
@@ -194,7 +194,7 @@ public class ManejadorProveedor implements IManejadorProveedor {
      * @throws ProveedorException
      */
     @Override
-    public void editarProveedor(JPanel panel, ObjectId id, String nombreProveedor,
+    public void editarProveedor(JPanel panel, String id, String nombreProveedor,
             String contacto, String telefono, String correo, String direccion,
             String paginaWeb, String rfc, String formaPago, String terminoPago,
             String moneda, Date fecha, String estado, String comentarios) throws ProveedorException {

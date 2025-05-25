@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Entidades;
 
 /**
@@ -9,6 +5,7 @@ package Entidades;
  * @author gaspa
  */
 public class DetallesVenta {
+
     private double subtotal;
     private double iva;
     private double total;
@@ -60,5 +57,5 @@ public class DetallesVenta {
     public String toString() {
         return "DetallesVenta{" + "subtotal=" + subtotal + ", iva=" + iva + ", total=" + total + ", metodoPago=" + metodoPago + '}';
     }
-    
+
 }

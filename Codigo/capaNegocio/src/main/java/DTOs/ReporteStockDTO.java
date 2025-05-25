@@ -64,10 +64,10 @@ public class ReporteStockDTO {
      */
     @Override
     public String toString() {
-        return "ReporteStockDTO{" +
-                "numeroFolio='" + numeroFolio + '\'' +
-                ", fecha=" + (fecha != null ? fecha.getTime() : "null") +
-                ", totalProductos=" + totalProductos +
-                '}';
+        return "ReporteStockDTO{"
+                + "numeroFolio='" + numeroFolio + '\''
+                + ", fecha=" + (fecha != null ? fecha.getTime() : "null")
+                + ", totalProductos=" + totalProductos
+                + '}';
     }
 }

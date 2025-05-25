@@ -1,7 +1,5 @@
 package Entidades;
 
-import org.bson.types.ObjectId;
-
 /**
  * Producto.java
  *
@@ -11,7 +9,7 @@ import org.bson.types.ObjectId;
  */
 public class Producto {
 
-    private ObjectId id;
+    private String idProducto;
     private String codigo;
     private String nombre;
     private String SKU;
@@ -20,7 +18,7 @@ public class Producto {
     private double precio;
     private int stock;
     private String descripcion;
-    private ObjectId proveedorId;
+    private String proveedorId;
 
     /**
      * Constructor por ausencia
@@ -36,8 +34,8 @@ public class Producto {
      * @param stock Stock del producto
      * @param descripcion Descripcion del producto
      */
-    public Producto(ObjectId idProducto, String nombre, int stock, String descripcion) {
-        this.id = idProducto;
+    public Producto(String idProducto, String nombre, int stock, String descripcion) {
+        this.idProducto = idProducto;
         this.nombre = nombre;
         this.stock = stock;
         this.descripcion = descripcion;
@@ -50,7 +48,7 @@ public class Producto {
         this.color = color;
     }
 
-    public Producto(String codigo, String nombre, String SKU, String marca, String color, double precio, int stock, String descripcion, ObjectId proveedorId) {
+    public Producto(String codigo, String nombre, String SKU, String marca, String color, double precio, int stock, String descripcion, String proveedorId) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.SKU = SKU;
@@ -62,8 +60,8 @@ public class Producto {
         this.proveedorId = proveedorId;
     }
 
-    public Producto(ObjectId id, String codigo, String nombre, String SKU, String marca, String color, double precio, int stock, String descripcion, ObjectId proveedorId) {
-        this.id = id;
+    public Producto(String idProducto, String codigo, String nombre, String SKU, String marca, String color, double precio, int stock, String descripcion, String proveedorId) {
+        this.idProducto = idProducto;
         this.codigo = codigo;
         this.nombre = nombre;
         this.SKU = SKU;
@@ -80,8 +78,8 @@ public class Producto {
      *
      * @return ID del producto
      */
-    public ObjectId getId() {
-        return id;
+    public String getIdProducto() {
+        return idProducto;
     }
 
     /**
@@ -89,8 +87,8 @@ public class Producto {
      *
      * @param id
      */
-    public void setId(ObjectId id) {
-        this.id = id;
+    public void setIdProducto(String idProducto) {
+        this.idProducto = idProducto;
     }
 
     /**
@@ -187,11 +185,11 @@ public class Producto {
         this.precio = precio;
     }
 
-    public ObjectId getProveedorId() {
+    public String getProveedorId() {
         return proveedorId;
     }
 
-    public void setProveedorId(ObjectId proveedorId) {
+    public void setProveedorId(String proveedorId) {
         this.proveedorId = proveedorId;
     }
 
@@ -202,6 +200,6 @@ public class Producto {
      */
     @Override
     public String toString() {
-        return "Producto{" + "id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", SKU=" + SKU + ", marca=" + marca + ", color=" + color + ", precio=" + precio + ", stock=" + stock + ", descripcion=" + descripcion + ", proveedorId=" + proveedorId + '}';
+        return "Producto{" + "idProducto=" + idProducto + ", codigo=" + codigo + ", nombre=" + nombre + ", SKU=" + SKU + ", marca=" + marca + ", color=" + color + ", precio=" + precio + ", stock=" + stock + ", descripcion=" + descripcion + ", proveedorId=" + proveedorId + '}';
     }
 }

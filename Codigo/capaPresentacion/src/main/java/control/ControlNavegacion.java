@@ -127,7 +127,7 @@ public class ControlNavegacion implements INavegador{
         mostrarPantalla(carrito);
     }
 
-    public void irAFacturaDatos(ObjectId id) {
+    public void irAFacturaDatos(String id) {
         FacturaDatos pantallaFactura = FacturaDatos.getInstance(manejadorVenta);
         pantallaFactura.setId(id);
         mostrarPantalla(pantallaFactura);
@@ -143,7 +143,7 @@ public class ControlNavegacion implements INavegador{
     }
     
     @Override
-    public void irVentaFinalizada(ObjectId id){
+    public void irVentaFinalizada(String id){
         VentaFinalizada pantallaVentaFinalizada = VentaFinalizada.getInstance(manejadorVenta);
         pantallaVentaFinalizada.setId(id);
         pantallaVentaFinalizada.actualizarDatos();
@@ -151,7 +151,7 @@ public class ControlNavegacion implements INavegador{
     }
     
     @Override
-    public void irFacturaFinalizada(ObjectId id){
+    public void irFacturaFinalizada(String id){
         FacturaFinalizada pantallaFacturaFinalizada = FacturaFinalizada.getInstance(manejadorVenta, id);
         pantallaFacturaFinalizada.actualizarDatos();
         mostrarPantalla(pantallaFacturaFinalizada);
@@ -207,7 +207,7 @@ public class ControlNavegacion implements INavegador{
      * @throws Excepciones.ProveedorException
      */
     @Override
-    public void mostrarPanelProveedorEditar(ObjectId id) throws ProveedorException {
+    public void mostrarPanelProveedorEditar(String id) throws ProveedorException {
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
         ProveedoresPanelEditar proveedorPanelEditar = ProveedoresPanelEditar.getInstance(manejadorProveedor);
         proveedorPanelEditar.actualizarDatos(id);
@@ -220,7 +220,7 @@ public class ControlNavegacion implements INavegador{
      * @throws Excepciones.ProveedorException
      */
     @Override
-    public void mostrarPanelProveedorDetalles(ObjectId id) throws ProveedorException {
+    public void mostrarPanelProveedorDetalles(String id) throws ProveedorException {
         panelCambiante = ProveedoresPantalla.getInstancia(manejadorProveedor).getPanelCambiante();
         ProveedoresPanelDetalles proveedorPanelDetalles = ProveedoresPanelDetalles.getInstance(manejadorProveedor);
         proveedorPanelDetalles.actualizarDatos(id);

@@ -6,7 +6,7 @@ package DAOs;
 
 import Entidades.ReporteVendedores;
 import Exception.PersistenciaException;
-import  Interfaz.IReporteDAO;
+import Interfaz.IReporteDAO;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
 import java.util.*;
@@ -16,9 +16,9 @@ import org.bson.types.ObjectId;
 /**
  * ReporteDAO.java
  *
- * Esta clase simula un DAO en memoria para manejar operaciones relacionadas
- * con reportes.
- * 
+ * Esta clase simula un DAO en memoria para manejar operaciones relacionadas con
+ * reportes.
+ *
  * @author
  */
 public abstract class ReporteDAO implements IReporteDAO {
@@ -72,7 +72,6 @@ public abstract class ReporteDAO implements IReporteDAO {
 //
 //        return reporte;
 //    }
-
     /**
      * Genera un reporte de productos con stock bajo.
      *
@@ -94,13 +93,12 @@ public abstract class ReporteDAO implements IReporteDAO {
 //
 //        return reporte;
 //    }
-    
-    
     // Lista interna simulando la "base de datos"
     private final List<ReporteVendedores> reportes = new ArrayList<>();
 
     /**
      * Guarda un nuevo reporte en la lista.
+     *
      * @param idVendedor
      * @param reporte
      * @throws Exception.PersistenciaException
@@ -113,8 +111,9 @@ public abstract class ReporteDAO implements IReporteDAO {
 
     /**
      * Obtiene un reporte asociado a un vendedor por su ID.
+     *
      * @param idVendedor
-     * @return 
+     * @return
      * @throws Exception.PersistenciaException
      */
     @Override
@@ -127,7 +126,8 @@ public abstract class ReporteDAO implements IReporteDAO {
 
     /**
      * Obtiene todos los reportes.
-     * @return 
+     *
+     * @return
      * @throws Exception.PersistenciaException
      */
     @Override
@@ -137,9 +137,11 @@ public abstract class ReporteDAO implements IReporteDAO {
 
     /**
      * Actualiza un reporte existente por el ID del vendedor.
-     * @param idVendedor
-     * @param nuevoReporte
-     * @throws Exception.PersistenciaException
+     *
+     * @param idVendedor El ID del vendedor cuyo reporte se actualizará.
+     * @param nuevoReporte El nuevo reporte con los datos actualizados.
+     * @throws PersistenciaException Si no se encuentra el reporte
+     * correspondiente.
      */
     @Override
     public void actualizarReporte(String idVendedor, ReporteVendedores nuevoReporte) throws PersistenciaException {
@@ -147,17 +149,25 @@ public abstract class ReporteDAO implements IReporteDAO {
                 .filter(r -> idVendedor.equals(r.getIdVendedor()))
                 .findFirst();
 
-        existenteOpt.ifPresent(existente -> {
-            // Puedes ajustar qué campos se actualizan
-            existente.setVentas(nuevoReporte.getVentas());
+        if (existenteOpt.isPresent()) {
+            ReporteVendedores existente = existenteOpt.get();
+
+            // Actualiza todos los campos relevantes
+            existente.setPromedioVentasDiaria(nuevoReporte.getPromedioVentasDiaria());
+            existente.setPromedioVentaSemanal(nuevoReporte.getPromedioVentaSemanal());
+            existente.setPromedioVentaMensual(nuevoReporte.getPromedioVentaMensual());
+            existente.setPromedioVentaTrimestral(nuevoReporte.getPromedioVentaTrimestral());
             existente.setFechaReporte(nuevoReporte.getFechaReporte());
-            existente.setDescripcion(nuevoReporte.getDescripcion());
+            existente.setCiudad(nuevoReporte.getCiudad());
             // Otros campos que quieras actualizar
-        });
+        } else {
+            throw new PersistenciaException("No se encontró el reporte con el ID de vendedor: " + idVendedor);
+        }
     }
 
     /**
      * Elimina un reporte por el ID del vendedor.
+     *
      * @param idVendedor
      * @throws Exception.PersistenciaException
      */

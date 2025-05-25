@@ -17,11 +17,11 @@ public interface IVentasDAO {
 
     Venta insertarVenta(Venta venta) throws PersistenciaException;
 
-    Venta buscarPorId(ObjectId id) throws PersistenciaException;
+    Venta buscarPorId(String id) throws PersistenciaException;
 
     Venta actualizarVenta(Venta venta) throws PersistenciaException;
 
-    Venta eliminarVenta(ObjectId id) throws PersistenciaException;
-    
-    List<Venta> buscarVentas(ObjectId idVendedor) throws PersistenciaException;
+    Venta eliminarVenta(String id) throws PersistenciaException;
+
+    List<Venta> buscarVentas(String idVendedor) throws PersistenciaException;
 }

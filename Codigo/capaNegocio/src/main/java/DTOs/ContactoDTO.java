@@ -4,6 +4,7 @@ package DTOs;
  * Angel Beltran
  */
 public class ContactoDTO {
+
     // Atributos
     private String telefono;
     private String correo;
@@ -48,10 +49,10 @@ public class ContactoDTO {
     // Método toString para una representación legible del objeto
     @Override
     public String toString() {
-        return "ContactoDTO{" +
-                "telefono='" + telefono + '\'' +
-                ", correo='" + correo + '\'' +
-                ", direccion='" + direccion + '\'' +
-                '}';
+        return "ContactoDTO{"
+                + "telefono='" + telefono + '\''
+                + ", correo='" + correo + '\''
+                + ", direccion='" + direccion + '\''
+                + '}';
     }
 }

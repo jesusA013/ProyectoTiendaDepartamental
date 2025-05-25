@@ -34,16 +34,16 @@ public class ProveedoresPanelDetalles extends javax.swing.JPanel {
         }
         return instancia;
     }
-    
-    public void actualizarDatos(ObjectId id) throws ProveedorException {
+
+    public void actualizarDatos(String id) throws ProveedorException {
         ProveedorDTO proveedor = controlProveedor.obtenerProveedor(id);
         setCampos(proveedor);
         this.revalidate();
         this.repaint();
     }
-    
-    private void setCampos(ProveedorDTO proveedor){
-        txtIdProveedor.setText(proveedor.getIdProveedor().toString());
+
+    private void setCampos(ProveedorDTO proveedor) {
+        txtIdProveedor.setText(proveedor.getIdProveedor());
         txtNombreProveedor.setText(proveedor.getBasica().getNombreProveedor());
 
         txtContacto.setText(proveedor.getContacto().getContacto());
