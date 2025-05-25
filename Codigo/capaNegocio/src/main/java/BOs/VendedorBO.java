@@ -22,7 +22,7 @@ import org.bson.types.ObjectId;
  * @author Ilian Gastelum
  * @version 1.2
  */
-public abstract class VendedorBO implements IVendedorBO {
+public  class VendedorBO   {
     private int id;
     private String nombre;
     private double totalVentas;

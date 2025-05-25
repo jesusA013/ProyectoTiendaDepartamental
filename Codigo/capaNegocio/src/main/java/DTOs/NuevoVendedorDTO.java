@@ -19,7 +19,7 @@ public class NuevoVendedorDTO {
     private String ciudad;
     private String municipio;
     private String foto;
-    
+    private String estadoCivil;
       private String telefono;
     private String email;
     private String datosFiscales;
