@@ -6,6 +6,7 @@ package Interfaz;
 
 import Entidades.ReporteVendedores;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -13,14 +14,12 @@ import java.util.List;
  */
 public interface IReporteDAO {
 
-    void guardarReporte(int idVendedor, ReporteVendedores reporte);
+    void generarReporte(String idVendedor, String contenido);
 
-    ReporteVendedores obtenerReportePorVendedor(String idVendedor);
+    Optional<String> obtenerReportePorVendedor(String idVendedor);
 
-    List<ReporteVendedores> obtenerTodosLosReportes();
+    List<String> obtenerTodosLosReportes();
 
-    void actualizarReporte(String idVendedor, ReporteVendedores reporte);
-
-    void eliminarReporte(String idVendedor);
+    boolean eliminarReporte(String idVendedor);
 
 }

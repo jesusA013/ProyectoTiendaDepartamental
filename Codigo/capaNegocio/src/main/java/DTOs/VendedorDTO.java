@@ -9,14 +9,16 @@ package DTOs;
  * @author melis
  */
 public class VendedorDTO {
-    private String id;
+    private String idVendedor;
     private String nombre;
+        private String apellidos;
     private String rutaFoto;
     private int raiting;
 
-    public VendedorDTO(String id, String nombre, String rutaFoto, int raiting) {
-        this.id = id;
+    public VendedorDTO(String idVendedor, String nombre,String apellidos, String rutaFoto, int raiting) {
+        this.idVendedor = idVendedor;
         this.nombre = nombre;
+       this.apellidos=apellidos;
         this.rutaFoto = rutaFoto;
         this.raiting = raiting;
     }
@@ -24,12 +26,12 @@ public class VendedorDTO {
     public VendedorDTO() {
     }
 
-    public String getId() {
-        return id;
+    public String getIdVendedor() {
+        return idVendedor;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.idVendedor = id;
     }
 
     public String getNombre() {
@@ -55,6 +57,21 @@ public class VendedorDTO {
     public void setRaiting(int raiting) {
         this.raiting = raiting;
     }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    @Override
+    public String toString() {
+        return "VendedorDTO{" + "idVendedor=" + idVendedor + ", nombre=" + nombre + ", apellidos=" + apellidos + ", rutaFoto=" + rutaFoto + ", raiting=" + raiting + '}';
+    }
+    
+    
     
     
     

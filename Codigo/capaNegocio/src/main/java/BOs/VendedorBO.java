@@ -11,10 +11,8 @@ import DAOs.VendedorDAO;
 import Entidades.Vendedor;
 import Excepciones.NegocioException;
 import Interfaces.IVendedorBO;
-import Interfaz.IConexion;
 import Interfaz.IVendedorDAO;
 import java.util.List;
-import org.bson.types.ObjectId;
 
 /**
  *
@@ -22,116 +20,82 @@ import org.bson.types.ObjectId;
  * @author Ilian Gastelum
  * @version 1.2
  */
-public  class VendedorBO   {
-    private int id;
-    private String nombre;
-    private double totalVentas;
-    private List<VentasBO> ventas; // lista inicializada
-    
-     private  IVendedorDAO vendedorDAO;// se necesita inicializar
-    private final IConexion mongo = new Conexion();
+public class VendedorBO {
 
-    public VendedorBO(int id, String nombre, double totalVentas, List<VentasBO> ventas, IVendedorDAO vendedorDAO) {
-        this.id = id;
-        this.nombre = nombre;
-        this.totalVentas = totalVentas;
-        this.ventas = new ArrayList<>();// inicializacion de la lista
+    private final IVendedorDAO vendedorDAO;
+
+    public VendedorBO(IVendedorDAO vendedorDAO) {
         this.vendedorDAO = vendedorDAO;
     }
 
-   
-
-    public VendedorBO(List<VentasBO> ventas) {
-        this.ventas = new ArrayList<>();// evita un nullPointer en caso de usar constructor vacio 
-    }
-
-//    public VendedorBO() {
-//    }
-    //gestion v
-
-    public void agregarVneta(VentasBO venta) {
-        ventas.add(venta);
-        totalVentas += venta.getMonto();
-    }
-
-    public double calcularPromedioVentas() {
-        return ventas.isEmpty() ? 0 : totalVentas / ventas.size();
-    }
-
-    /////
-   
-
-//    private final IVendedorDAO vendedorDAO;
-//    private final IConexion mongo = new Conexion();
-    public VendedorBO(){
-        this.vendedorDAO=new VendedorDAO(mongo.conexion());
-    }
-
-    
+    /*Registra un vendedor con validaciones*/
     public Vendedor registrarVendedor(Vendedor vendedor) throws NegocioException {
-        validarVendedorNoNulo(vendedor);
-        validarCURP(vendedor.getCurp());
-        validarCURPUnico(vendedor.getCurp());
+        validarVendedor(vendedor);
+        validarCURPNoDuplicado(vendedor.getCurp());
+        vendedorDAO.insertarVendedor(vendedor);
+        return vendedor;
 
-        return vendedorDAO.insertarVendedor(vendedor);
     }
 
+    /*Este metodo obtiene a todos los vendedores**/
     public List<Vendedor> obtenerTodosLosVendedores() throws NegocioException {
-        List<Vendedor> lista = vendedorDAO.obtenerTodos();
-        if (lista.isEmpty()) {
+        List<Vendedor> vendedores = vendedorDAO.obtenerTodos();
+        if (vendedores.isEmpty()) {
             throw new NegocioException("No hay vendedores registrados.");
         }
-        return lista;
+        return vendedores;
     }
 
-    public Vendedor obtenerVendedorPorId(ObjectId id) throws NegocioException {
-        Vendedor vendedor = vendedorDAO.buscarPorId(id);
-        if (vendedor == null) {
-            throw new NegocioException("No se encontró el vendedor con el ID proporcionado.");
+    /*Obtiene un vendedor por id*/
+    public Optional<Vendedor> obtenerVendedorPorID(String idVendedor) throws NegocioException {
+        Optional<Vendedor> vendedor = vendedorDAO.buscarPorId(idVendedor);
+        if (vendedor.isEmpty()) {
+            throw new NegocioException("No se encuentro el vendedor");
         }
         return vendedor;
     }
 
-    
+    /*Actualiza lod datos de un vendedor*/
     public Vendedor actualizarVendedor(Vendedor vendedor) throws NegocioException {
-        validarVendedorNoNulo(vendedor);
+        validarVendedor(vendedor);
         validarIdPresente(vendedor);
 
-        return vendedorDAO.actualizarVendedor(vendedor);
+        if (!vendedorDAO.actualizarVendedor(vendedor)) {
+            throw new NegocioException("No se pudo actualizar el vendedor. Puede que no exista.");
+        }
+        return vendedor;
+
     }
 
-    @Override
-    public Vendedor eliminarVendedor(ObjectId id) throws NegocioException {
-        Vendedor eliminado = vendedorDAO.eliminarVendedor(id);
-        if (eliminado == null) {
+    public Vendedor eliminarVendedor(String id) throws NegocioException {
+        Optional<Vendedor> eliminado = vendedorDAO.eliminarVendedor(id);
+        if (eliminado.isEmpty()) {
             throw new NegocioException("No se pudo eliminar el vendedor. Puede que no exista.");
         }
-        return eliminado;
+        return eliminado.get();
     }
 
-    private void validarVendedorNoNulo(Vendedor vendedor) throws NegocioException {
+    private void validarVendedor(Vendedor vendedor) throws NegocioException {
         if (vendedor == null) {
             throw new NegocioException("El vendedor no puede ser nulo.");
         }
-    }
-
-    private void validarCURP(String curp) throws NegocioException {
-        if (curp == null || curp.trim().isEmpty()) {
+        if (vendedor.getCurp() == null || vendedor.getCurp().trim().isEmpty()) {
             throw new NegocioException("El CURP del vendedor es obligatorio.");
+        }
+        if (vendedor.getNombreCompleto() == null || vendedor.getNombreCompleto().trim().isEmpty()) {
+            throw new NegocioException("El nombre del vendedor es obligatorio.");
         }
     }
 
-    private void validarCURPUnico(String curp) throws NegocioException {
-        Vendedor existente = vendedorDAO.buscarPorCURP(curp);
-        if (existente != null) {
+    private void validarCURPNoDuplicado(String curp) throws NegocioException {
+        if (vendedorDAO.buscarPorCURP(curp).isPresent()) {
             throw new NegocioException("Ya existe un vendedor con el CURP proporcionado.");
         }
     }
 
     private void validarIdPresente(Vendedor vendedor) throws NegocioException {
-        if (vendedor.getId() == null) {
+        if (vendedor.getIdVendedor()== null || vendedor.getIdVendedor().trim().isEmpty()) {
             throw new NegocioException("El ID del vendedor es obligatorio para la actualización.");
         }
     }
-
 }

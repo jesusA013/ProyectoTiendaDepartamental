@@ -35,7 +35,7 @@ import org.bson.types.ObjectId;
 public class DAOPruebas {
     IConexion Mongo = new Conexion();
     IVentasDAO ventasDAO = new VentasDAO(Mongo.conexion());
-    IVendedorDAO vendedorDAO = new VendedorDAO(Mongo.conexion());
+//    IVendedorDAO vendedorDAO = new VendedorDAO(Mongo.conexion());
     IProveedorDAO proveedorDAO = new ProveedorDAO(Mongo.conexion());
     
     public void insertarVenta() throws PersistenciaException{
@@ -78,9 +78,9 @@ public class DAOPruebas {
 
         Vendedor nuevo = new Vendedor();
         nuevo.setCurp("JUAP800101HDFXXX01");
-        nuevo.setNombreCompleto(new NombreCompleto("Juan", "Pérez", "Lopez"));
-        nuevo.setFechaNacimiento(new Date());
-        nuevo.setEstadoCivil("Soltero");
+//        nuevo.setNombreCompleto(new NombreCompleto("Juan", "Pérez", "Lopez"));
+//        nuevo.setFechaNacimiento(new Date());
+//        nuevo.setEstadoCivil("Soltero");
 
         Domicilio domicilio = new Domicilio();
         domicilio.setCalle("Av. Reforma 123");
@@ -98,9 +98,8 @@ public class DAOPruebas {
         domicilioFiscal.setCodigoPostal("03100");
         datosFiscales.setDomicilioFiscal(domicilioFiscal);
         datosFiscales.setCorreo("juan@gmail.com");
-        nuevo.setDatosFiscales(datosFiscales);
 
-        vendedorDAO.insertarVendedor(nuevo);
+//        vendedorDAO.insertarVendedor(nuevo);
         System.out.println("Vendedor insertado correctamente.");
     }
     

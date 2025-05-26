@@ -18,7 +18,7 @@ public class VentaDTO {
     private ObjectId _id;
     private Date fecha;
     private List<ProductoVentaDTO> productos;
-    private ObjectId vendedorId;
+    private String idVendedor;
     private FacturaDTO factura;
     private DetallesVentaDTO detallesVenta;
     
@@ -40,10 +40,10 @@ public class VentaDTO {
      * @param factura
      * @param detallesVenta
      */
-    public VentaDTO(Date fecha, List<ProductoVentaDTO> productos, ObjectId vendedorId, FacturaDTO factura, DetallesVentaDTO detallesVenta) {
+    public VentaDTO(Date fecha, List<ProductoVentaDTO> productos, String idVendedor, FacturaDTO factura, DetallesVentaDTO detallesVenta) {
         this.fecha = fecha;
         this.productos = productos;
-        this.vendedorId = vendedorId;
+        this.idVendedor = idVendedor;
         this.factura = factura;
         this.detallesVenta = detallesVenta;
     }
@@ -72,12 +72,12 @@ public class VentaDTO {
         this.fecha = fecha;
     }
 
-    public ObjectId getVendedorId() {
-        return vendedorId;
+    public String getVendedorId() {
+        return idVendedor;
     }
 
-    public void setVendedorId(ObjectId vendedorId) {
-        this.vendedorId = vendedorId;
+    public void setVendedorId(String idVendedor) {
+        this.idVendedor = idVendedor;
     }
 
     public FacturaDTO getFactura() {
@@ -98,7 +98,7 @@ public class VentaDTO {
 
     @Override
     public String toString() {
-        return "Venta{" + "_id=" + _id + ", fecha=" + fecha + ", productos=" + productos + ", vendedorId=" + vendedorId + ", factura=" + factura + ", detallesVenta=" + detallesVenta + '}';
+        return "Venta{" + "_id=" + _id + ", fecha=" + fecha + ", productos=" + productos + ", vendedorId=" + idVendedor + ", factura=" + factura + ", detallesVenta=" + detallesVenta + '}';
     }
 
 }

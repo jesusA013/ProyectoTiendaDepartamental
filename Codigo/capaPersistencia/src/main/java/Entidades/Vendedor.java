@@ -5,6 +5,7 @@
 package Entidades;
 
 import java.util.Date;
+import java.util.UUID;
 import org.bson.types.ObjectId;
 
 /**
@@ -13,14 +14,16 @@ import org.bson.types.ObjectId;
  */
 public class Vendedor {
 
-    private ObjectId _id;
+    private String idVendedor;
+        private String nombre;
+    private String apellidos;
+
     private String curp;
-    private DatosFiscales datosFiscales;
     private String nombreCompleto;
-    private Date fechaNacimiento;
-    private String estadoCivil;
+    private Date fechaNacimientoDia;
+        private Date fechaNacimientoMes;
+    private Date fechaNacimientoAño;
     private Domicilio domicilio;
-    private Seguro seguro;
     private Date fechaRegistro;
     private boolean activo;
     private String ciudad;
@@ -33,24 +36,17 @@ public class Vendedor {
     public Vendedor() {
     }
 
-    public Vendedor(String curp, String nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
+    public Vendedor(String idVendedor, String nombre, String apellidos, String curp, String nombreCompleto, Date fechaNacimientoDia, Date fechaNacimientoMes, Date fechaNacimientoAño, Domicilio domicilio, Date fechaRegistro, boolean activo, String ciudad, String municipio, String foto, String rfc, double totalventas, int raiting) {
+        this.idVendedor = idVendedor;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
         this.curp = curp;
         this.nombreCompleto = nombreCompleto;
-        this.fechaNacimiento = fechaNacimiento;
-        this.estadoCivil = estadoCivil;
+        this.fechaNacimientoDia = fechaNacimientoDia;
+        this.fechaNacimientoMes = fechaNacimientoMes;
+        this.fechaNacimientoAño = fechaNacimientoAño;
         this.domicilio = domicilio;
-        this.seguro = seguro;
         this.fechaRegistro = fechaRegistro;
-        this.activo = true;
-    }
-
-
-
-    public Vendedor(String curp, String nombreCompleto, Date fechaNacimiento, Domicilio domicilio, boolean activo, String ciudad, String municipio, String foto, String rfc, double totalventas, int raiting) {
-        this.curp = curp;
-        this.nombreCompleto = nombreCompleto;
-        this.fechaNacimiento = fechaNacimiento;
-        this.domicilio = domicilio;
         this.activo = activo;
         this.ciudad = ciudad;
         this.municipio = municipio;
@@ -60,26 +56,22 @@ public class Vendedor {
         this.raiting = raiting;
     }
 
-    
-    
-    public Vendedor(String curp, DatosFiscales datosFiscales, String nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
-        this.curp = curp;
-        this.datosFiscales = datosFiscales;
-        this.nombreCompleto = nombreCompleto;
-        this.fechaNacimiento = fechaNacimiento;
-        this.estadoCivil = estadoCivil;
-        this.domicilio = domicilio;
-        this.seguro = seguro;
-        this.fechaRegistro = fechaRegistro;
-        this.activo = true;
+   
+
+   
+    /*ete metodo genra un id random
+    */
+    private String generarId() {
+        return UUID.randomUUID().toString();
     }
 
-    public ObjectId getId() {
-        return _id;
+
+    public String getIdVendedor() {
+        return idVendedor;
     }
 
-    public void setId(ObjectId _id) {
-        this._id = _id;
+    public void setIdVendedor(String idVendedor) {
+        this.idVendedor = idVendedor;
     }
 
     public String getCurp() {
@@ -87,16 +79,7 @@ public class Vendedor {
     }
 
     public void setCurp(String curp) {
-        
         this.curp = curp;
-    }
-
-    public DatosFiscales getDatosFiscales() {
-        return datosFiscales;
-    }
-
-    public void setDatosFiscales(DatosFiscales datosFiscales) {
-        this.datosFiscales = datosFiscales;
     }
 
     public String getNombreCompleto() {
@@ -107,20 +90,28 @@ public class Vendedor {
         this.nombreCompleto = nombreCompleto;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
+    public Date getFechaNacimientoDia() {
+        return fechaNacimientoDia;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setFechaNacimientoDia(Date fechaNacimientoDia) {
+        this.fechaNacimientoDia = fechaNacimientoDia;
     }
 
-    public String getEstadoCivil() {
-        return estadoCivil;
+    public Date getFechaNacimientoMes() {
+        return fechaNacimientoMes;
     }
 
-    public void setEstadoCivil(String estadoCivil) {
-        this.estadoCivil = estadoCivil;
+    public void setFechaNacimientoMes(Date fechaNacimientoMes) {
+        this.fechaNacimientoMes = fechaNacimientoMes;
+    }
+
+    public Date getFechaNacimientoAño() {
+        return fechaNacimientoAño;
+    }
+
+    public void setFechaNacimientoAño(Date fechaNacimientoAño) {
+        this.fechaNacimientoAño = fechaNacimientoAño;
     }
 
     public Domicilio getDomicilio() {
@@ -131,14 +122,6 @@ public class Vendedor {
         this.domicilio = domicilio;
     }
 
-    public Seguro getSeguro() {
-        return seguro;
-    }
-
-    public void setSeguro(Seguro seguro) {
-        this.seguro = seguro;
-    }
-
     public Date getFechaRegistro() {
         return fechaRegistro;
     }
@@ -146,15 +129,6 @@ public class Vendedor {
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
-
-    public boolean isActivo() {
-        return activo;
-    }
-
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
-//gv
 
     public String getCiudad() {
         return ciudad;
@@ -193,9 +167,6 @@ public class Vendedor {
     }
 
     public void setTotalventas(double totalventas) {
-        if (totalventas<0) {
-            throw new IllegalArgumentException("la venta no puede ser negatuva");
-        }
         this.totalventas = totalventas;
     }
 
@@ -206,19 +177,6 @@ public class Vendedor {
     public void setRaiting(int raiting) {
         this.raiting = raiting;
     }
-    //
 
-    @Override
-    public String toString() {
-        return "Vendedor{" + "_id=" + _id + ", curp=" + curp + ", datosFiscales=" + datosFiscales + ", nombreCompleto=" + nombreCompleto + ", fechaNacimiento=" + fechaNacimiento + ", estadoCivil=" + estadoCivil + ", domicilio=" + domicilio + ", seguro=" + seguro + ", fechaRegistro=" + fechaRegistro + ", activo=" + activo + '}';
-    }
-
-    public Object getEmail() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public Object getTelefono() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 }

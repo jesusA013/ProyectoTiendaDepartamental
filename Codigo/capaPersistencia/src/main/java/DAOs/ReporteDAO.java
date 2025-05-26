@@ -4,122 +4,47 @@
  */
 package DAOs;
 
-import Entidades.EntidadFolio;
-import Entidades.EntidadProducto;
 import Entidades.ReporteVendedores;
-import  Interfaz.IReporteDAO;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import static com.mongodb.client.model.Filters.eq;
+import Interfaz.IReporteDAO;
+
 import java.util.*;
-import org.bson.conversions.Bson;
-import org.bson.types.ObjectId;
 
 /**
  * ReporteDAO.java
  *
- * Esta clase simula un DAO para manejar operaciones relacionadas con reportes, usando el patrón Singleton.
  */
-public abstract class ReporteDAO implements IReporteDAO {
-//
-//    private static ReporteDAO instance; // Instancia única
-//    private FolioDAO folioDAO;
-//    private ProductoDAO productoDAO;
-//private final MongoCollection<ReporteVendedores> coleccion;
-//
-//    /**
-//     * Constructor privado para evitar instanciación directa.
-//     */
-//    private ReporteDAO() {
-//        this.folioDAO = FolioDAO.getInstance();
-//        this.productoDAO = ProductoDAO.getInstance();
-//    }
-//
-//    /**
-//     * Obtiene la instancia única del DAO (Singleton).
-//     *
-//     * @return Instancia de ReporteDAO
-//     */
-//    public static synchronized ReporteDAO getInstance() {
-//        if (instance == null) {
-//            instance = new ReporteDAO();
-//        }
-//        return instance;
-//    }
+public class ReporteDAO implements IReporteDAO {
 
-    /**
-     * Genera un reporte de stock agregado en un rango de fechas.
-     *
-     * @param fechaInicio Fecha inicial
-     * @param fechaFin Fecha final
-     * @return Lista de ReporteStockDTO
-     */
-//    public List<ReporteStockDTO> generarReporteStockAgregado(Calendar fechaInicio, Calendar fechaFin) {
-//        List<EntidadFolio> folios = folioDAO.obtenerFoliosPorRangoFechas(fechaInicio, fechaFin);
-//        List<ReporteStockDTO> reporte = new ArrayList<>();
-//
-//        for (EntidadFolio folio : folios) {
-//            List<EntidadProducto> productos = folioDAO.obtenerProductosPorFolio(folio.getIdFolio());
-//            int totalProductos = productos.stream().mapToInt(EntidadProducto::getStock).sum();
-//
-//            ReporteStockDTO dto = new ReporteStockDTO();
-//            dto.setNumeroFolio(folio.getNumeroFolio());
-//            dto.setFecha(folio.getFecha());
-//            dto.setTotalProductos(totalProductos);
-//            reporte.add(dto);
-//        }
-//
-//        return reporte;
-//    }
+    private final Map<String, String> reportes;
 
-    /**
-     * Genera un reporte de productos con stock bajo.
-     *
-     * @param umbral Umbral de stock
-     * @return Lista de ReporteBajosDTO
-     */
-//    public List<ReporteBajosDTO> generarReporteProductosBajos(int umbral) {
-//        List<EntidadProducto> productosBajos = productoDAO.obtenerProductosBajos(umbral);
-//        List<ReporteBajosDTO> reporte = new ArrayList<>();
-//
-//        for (EntidadProducto producto : productosBajos) {
-//            ReporteBajosDTO dto = new ReporteBajosDTO();
-//            dto.setSku(producto.getSku());
-//            dto.setNombre(producto.getNombre());
-//            dto.setStock(producto.getStock());
-//            dto.setUmbral(umbral); 
-//            reporte.add(dto);
-//        }
-//
-//        return reporte;
-//    }
     //////gv
-    public ReporteDAO(MongoDatabase database) {
-        this.coleccion = database.getCollection("ReportesVendedores", ReporteVendedores.class);
+    public ReporteDAO() {
+        this.reportes = new HashMap<>();
     }
 
-    public void guardarReporte(String idVendedor, ReporteVendedores reporte) {
-        reporte.setIdVendedor(new ObjectId());
-        coleccion.insertOne(reporte);
+    public void generarReporte(String idVendedor, String contenido) {
+        if (idVendedor == null || idVendedor.trim().isEmpty()) {
+            throw new IllegalArgumentException("El ID del vendedor es obligatorio para generar un reporte.");
+        }
+        if (contenido == null || contenido.trim().isEmpty()) {
+            throw new IllegalArgumentException("El contenido del reporte no puede estar vacío.");
+        }
+        reportes.put(idVendedor, contenido);
     }
 
-    @Override
-    public ReporteVendedores obtenerReportePorVendedor(String idVendedor) {
-        return coleccion.find(eq("idVendedor", new ObjectId(idVendedor))).first();
-    }
-     @Override
-    public List<ReporteVendedores> obtenerTodosLosReportes() {
-        return coleccion.find().into(new ArrayList<>());
+    public Optional<String> obtenerReportePorVendedor(String idVendedor) {
+        return Optional.ofNullable(reportes.get(idVendedor));
     }
 
-    @Override
-    public void actualizarReporte(String idVendedor, ReporteVendedores reporte) {
-        coleccion.updateOne(eq("idVendedor", new ObjectId(idVendedor)), (List<? extends Bson>) new com.mongodb.client.model.UpdateOptions().upsert(true));
+    public List<String> obtenerTodosLosReportes() {
+        return new ArrayList<>(reportes.values());
     }
 
-    @Override
-    public void eliminarReporte(String idVendedor) {
-        coleccion.deleteOne(eq("idVendedor", new ObjectId(idVendedor)));
+    public boolean eliminarReporte(String idVendedor) {
+        if (idVendedor == null || idVendedor.trim().isEmpty()) {
+            throw new IllegalArgumentException("El ID del vendedor es obligatorio para eliminar un reporte.");
+        }
+        return reportes.remove(idVendedor) != null;
     }
 
 
