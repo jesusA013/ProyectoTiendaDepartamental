@@ -1,6 +1,6 @@
 package BOs;
 
-import DAOs.VentasDAO;
+import DAOs.IVentasDAO;
 import DTOs.DetallesVentaDTO;
 import DTOs.FacturaDTO;
 import DTOs.ProductoDTO;

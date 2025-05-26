@@ -51,12 +51,24 @@ vendedorDAO.insertarVendedor(vendedor);
 
     }
 
-    
- public VendedorDTO convertirEntidadADTO(Vendedor vendedor) {
-        return new VendedorDTO(dto.getidVendedor(), nombre, rutaFoto, 0);
-               
+private Vendedor convertirNuevoVendedorAVendedor(NuevoVendedor nuevoVendedor, String idGenerado) {
+        return new Vendedor(
+                idGenerado,
+                nuevoVendedor.getNombre(),
+                nuevoVendedor.getApellidos(),
+                nuevoVendedor.getRfc(),
+                nuevoVendedor.getCurp(),
+                nuevoVendedor.getDomicilio(),
+                nuevoVendedor.getFechaNacimientoDia(),
+                nuevoVendedor.getFechaNacimientoMes(),
+                nuevoVendedor.getFechaNacimientoAño(),
+                nuevoVendedor.getCiudad(),
+                nuevoVendedor.getMunicipio(),
+                nuevoVendedor.getRutaFoto(),
+                true // 🔹 Se registra como activo por defecto
         );
     }
+
 
     //  Validaciones antes de la conversión
     private void validarNuevoVendedor(NuevoVendedorDTO dto) throws NegocioException {

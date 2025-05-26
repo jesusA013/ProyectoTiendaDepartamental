@@ -28,8 +28,6 @@ public interface IVendedorDAO {
 /*actualiza los datos de un vendedor*/
     Vendedor actualizarVendedor(Vendedor vendedor);
 
-    boolean actualizarVendedor(String id, Vendedor vendedor);
-
     /*Elimina un vendedor por su OD*/
     Vendedor eliminarVendedor(String id);
 

@@ -16,7 +16,6 @@ public class Vendedor {
     private String idVendedor;
         private String nombre;
     private String apellidos;
-
     private String curp;
     private String nombreCompleto;
     private Date fechaNacimientoDia;
@@ -49,20 +48,6 @@ public class Vendedor {
         this.activo = true;
     }
 
-    public Vendedor(String curp, String nombreCompleto, Date fechaNacimiento, Domicilio domicilio, boolean activo, String ciudad, String municipio, String foto, String rfc, double totalventas, int raiting) {
-        this.curp = curp;
-        this.nombreCompleto = nombreCompleto;
-        this.fechaNacimiento = fechaNacimiento;
-        this.domicilio = domicilio;
-        this.activo = activo;
-        this.ciudad = ciudad;
-        this.municipio = municipio;
-        this.foto = foto;
-        this.rfc = rfc;
-        this.totalventas = totalventas;
-        this.raiting = raiting;
-    }
-
    
 
    
@@ -72,18 +57,6 @@ public class Vendedor {
         return UUID.randomUUID().toString();
     }
 
-
-    public Vendedor(String curp, DatosFiscales datosFiscales, String nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
-        this.curp = curp;
-        this.datosFiscales = datosFiscales;
-        this.nombreCompleto = nombreCompleto;
-        this.fechaNacimiento = fechaNacimiento;
-        this.estadoCivil = estadoCivil;
-        this.domicilio = domicilio;
-        this.seguro = seguro;
-        this.fechaRegistro = fechaRegistro;
-        this.activo = true;
-    }
 
     public String getIdVendedor() {
         return idVendedor;
@@ -212,10 +185,11 @@ public class Vendedor {
         this.raiting = raiting;
     }
 
-
     @Override
     public String toString() {
-        return "Vendedor{" + "idVendedor=" + idVendedor + ", curp=" + curp + ", datosFiscales=" + datosFiscales + ", nombreCompleto=" + nombreCompleto + ", fechaNacimiento=" + fechaNacimiento + ", estadoCivil=" + estadoCivil + ", domicilio=" + domicilio + ", seguro=" + seguro + ", fechaRegistro=" + fechaRegistro + ", activo=" + activo + '}';
+        return "Vendedor{" + "idVendedor=" + idVendedor + ", nombre=" + nombre + ", apellidos=" + apellidos + ", curp=" + curp + ", nombreCompleto=" + nombreCompleto + ", fechaNacimientoDia=" + fechaNacimientoDia + ", fechaNacimientoMes=" + fechaNacimientoMes + ", fechaNacimientoA\u00f1o=" + fechaNacimientoAño + ", domicilio=" + domicilio + ", fechaRegistro=" + fechaRegistro + ", activo=" + activo + ", ciudad=" + ciudad + ", municipio=" + municipio + ", foto=" + foto + ", rfc=" + rfc + ", totalventas=" + totalventas + ", raiting=" + raiting + '}';
     }
 
+
+    
 }

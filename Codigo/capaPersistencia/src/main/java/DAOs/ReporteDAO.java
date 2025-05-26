@@ -40,67 +40,8 @@ public class ReporteDAO implements IReporteDAO {
         reportes.put(idVendedor, contenido);
     }
 
-    public Optional<String> obtenerReportePorVendedor(String idVendedor) {
-        return Optional.ofNullable(reportes.get(idVendedor));
-    }
-
-    public List<String> obtenerTodosLosReportes() {
-        return new ArrayList<>(reportes.values());
-    }
-
-    public boolean eliminarReporte(String idVendedor) {
-        if (idVendedor == null || idVendedor.trim().isEmpty()) {
-            throw new IllegalArgumentException("El ID del vendedor es obligatorio para eliminar un reporte.");
-        }
-        return reportes.remove(idVendedor) != null;
-
-    /**
-     * Genera un reporte de stock agregado en un rango de fechas.
-     *
-     * @param fechaInicio Fecha inicial
-     * @param fechaFin Fecha final
-     * @return Lista de ReporteStockDTO
-     */
-//    public List<ReporteStockDTO> generarReporteStockAgregado(Calendar fechaInicio, Calendar fechaFin) {
-//        List<EntidadFolio> folios = folioDAO.obtenerFoliosPorRangoFechas(fechaInicio, fechaFin);
-//        List<ReporteStockDTO> reporte = new ArrayList<>();
-//
-//        for (EntidadFolio folio : folios) {
-//            List<EntidadProducto> productos = folioDAO.obtenerProductosPorFolio(folio.getIdFolio());
-//            int totalProductos = productos.stream().mapToInt(EntidadProducto::getStock).sum();
-//
-//            ReporteStockDTO dto = new ReporteStockDTO();
-//            dto.setNumeroFolio(folio.getNumeroFolio());
-//            dto.setFecha(folio.getFecha());
-//            dto.setTotalProductos(totalProductos);
-//            reporte.add(dto);
-//        }
-//
-//        return reporte;
-//    }
-    /**
-     * Genera un reporte de productos con stock bajo.
-     *
-     * @param umbral Umbral de stock
-     * @return Lista de ReporteBajosDTO
-     */
-//    public List<ReporteBajosDTO> generarReporteProductosBajos(int umbral) {
-//        List<EntidadProducto> productosBajos = productoDAO.obtenerProductosBajos(umbral);
-//        List<ReporteBajosDTO> reporte = new ArrayList<>();
-//
-//        for (EntidadProducto producto : productosBajos) {
-//            ReporteBajosDTO dto = new ReporteBajosDTO();
-//            dto.setSku(producto.getSku());
-//            dto.setNombre(producto.getNombre());
-//            dto.setStock(producto.getStock());
-//            dto.setUmbral(umbral); 
-//            reporte.add(dto);
-//        }
-//
-//        return reporte;
-//    }
     // Lista interna simulando la "base de datos"
-    private final List<ReporteVendedores> reportes = new ArrayList<>();
+//    private final List<ReporteVendedores> reportes = new ArrayList<>();
 
     /**
      * Guarda un nuevo reporte en la lista.

@@ -9,10 +9,7 @@ import java.util.Date;
 public class NuevoVendedorDTO {
 
     private String nombre;
-
     private String apellido;
-
-
     private String rfc;
     private String domicilio;
     private String curp;
@@ -26,15 +23,7 @@ public class NuevoVendedorDTO {
     private Date fechaRegistro;
     private boolean activo;
 
-    public NuevoVendedorDTO(String nombre, String apellido,Date fechaNacimientoDia, Date fechaNacimientoMes, Date fechaNacimientoAño, String rfc, String domicilio, String curp,
-            String ciudad, String municipio, String foto,
-
-
-    private String telefono;
-    private String email;
-    private String datosFiscales;
-    private Date fechaRegistro;
-    private boolean activo;
+  
 
     public NuevoVendedorDTO(String nombre, String rfc, String domicilio, String curp, Date fechaNacimiento,
             String ciudad, String municipio, String foto, String telefono,
@@ -60,12 +49,6 @@ public class NuevoVendedorDTO {
         this.ciudad = ciudad;
         this.municipio = municipio;
         this.foto = foto;
-
-
-        this.telefono = telefono;
-        this.email = email;
-        this.datosFiscales = datosFiscales;
-
         this.fechaRegistro = fechaRegistro != null ? fechaRegistro : new Date();
         this.activo = activo;
 
