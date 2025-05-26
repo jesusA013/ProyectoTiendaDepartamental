@@ -1,23 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package Interfaces;
 
 import Excepciones.ProveedorException;
-import org.bson.types.ObjectId;
 
 /**
  *
  * @author gaspa
  */
 public interface INavegador {
+
     void irAMenuPrincipal();
+
     void irASeleccionMetodoPago();
-    void irVentaFinalizada(ObjectId id);
-    void irFacturaFinalizada(ObjectId id);
-    void mostrarPanelProveedorDetalles(ObjectId id) throws ProveedorException;
-    void mostrarPanelProveedorEditar(ObjectId id) throws ProveedorException;
+
+    void irVentaFinalizada(String id);
+
+    void irFacturaFinalizada(String id);
+
+    void mostrarPanelProveedorDetalles(String id) throws ProveedorException;
+
+    void mostrarPanelProveedorEditar(String id) throws ProveedorException;
+
     public void mostrarPanelProveedorNuevo();
+
     void mostrarPanelProveedoresLista();
 }

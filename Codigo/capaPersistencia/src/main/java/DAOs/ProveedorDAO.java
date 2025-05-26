@@ -3,86 +3,63 @@ package DAOs;
 import Entidades.Proveedor;
 import Exception.PersistenciaException;
 import Interfaz.IProveedorDAO;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import static com.mongodb.client.model.Filters.eq;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.bson.types.ObjectId;
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  * ProveedorDAO.java
  *
- * Esta clase implementa las operaciones básicas para la gestión de proveedores.
+ * Implementación en memoria de IProveedorDAO. Simula la persistencia de datos
+ * usando una lista interna.
  *
  * @author Ángel Ruíz García - 00000248171
  */
 public class ProveedorDAO implements IProveedorDAO {
 
-    private final MongoCollection<Proveedor> coleccion;
+    // Lista que simula la base de datos
+    private final List<Proveedor> proveedores = new ArrayList<>();
 
-    /**
-     * Inicializa la coleccion para usar la base de datos.
-     *
-     * @param database Base de datos
-     */
-    public ProveedorDAO(MongoDatabase database) {
-        this.coleccion = database.getCollection("Proveedores", Proveedor.class);
-    }
-
-    /**
-     * Registra un proveedor en la base de datos.
-     *
-     * @param proveedor Proveedor a registrar
-     * @return Regresa el proveedor registrado
-     * @throws PersistenciaException Excepcion si ocurre un error en el proceso
-     */
     @Override
     public Proveedor guardarProveedor(Proveedor proveedor) throws PersistenciaException {
         if (proveedor.getGestion().getFechaAlta() == null) {
             proveedor.getGestion().setFechaAlta(new Date());
         }
-        ObjectId nuevoId = new ObjectId();
-        proveedor.setIdProveedor(nuevoId);
-        coleccion.insertOne(proveedor);
+        proveedor.setIdProveedor(UUID.randomUUID().toString());
+        proveedores.add(proveedor);
         return proveedor;
     }
 
-    /**
-     * Modifica un proveedor de la base de datos.
-     *
-     * @param proveedor Proveedor a modificar
-     * @return Regresa el proveedor modificado
-     * @throws PersistenciaException Excepcion si ocurre un error en el proceso
-     */
     @Override
     public Proveedor editarProveedor(Proveedor proveedor) throws PersistenciaException {
-        coleccion.replaceOne(eq("_id", proveedor.getIdProveedor()), proveedor);
-        return obtenerProveedorPorId(proveedor.getIdProveedor());
+        // Buscamos el proveedor existente por su ID
+        Optional<Proveedor> existente = proveedores.stream()
+                .filter(p -> p.getIdProveedor().equals(proveedor.getIdProveedor()))
+                .findFirst();
+
+        if (existente.isPresent()) {
+            // Reemplazamos los datos
+            int index = proveedores.indexOf(existente.get());
+            proveedores.set(index, proveedor);
+            return proveedor;
+        } else {
+            throw new PersistenciaException("Proveedor no encontrado para editar");
+        }
     }
 
-    /**
-     * Obtiene un proveedor de la base de datos usando el ID.
-     *
-     * @param idProveedor ID del proveedor a buscar
-     * @return Regresa el proveedor encontrado
-     * @throws PersistenciaException Excepcion si ocurre un error en el proceso
-     */
     @Override
-    public Proveedor obtenerProveedorPorId(ObjectId idProveedor) throws PersistenciaException {
-        return coleccion.find(eq("_id", idProveedor)).first();
+    public Proveedor obtenerProveedorPorId(String idProveedor) throws PersistenciaException {
+        return proveedores.stream()
+                .filter(p -> p.getIdProveedor().equals(idProveedor))
+                .findFirst()
+                .orElseThrow(() -> new PersistenciaException("Proveedor no encontrado"));
     }
 
-    /**
-     * Obtiene una lista con todos los proveedores de la base de datos.
-     *
-     * @return Regresa la lista de proveedores encontrada
-     * @throws PersistenciaException Excepcion si ocurre un error en el proceso
-     */
     @Override
     public List<Proveedor> listaProveedores() throws PersistenciaException {
-        return coleccion.find().into(new ArrayList<>());
+        // Devuelve una copia para evitar modificaciones externas
+        return new ArrayList<>(proveedores);
     }
-
 }

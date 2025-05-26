@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Entidades;
 
 import java.util.Date;
@@ -9,8 +5,11 @@ import java.util.UUID;
 import org.bson.types.ObjectId;
 
 /**
+ * Vendedor.java
  *
- * @author gaspa
+ *
+ *
+ * @author
  */
 public class Vendedor {
 
@@ -47,6 +46,14 @@ public class Vendedor {
         this.fechaNacimientoAño = fechaNacimientoAño;
         this.domicilio = domicilio;
         this.fechaRegistro = fechaRegistro;
+        this.activo = true;
+    }
+
+    public Vendedor(String curp, String nombreCompleto, Date fechaNacimiento, Domicilio domicilio, boolean activo, String ciudad, String municipio, String foto, String rfc, double totalventas, int raiting) {
+        this.curp = curp;
+        this.nombreCompleto = nombreCompleto;
+        this.fechaNacimiento = fechaNacimiento;
+        this.domicilio = domicilio;
         this.activo = activo;
         this.ciudad = ciudad;
         this.municipio = municipio;
@@ -66,6 +73,18 @@ public class Vendedor {
     }
 
 
+    public Vendedor(String curp, DatosFiscales datosFiscales, String nombreCompleto, Date fechaNacimiento, String estadoCivil, Domicilio domicilio, Seguro seguro, Date fechaRegistro) {
+        this.curp = curp;
+        this.datosFiscales = datosFiscales;
+        this.nombreCompleto = nombreCompleto;
+        this.fechaNacimiento = fechaNacimiento;
+        this.estadoCivil = estadoCivil;
+        this.domicilio = domicilio;
+        this.seguro = seguro;
+        this.fechaRegistro = fechaRegistro;
+        this.activo = true;
+    }
+
     public String getIdVendedor() {
         return idVendedor;
     }
@@ -79,6 +98,7 @@ public class Vendedor {
     }
 
     public void setCurp(String curp) {
+
         this.curp = curp;
     }
 
@@ -130,6 +150,15 @@ public class Vendedor {
         this.fechaRegistro = fechaRegistro;
     }
 
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
     public String getCiudad() {
         return ciudad;
     }
@@ -167,6 +196,11 @@ public class Vendedor {
     }
 
     public void setTotalventas(double totalventas) {
+
+        if (totalventas < 0) {
+            throw new IllegalArgumentException("la venta no puede ser negatuva");
+        }
+
         this.totalventas = totalventas;
     }
 
@@ -178,5 +212,10 @@ public class Vendedor {
         this.raiting = raiting;
     }
 
+
+    @Override
+    public String toString() {
+        return "Vendedor{" + "idVendedor=" + idVendedor + ", curp=" + curp + ", datosFiscales=" + datosFiscales + ", nombreCompleto=" + nombreCompleto + ", fechaNacimiento=" + fechaNacimiento + ", estadoCivil=" + estadoCivil + ", domicilio=" + domicilio + ", seguro=" + seguro + ", fechaRegistro=" + fechaRegistro + ", activo=" + activo + '}';
+    }
 
 }

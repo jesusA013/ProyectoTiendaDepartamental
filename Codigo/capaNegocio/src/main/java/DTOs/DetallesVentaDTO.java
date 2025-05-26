@@ -5,6 +5,7 @@ package DTOs;
  * @author Knocmare
  */
 public class DetallesVentaDTO {
+
     private double subtotal;
     private double iva;
     private double total;
@@ -66,5 +67,5 @@ public class DetallesVentaDTO {
     public String toString() {
         return "DetallesVenta{" + "subtotal=" + subtotal + ", iva=" + iva + ", total=" + total + ", formaPago=" + formaPago + ", metodoPago=" + metodoPago + '}';
     }
-    
+
 }

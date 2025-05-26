@@ -1,17 +1,15 @@
 package Entidades;
 
-import org.bson.types.ObjectId;
-
 /**
  * ProductoVenta.java
  *
  *
  *
- * @author Knocmare y Angel Beltran en la 2da Version
+ * @author Angel Ryuiz y Angel Beltran en la 2da Version
  */
 public class ProductoVenta {
 
-    private ObjectId _id;
+    private String idProductoVenta;
     private Producto producto;
     private int cantidad;
     private double precioUnitario;
@@ -25,12 +23,12 @@ public class ProductoVenta {
         this.precioUnitario = precioUnitario;
     }
 
-    public ObjectId getId() {
-        return _id;
+    public String getIdProductoVenta() {
+        return idProductoVenta;
     }
 
-    public void setId(ObjectId _id) {
-        this._id = _id;
+    public void setIdProductoVenta(String idProductoVenta) {
+        this.idProductoVenta = idProductoVenta;
     }
 
     public Producto getProducto() {
@@ -59,7 +57,7 @@ public class ProductoVenta {
 
     @Override
     public String toString() {
-        return "ProductoVenta{" + "_id=" + _id + ", producto=" + producto + ", cantidad=" + cantidad + ", precioUnitario=" + precioUnitario + '}';
+        return "ProductoVenta{" + "idProductoVenta=" + idProductoVenta + ", producto=" + producto + ", cantidad=" + cantidad + ", precioUnitario=" + precioUnitario + '}';
     }
-    
+
 }

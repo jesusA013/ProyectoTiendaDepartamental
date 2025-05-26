@@ -3,7 +3,6 @@ package DTOs;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.bson.types.ObjectId;
 
 /**
  * VentaDTO.java
@@ -11,19 +10,17 @@ import org.bson.types.ObjectId;
  * Esta clase representa una venta realizada en el sistema de objecto de
  * transferencia de datos
  *
- * @author
+ * @author Ángel Ruíz García - 00000248171
  */
 public class VentaDTO {
 
-    private ObjectId _id;
+    private String idVentaDTO;
     private Date fecha;
     private List<ProductoVentaDTO> productos;
     private String idVendedor;
     private FacturaDTO factura;
     private DetallesVentaDTO detallesVenta;
-    
-    //idventa, monto de la venta, fecha de la venta????
-    
+
     /**
      * Constructor que inicializa la lista.
      */
@@ -36,7 +33,7 @@ public class VentaDTO {
      *
      * @param fecha
      * @param productos Lista de productos incluidos en la venta.
-     * @param vendedorId
+     * @param idVendedor
      * @param factura
      * @param detallesVenta
      */
@@ -48,12 +45,12 @@ public class VentaDTO {
         this.detallesVenta = detallesVenta;
     }
 
-    public ObjectId getId() {
-        return _id;
+    public String getIdVentaDTO() {
+        return idVentaDTO;
     }
 
-    public void setId(ObjectId _id) {
-        this._id = _id;
+    public void setIdVentaDTO(String idVentaDTO) {
+        this.idVentaDTO = idVentaDTO;
     }
 
     public List<ProductoVentaDTO> getProductos() {
@@ -72,11 +69,16 @@ public class VentaDTO {
         this.fecha = fecha;
     }
 
-    public String getVendedorId() {
+   public String getVendedorId() {
         return idVendedor;
     }
 
     public void setVendedorId(String idVendedor) {
+    public String getIdVendedor() {
+        return idVendedor;
+    }
+
+    public void setIdVendedor(String idVendedor) {
         this.idVendedor = idVendedor;
     }
 
@@ -99,6 +101,7 @@ public class VentaDTO {
     @Override
     public String toString() {
         return "Venta{" + "_id=" + _id + ", fecha=" + fecha + ", productos=" + productos + ", vendedorId=" + idVendedor + ", factura=" + factura + ", detallesVenta=" + detallesVenta + '}';
-    }
+        return "Venta{" + "idVentaDTO=" + idVentaDTO + ", fecha=" + fecha + ", productos=" + productos + ", idVendedor=" + idVendedor + ", factura=" + factura + ", detallesVenta=" + detallesVenta + '}';
+   }
 
 }

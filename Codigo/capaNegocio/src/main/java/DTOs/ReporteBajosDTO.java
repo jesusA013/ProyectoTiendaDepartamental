@@ -73,11 +73,11 @@ public class ReporteBajosDTO {
      */
     @Override
     public String toString() {
-        return "ReporteBajosDTO{" +
-                "sku='" + sku + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", stock=" + stock +
-                ", umbral=" + umbral +
-                '}';
+        return "ReporteBajosDTO{"
+                + "sku='" + sku + '\''
+                + ", nombre='" + nombre + '\''
+                + ", stock=" + stock
+                + ", umbral=" + umbral
+                + '}';
     }
 }

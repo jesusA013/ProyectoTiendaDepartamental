@@ -6,7 +6,6 @@ package BOs;
 
 import java.util.*;
 
-import DAOs.Conexion;
 import DAOs.VendedorDAO;
 import Entidades.Vendedor;
 import Excepciones.NegocioException;
@@ -20,7 +19,16 @@ import java.util.List;
  * @author Ilian Gastelum
  * @version 1.2
  */
+
 public class VendedorBO {
+
+public abstract class VendedorBO implements IVendedorBO {
+    private int id;
+    private String nombre;
+    private double totalVentas;
+    private List<VentasBO> ventas; // lista inicializada
+    
+    private final IVendedorDAO vendedorDAO;// se necesita inicializar
 
     private final IVendedorDAO vendedorDAO;
 
@@ -29,6 +37,31 @@ public class VendedorBO {
     }
 
     /*Registra un vendedor con validaciones*/
+   
+
+    public VendedorBO(List<VentasBO> ventas) {
+        this.ventas = new ArrayList<>();// evita un nullPointer en caso de usar constructor vacio 
+    }
+
+//    public VendedorBO() {
+//    }
+    //gestion v
+
+    public void agregarVneta(VentasBO venta) {
+        ventas.add(venta);
+        totalVentas += venta.getMonto();
+    }
+
+    public double calcularPromedioVentas() {
+        return ventas.isEmpty() ? 0 : totalVentas / ventas.size();
+    }
+    
+    public VendedorBO(){
+        this.vendedorDAO = new VendedorDAO();
+    }
+
+    
+¿
     public Vendedor registrarVendedor(Vendedor vendedor) throws NegocioException {
         validarVendedor(vendedor);
         validarCURPNoDuplicado(vendedor.getCurp());

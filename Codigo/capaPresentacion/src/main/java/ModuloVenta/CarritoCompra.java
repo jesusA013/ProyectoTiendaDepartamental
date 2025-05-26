@@ -39,12 +39,12 @@ public class CarritoCompra extends javax.swing.JFrame {
         setTitle("Carrito de compra"); // nombre venata
         panelesProductoCarrito = new LinkedList<>();
         carritoGlobal = new ArrayList<>();
-        
+
         cantidadProductos = 0;
         subtotalProductos = 0;
         impuestosProductos = 0;
         totalProductos = 0;
-        
+
         lblCantProductos.setText(Integer.toString(cantidadProductos));
         lblSubProductos.setText(Double.toString(subtotalProductos));
         lblImpuestos.setText(Double.toString(impuestosProductos));
@@ -84,7 +84,7 @@ public class CarritoCompra extends javax.swing.JFrame {
 
         panelesProductoCarrito.clear();
         panelCambiante.removeAll();
-        
+
         System.out.println("Carrito tiene " + carritoGlobal.size() + " productos");
         for (ProductoVentaDTO producto : carritoGlobal) {
             cantidadProductos += producto.getCantidad();
@@ -110,7 +110,7 @@ public class CarritoCompra extends javax.swing.JFrame {
         lblImpuestos.setText(String.format("%.2f", impuestosProductos));
         totalJlabel.setText(String.format("%.2f", totalProductos));
     }
-    
+
     public void limpiarCarrito() {
         this.carritoGlobal = new LinkedList<>();
         this.panelesProductoCarrito = new LinkedList<>();

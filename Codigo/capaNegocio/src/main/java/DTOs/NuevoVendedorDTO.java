@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DTOs;
 
 import java.util.Date;
@@ -13,7 +9,9 @@ import java.util.Date;
 public class NuevoVendedorDTO {
 
     private String nombre;
+
     private String apellido;
+
 
     private String rfc;
     private String domicilio;
@@ -24,11 +22,22 @@ public class NuevoVendedorDTO {
     private String ciudad;
     private String municipio;
     private String foto;
+
     private Date fechaRegistro;
     private boolean activo;
 
     public NuevoVendedorDTO(String nombre, String apellido,Date fechaNacimientoDia, Date fechaNacimientoMes, Date fechaNacimientoAño, String rfc, String domicilio, String curp,
             String ciudad, String municipio, String foto,
+
+
+    private String telefono;
+    private String email;
+    private String datosFiscales;
+    private Date fechaRegistro;
+    private boolean activo;
+
+    public NuevoVendedorDTO(String nombre, String rfc, String domicilio, String curp, Date fechaNacimiento,
+            String ciudad, String municipio, String foto, String telefono,
              String email, String datosFiscales, Date fechaRegistro, boolean activo) {
         validarDatoNoVacio(nombre, "el nombre es obligatorio");
         validarDatoNoVacio(rfc, "el RFC es obligatorio");
@@ -36,6 +45,9 @@ public class NuevoVendedorDTO {
         validarDatoNoVacio(curp, "la CURP es obligatorio");
         validarDatoNoVacio(ciudad, "La ciudad es obligatorio");
         validarDatoNoVacio(municipio, "el municipio es obligatorio");
+        validarDatoNoVacio(telefono, "El teléfono es obligatorio.");
+        validarDatoNoVacio(email, "El correo electrónico es obligatorio.");
+        validarDatoNoVacio(datosFiscales, "Los datos fiscales son obligatorios.");
 
         this.nombre = nombre;
         this.apellido = apellido;
@@ -48,6 +60,12 @@ public class NuevoVendedorDTO {
         this.ciudad = ciudad;
         this.municipio = municipio;
         this.foto = foto;
+
+
+        this.telefono = telefono;
+        this.email = email;
+        this.datosFiscales = datosFiscales;
+
         this.fechaRegistro = fechaRegistro != null ? fechaRegistro : new Date();
         this.activo = activo;
 
@@ -128,6 +146,7 @@ public class NuevoVendedorDTO {
         this.activo = activo;
     }
 
+
     private void validarFechaNacimiento(int dia, int mes, int año) {
         if (dia < 1 || dia > 31) {
             throw new IllegalArgumentException("El día de nacimiento debe estar entre 1 y 31.");
@@ -139,6 +158,7 @@ public class NuevoVendedorDTO {
             throw new IllegalArgumentException("El año de nacimiento debe estar entre 1900 y 2025.");
         }
     }
+
 
     private void validarDatoNoVacio(String dato, String mensajeError) {
         if (dato == null || dato.trim().isEmpty()) {

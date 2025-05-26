@@ -96,7 +96,7 @@ public class PanelBusquedaProducto extends javax.swing.JPanel {
         // Verificar si el producto ya está en el carrito
         boolean productoExistente = false;
         for (ProductoVentaDTO item : CarritoCompra.getInstance(controlVenta).getCarritoGlobal()) {
-            if (item.getProducto().getId().equals(productoDTO.getId())) {
+            if (item.getProducto().getIdProductoDTO().equals(productoDTO.getIdProductoDTO())) {
                 productoExistente = true;
                 break;
             }

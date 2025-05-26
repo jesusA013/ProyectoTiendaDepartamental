@@ -1,17 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DTOs;
-
-import org.bson.types.ObjectId;
 
 /**
  *
  * @author gaspa
  */
 public class ProductoTablaDTO {
-    private ObjectId id;
+
+    private String idProducto;
     private String codigo;
     private String nombre;
     private String marca;
@@ -22,8 +17,8 @@ public class ProductoTablaDTO {
     public ProductoTablaDTO() {
     }
 
-    public ProductoTablaDTO(ObjectId id, String codigo, String nombre, String marca, String color, double precio, int stock) {
-        this.id = id;
+    public ProductoTablaDTO(String idProducto, String codigo, String nombre, String marca, String color, double precio, int stock) {
+        this.idProducto = idProducto;
         this.codigo = codigo;
         this.nombre = nombre;
         this.marca = marca;
@@ -32,12 +27,12 @@ public class ProductoTablaDTO {
         this.stock = stock;
     }
 
-    public ObjectId getId() {
-        return id;
+    public String getIdProducto() {
+        return idProducto;
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
+    public void setIdProducto(String idProducto) {
+        this.idProducto = idProducto;
     }
 
     public String getCodigo() {

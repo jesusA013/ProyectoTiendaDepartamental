@@ -12,10 +12,10 @@ import org.bson.types.ObjectId;
  * @author Knocmare
  */
 public class VentaFinalizada extends javax.swing.JFrame {
-    
+
     private static VentaFinalizada instancia;
     IRegistroVenta controlVenta;
-    private ObjectId id;
+    private String id;
 
     /**
      * Creates new form VentaFinalizada
@@ -27,7 +27,7 @@ public class VentaFinalizada extends javax.swing.JFrame {
         initComponents();
         lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
     }
-    
+
     public static VentaFinalizada getInstance(IRegistroVenta controlVenta) {
         if (instancia == null) {
             instancia = new VentaFinalizada(controlVenta);
@@ -35,7 +35,7 @@ public class VentaFinalizada extends javax.swing.JFrame {
         return instancia;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
         lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
     }

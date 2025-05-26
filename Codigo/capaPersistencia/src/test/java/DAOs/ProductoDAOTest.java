@@ -1,50 +1,41 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
- */
 package DAOs;
 
 import Entidades.Producto;
 import Exception.PersistenciaException;
-import Interfaz.IConexion;
 import Interfaz.IProductoDAO;
-import org.bson.types.ObjectId;
+import java.util.UUID;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
 
 /**
  *
- * @author gaspa
+ * @author Ángel Ruíz García - 00000248171
  */
 public class ProductoDAOTest {
-    IConexion Mongo = new Conexion();
-    IProductoDAO productoDAO = new ProductoDAO(Mongo.conexion());
-    public ProductoDAOTest() {
-    }
-    
+
+    private IProductoDAO productoDAO;
+
     @BeforeEach
     public void setup() {
-        Mongo = new Conexion();
-        Mongo.conexion().getCollection("Productos").drop();
-        productoDAO = new ProductoDAO(Mongo.conexion());
-       
+        // Usa la versión en memoria de ProductoDAO
+        productoDAO = new ProductoDAO(); // Sin pasar conexión
     }
-    
+
     @Test
     void testInsertarProducto() throws PersistenciaException {
         Producto producto = crearProductoEjemplo();
         Producto insertado = productoDAO.insertarProducto(producto);
 
         assertNotNull(insertado);
-        assertNotNull(insertado.getId());
+        assertNotNull(insertado.getIdProducto());
         assertEquals("Teclado Gamer RGB", insertado.getNombre());
     }
 
     @Test
     void testBuscarPorId() throws PersistenciaException {
         Producto producto = productoDAO.insertarProducto(crearProductoEjemplo());
-        Producto buscado = productoDAO.buscarPorId(producto.getId());
+        Producto buscado = productoDAO.buscarPorId(producto.getIdProducto());
 
         assertNotNull(buscado);
         assertEquals(producto.getNombre(), buscado.getNombre());
@@ -63,11 +54,11 @@ public class ProductoDAOTest {
     @Test
     void testEliminarProducto() throws PersistenciaException {
         Producto producto = productoDAO.insertarProducto(crearProductoEjemplo());
-        Producto eliminado = productoDAO.eliminarProducto(producto.getId());
+        Producto eliminado = productoDAO.eliminarProducto(producto.getIdProducto());
 
         assertNotNull(eliminado);
-        assertEquals(producto.getId(), eliminado.getId());
-        assertNull(productoDAO.buscarPorId(producto.getId()));
+        assertEquals(producto.getIdProducto(), eliminado.getIdProducto());
+        assertNull(productoDAO.buscarPorId(producto.getIdProducto()));
     }
 
     private Producto crearProductoEjemplo() {
@@ -80,8 +71,8 @@ public class ProductoDAOTest {
         producto.setPrecio(750.00);
         producto.setStock(10);
         producto.setDescripcion("Teclado diseñado para videojuegos");
-        producto.setProveedorId(new ObjectId()); 
+        producto.setProveedorId(UUID.randomUUID().toString()); // Simula proveedor
         return producto;
     }
-    
+
 }

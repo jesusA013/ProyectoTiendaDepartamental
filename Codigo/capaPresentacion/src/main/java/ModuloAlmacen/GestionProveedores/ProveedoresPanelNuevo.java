@@ -13,53 +13,54 @@ import javax.swing.JOptionPane;
  * @author Ángel Ruíz García - 00000248171
  */
 public class ProveedoresPanelNuevo extends javax.swing.JPanel {
-    
+
     IManejadorProveedor controlProveedor;
     private static ProveedoresPanelNuevo instancia;
-    
+
     /**
      * Creates new form ProveedoresPanelNuevo
+     *
      * @param controlProveedor
      */
     public ProveedoresPanelNuevo(IManejadorProveedor controlProveedor) {
         this.controlProveedor = controlProveedor;
         initComponents();
     }
-    
+
     public static ProveedoresPanelNuevo getInstance(IManejadorProveedor controlProveedor) {
         if (instancia == null) {
             instancia = new ProveedoresPanelNuevo(controlProveedor);
         }
         return instancia;
     }
-    
+
     private void añadir() {
         try {
             controlProveedor.registrarProveedor(this, txtNombreProveedor.getText(),
                     txtContacto.getText(), txtTelefono.getText(), txtCorreo.getText(),
                     txtDireccion.getText(), txtPaginaWeb.getText(), txtRFC.getText(),
                     (String) cboFormaPago.getSelectedItem(), txtTerminoPago.getText(),
-                    (String) cboMoneda.getSelectedItem(), (String) cboEstado.getSelectedItem(), 
+                    (String) cboMoneda.getSelectedItem(), (String) cboEstado.getSelectedItem(),
                     txtComentarios.getText());
         } catch (ProveedorException ex) {
             JOptionPane.showMessageDialog(this, "Error al guardar el proveedor: " + ex.getMessage());
         }
     }
-    
+
     private void restaurar() {
         txtNombreProveedor.setText("");
-        
+
         txtContacto.setText("");
         txtTelefono.setText("");
         txtCorreo.setText("");
         txtDireccion.setText("");
         txtPaginaWeb.setText("");
-        
+
         txtRFC.setText("");
         cboFormaPago.setSelectedIndex(0);
         txtTerminoPago.getText();
         cboMoneda.setSelectedIndex(0);
-        
+
         cboEstado.setSelectedIndex(0);
         txtComentarios.setText("");
     }

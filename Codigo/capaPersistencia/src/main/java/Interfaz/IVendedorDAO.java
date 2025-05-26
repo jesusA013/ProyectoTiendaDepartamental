@@ -26,4 +26,18 @@ public interface IVendedorDAO {
     boolean actualizarVendedor(Vendedor vendedor);
 /*Elimina un vendedor por su OD*/
     Optional<Vendedor> eliminarVendedor(String idVendedor);
+
+    Vendedor insertarVendedor(Vendedor vendedor);
+
+    Vendedor buscarPorCURP(String curp);
+
+    List<Vendedor> obtenerTodos();
+
+    Vendedor buscarPorId(String id);
+
+    boolean actualizarVendedor(String id, Vendedor vendedor);
+
+    Vendedor actualizarVendedor(Vendedor vendedor);
+
+    Vendedor eliminarVendedor(String id);
 }

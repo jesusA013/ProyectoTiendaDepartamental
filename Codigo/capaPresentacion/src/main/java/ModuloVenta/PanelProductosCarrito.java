@@ -2,7 +2,6 @@ package ModuloVenta;
 
 import DTOs.ProductoVentaDTO;
 import Interface.IRegistroVenta;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**

@@ -12,7 +12,7 @@ import org.bson.types.ObjectId;
  */
 public class ProductoVentaDTO {
 
-    private ObjectId _id;
+    private String idProductoVentaDTO;
     private ProductoDTO producto;
     private int cantidad;
     private double precioUnitario;
@@ -36,12 +36,12 @@ public class ProductoVentaDTO {
         this.precioUnitario = precioUnitario;
     }
 
-    public ObjectId getId() {
-        return _id;
+    public String getIdProductoVentaDTO() {
+        return idProductoVentaDTO;
     }
 
-    public void setId(ObjectId _id) {
-        this._id = _id;
+    public void setIdProductoVentaDTO(String idProductoVentaDTO) {
+        this.idProductoVentaDTO = idProductoVentaDTO;
     }
 
     public ProductoDTO getProducto() {
@@ -80,7 +80,6 @@ public class ProductoVentaDTO {
 
     @Override
     public String toString() {
-        return "ProductoVenta{" + "_id=" + _id + ", cantidad=" + cantidad + ", precioUnitario=" + precioUnitario + '}';
+        return "ProductoVenta{" + "idProductoVentaDTO=" + idProductoVentaDTO + ", cantidad=" + cantidad + ", precioUnitario=" + precioUnitario + '}';
     }
-
 }

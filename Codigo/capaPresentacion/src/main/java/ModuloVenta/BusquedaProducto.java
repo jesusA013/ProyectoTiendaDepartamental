@@ -40,7 +40,7 @@ public class BusquedaProducto extends javax.swing.JFrame {
     public void busquedaProducto(String busqueda) throws RegistroException {
         productos = manejadorVenta.buscarProductos(busqueda);
         lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
-        
+
         // Limpiar antes de agregar nuevos paneles
         this.panelBusquedaProducto.clear();
         this.panelCambiante.removeAll();

@@ -1,42 +1,57 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package BOs;
 
-import DAOs.Conexion;
 import DAOs.UsuarioDAO;
 import DTOs.UsuarioDTO;
 import Entidades.Usuario;
 import Excepciones.NegocioException;
 import Exception.PersistenciaException;
 import Interfaces.IUsuarioBO;
-import Interfaz.IConexion;
 import Interfaz.IUsuarioDAO;
 
 /**
+ * UsuarioBO.java
  *
- * @author gaspa
+ * Esta clase objectos negocio actua como intermediario con la DAO de Usuario.
+ *
+ * @author Ángel Ruíz García - 00000248171
  */
 public class UsuarioBO implements IUsuarioBO {
 
     private final IUsuarioDAO usuarioDAO;
-    IConexion Mongo = new Conexion();
 
     public UsuarioBO() {
-        this.usuarioDAO = new UsuarioDAO(Mongo.conexion());
+        this.usuarioDAO = new UsuarioDAO();
     }
 
+    /**
+     * Obtiene el usuario por su ID de cuenta.
+     *
+     * @param idCuenta
+     * @return
+     * @throws NegocioException
+     */
     @Override
-    public UsuarioDTO verificarCredenciales(String idCuenta, String contrasena) throws NegocioException {
+    public UsuarioDTO obtenerUsuario(String idCuenta) throws NegocioException {
         try {
             Usuario usuario = usuarioDAO.obtenerUsuario(idCuenta);
-            if (usuario == null || !usuario.getContrasena().equals(contrasena)) {
-                throw new NegocioException("Credenciales inválidas");
-            }
-            return new UsuarioDTO(usuario.getIdCuenta(), usuario.getNombreUsuario(), usuario.getContrasena(), usuario.getTipo());
+            return convertirAUsuarioDTO(usuario);
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al acceder a los datos: " + e.getMessage());
         }
+    }
+
+    /**
+     * Convierte un Usuario en un UsuarioDTO.
+     *
+     * @param usuario
+     * @return
+     */
+    private UsuarioDTO convertirAUsuarioDTO(Usuario usuario) {
+        return new UsuarioDTO(
+                usuario.getIdCuenta(),
+                usuario.getNombreUsuario(),
+                usuario.getContrasena(),
+                usuario.getTipo()
+        );
     }
 }

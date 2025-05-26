@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DTOs;
 
 /**
@@ -10,6 +6,9 @@ package DTOs;
  */
 public class VendedorDTO {
     private String idVendedor;
+
+    private String idVendedorDTO;
+
     private String nombre;
         private String apellidos;
     private String rutaFoto;
@@ -17,6 +16,8 @@ public class VendedorDTO {
 
     public VendedorDTO(String idVendedor, String nombre,String apellidos, String rutaFoto, int raiting) {
         this.idVendedor = idVendedor;
+    public VendedorDTO(String idVendedorDTO, String nombre, String rutaFoto, int raiting) {
+        this.idVendedorDTO = idVendedorDTO;
         this.nombre = nombre;
        this.apellidos=apellidos;
         this.rutaFoto = rutaFoto;
@@ -32,6 +33,12 @@ public class VendedorDTO {
 
     public void setId(String id) {
         this.idVendedor = id;
+    public String getIdVendedorDTO() {
+        return idVendedorDTO;
+    }
+
+    public void setIdVendedorDTO(String idVendedorDTO) {
+        this.idVendedorDTO = idVendedorDTO;
     }
 
     public String getNombre() {

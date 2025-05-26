@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package Interfaz;
 
 import Entidades.ReporteVendedores;
+import Exception.PersistenciaException;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +11,7 @@ import java.util.Optional;
  */
 public interface IReporteDAO {
 
+
     void generarReporte(String idVendedor, String contenido);
 
     Optional<String> obtenerReportePorVendedor(String idVendedor);
@@ -21,5 +19,15 @@ public interface IReporteDAO {
     List<String> obtenerTodosLosReportes();
 
     boolean eliminarReporte(String idVendedor);
+
+    void guardarReporte(String idVendedor, ReporteVendedores reporte) throws PersistenciaException;
+
+    ReporteVendedores obtenerReportePorVendedor(String idVendedor) throws PersistenciaException;
+
+    List<ReporteVendedores> obtenerTodosLosReportes() throws PersistenciaException;
+
+    void actualizarReporte(String idVendedor, ReporteVendedores nuevoReporte) throws PersistenciaException;
+
+    void eliminarReporte(String idVendedor) throws PersistenciaException;
 
 }

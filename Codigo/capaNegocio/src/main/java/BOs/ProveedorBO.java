@@ -1,6 +1,5 @@
 package BOs;
 
-import DAOs.Conexion;
 import DAOs.ProveedorDAO;
 import DTOs.ProveedorDTO;
 import DTOs.ProveedorInformacionBasicaDTO;
@@ -16,11 +15,9 @@ import Entidades.ProveedorInformacionGestion;
 import Excepciones.NegocioException;
 import Exception.PersistenciaException;
 import Interfaces.IProveedorBO;
-import Interfaz.IConexion;
 import Interfaz.IProveedorDAO;
 import java.util.ArrayList;
 import java.util.List;
-import org.bson.types.ObjectId;
 
 /**
  * ProveedorBO.java
@@ -33,13 +30,12 @@ import org.bson.types.ObjectId;
 public class ProveedorBO implements IProveedorBO {
 
     private final IProveedorDAO proveedorDAO;
-    IConexion Mongo = new Conexion();
 
     /**
      * Inicializa el atributo para usar la DAO.
      */
     public ProveedorBO() {
-        this.proveedorDAO = new ProveedorDAO(Mongo.conexion());
+        this.proveedorDAO = new ProveedorDAO();
     }
 
     /**
@@ -88,7 +84,7 @@ public class ProveedorBO implements IProveedorBO {
      * @throws NegocioException Excepcion si ocurre un error en el proceso
      */
     @Override
-    public ProveedorDTO obtenerProveedorPorId(ObjectId idProveedor) throws NegocioException {
+    public ProveedorDTO obtenerProveedorPorId(String idProveedor) throws NegocioException {
         try {
             ProveedorDTO proveedorEncontrado = convertirDTO(proveedorDAO.obtenerProveedorPorId(idProveedor));
 

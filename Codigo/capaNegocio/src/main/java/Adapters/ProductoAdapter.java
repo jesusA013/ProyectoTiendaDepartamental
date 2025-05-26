@@ -23,8 +23,8 @@ public class ProductoAdapter {
         }
 
         Producto entidad = new Producto();
-        
-        entidad.setId(dto.getId()); // si es null no pasa nada
+
+        entidad.setIdProducto(dto.getIdProductoDTO()); // si es null no pasa nada
         entidad.setCodigo(dto.getCodigo());
         entidad.setNombre(dto.getNombre());
         entidad.setSKU(dto.getSKU());
@@ -33,7 +33,7 @@ public class ProductoAdapter {
         entidad.setPrecio(dto.getPrecio());
         entidad.setStock(dto.getStock());
         entidad.setDescripcion(dto.getDescripcion());
-        entidad.setProveedorId(dto.getProveedorId());
+        entidad.setProveedorId(dto.getIdProveedor());
 
         return entidad;
     }
@@ -45,8 +45,8 @@ public class ProductoAdapter {
         }
 
         ProductoDTO dto = new ProductoDTO();
-        
-        dto.setId(entidad.getId());
+
+        dto.setIdProductoDTO(entidad.getIdProducto());
         dto.setCodigo(entidad.getCodigo());
         dto.setNombre(entidad.getNombre());
         dto.setSKU(entidad.getSKU());
@@ -55,7 +55,7 @@ public class ProductoAdapter {
         dto.setPrecio(entidad.getPrecio());
         dto.setStock(entidad.getStock());
         dto.setDescripcion(entidad.getDescripcion());
-        dto.setProveedorId(entidad.getProveedorId());
+        dto.setIdProveedor(entidad.getProveedorId());
 
         return dto;
     }
@@ -66,9 +66,9 @@ public class ProductoAdapter {
             return new ArrayList<>();
         }
         return listaDTO.stream()
-                      .filter(Objects::nonNull)
-                      .map(ProductoAdapter::convertirAEntidad)
-                      .collect(Collectors.toList());
+                .filter(Objects::nonNull)
+                .map(ProductoAdapter::convertirAEntidad)
+                .collect(Collectors.toList());
     }
 
     public static List<ProductoDTO> convertirADTO(List<Producto> listaEntidad) {
@@ -76,17 +76,18 @@ public class ProductoAdapter {
             return new ArrayList<>();
         }
         return listaEntidad.stream()
-                           .filter(Objects::nonNull)
-                           .map(ProductoAdapter::convertirADTO)
-                           .collect(Collectors.toList());
+                .filter(Objects::nonNull)
+                .map(ProductoAdapter::convertirADTO)
+                .collect(Collectors.toList());
     }
+
     public static ProductoTablaDTO convertirATablaDTO(Producto entidad) {
         if (entidad == null) {
             return null;
         }
 
         ProductoTablaDTO dto = new ProductoTablaDTO();
-        dto.setId(entidad.getId());
+        dto.setIdProducto(entidad.getIdProducto());
         dto.setCodigo(entidad.getCodigo());
         dto.setNombre(entidad.getNombre());
         dto.setMarca(entidad.getMarca());
@@ -103,8 +104,8 @@ public class ProductoAdapter {
         }
 
         return listaEntidad.stream()
-                           .filter(Objects::nonNull)
-                           .map(ProductoAdapter::convertirATablaDTO)
-                           .collect(Collectors.toList());
+                .filter(Objects::nonNull)
+                .map(ProductoAdapter::convertirATablaDTO)
+                .collect(Collectors.toList());
     }
 }

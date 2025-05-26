@@ -6,10 +6,8 @@ import Implementaciones.IManejadorProveedor;
 import Utilidades.JButtonCellEditor;
 import Utilidades.JButtonRenderer;
 import control.ControlNavegacion;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import org.bson.types.ObjectId;
@@ -24,7 +22,7 @@ import org.bson.types.ObjectId;
 public class ProveedoresPanelListado extends javax.swing.JPanel {
 
     private static ProveedoresPanelListado instancia;
-    IManejadorProveedor controlProveedor;
+    private final IManejadorProveedor controlProveedor;
 
     /**
      * Creates new form ProveedoresPanelListado
@@ -52,8 +50,7 @@ public class ProveedoresPanelListado extends javax.swing.JPanel {
             try {
                 int fila = Integer.parseInt(e.getActionCommand());
                 String idStr = tablaProveedores.getValueAt(fila, 0).toString();
-                ObjectId id = new ObjectId(idStr);
-                ControlNavegacion.getInstance().mostrarPanelProveedorDetalles(id);
+                ControlNavegacion.getInstance().mostrarPanelProveedorDetalles(idStr);
             } catch (ProveedorException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -69,8 +66,7 @@ public class ProveedoresPanelListado extends javax.swing.JPanel {
             try {
                 int fila = Integer.parseInt(e.getActionCommand());
                 String idStr = tablaProveedores.getValueAt(fila, 0).toString();
-                ObjectId id = new ObjectId(idStr);
-                ControlNavegacion.getInstance().mostrarPanelProveedorEditar(id);
+                ControlNavegacion.getInstance().mostrarPanelProveedorEditar(idStr);
             } catch (ProveedorException ex) {
                 System.out.println(ex.getMessage());
             }

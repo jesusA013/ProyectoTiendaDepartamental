@@ -11,18 +11,12 @@ import Excepciones.NegocioException;
 import Excepciones.ProveedorException;
 import Interfaces.INavegador;
 import Interfaces.IProveedorBO;
-import Utilidades.JButtonCellEditor;
-import Utilidades.JButtonRenderer;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 import org.bson.types.ObjectId;
 
 /**
@@ -172,7 +166,7 @@ public class ManejadorProveedor implements IManejadorProveedor {
     }
 
     @Override
-    public ProveedorDTO obtenerProveedor(ObjectId id) throws ProveedorException {
+    public ProveedorDTO obtenerProveedor(String id) throws ProveedorException {
         try {
             return this.proveedorNegocio.obtenerProveedorPorId(id);
         } catch (NegocioException ex) {
@@ -200,7 +194,7 @@ public class ManejadorProveedor implements IManejadorProveedor {
      * @throws ProveedorException
      */
     @Override
-    public void editarProveedor(JPanel panel, ObjectId id, String nombreProveedor,
+    public void editarProveedor(JPanel panel, String id, String nombreProveedor,
             String contacto, String telefono, String correo, String direccion,
             String paginaWeb, String rfc, String formaPago, String terminoPago,
             String moneda, Date fecha, String estado, String comentarios) throws ProveedorException {

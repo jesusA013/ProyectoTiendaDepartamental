@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package ModuloAdministracion.GestionProductos;
 
 import BOs.ProductoBO;
-import BOs.VendedorBO;
-import DAOs.Conexion;
 import Interfaces.IProductoBO;
-import Interfaces.IVendedorBO;
-import Interfaz.IConexion;
 import control.ControlNavegacion;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
@@ -21,14 +13,12 @@ import javax.swing.JPanel;
 public class PanelAdministradorMenu extends javax.swing.JPanel {
     private final IProductoBO productoBO;
 //    private final IVendedorBO vendedoresBO;
-    private final IConexion mongo;
     private final JPanel panelCambiante;
     /**
      * Creates new form PanelAdministradorMenu
      */
     public PanelAdministradorMenu(JPanel panelCambiante) {
         initComponents();
-        this.mongo = new Conexion();
         this.productoBO = new ProductoBO();
 //        this.vendedoresBO = new VendedorBO();
         this.panelCambiante = panelCambiante;

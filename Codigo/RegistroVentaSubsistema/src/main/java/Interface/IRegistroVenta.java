@@ -7,7 +7,6 @@ import Interfaces.INavegador;
 import RegistroVentaException.RegistroException;
 import java.util.List;
 import javax.swing.JFrame;
-import org.bson.types.ObjectId;
 
 /**
  *
@@ -15,20 +14,20 @@ import org.bson.types.ObjectId;
  */
 public interface IRegistroVenta {
 
-    ObjectId registrarVentaTarjeta(JFrame frame, List<ProductoVentaDTO> productos, ObjectId idVendedor, String digitosTarjeta, String fechaExpiracion, String CVC) throws RegistroException;
-    
-    ObjectId registrarVentaEfectivo(JFrame frame, List<ProductoVentaDTO> productos, ObjectId idVendedor, String efectivoEntregado, String cambio) throws RegistroException;
-    
+    String registrarVentaTarjeta(JFrame frame, List<ProductoVentaDTO> productos, String idVendedor, String digitosTarjeta, String fechaExpiracion, String CVC) throws RegistroException;
+
+    String registrarVentaEfectivo(JFrame frame, List<ProductoVentaDTO> productos, String idVendedor, String efectivoEntregado, String cambio) throws RegistroException;
+
     List<ProductoDTO> buscarProductos(String busqueda) throws RegistroException;
-    
-    void facturarVenta(JFrame frame, ObjectId id, String rfc, 
-            String nombeRazonSocial, String calle, String numeroExt, 
-            String numeroInt, String colonia, String codPostal, String pais, 
-            String estado, String ciudadLocalidad, String delegacionMunicipio, 
+
+    void facturarVenta(JFrame frame, String id, String rfc,
+            String nombeRazonSocial, String calle, String numeroExt,
+            String numeroInt, String colonia, String codPostal, String pais,
+            String estado, String ciudadLocalidad, String delegacionMunicipio,
             String correo) throws RegistroException;
-    
-    VentaDTO buscarVenta(ObjectId id) throws RegistroException;
-    
+
+    VentaDTO buscarVenta(String id) throws RegistroException;
+
     void setNavegador(INavegador navegador);
-    
+
 }

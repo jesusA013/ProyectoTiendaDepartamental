@@ -1,20 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
- */
 package DAOs;
 
 import Entidades.DatosFiscales;
 import Entidades.Domicilio;
 import Entidades.DomicilioFiscal;
-import Entidades.NombreCompleto;
 import Entidades.Vendedor;
-import Interfaz.IConexion;
 import Interfaz.IVendedorDAO;
 import java.util.Date;
 import java.util.List;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,28 +17,23 @@ import org.junit.jupiter.api.BeforeEach;
  * @author gaspa
  */
 public class VendedoresDAOTest {
-    IConexion Mongo = new Conexion();
-    IVendedorDAO vendedorDAO = new VendedorDAO(Mongo.conexion());
-    public VendedoresDAOTest() {
-        
-    }
-    
+
+    private IVendedorDAO vendedorDAO;
+
     @BeforeEach
     public void setup() {
-        IConexion Mongo = new Conexion();
-        Mongo.conexion().getCollection("Vendedores").drop();
-        IVendedorDAO vendedorDAO = new VendedorDAO(Mongo.conexion());
-       
+        vendedorDAO = new VendedorDAO();
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
+
     //@Test
-    public void insertarVendedor(){
+    public void insertarVendedor() {
         Vendedor nuevo = new Vendedor();
         nuevo.setCurp("JUAP800101HDFXXX01");
-        nuevo.setNombreCompleto(new NombreCompleto("Juan", "Pérez", "Lopez"));
+        nuevo.setNombreCompleto("Juan Pérez Lopez");
         nuevo.setFechaNacimiento(new Date());
         nuevo.setEstadoCivil("Soltero");
 
@@ -68,34 +56,43 @@ public class VendedoresDAOTest {
         nuevo.setDatosFiscales(datosFiscales);
 
         vendedorDAO.insertarVendedor(nuevo);
+        assertNotNull(nuevo.getIdVendedor());
     }
+
     //@Test
-    public void consultarVendedores(){
+    public void consultarVendedores() {
+        Vendedor v = new Vendedor();
+        v.setCurp("JUAP800101HDFXXX01");
+        v.setNombreCompleto("Juan Pérez Lopez");
+        vendedorDAO.insertarVendedor(v);
+
         List<Vendedor> listaVendedores = vendedorDAO.obtenerTodos();
-        System.out.println("Lista de vendedores: "+listaVendedores);
+        System.out.println("Lista de vendedores: " + listaVendedores);
         assertNotNull(listaVendedores);
+        assertFalse(listaVendedores.isEmpty());
     }
+
     @Test
     public void testInsertarConsultarActualizarEliminarVendedor() {
         Vendedor vendedor = new Vendedor();
-        vendedor.setNombreCompleto(new NombreCompleto("Juan", "Pérez", "López"));
+        vendedor.setNombreCompleto("Juan Pérez López");
         vendedor.setCurp("JUAP800101HDFXXX01");
 
         Vendedor insertado = vendedorDAO.insertarVendedor(vendedor);
-        assertNotNull(insertado.getId());
+        assertNotNull(insertado.getIdVendedor());
 
         // Consultar
-        Vendedor consultado = vendedorDAO.buscarPorId(insertado.getId());
-        assertEquals("Juan", consultado.getNombreCompleto().getNombres());
+        Vendedor consultado = vendedorDAO.buscarPorId(insertado.getIdVendedor());
+        assertEquals("Juan Pérez López", consultado.getNombreCompleto());
 
         // Actualizar
-        consultado.getNombreCompleto().setNombres("Pedro");
+        consultado.setNombreCompleto("Pedro López");
         Vendedor actualizado = vendedorDAO.actualizarVendedor(consultado);
-        assertEquals("Pedro", actualizado.getNombreCompleto().getNombres());
+        assertEquals("Pedro López", actualizado.getNombreCompleto());
 
         // Eliminar
-        Vendedor eliminado = vendedorDAO.eliminarVendedor(actualizado.getId());
+        Vendedor eliminado = vendedorDAO.eliminarVendedor(actualizado.getIdVendedor());
         assertNotNull(eliminado);
-        assertNull(vendedorDAO.buscarPorId(eliminado.getId()));
+        assertNull(vendedorDAO.buscarPorId(eliminado.getIdVendedor()));
     }
 }

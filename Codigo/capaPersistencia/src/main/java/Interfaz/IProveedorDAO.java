@@ -39,7 +39,7 @@ public interface IProveedorDAO {
      * @return Regresa el proveedor encontrado
      * @throws PersistenciaException Excepcion si ocurre un error en el proceso
      */
-    Proveedor obtenerProveedorPorId(ObjectId idProveedor) throws PersistenciaException;
+    Proveedor obtenerProveedorPorId(String idProveedor) throws PersistenciaException;
     
     /**
      * Obtiene una lista con todos los proveedores de la base de datos.

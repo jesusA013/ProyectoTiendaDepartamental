@@ -1,7 +1,6 @@
 package BOs;
 
 import static Adapters.ProductoAdapter.convertirATablaDTO;
-import DAOs.Conexion;
 import DAOs.ProductoDAO;
 import DTOs.ProductoDTO;
 import DTOs.ProductoTablaDTO;
@@ -9,13 +8,9 @@ import Entidades.Producto;
 import Excepciones.NegocioException;
 import Exception.PersistenciaException;
 import Interfaces.IProductoBO;
-import Interfaz.IConexion;
 import Interfaz.IProductoDAO;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import org.bson.types.ObjectId;
 
 /**
  * ProductoBO.java
@@ -28,13 +23,12 @@ import org.bson.types.ObjectId;
 public class ProductoBO implements IProductoBO {
 
     private final IProductoDAO productoDAO;
-    IConexion Mongo = new Conexion();
 
     /**
      * Inicializa el atributo para usar la DAO.
      */
     public ProductoBO() {
-        this.productoDAO = new ProductoDAO(Mongo.conexion());
+        this.productoDAO = new ProductoDAO();
     }
 
     @Override
@@ -50,7 +44,7 @@ public class ProductoBO implements IProductoBO {
     }
 
     @Override
-    public ProductoDTO buscarProductoPorId(ObjectId id) throws NegocioException {
+    public ProductoDTO buscarProductoPorId(String id) throws NegocioException {
         try {
             ProductoDTO productoEncontrado = convertirDTO(productoDAO.buscarPorId(id));
 
@@ -67,7 +61,7 @@ public class ProductoBO implements IProductoBO {
 
             List<ProductoDTO> dtos = new ArrayList<>();
             for (Producto producto : listaProductos) {
-                dtos.add(this.buscarProductoPorId(producto.getId()));
+                dtos.add(this.buscarProductoPorId(producto.getIdProducto()));
             }
 
             return dtos;
@@ -89,7 +83,7 @@ public class ProductoBO implements IProductoBO {
     }
 
     @Override
-    public ProductoDTO eliminarProducto(ObjectId id) throws NegocioException {
+    public ProductoDTO eliminarProducto(String id) throws NegocioException {
         try {
             ProductoDTO productoEliminado = convertirDTO(productoDAO.eliminarProducto(id));
 
@@ -116,7 +110,7 @@ public class ProductoBO implements IProductoBO {
      */
     private ProductoDTO convertirDTO(Producto producto) {
         ProductoDTO productoDTO = new ProductoDTO();
-        productoDTO.setId(producto.getId());
+        productoDTO.setIdProductoDTO(producto.getIdProducto());
         productoDTO.setNombre(producto.getNombre());
         productoDTO.setStock(producto.getStock());
         productoDTO.setDescripcion(producto.getDescripcion());
@@ -125,7 +119,7 @@ public class ProductoBO implements IProductoBO {
         productoDTO.setMarca(producto.getMarca());
         productoDTO.setColor(producto.getColor());
         productoDTO.setPrecio(producto.getPrecio());
-        productoDTO.setProveedorId(producto.getProveedorId());
+        productoDTO.setIdProveedor(producto.getProveedorId());
         
         return productoDTO;
     }
@@ -138,7 +132,7 @@ public class ProductoBO implements IProductoBO {
      */
     private Producto convertirEntidad(ProductoDTO productoDTO) {
         Producto producto = new Producto();
-        producto.setId(productoDTO.getId());
+        producto.setIdProducto(productoDTO.getIdProductoDTO());
         producto.setNombre(productoDTO.getNombre());
         producto.setStock(productoDTO.getStock());
         producto.setDescripcion(productoDTO.getDescripcion());
@@ -147,7 +141,7 @@ public class ProductoBO implements IProductoBO {
         producto.setMarca(productoDTO.getMarca());
         producto.setColor(productoDTO.getColor());
         producto.setPrecio(productoDTO.getPrecio());
-        producto.setProveedorId(productoDTO.getProveedorId());
+        producto.setProveedorId(productoDTO.getIdProveedor());
         
         return producto;
     }

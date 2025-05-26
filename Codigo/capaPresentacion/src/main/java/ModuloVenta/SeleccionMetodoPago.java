@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package ModuloVenta;
 
 import DTOs.ProductoVentaDTO;
@@ -12,7 +8,6 @@ import control.ControlNavegacion;
 import java.awt.BorderLayout;
 import java.util.List;
 import javax.swing.JOptionPane;
-import org.bson.types.ObjectId;
 
 /**
  *
@@ -38,7 +33,7 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
         lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
     }
 
-    private ObjectId pagarTarjeta() throws Exception {
+    private String pagarTarjeta() throws Exception {
         try {
             return controlVenta.registrarVentaTarjeta(this, carritoGlobal, 
                     InicioSesion.getInstance().getIdUsuario(), 
@@ -51,7 +46,7 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
         }
     }
 
-    private ObjectId pagarEfectivo() throws Exception {
+    private String pagarEfectivo() throws Exception {
         try {
             return controlVenta.registrarVentaEfectivo(this, carritoGlobal, 
                     InicioSesion.getInstance().getIdUsuario(),
@@ -429,7 +424,7 @@ public class SeleccionMetodoPago extends javax.swing.JFrame {
      * @param evt
      */
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        ObjectId id;
+        String id;
         if (metodoEfectivo.isSelected()) {
             try {
                 id = pagarEfectivo();

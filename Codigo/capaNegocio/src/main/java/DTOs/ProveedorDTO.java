@@ -12,7 +12,7 @@ import org.bson.types.ObjectId;
  */
 public class ProveedorDTO {
 
-    private ObjectId idProveedor;
+    private String idProveedor;
     private ProveedorInformacionBasicaDTO basica;
     private ProveedorInformacionContactoDTO contacto;
     private ProveedorInformacionComercialDTO comercial;
@@ -34,7 +34,7 @@ public class ProveedorDTO {
      * @param comercial Información comercial del proveedor
      * @param gestion Información de historial y gestión del proveedor
      */
-    public ProveedorDTO(ObjectId idProveedor, ProveedorInformacionBasicaDTO basica, ProveedorInformacionContactoDTO contacto, ProveedorInformacionComercialDTO comercial, ProveedorInformacionGestionDTO gestion) {
+    public ProveedorDTO(String idProveedor, ProveedorInformacionBasicaDTO basica, ProveedorInformacionContactoDTO contacto, ProveedorInformacionComercialDTO comercial, ProveedorInformacionGestionDTO gestion) {
         this.idProveedor = idProveedor;
         this.basica = basica;
         this.contacto = contacto;
@@ -47,7 +47,7 @@ public class ProveedorDTO {
      *
      * @return ID del proveedor
      */
-    public ObjectId getIdProveedor() {
+    public String getIdProveedor() {
         return idProveedor;
     }
 
@@ -56,7 +56,7 @@ public class ProveedorDTO {
      *
      * @param idProveedor ID del proveedor
      */
-    public void setIdProveedor(ObjectId idProveedor) {
+    public void setIdProveedor(String idProveedor) {
         this.idProveedor = idProveedor;
     }
 

@@ -1,33 +1,27 @@
 package Inicio;
 
-import BOs.UsuarioBO;
-import BOs.VendedorBO;
 import DTOs.UsuarioDTO;
-import DTOs.VendedorDTO;
-import Excepciones.NegocioException;
-import Interfaces.IUsuarioBO;
-import Interfaces.IVendedorBO;
+import Excepcion.LoginExcepcion;
+import Implementaciones.AccesoUsuario;
+import Implementaciones.IAccesoUsuario;
 import control.ControlNavegacion;
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
-import org.bson.types.ObjectId;
 
 public class InicioSesion extends JFrame {
-    
+
     private static InicioSesion instancia;
-    
+
     private final JTextField txtId;
     private final JPasswordField txtContrasena;
     private final JButton btnIngresar;
     private final JButton btnCancelar;
-    private String tipo, nombreUsuario, idCuenta;
-    private ObjectId idUsuario;
-    private final IUsuarioBO usuarioBO;
+    private String tipo, idUsuario, nombreUsuario, idCuenta;
+    private final IAccesoUsuario controlUsuario;
 //    private final IVendedorBO vendedorBO;
 
     public InicioSesion() {
-        usuarioBO = new UsuarioBO();
+        controlUsuario = new AccesoUsuario();
 //        vendedorBO = new VendedorBO();
         // Configuración básica de la ventana
         setTitle("Inicio de Sesión");
@@ -38,14 +32,14 @@ public class InicioSesion extends JFrame {
 
         // Panel superior: Título y borde morado
         JPanel panelTitulo = new JPanel();
-        panelTitulo.setBackground(new Color(103,80, 164)); // Morado
+        panelTitulo.setBackground(new Color(103, 80, 164)); // Morado
         panelTitulo.setPreferredSize(new Dimension(400, 40));
         add(panelTitulo, BorderLayout.NORTH);
-        
+
         JLabel labelInicioSesion = new JLabel("Inicio de Sesion");
         panelTitulo.setLayout(new BorderLayout());
-        panelTitulo.add(labelInicioSesion,BorderLayout.WEST);
-        labelInicioSesion.setFont(new Font("Segoe UI",Font.PLAIN,22));
+        panelTitulo.add(labelInicioSesion, BorderLayout.WEST);
+        labelInicioSesion.setFont(new Font("Segoe UI", Font.PLAIN, 22));
 
         // Panel central: Formulario de inicio de sesión
         JPanel panelFormulario = new JPanel();
@@ -116,15 +110,21 @@ public class InicioSesion extends JFrame {
         add(panelFormulario, BorderLayout.CENTER);
 
         // Eventos
-        btnIngresar.addActionListener(e -> iniciarSesion());
+        btnIngresar.addActionListener(e -> {
+            try {
+                iniciarSesion();
+            } catch (LoginExcepcion ex) {
+                System.out.println(ex.getMessage());
+            }
+        });
         btnCancelar.addActionListener(e -> cancelar());
 
     }
-    
-    public void setTipo(String tipo){
+
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
+
 //    public ObjectId getVendedor() throws NegocioException{
 //        List<VendedorDTO> listaVendedores = vendedorBO.obtenerTodosLosVendedores();
 //        for (VendedorDTO listaVendedore : listaVendedores) {
@@ -135,12 +135,12 @@ public class InicioSesion extends JFrame {
 //        throw new NegocioException("No se encontraron vendedores");
 //    }
     
-    public void iniciarSesion() {
+    public void iniciarSesion() throws LoginExcepcion {
         String id = txtId.getText();
         String contrasena = new String(txtContrasena.getPassword());
 
         try {
-            UsuarioDTO usuario = usuarioBO.verificarCredenciales(id, contrasena);
+            UsuarioDTO usuario = controlUsuario.verificarCredenciales(id, contrasena);
             String rol = usuario.getRol(); // Rol real obtenido de la base de datos
 
             if (rol.equalsIgnoreCase("Administrador") || rol.equalsIgnoreCase(tipo)) {
@@ -148,19 +148,19 @@ public class InicioSesion extends JFrame {
 
                 switch (tipo) {
                     case "Vendedor":
-                        setIdUsuario(usuario.getId());
+                        setIdUsuario(usuario.getIdUsuarioDTO());
                         setIdCuenta(usuario.getIdCuenta());
                         setNombreUsuario(usuario.getNombreUsuario());
                         ControlNavegacion.getInstance().irACarritoCompra();
                         break;
                     case "Administrador":
-                        setIdUsuario(usuario.getId());
+                        setIdUsuario(usuario.getIdUsuarioDTO());
                         setIdCuenta(usuario.getIdCuenta());
                         setNombreUsuario(usuario.getNombreUsuario());
                         ControlNavegacion.getInstance().mostrarMenuAdministrador();
                         break;
                     case "Almacen":
-                        setIdUsuario(usuario.getId());
+                        setIdUsuario(usuario.getIdUsuarioDTO());
                         setIdCuenta(usuario.getIdCuenta());
                         setNombreUsuario(usuario.getNombreUsuario());
                         ControlNavegacion.getInstance().mostrarMenuAlmacen();
@@ -173,7 +173,7 @@ public class InicioSesion extends JFrame {
                 JOptionPane.showMessageDialog(this, "No tienes permisos para acceder como " + tipo, "Acceso denegado", JOptionPane.ERROR_MESSAGE);
             }
 
-        } catch (NegocioException ex) {
+        } catch (LoginExcepcion ex) {
             JOptionPane.showMessageDialog(this, "ID o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println("Error en inicio de sesión: " + ex.getMessage());
         }
@@ -186,17 +186,17 @@ public class InicioSesion extends JFrame {
             control.ControlNavegacion.getInstance().irAMenuPrincipal();
         }
     }
-    
-    public void LimpiarCampos(){
+
+    public void LimpiarCampos() {
         txtId.setText("");
         txtContrasena.setText("");
     }
 
-    public ObjectId getIdUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(ObjectId id) {
+    public void setIdUsuario(String id) {
         this.idUsuario = id;
     }
 
@@ -215,7 +215,7 @@ public class InicioSesion extends JFrame {
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
-    
+
     public static InicioSesion getInstance() {
         if (instancia == null) {
             instancia = new InicioSesion();

@@ -1,16 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Entidades;
-
-import org.bson.Document;
 
 /**
  *
  * @author gaspa
  */
 public class Domicilio {
+
     private String calle;
     private String delegacionMunicipio;
     private String ciudadLocalidad;
@@ -57,12 +52,10 @@ public class Domicilio {
     public void setCodigoPostal(String codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
-    
 
     @Override
     public String toString() {
         return "Domicilio{" + "calle=" + calle + ", delegacionMunicipio=" + delegacionMunicipio + ", ciudadLocalidad=" + ciudadLocalidad + ", codigoPostal=" + codigoPostal + '}';
     }
-    
-    
+
 }

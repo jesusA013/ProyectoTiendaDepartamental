@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package ModuloAdministracion.GestionProductos;
 
 import DTOs.ProductoDTO;
@@ -10,28 +6,30 @@ import Interfaces.IProductoBO;
 import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import org.bson.types.ObjectId;
 
 /**
  *
  * @author gaspa
  */
 public class PanelEditarProducto extends javax.swing.JPanel {
+
     private final JPanel panelCambiante;
     private final IProductoBO productoBO;
     private ProductoDTO productoDTO;
-    private ObjectId id;
+    private String id;
+
     /**
      * Creates new form PanelEditarProducto
      */
-    public PanelEditarProducto(JPanel panelCambiante,IProductoBO productoBO, ObjectId id) {
+    public PanelEditarProducto(JPanel panelCambiante, IProductoBO productoBO, String id) {
         initComponents();
-        this.panelCambiante=panelCambiante;
-        this.productoBO=productoBO;
+        this.panelCambiante = panelCambiante;
+        this.productoBO = productoBO;
         this.id = id;
         this.cargarDatos();
     }
-    private ProductoDTO obtenerProducto(ObjectId id) throws NegocioException {
+
+    private ProductoDTO obtenerProducto(String id) throws NegocioException {
         return productoBO.buscarProductoPorId(id);
     }
 
@@ -48,6 +46,7 @@ public class PanelEditarProducto extends javax.swing.JPanel {
         this.precioTextField.setText(String.valueOf(this.productoDTO.getPrecio()));
         this.stoclTextField1.setText(String.valueOf(this.productoDTO.getStock()));
     }
+
     public void editarProducto() {
         try {
             productoDTO.setNombre(nombreTextField.getText());
@@ -67,11 +66,12 @@ public class PanelEditarProducto extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Error al actualizado producto: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    public void volver(){
+
+    public void volver() {
         PanelListadoProductos panelListado = new PanelListadoProductos(panelCambiante, productoBO);
         panelCambiante.setLayout(new BorderLayout());
         panelCambiante.removeAll();
-        panelCambiante.add(panelListado,BorderLayout.CENTER);
+        panelCambiante.add(panelListado, BorderLayout.CENTER);
         panelCambiante.revalidate();
         panelCambiante.repaint();
     }
