@@ -5,13 +5,13 @@ import Entidades.Domicilio;
 import Entidades.DomicilioFiscal;
 import Entidades.Vendedor;
 import Interfaz.IVendedorDAO;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
@@ -30,71 +30,59 @@ public class VendedoresDAOTest {
     public static void tearDownClass() {
     }
 
-    //@Test
-    public void insertarVendedor() {
-        Vendedor nuevo = new Vendedor();
-        nuevo.setCurp("JUAP800101HDFXXX01");
-        nuevo.setNombreCompleto("Juan Pérez Lopez");
-//        nuevo.setFechaNacimiento(new Date());
-//        nuevo.setEstadoCivil("Soltero");
+    @Test
+    public void testInsertarConsultarActualizarEliminarVendedor() {
+        // Crear vendedor
+        Vendedor vendedor = new Vendedor();
+        String idVendedor = UUID.randomUUID().toString();
+        vendedor.setIdVendedor(idVendedor);
+        vendedor.setNombreCompleto("Juan Pérez López");
+        vendedor.setCurp("JUAP800101HDFXXX01");
 
+        // Datos opcionales
         Domicilio domicilio = new Domicilio();
         domicilio.setCalle("Av. Reforma 123");
         domicilio.setDelegacionMunicipio("Benito Juárez");
         domicilio.setCiudadLocalidad("Ciudad de México");
         domicilio.setCodigoPostal("03100");
-        nuevo.setDomicilio(domicilio);
+        vendedor.setDomicilio(domicilio);
+        vendedor.setRfc("JUAP800101XXX");
 
-        DatosFiscales datosFiscales = new DatosFiscales();
-        datosFiscales.setRfc("JUAP800101XXX");
-        DomicilioFiscal domicilioFiscal = new DomicilioFiscal();
-        domicilioFiscal.setCalle("Av. Reforma 123");
-        domicilioFiscal.setCiudadLocalidad("Ciudad de México");
-        domicilioFiscal.setDelegacionMunicipio("Benito Juárez");
-        domicilioFiscal.setCodigoPostal("03100");
-        datosFiscales.setDomicilioFiscal(domicilioFiscal);
-        datosFiscales.setCorreo("juan@gmail.com");
-//        nuevo.setDatosFiscales(datosFiscales);
-
-        vendedorDAO.insertarVendedor(nuevo);
-        assertNotNull(nuevo.getIdVendedor());
-    }
-
-    //@Test
-    public void consultarVendedores() {
-        Vendedor v = new Vendedor();
-        v.setCurp("JUAP800101HDFXXX01");
-        v.setNombreCompleto("Juan Pérez Lopez");
-        vendedorDAO.insertarVendedor(v);
-
-        List<Vendedor> listaVendedores = vendedorDAO.obtenerTodos();
-        System.out.println("Lista de vendedores: " + listaVendedores);
-        assertNotNull(listaVendedores);
-        assertFalse(listaVendedores.isEmpty());
-    }
-
-    @Test
-    public void testInsertarConsultarActualizarEliminarVendedor() {
-        Vendedor vendedor = new Vendedor();
-        vendedor.setIdVendedor(UUID.randomUUID().toString());
-        vendedor.setNombreCompleto("Juan Pérez López");
-        vendedor.setCurp("JUAP800101HDFXXX01");
-
+        // Insertar
         Vendedor insertado = vendedorDAO.insertarVendedor(vendedor);
-        assertNotNull(insertado.getIdVendedor());
+        assertNotNull(insertado);
+        assertEquals(idVendedor, insertado.getIdVendedor());
 
-        // Consultar
-        Vendedor consultado = vendedorDAO.buscarPorId(insertado.getIdVendedor());
+        // Consultar por ID
+        Vendedor consultado = vendedorDAO.buscarPorId(idVendedor);
+        assertNotNull(consultado);
         assertEquals("Juan Pérez López", consultado.getNombreCompleto());
 
+        // Consultar todos
+        List<Vendedor> listaVendedores = vendedorDAO.obtenerTodos();
+        assertNotNull(listaVendedores);
+        assertFalse(listaVendedores.isEmpty());
+
+        // Buscar por CURP
+        Vendedor encontradoPorCurp = vendedorDAO.buscarPorCURP("JUAP800101HDFXXX01");
+        assertNotNull(encontradoPorCurp);
+        assertEquals(idVendedor, encontradoPorCurp.getIdVendedor());
+
         // Actualizar
-//        consultado.setNombreCompleto("Pedro López");
-//        Vendedor actualizado = vendedorDAO.actualizarVendedor(consultado);
-//        assertEquals("Pedro López", actualizado.getNombreCompleto());
-//
-//        // Eliminar
-//        Vendedor eliminado = vendedorDAO.eliminarVendedor(actualizado.getIdVendedor());
-//        assertNotNull(eliminado);
-//        assertNull(vendedorDAO.buscarPorId(eliminado.getIdVendedor()));
+        consultado.setNombreCompleto("Pedro López");
+        boolean actualizado = vendedorDAO.actualizarVendedor(consultado);
+        assertTrue(actualizado);
+
+        Vendedor actualizadoVendedor = vendedorDAO.buscarPorId(idVendedor);
+        assertEquals("Pedro López", actualizadoVendedor.getNombreCompleto());
+
+        // Eliminar
+        Vendedor eliminado = vendedorDAO.eliminarVendedor(idVendedor);
+        assertNotNull(eliminado);
+        assertEquals("Pedro López", eliminado.getNombreCompleto());
+
+        // Verificar que ya no exista
+        Vendedor consultadoDespuesDeEliminar = vendedorDAO.buscarPorId(idVendedor);
+        assertNull(consultadoDespuesDeEliminar);
     }
 }
