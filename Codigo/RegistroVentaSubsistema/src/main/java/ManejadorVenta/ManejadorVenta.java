@@ -1,6 +1,5 @@
 package ManejadorVenta;
 
-import BOs.ProductoBO;
 import BOs.VentasBO;
 import DTOs.DetallesVentaDTO;
 import DTOs.FacturaDTO;
@@ -80,9 +79,9 @@ public class ManejadorVenta implements IRegistroVenta {
                 productoVenta.getProducto().setStock(productoVenta.getProducto().getStock() - productoVenta.getCantidad());
                 this.productoNegocio.actualizarProducto(productoVenta.getProducto());
             }
-            JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getIdVentaDTO());
+            JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getIdVenta());
             navegacion.irASeleccionMetodoPago();
-            return resultado.getIdVentaDTO();
+            return resultado.getIdVenta();
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(frame, "Error al registrar la venta: " + ex.getMessage());
             throw new RegistroException("Error " + ex.getMessage());
@@ -123,9 +122,9 @@ public class ManejadorVenta implements IRegistroVenta {
                 productoVenta.getProducto().setStock(productoVenta.getProducto().getStock() - productoVenta.getCantidad());
                 this.productoNegocio.actualizarProducto(productoVenta.getProducto());
             }
-            JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getIdVentaDTO());
+            JOptionPane.showMessageDialog(frame, "Venta registrada con éxito con el ID: " + resultado.getIdVenta());
             navegacion.irASeleccionMetodoPago();
-            return resultado.getIdVentaDTO();
+            return resultado.getIdVenta();
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(frame, "Error al registrar la venta: " + ex.getMessage());
             throw new RegistroException("Error " + ex.getMessage());
@@ -182,7 +181,7 @@ public class ManejadorVenta implements IRegistroVenta {
 
         try {
             VentaDTO resultado = this.ventasNegocio.actualizarVenta(ventaDTO);
-            JOptionPane.showMessageDialog(frame, "Venta facturada con éxito con el ID: " + resultado.getIdVentaDTO());
+            JOptionPane.showMessageDialog(frame, "Venta facturada con éxito con el ID: " + resultado.getIdVenta());
             navegacion.irFacturaFinalizada(id);
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(frame, "Error al facturar la venta: " + ex.getMessage());

@@ -2,22 +2,16 @@ package DAOs;
 
 import Entidades.Vendedor;
 import Interfaz.IVendedorDAO;
-import org.bson.Document;
-import org.bson.types.ObjectId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.Optional;
-import java.util.UUID;
 
 /**
  * VendedorDAO.java
  *
- * Implementación en memoria de IVendedorDAO. Simula persistencia con una lista
- * interna.
+ * Implementación en memoria de IVendedorDAO. Simula persistencia con un
+ * HashMap.
  *
  * @author
  */
@@ -34,19 +28,24 @@ public class VendedorDAO implements IVendedorDAO {
         if (vendedor == null || vendedor.getIdVendedor() == null || vendedor.getIdVendedor().trim().isEmpty()) {
             throw new IllegalArgumentException("El vendedor y su ID no pueden ser nulos.");
         }
+        // Se inserta o actualiza el vendedor
         vendedores.put(vendedor.getIdVendedor(), vendedor);
-        return null;
+        return vendedor;
     }
-
-
-    
 
     @Override
     public Vendedor buscarPorCURP(String curp) {
-        return vendedores.stream()
-                .filter(v -> v.getCurp().equals(curp))
-                .findFirst()
-                .orElse(null);
+        if (curp == null || curp.trim().isEmpty()) {
+            throw new IllegalArgumentException("El CURP no puede ser nulo o vacío.");
+        }
+
+        // Busca en todos los vendedores
+        for (Vendedor v : vendedores.values()) {
+            if (curp.equals(v.getCurp())) {
+                return v;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -54,40 +53,33 @@ public class VendedorDAO implements IVendedorDAO {
         return new ArrayList<>(vendedores.values());
     }
 
-    
-
     @Override
-    public Vendedor actualizarVendedor(Vendedor vendedor) {
+    public boolean actualizarVendedor(Vendedor vendedor) {
         if (vendedor == null || vendedor.getIdVendedor() == null || vendedor.getIdVendedor().trim().isEmpty()) {
-
             throw new IllegalArgumentException("El vendedor y su ID son obligatorios para actualizar.");
         }
 
         if (!vendedores.containsKey(vendedor.getIdVendedor())) {
             return false;
         }
+
         vendedores.put(vendedor.getIdVendedor(), vendedor);
         return true;
     }
-  
+
     @Override
     public Vendedor buscarPorId(String id) {
-        return vendedores.stream()
-                .filter(v -> v.getIdVendedor().equals(id))
-                .findFirst()
-                .orElse(null);
+        if (id == null || id.trim().isEmpty()) {
+            throw new IllegalArgumentException("El ID no puede ser nulo o vacío.");
+        }
+        return vendedores.get(id);
     }
-
 
     @Override
     public Vendedor eliminarVendedor(String id) {
-        Optional<Vendedor> vendedorOpt = vendedores.stream()
-                .filter(v -> v.getIdVendedor().equals(id))
-                .findFirst();
-        if (vendedorOpt.isPresent()) {
-            vendedores.remove(vendedorOpt.get());
-            return vendedorOpt.get();
+        if (id == null || id.trim().isEmpty()) {
+            throw new IllegalArgumentException("El ID no puede ser nulo o vacío.");
         }
-        return null;
+        return vendedores.remove(id);
     }
 }

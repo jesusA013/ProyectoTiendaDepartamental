@@ -1,11 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package BOs;
 
-import java.util.*;
-import BOs.VentasBO;
 import DAOs.VendedorDAO;
 import Entidades.Vendedor;
 import Excepciones.NegocioException;
@@ -16,45 +10,24 @@ import java.util.List;
 /**
  *
  * @author melis
- * @author Ilian Gastelum
  * @version 1.2
  */
-public abstract class VendedorBO implements IVendedorBO {
+public class VendedorBO implements IVendedorBO {
 
     private final IVendedorDAO vendedorDAO;
-
-    public VendedorBO(IVendedorDAO vendedorDAO) {
-        this.vendedorDAO = vendedorDAO;
-    }
-
-    /*Registra un vendedor con validaciones*/
-    public VendedorBO(List<VentasBO> ventas) {
-        this.ventas = new ArrayList<>();// evita un nullPointer en caso de usar constructor vacio 
-    }
-
-    //gestion v
-    public void agregarVneta(VentasBO venta) {
-        ventas.add(venta);
-        totalVentas += venta.getMonto();
-    }
-
-    public double calcularPromedioVentas() {
-        return ventas.isEmpty() ? 0 : totalVentas / ventas.size();
-    }
 
     public VendedorBO() {
         this.vendedorDAO = new VendedorDAO();
     }
 
+    @Override
     public Vendedor registrarVendedor(Vendedor vendedor) throws NegocioException {
         validarVendedor(vendedor);
         validarCURPNoDuplicado(vendedor.getCurp());
         vendedorDAO.insertarVendedor(vendedor);
         return vendedor;
-
     }
 
-    /*Este metodo obtiene a todos los vendedores**/
     public List<Vendedor> obtenerTodosLosVendedores() throws NegocioException {
         List<Vendedor> vendedores = vendedorDAO.obtenerTodos();
         if (vendedores.isEmpty()) {
@@ -63,7 +36,7 @@ public abstract class VendedorBO implements IVendedorBO {
         return vendedores;
     }
 
-    /*Obtiene un vendedor por id*/
+    @Override
     public Vendedor obtenerVendedorPorId(String id) throws NegocioException {
         Vendedor vendedor = vendedorDAO.buscarPorId(id);
         if (vendedor == null) {
@@ -72,7 +45,7 @@ public abstract class VendedorBO implements IVendedorBO {
         return vendedor;
     }
 
-    /*Actualiza lod datos de un vendedor*/
+    @Override
     public Vendedor actualizarVendedor(Vendedor vendedor) throws NegocioException {
         validarVendedor(vendedor);
         validarIdPresente(vendedor);
@@ -81,27 +54,16 @@ public abstract class VendedorBO implements IVendedorBO {
             throw new NegocioException("No se pudo actualizar el vendedor. Puede que no exista.");
         }
         return vendedor;
-
     }
 
+    @Override
     public Vendedor eliminarVendedor(String id) throws NegocioException {
-        if (eliminado.isEmpty()) {
-
-            Vendedor eliminado = vendedorDAO.eliminarVendedor(id);
-            if (eliminado == null) {
-                throw new NegocioException("No se pudo eliminar el vendedor. Puede que no exista.");
-            }
-            return eliminado.get();
+        Vendedor eliminado = vendedorDAO.eliminarVendedor(id);
+        if (eliminado == null) {
+            throw new NegocioException("No se pudo eliminar el vendedor. Puede que no exista.");
         }
+        return eliminado;
     }
-
-    
-
-        
-
-        
-
-        
 
     private void validarVendedor(Vendedor vendedor) throws NegocioException {
         if (vendedor == null) {
@@ -116,19 +78,24 @@ public abstract class VendedorBO implements IVendedorBO {
     }
 
     private void validarCURPNoDuplicado(String curp) throws NegocioException {
-        if (vendedorDAO.buscarPorCURP(curp).isPresent()) {
+        if (vendedorDAO.buscarPorCURP(curp) != null) {
             throw new NegocioException("Ya existe un vendedor con el CURP proporcionado.");
         }
     }
 
     private void validarIdPresente(Vendedor vendedor) throws NegocioException {
-
         if (vendedor.getIdVendedor() == null || vendedor.getIdVendedor().trim().isEmpty()) {
-
-            if (vendedor.getIdVendedor() == null) {
-                throw new NegocioException("El ID del vendedor es obligatorio para la actualización.");
-            }
+            throw new NegocioException("El ID del vendedor es obligatorio para la actualización.");
         }
     }
-}
+
+    @Override
+    public List<Vendedor> obtenerVendedores() throws NegocioException {
+        throw new UnsupportedOperationException("No está implementado aún.");
+    }
+
+    @Override
+    public double calcularPromedioVentas(String idVendedor) {
+        throw new UnsupportedOperationException("No está implementado aún.");
+    }
 }

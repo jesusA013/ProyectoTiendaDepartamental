@@ -74,10 +74,10 @@ public class ControlNavegacion implements INavegador{
         //productos
         this.pantallaAdministradorMenu = new AdministradorMenu();
         //Gestion Vendedores
-//        this.pantallaRegistraVendedor= new;
-//        this.pantallaListadoVendedores;
-//        this.panatallaInformacionVendedor;
-//        this.pantallaGeneraInforme=;
+        this.pantallaRegistraVendedor = new RegistrarVendedor();
+        this.pantallaListadoVendedores = new ListadoVendedores();
+        this.panatallaInformacionVendedor = new InformacionVendedor();
+        this.pantallaGeneraInforme = new GenerarInforme();
         
     }
 

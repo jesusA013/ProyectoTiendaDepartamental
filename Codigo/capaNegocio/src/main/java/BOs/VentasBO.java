@@ -1,6 +1,6 @@
 package BOs;
 
-import DAOs.IVentasDAO;
+import DAOs.VentasDAO;
 import DTOs.DetallesVentaDTO;
 import DTOs.FacturaDTO;
 import DTOs.ProductoDTO;
@@ -91,7 +91,7 @@ public class VentasBO implements IVentasBO {
      */
     private VentaDTO convertirDTO(Venta venta) {
         VentaDTO ventaDTO = new VentaDTO();
-        ventaDTO.setIdVentaDTO(venta.getIdVenta());
+        ventaDTO.setIdVenta(venta.getIdVenta());
         ventaDTO.setFecha(venta.getFecha());
 
         List<ProductoVentaDTO> productos = new ArrayList<>();
@@ -142,7 +142,7 @@ public class VentasBO implements IVentasBO {
      */
     private Venta convertirEntidad(VentaDTO ventaDTO) {
         Venta venta = new Venta();
-        venta.setIdVenta(ventaDTO.getIdVentaDTO());
+        venta.setIdVenta(ventaDTO.getIdVenta());
         venta.setFecha(ventaDTO.getFecha());
 
         List<ProductoVenta> productos = new ArrayList<>();

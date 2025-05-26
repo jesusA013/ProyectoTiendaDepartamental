@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package ModuloAdministracion.GestionVendedores;
+
 import java.awt.*;
+
 /**
  *
  * @author melis
@@ -14,8 +12,6 @@ public class RegistrarVendedor extends javax.swing.JFrame {
      * Creates new form RegistrarVendedor
      */
     public RegistrarVendedor() {
-       sideBar.add(BotonAgregarVendedor,BorderLayout.CENTER);
-       sideBar.add(botonCancelarBoton,BorderLayout.CENTER);
         initComponents();
     }
 
@@ -312,35 +308,35 @@ public class RegistrarVendedor extends javax.swing.JFrame {
 
     private void cajaDomicilioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaDomicilioActionPerformed
         // TODO add your handling code here:
-        String domicilio=cajaDomicilio.getText();
+        String domicilio = cajaDomicilio.getText();
     }//GEN-LAST:event_cajaDomicilioActionPerformed
 
     private void cajaCURPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaCURPActionPerformed
         // TODO add your handling code here:
         String curp;
-        curp=cajaCURP.getText();
+        curp = cajaCURP.getText();
     }//GEN-LAST:event_cajaCURPActionPerformed
 
     private void cajaRFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaRFCActionPerformed
         // TODO add your handling code here:
-        String rfc=cajaRFC.getText();
+        String rfc = cajaRFC.getText();
     }//GEN-LAST:event_cajaRFCActionPerformed
 
     private void cajaDelegacionMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaDelegacionMunicipioActionPerformed
         // TODO add your handling code here:
         String delegacion;
-        delegacion=cajaDelegacionMunicipio.getText();
+        delegacion = cajaDelegacionMunicipio.getText();
     }//GEN-LAST:event_cajaDelegacionMunicipioActionPerformed
 
     private void cajaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaNombreActionPerformed
         // TODO add your handling code here:
         String nombre;
-        nombre=cajaNombre.getText();
+        nombre = cajaNombre.getText();
     }//GEN-LAST:event_cajaNombreActionPerformed
 
     private void cajaApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaApellidoActionPerformed
         // TODO add your handling code here:
-        String apellido=cajaApellido.getText();
+        String apellido = cajaApellido.getText();
     }//GEN-LAST:event_cajaApellidoActionPerformed
 
     private void cajaFechaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaFechaNacimientoActionPerformed
@@ -350,49 +346,15 @@ public class RegistrarVendedor extends javax.swing.JFrame {
 
     private void cajaEstadoCivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaEstadoCivilActionPerformed
         // TODO add your handling code here:
-        String estadoCivil=cajaEstadoCivil.getText();
+        String estadoCivil = cajaEstadoCivil.getText();
     }//GEN-LAST:event_cajaEstadoCivilActionPerformed
 
     private void cajaCiudadLocalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaCiudadLocalidadActionPerformed
         // TODO add your handling code here:
         String localidad;
-        localidad=cajaCiudadLocalidad.getText();
+        localidad = cajaCiudadLocalidad.getText();
     }//GEN-LAST:event_cajaCiudadLocalidadActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(RegistrarVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(RegistrarVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(RegistrarVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(RegistrarVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new RegistrarVendedor().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregarVendedor;

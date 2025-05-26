@@ -1,6 +1,6 @@
 package Interfaces;
 
-import Entidades.Re;
+import Entidades.ReporteVendedores;
 import java.util.List;
 
 /**

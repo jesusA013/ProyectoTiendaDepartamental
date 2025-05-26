@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package ModuloAdministracion.GestionVendedores;
+
 import control.ControlNavegacion;
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 
 /**
  *
@@ -21,13 +16,6 @@ public class ListadoVendedores extends javax.swing.JFrame {
      * Creates new form ListadoVendedores
      */
     public ListadoVendedores() {
-        /*Barra de opciones*/
-        // JPanel sidebar = new JPanel(new GridLayout(5, 1, 5, 5));
-        sidebar.add(BotonAgregarVendedor,BorderLayout.CENTER);
-        sidebar.add(BotonAltasyBajas,BorderLayout.CENTER);
-        sidebar.add(BotonGenerarInforme,BorderLayout.CENTER);
-
-        add(sidebar, BorderLayout.WEST);
         initComponents();
     }
 
@@ -170,7 +158,7 @@ public class ListadoVendedores extends javax.swing.JFrame {
     private void BotonAgregarVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarVendedorActionPerformed
         // TODO add your handling code here:
         ControlNavegacion.getInstance().mostrarRegistroVendedor();
-        
+
     }//GEN-LAST:event_BotonAgregarVendedorActionPerformed
 
     private void BotonGenerarInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGenerarInformeActionPerformed
@@ -178,40 +166,6 @@ public class ListadoVendedores extends javax.swing.JFrame {
         ControlNavegacion.getInstance().mostrarGenerarInforme();
     }//GEN-LAST:event_BotonGenerarInformeActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(ListadoVendedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(ListadoVendedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(ListadoVendedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(ListadoVendedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new ListadoVendedores().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregarVendedor;

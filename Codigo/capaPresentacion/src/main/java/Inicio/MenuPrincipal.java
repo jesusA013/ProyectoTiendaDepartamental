@@ -43,6 +43,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lblAlmacen = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         panelSuperior = new javax.swing.JPanel();
         lblBienvenido = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -89,9 +93,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         lblAlmacen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/warehouse.png"))); // NOI18N
 
-        jLabel3.setText("ID:123456");
+        jLabel3.setText("ID: 1234");
 
-        jLabel4.setText("Password:password");
+        jLabel4.setText("Password: password");
+
+        jLabel5.setText("ID: 2234");
+
+        jLabel6.setText("Password: password");
+
+        jLabel7.setText("ID: 3334");
+
+        jLabel8.setText("Password: password");
 
         javax.swing.GroupLayout panelBotonesLayout = new javax.swing.GroupLayout(panelBotones);
         panelBotones.setLayout(panelBotonesLayout);
@@ -116,9 +128,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
                                     .addComponent(lblVendedor))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(panelBotonesLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel4)
+                        .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelBotonesLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel4))
+                            .addGroup(panelBotonesLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel6))
+                            .addGroup(panelBotonesLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel8)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         panelBotonesLayout.setVerticalGroup(
@@ -136,11 +158,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAdministrador)
                     .addComponent(btnOpcionAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnOpcionAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAlmacen))
-                .addGap(33, 33, 33))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addGap(11, 11, 11))
         );
 
         panelSuperior.setBackground(new java.awt.Color(103, 80, 144));
@@ -226,6 +256,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lblAdministrador;
     private javax.swing.JLabel lblAlmacen;
     private javax.swing.JLabel lblBienvenido;

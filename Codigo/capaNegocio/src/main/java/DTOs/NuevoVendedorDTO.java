@@ -23,11 +23,9 @@ public class NuevoVendedorDTO {
     private Date fechaRegistro;
     private boolean activo;
 
-  
-
     public NuevoVendedorDTO(String nombre, String rfc, String domicilio, String curp, Date fechaNacimiento,
             String ciudad, String municipio, String foto, String telefono,
-             String email, String datosFiscales, Date fechaRegistro, boolean activo) {
+            String email, String datosFiscales, Date fechaRegistro, boolean activo) {
         validarDatoNoVacio(nombre, "el nombre es obligatorio");
         validarDatoNoVacio(rfc, "el RFC es obligatorio");
         validarDatoNoVacio(domicilio, "el domicilio es obligatorio");
@@ -40,9 +38,9 @@ public class NuevoVendedorDTO {
 
         this.nombre = nombre;
         this.apellido = apellido;
-   this.fechaNacimientoDia=fechaNacimientoDia;
-      this.fechaNacimientoMes=fechaNacimientoMes;
-      this.fechaNacimientoAño=fechaNacimientoAño;
+        this.fechaNacimientoDia = fechaNacimientoDia;
+        this.fechaNacimientoMes = fechaNacimientoMes;
+        this.fechaNacimientoAño = fechaNacimientoAño;
         this.rfc = rfc;
         this.domicilio = domicilio;
         this.curp = curp;
@@ -129,7 +127,6 @@ public class NuevoVendedorDTO {
         this.activo = activo;
     }
 
-
     private void validarFechaNacimiento(int dia, int mes, int año) {
         if (dia < 1 || dia > 31) {
             throw new IllegalArgumentException("El día de nacimiento debe estar entre 1 y 31.");
@@ -141,7 +138,6 @@ public class NuevoVendedorDTO {
             throw new IllegalArgumentException("El año de nacimiento debe estar entre 1900 y 2025.");
         }
     }
-
 
     private void validarDatoNoVacio(String dato, String mensajeError) {
         if (dato == null || dato.trim().isEmpty()) {
@@ -185,7 +181,5 @@ public class NuevoVendedorDTO {
     public String toString() {
         return "NuevoVendedorDTO{" + "nombre=" + nombre + ", apellido=" + apellido + ", rfc=" + rfc + ", domicilio=" + domicilio + ", curp=" + curp + ", fechaNacimientoDia=" + fechaNacimientoDia + ", fechaNacimientoMes=" + fechaNacimientoMes + ", fechaNacimientoA\u00f1o=" + fechaNacimientoAño + ", ciudad=" + ciudad + ", municipio=" + municipio + ", foto=" + foto + ", fechaRegistro=" + fechaRegistro + ", activo=" + activo + '}';
     }
-
-    
 
 }

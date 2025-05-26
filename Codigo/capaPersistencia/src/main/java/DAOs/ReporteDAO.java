@@ -1,16 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAOs;
 
 import Entidades.ReporteVendedores;
-import Interfaz.IReporteDAO;
-
 import Exception.PersistenciaException;
 import Interfaz.IReporteDAO;
-import com.mongodb.client.MongoDatabase;
-import static com.mongodb.client.model.Filters.eq;
 import java.util.*;
 
 /**
@@ -23,37 +15,42 @@ import java.util.*;
  */
 public class ReporteDAO implements IReporteDAO {
 
-    private final Map<String, String> reportes;
+    // Ahora usamos un HashMap: clave = idVendedor, valor = ReporteVendedores
+    private final Map<String, ReporteVendedores> reportes;
 
-    //////gv
     public ReporteDAO() {
         this.reportes = new HashMap<>();
     }
 
-    public void generarReporte(String idVendedor, String contenido) {
-        if (idVendedor == null || idVendedor.trim().isEmpty()) {
-            throw new IllegalArgumentException("El ID del vendedor es obligatorio para generar un reporte.");
-        }
-        if (contenido == null || contenido.trim().isEmpty()) {
-            throw new IllegalArgumentException("El contenido del reporte no puede estar vacío.");
-        }
-        reportes.put(idVendedor, contenido);
-    }
-
-    // Lista interna simulando la "base de datos"
-//    private final List<ReporteVendedores> reportes = new ArrayList<>();
+//    @Override
+//    public void generarReporte(String idVendedor, String contenido) {
+//        if (idVendedor == null || idVendedor.trim().isEmpty()) {
+//            throw new IllegalArgumentException("El ID del vendedor es obligatorio para generar un reporte.");
+//        }
+//        if (contenido == null || contenido.trim().isEmpty()) {
+//            throw new IllegalArgumentException("El contenido del reporte no puede estar vacío.");
+//        }
+//        // Supongamos que quieres guardar el reporte como texto, solo por ID:
+//        reportes.put(idVendedor, contenido);
+//    }
 
     /**
-     * Guarda un nuevo reporte en la lista.
+     * Guarda un nuevo reporte en el mapa.
      *
      * @param idVendedor
      * @param reporte
-     * @throws Exception.PersistenciaException
+     * @throws PersistenciaException
      */
     @Override
     public void guardarReporte(String idVendedor, ReporteVendedores reporte) throws PersistenciaException {
-        reporte.setIdVendedor(idVendedor); // Asigna el ID del vendedor
-        reportes.add(reporte);
+        if (idVendedor == null || idVendedor.trim().isEmpty()) {
+            throw new IllegalArgumentException("El ID del vendedor es obligatorio para guardar el reporte.");
+        }
+        if (reporte == null) {
+            throw new IllegalArgumentException("El reporte no puede ser nulo.");
+        }
+        reporte.setIdVendedor(idVendedor);
+        reportes.put(idVendedor, reporte);
     }
 
     /**
@@ -61,26 +58,22 @@ public class ReporteDAO implements IReporteDAO {
      *
      * @param idVendedor
      * @return
-     * @throws Exception.PersistenciaException
+     * @throws PersistenciaException
      */
     @Override
     public ReporteVendedores obtenerReportePorVendedor(String idVendedor) throws PersistenciaException {
-        return reportes.stream()
-                .filter(r -> idVendedor.equals(r.getIdVendedor()))
-                .findFirst()
-                .orElse(null); // Retorna null si no se encuentra
+        return reportes.get(idVendedor);
     }
 
     /**
      * Obtiene todos los reportes.
      *
      * @return
-     * @throws Exception.PersistenciaException
+     * @throws PersistenciaException
      */
     @Override
     public List<ReporteVendedores> obtenerTodosLosReportes() throws PersistenciaException {
-        return new ArrayList<>(reportes); // Retorna copia para evitar modificaciones externas
-
+        return new ArrayList<>(reportes.values());
     }
 
     /**
@@ -93,34 +86,24 @@ public class ReporteDAO implements IReporteDAO {
      */
     @Override
     public void actualizarReporte(String idVendedor, ReporteVendedores nuevoReporte) throws PersistenciaException {
-        Optional<ReporteVendedores> existenteOpt = reportes.stream()
-                .filter(r -> idVendedor.equals(r.getIdVendedor()))
-                .findFirst();
-
-        if (existenteOpt.isPresent()) {
-            ReporteVendedores existente = existenteOpt.get();
-
-            // Actualiza todos los campos relevantes
-            existente.setPromedioVentasDiaria(nuevoReporte.getPromedioVentasDiaria());
-            existente.setPromedioVentaSemanal(nuevoReporte.getPromedioVentaSemanal());
-            existente.setPromedioVentaMensual(nuevoReporte.getPromedioVentaMensual());
-            existente.setPromedioVentaTrimestral(nuevoReporte.getPromedioVentaTrimestral());
-            existente.setFechaReporte(nuevoReporte.getFechaReporte());
-            existente.setCiudad(nuevoReporte.getCiudad());
-            // Otros campos que quieras actualizar
-        } else {
+        if (!reportes.containsKey(idVendedor)) {
             throw new PersistenciaException("No se encontró el reporte con el ID de vendedor: " + idVendedor);
         }
+        // Se asegura de mantener el mismo ID de vendedor
+        nuevoReporte.setIdVendedor(idVendedor);
+        reportes.put(idVendedor, nuevoReporte);
     }
 
     /**
      * Elimina un reporte por el ID del vendedor.
      *
      * @param idVendedor
-     * @throws Exception.PersistenciaException
+     * @throws PersistenciaException
      */
     @Override
     public void eliminarReporte(String idVendedor) throws PersistenciaException {
-        reportes.removeIf(r -> idVendedor.equals(r.getIdVendedor()));
+        if (reportes.remove(idVendedor) == null) {
+            throw new PersistenciaException("No se encontró el reporte con el ID de vendedor: " + idVendedor);
+        }
     }
 }

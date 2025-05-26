@@ -2,7 +2,6 @@ package Entidades;
 
 import java.util.Date;
 import java.util.UUID;
-import org.bson.types.ObjectId;
 
 /**
  * Vendedor.java
@@ -14,12 +13,12 @@ import org.bson.types.ObjectId;
 public class Vendedor {
 
     private String idVendedor;
-        private String nombre;
+    private String nombre;
     private String apellidos;
     private String curp;
     private String nombreCompleto;
     private Date fechaNacimientoDia;
-        private Date fechaNacimientoMes;
+    private Date fechaNacimientoMes;
     private Date fechaNacimientoAño;
     private Domicilio domicilio;
     private Date fechaRegistro;
@@ -48,15 +47,11 @@ public class Vendedor {
         this.activo = true;
     }
 
-   
-
-   
     /*ete metodo genra un id random
-    */
+     */
     private String generarId() {
         return UUID.randomUUID().toString();
     }
-
 
     public String getIdVendedor() {
         return idVendedor;
@@ -122,7 +117,6 @@ public class Vendedor {
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
-
 
     public boolean isActivo() {
         return activo;
@@ -190,6 +184,4 @@ public class Vendedor {
         return "Vendedor{" + "idVendedor=" + idVendedor + ", nombre=" + nombre + ", apellidos=" + apellidos + ", curp=" + curp + ", nombreCompleto=" + nombreCompleto + ", fechaNacimientoDia=" + fechaNacimientoDia + ", fechaNacimientoMes=" + fechaNacimientoMes + ", fechaNacimientoA\u00f1o=" + fechaNacimientoAño + ", domicilio=" + domicilio + ", fechaRegistro=" + fechaRegistro + ", activo=" + activo + ", ciudad=" + ciudad + ", municipio=" + municipio + ", foto=" + foto + ", rfc=" + rfc + ", totalventas=" + totalventas + ", raiting=" + raiting + '}';
     }
 
-
-    
 }
