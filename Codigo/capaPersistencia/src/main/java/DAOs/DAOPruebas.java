@@ -25,12 +25,6 @@ import java.util.Date;
  * @author gaspa CLASE TEMPORAL PARA REALIZAR PRUEBAS
  */
 public class DAOPruebas {
-    IConexion Mongo = new Conexion();
-    IVentasDAO ventasDAO = new VentasDAO(Mongo.conexion());
-//    IVendedorDAO vendedorDAO = new VendedorDAO(Mongo.conexion());
-    IProveedorDAO proveedorDAO = new ProveedorDAO(Mongo.conexion());
-    
-    public void insertarVenta() throws PersistenciaException{
 
     IVentasDAO ventasDAO = new VentasDAO();
     IVendedorDAO vendedorDAO = new VendedorDAO();
@@ -79,8 +73,6 @@ public class DAOPruebas {
 //        nuevo.setNombreCompleto(new NombreCompleto("Juan", "Pérez", "Lopez"));
 //        nuevo.setFechaNacimiento(new Date());
 //        nuevo.setEstadoCivil("Soltero");
-        nuevo.setFechaNacimiento(new Date());
-        nuevo.setEstadoCivil("Soltero");
 
         Domicilio domicilio = new Domicilio();
         domicilio.setCalle("Av. Reforma 123");
@@ -98,8 +90,9 @@ public class DAOPruebas {
         domicilioFiscal.setCodigoPostal("03100");
         datosFiscales.setDomicilioFiscal(domicilioFiscal);
         datosFiscales.setCorreo("juan@gmail.com");
+//        nuevo.setDatosFiscales(datosFiscales);
 
-//        vendedorDAO.insertarVendedor(nuevo);
+        vendedorDAO.insertarVendedor(nuevo);
         System.out.println("Vendedor insertado correctamente.");
     }
 
