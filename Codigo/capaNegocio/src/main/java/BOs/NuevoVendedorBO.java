@@ -53,12 +53,8 @@ vendedorDAO.insertarVendedor(vendedor);
 
     
  public VendedorDTO convertirEntidadADTO(Vendedor vendedor) {
-        return new VendedorDTO(
-                vendedor.getIdVendedor(),
-                vendedor.getNombre(),
-                vendedor.geFoto(),
-                vendedor.getRaiting(),
-                vendedor.getNombre() + " " + vendedor.getApellidos()
+        return new VendedorDTO(dto.getidVendedor(), nombre, rutaFoto, 0);
+               
         );
     }
 

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class VentaDTO {
 
-    private String idVentaDTO;
+    private String idVenta;
     private Date fecha;
     private List<ProductoVentaDTO> productos;
     private String idVendedor;
@@ -27,17 +27,18 @@ public class VentaDTO {
     public VentaDTO() {
         this.productos = new ArrayList<>();
     }
-
     /**
      * Inicializa los atributos al valor de sus parámetros.
      *
+     * @param idVenta
      * @param fecha
      * @param productos Lista de productos incluidos en la venta.
      * @param idVendedor
      * @param factura
      * @param detallesVenta
      */
-    public VentaDTO(Date fecha, List<ProductoVentaDTO> productos, String idVendedor, FacturaDTO factura, DetallesVentaDTO detallesVenta) {
+    public VentaDTO(String idVenta, Date fecha, List<ProductoVentaDTO> productos, String idVendedor, FacturaDTO factura, DetallesVentaDTO detallesVenta) {
+        this.idVenta = idVenta;
         this.fecha = fecha;
         this.productos = productos;
         this.idVendedor = idVendedor;
@@ -45,20 +46,12 @@ public class VentaDTO {
         this.detallesVenta = detallesVenta;
     }
 
-    public String getIdVentaDTO() {
-        return idVentaDTO;
+    public String getIdVenta() {
+        return idVenta;
     }
 
-    public void setIdVentaDTO(String idVentaDTO) {
-        this.idVentaDTO = idVentaDTO;
-    }
-
-    public List<ProductoVentaDTO> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<ProductoVentaDTO> productos) {
-        this.productos = productos;
+    public void setIdVenta(String idVenta) {
+        this.idVenta = idVenta;
     }
 
     public Date getFecha() {
@@ -69,11 +62,14 @@ public class VentaDTO {
         this.fecha = fecha;
     }
 
-   public String getVendedorId() {
-        return idVendedor;
+    public List<ProductoVentaDTO> getProductos() {
+        return productos;
     }
 
-    public void setVendedorId(String idVendedor) {
+    public void setProductos(List<ProductoVentaDTO> productos) {
+        this.productos = productos;
+    }
+
     public String getIdVendedor() {
         return idVendedor;
     }
@@ -100,8 +96,11 @@ public class VentaDTO {
 
     @Override
     public String toString() {
-        return "Venta{" + "_id=" + _id + ", fecha=" + fecha + ", productos=" + productos + ", vendedorId=" + idVendedor + ", factura=" + factura + ", detallesVenta=" + detallesVenta + '}';
-        return "Venta{" + "idVentaDTO=" + idVentaDTO + ", fecha=" + fecha + ", productos=" + productos + ", idVendedor=" + idVendedor + ", factura=" + factura + ", detallesVenta=" + detallesVenta + '}';
-   }
+        return "VentaDTO{" + "idVenta=" + idVenta + ", fecha=" + fecha + ", productos=" + productos + ", idVendedor=" + idVendedor + ", factura=" + factura + ", detallesVenta=" + detallesVenta + '}';
+    }
+
+
+   
+
 
 }

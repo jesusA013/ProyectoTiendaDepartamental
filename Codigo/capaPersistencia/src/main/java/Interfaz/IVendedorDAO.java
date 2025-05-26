@@ -13,31 +13,24 @@ import java.util.Optional;
  * @author gaspa
  */
 public interface IVendedorDAO {
-    /*onsetra un vendedor en memoria*/
-    void insertarVendedor(Vendedor vendedor);
-/*Busca un vendedor por us curp*/
-    Optional<Vendedor> buscarPorCURP(String curp);
-    /*Obtener a todos los vendedores*/
-    List<Vendedor> obtenerTodos();
-/*Busca un vendedor or su id*/
-    Optional<Vendedor> buscarPorId(String idVendedor);
-//    boolean actualizarVendedor(String idVendedor, Vendedor vendedor);
-/*actualiza los datos de un vendedor*/
-    boolean actualizarVendedor(Vendedor vendedor);
-/*Elimina un vendedor por su OD*/
-    Optional<Vendedor> eliminarVendedor(String idVendedor);
 
+    /*onsetra un vendedor en memoria*/
     Vendedor insertarVendedor(Vendedor vendedor);
 
+    /*Busca un vendedor por us curp*/
     Vendedor buscarPorCURP(String curp);
 
+    /*Obtener a todos los vendedores*/
     List<Vendedor> obtenerTodos();
 
+    /*Busca un vendedor or su id*/
     Vendedor buscarPorId(String id);
+/*actualiza los datos de un vendedor*/
+    Vendedor actualizarVendedor(Vendedor vendedor);
 
     boolean actualizarVendedor(String id, Vendedor vendedor);
 
-    Vendedor actualizarVendedor(Vendedor vendedor);
-
+    /*Elimina un vendedor por su OD*/
     Vendedor eliminarVendedor(String id);
+
 }
