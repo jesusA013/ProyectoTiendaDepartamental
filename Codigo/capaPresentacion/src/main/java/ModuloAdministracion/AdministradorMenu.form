@@ -71,7 +71,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Component id="PanelAdministradorMenu" min="-2" max="-2" attributes="0"/>
+              <Component id="panelCambiante" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
           <Component id="panelSuperior1" alignment="0" pref="1000" max="32767" attributes="0"/>
@@ -82,7 +82,7 @@
           <Group type="102" attributes="0">
               <Component id="panelSuperior1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="PanelAdministradorMenu" min="-2" max="-2" attributes="0"/>
+              <Component id="panelCambiante" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -132,7 +132,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="PanelAdministradorMenu">
+    <Container class="javax.swing.JPanel" name="panelCambiante">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>

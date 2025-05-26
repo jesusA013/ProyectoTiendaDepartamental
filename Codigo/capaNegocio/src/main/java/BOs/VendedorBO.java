@@ -23,12 +23,9 @@ import java.util.List;
 public class VendedorBO {
 
 public abstract class VendedorBO implements IVendedorBO {
-    private int id;
-    private String nombre;
-    private double totalVentas;
-    private List<VentasBO> ventas; // lista inicializada
     
     private final IVendedorDAO vendedorDAO;// se necesita inicializar
+
 
     private final IVendedorDAO vendedorDAO;
 
@@ -59,6 +56,42 @@ public abstract class VendedorBO implements IVendedorBO {
     public VendedorBO(){
         this.vendedorDAO = new VendedorDAO();
     }
+    
+//    private int id;
+//    private String nombre;
+//    private double totalVentas;
+//    private List<VentasBO> ventas; // lista inicializada
+//    
+//    
+//
+//    public VendedorBO(int id, String nombre, double totalVentas, List<VentasBO> ventas, IVendedorDAO vendedorDAO) {
+//        this.id = id;
+//        this.nombre = nombre;
+//        this.totalVentas = totalVentas;
+//        this.ventas = new ArrayList<>();// inicializacion de la lista
+//        this.vendedorDAO = vendedorDAO;
+//    }
+//
+//   
+//
+//    public VendedorBO(List<VentasBO> ventas) {
+//        this.ventas = new ArrayList<>();// evita un nullPointer en caso de usar constructor vacio 
+//    }
+//
+////    public VendedorBO() {
+////    }
+//    //gestion v
+//
+//    public void agregarVneta(VentasBO venta) {
+//        ventas.add(venta);
+//        totalVentas += venta.getMonto();
+//    }
+//
+//    public double calcularPromedioVentas() {
+//        return ventas.isEmpty() ? 0 : totalVentas / ventas.size();
+//    }
+    
+    
 
     
 ¿
@@ -84,6 +117,10 @@ public abstract class VendedorBO implements IVendedorBO {
         Optional<Vendedor> vendedor = vendedorDAO.buscarPorId(idVendedor);
         if (vendedor.isEmpty()) {
             throw new NegocioException("No se encuentro el vendedor");
+    public Vendedor obtenerVendedorPorId(String id) throws NegocioException {
+        Vendedor vendedor = vendedorDAO.buscarPorId(id);
+        if (vendedor == null) {
+            throw new NegocioException("No se encontró el vendedor con el ID proporcionado.");
         }
         return vendedor;
     }
@@ -103,6 +140,11 @@ public abstract class VendedorBO implements IVendedorBO {
     public Vendedor eliminarVendedor(String id) throws NegocioException {
         Optional<Vendedor> eliminado = vendedorDAO.eliminarVendedor(id);
         if (eliminado.isEmpty()) {
+
+    @Override
+    public Vendedor eliminarVendedor(String id) throws NegocioException {
+        Vendedor eliminado = vendedorDAO.eliminarVendedor(id);
+        if (eliminado == null) {
             throw new NegocioException("No se pudo eliminar el vendedor. Puede que no exista.");
         }
         return eliminado.get();
@@ -127,7 +169,10 @@ public abstract class VendedorBO implements IVendedorBO {
     }
 
     private void validarIdPresente(Vendedor vendedor) throws NegocioException {
+ 
         if (vendedor.getIdVendedor()== null || vendedor.getIdVendedor().trim().isEmpty()) {
+
+        if (vendedor.getIdVendedor()== null) {
             throw new NegocioException("El ID del vendedor es obligatorio para la actualización.");
         }
     }

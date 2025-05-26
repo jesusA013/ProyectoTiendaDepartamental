@@ -1,6 +1,5 @@
 package ModuloAdministracion.GestionProductos;
 
-import BOs.ProductoBO;
 import Interfaces.IProductoBO;
 import control.ControlNavegacion;
 import java.awt.BorderLayout;
@@ -11,17 +10,30 @@ import javax.swing.JPanel;
  * @author gaspa
  */
 public class PanelAdministradorMenu extends javax.swing.JPanel {
+    
+    private static PanelAdministradorMenu instancia;
+    
     private final IProductoBO productoBO;
 //    private final IVendedorBO vendedoresBO;
     private final JPanel panelCambiante;
+    
     /**
      * Creates new form PanelAdministradorMenu
+     * @param panelCambiante
+     * @param productoBO
      */
-    public PanelAdministradorMenu(JPanel panelCambiante) {
+    public PanelAdministradorMenu(JPanel panelCambiante, IProductoBO productoBO) {
         initComponents();
-        this.productoBO = new ProductoBO();
+        this.productoBO = productoBO;
 //        this.vendedoresBO = new VendedorBO();
         this.panelCambiante = panelCambiante;
+    }
+    
+    public static PanelAdministradorMenu getInstance(JPanel panelCambiante, IProductoBO productoBO) {
+        if (instancia == null) {
+            instancia = new PanelAdministradorMenu(panelCambiante, productoBO);
+        }
+        return instancia;
     }
 
     /**

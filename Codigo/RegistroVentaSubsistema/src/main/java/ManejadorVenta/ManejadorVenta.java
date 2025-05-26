@@ -26,18 +26,22 @@ import javax.swing.JOptionPane;
 public class ManejadorVenta implements IRegistroVenta {
 
     private final IVentasBO ventasNegocio = new VentasBO();
-    private final IProductoBO productoNegocio = new ProductoBO();
+    private final IProductoBO productoNegocio;
     private static ManejadorVenta instancia;
     INavegador navegacion;
+
+    public ManejadorVenta(IProductoBO productoNegocio) {
+        this.productoNegocio = productoNegocio;
+    }
 
     @Override
     public void setNavegador(INavegador navegador) {
         this.navegacion = navegador;
     }
 
-    public static ManejadorVenta getInstance() {
+    public static ManejadorVenta getInstance(IProductoBO productoNegocio) {
         if (instancia == null) {
-            instancia = new ManejadorVenta();
+            instancia = new ManejadorVenta(productoNegocio);
         }
         return instancia;
     }
@@ -167,7 +171,7 @@ public class ManejadorVenta implements IRegistroVenta {
         facturaDTO.setEstado(estado);
         facturaDTO.setCiudadLocalidad(ciudadLocalidad);
         facturaDTO.setDelegacionMunicipio(delegacionMunicipio);
-        if (!validarEmail(email)) {
+        if (!validarEmailFactura(email)) {
             JOptionPane.showMessageDialog(null, "El correo no puede estar vacio ni tener el formato incorrecto, efemplo: nombre.apellido@dominio.mx", "Correo", JOptionPane.ERROR_MESSAGE);
             return;
         } else {
@@ -218,5 +222,10 @@ public class ManejadorVenta implements IRegistroVenta {
     private boolean validarEmail(String email) throws RegistroException {
         // Expresión regular simple para validar formato de correo electrónico
         return email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
+    }
+    
+    private boolean validarEmailFactura(String email) throws RegistroException {
+        // Expresión regular simple para validar formato de correo electrónico
+        return email.matches("^(|[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,})$");
     }
 }

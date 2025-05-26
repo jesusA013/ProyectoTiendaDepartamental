@@ -41,11 +41,6 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>subsistemGestorVendedores</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.248171</groupId>
             <artifactId>ControlAcceso</artifactId>
             <version>1.0-SNAPSHOT</version>

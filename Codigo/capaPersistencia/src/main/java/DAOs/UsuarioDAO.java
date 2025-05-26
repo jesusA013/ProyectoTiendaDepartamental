@@ -5,6 +5,7 @@ import Exception.PersistenciaException;
 import Interfaz.IUsuarioDAO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * UsuarioDAO.java
@@ -18,6 +19,16 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     private final List<Usuario> usuarios = new ArrayList<>();
 
+    public UsuarioDAO() {
+        Usuario vendedor = new Usuario("1234", "Ángel", "password", "Vendedor");
+        Usuario administrador = new Usuario("2234", "Ricardo", "password", "Administrador");
+        Usuario almacen = new Usuario("3334", "Felipe", "password", "Almacen");
+        agregarUsuario(vendedor);
+        agregarUsuario(administrador);
+        agregarUsuario(almacen);
+        System.out.println("Usuarios agregados");
+    }
+    
     /**
      *
      * @param idCuenta
@@ -37,7 +48,7 @@ public class UsuarioDAO implements IUsuarioDAO {
      *
      * @param usuario Usuaria a registrar
      */
-    public void agregarUsuario(Usuario usuario) {
+    private void agregarUsuario(Usuario usuario) {
         usuarios.add(usuario);
     }
 }

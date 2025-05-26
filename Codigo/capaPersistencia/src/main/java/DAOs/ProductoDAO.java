@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.regex.Pattern;
-import org.bson.types.ObjectId;
 
 /**
  * ProductoDAO.java
@@ -53,7 +52,7 @@ public class ProductoDAO implements IProductoDAO {
         Pattern patron = Pattern.compile(".*" + Pattern.quote(texto) + ".*", Pattern.CASE_INSENSITIVE);
 
         for (Producto producto : productos) {
-            if (producto.getStock() > 0 && patron.matcher(producto.getNombre()).matches()) {
+            if (producto.getStock() > 0 && patron.matcher(producto.getNombre()).find()) {
                 resultado.add(producto);
             }
         }

@@ -1,38 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Inicio;
 
 import control.ControlNavegacion;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Image;
-import java.awt.Toolkit;
-import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Jesus
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-    
+
     /**
      * Metodo para Crear un nuevo Form MenuPrincipal
      */
     public MenuPrincipal() {
         initComponents();
-        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(800, 600);
-        
-        
+
         this.getContentPane().setBackground(Color.WHITE);
-        
-        this.add(panelBotones,BorderLayout.CENTER);
-      
-       
-        
-        
+
+        this.add(panelBotones, BorderLayout.CENTER);
+
     }
 
     /**
@@ -216,7 +206,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btnOpcionVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionVendedorActionPerformed
         ControlNavegacion.getInstance().irAInicioSesion("Vendedor");
-        
+
     }//GEN-LAST:event_btnOpcionVendedorActionPerformed
 
     private void btnOpcionAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionAlmacenActionPerformed
@@ -227,7 +217,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         ControlNavegacion.getInstance().irAInicioSesion("Administrador");
     }//GEN-LAST:event_btnOpcionAdministradorActionPerformed
 
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOpcionAdministrador;

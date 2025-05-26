@@ -42,6 +42,7 @@ public class ProveedoresPanelNuevo extends javax.swing.JPanel {
                     (String) cboFormaPago.getSelectedItem(), txtTerminoPago.getText(),
                     (String) cboMoneda.getSelectedItem(), (String) cboEstado.getSelectedItem(),
                     txtComentarios.getText());
+            restaurar();
         } catch (ProveedorException ex) {
             JOptionPane.showMessageDialog(this, "Error al guardar el proveedor: " + ex.getMessage());
         }
@@ -646,7 +647,6 @@ public class ProveedoresPanelNuevo extends javax.swing.JPanel {
 
     private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
         añadir();
-        restaurar();
     }//GEN-LAST:event_btnAñadirActionPerformed
 
     private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
