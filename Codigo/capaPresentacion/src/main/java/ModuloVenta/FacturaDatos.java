@@ -130,9 +130,25 @@ public class FacturaDatos extends javax.swing.JFrame {
                     (String) cboEstado.getSelectedItem(),
                     (String) cboCiudadLocalidad.getSelectedItem(),
                     (String) cboDelegacionMunicipio.getSelectedItem(), txtCorreo.getText());
+            limpiar();
         } catch (RegistroException ex) {
             JOptionPane.showMessageDialog(this, "Error al realizar la facturación: " + ex.getMessage());
         }
+    }
+
+    private void limpiar() {
+        txtRFC.setText("");
+        txtNombeRazonSocial.setText("");
+        txtCalle.setText("");
+        txtNumExt.setText("");
+        txtNumInt.setText("");
+        txtColonia.setText("");
+        txtCodPostal.setText("");
+        cboPais.setSelectedIndex(-1);
+        cboEstado.setSelectedIndex(-1);
+        cboCiudadLocalidad.setSelectedIndex(-1);
+        cboDelegacionMunicipio.setSelectedIndex(-1);
+        txtCorreo.setText("");
     }
 
     /**
@@ -370,18 +386,6 @@ public class FacturaDatos extends javax.swing.JFrame {
     private void btnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturarActionPerformed
         try {
             facturar();
-            txtRFC.setText("");
-            txtNombeRazonSocial.setText("");
-            txtCalle.setText("");
-            txtNumExt.setText("");
-            txtNumInt.setText("");
-            txtColonia.setText("");
-            txtCodPostal.setText("");
-            cboPais.setSelectedIndex(-1);
-            cboEstado.setSelectedIndex(-1);
-            cboCiudadLocalidad.setSelectedIndex(-1);
-            cboDelegacionMunicipio.setSelectedIndex(-1);
-            txtCorreo.setText("");
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }

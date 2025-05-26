@@ -1,43 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package ModuloAdministracion;
 
-import BOs.ProductoBO;
-import Excepciones.NegocioException;
-import Interfaces.IProductoBO;
-import ModuloAdministracion.GestionProductos.PanelAdministradorMenu;
-import ModuloAdministracion.GestionProductos.PanelListadoProductos;
-import control.ControlNavegacion;
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  *
  * @author gaspa
  */
 public class AdministradorMenu extends javax.swing.JFrame {
+    
+    private static AdministradorMenu instancia;
+    
     /**
      * Creates new form MenuPrincipal
      */
     public AdministradorMenu() {
         initComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.llamarPanelMenu();
-        
     }
-    public final void llamarPanelMenu(){
-        PanelAdministradorMenu panelAdmin = new PanelAdministradorMenu(PanelAdministradorMenu);
-        PanelAdministradorMenu.setLayout(new BorderLayout());
-        PanelAdministradorMenu.removeAll();
-        PanelAdministradorMenu.add(panelAdmin,BorderLayout.CENTER);
-        PanelAdministradorMenu.revalidate();
-        PanelAdministradorMenu.repaint();
+    
+    public static AdministradorMenu getInstancia() {
+        if (instancia == null) {
+            instancia = new AdministradorMenu();
+        }
+        return instancia;
+    }
+
+    public javax.swing.JPanel getPanelCambiante() {
+        return panelCambiante;
     }
 
     /**
@@ -53,7 +42,7 @@ public class AdministradorMenu extends javax.swing.JFrame {
         lbl_ID = new javax.swing.JLabel();
         panelSuperior1 = new javax.swing.JPanel();
         lbl_ID1 = new javax.swing.JLabel();
-        PanelAdministradorMenu = new javax.swing.JPanel();
+        panelCambiante = new javax.swing.JPanel();
 
         panelSuperior.setBackground(new java.awt.Color(103, 80, 164));
         panelSuperior.setPreferredSize(new java.awt.Dimension(800, 50));
@@ -80,7 +69,6 @@ public class AdministradorMenu extends javax.swing.JFrame {
         );
 
         setMinimumSize(new java.awt.Dimension(1000, 600));
-        setPreferredSize(new java.awt.Dimension(1000, 600));
 
         panelSuperior1.setBackground(new java.awt.Color(103, 80, 164));
         panelSuperior1.setPreferredSize(new java.awt.Dimension(800, 50));
@@ -106,20 +94,20 @@ public class AdministradorMenu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        PanelAdministradorMenu.setBackground(new java.awt.Color(255, 255, 255));
-        PanelAdministradorMenu.setForeground(new java.awt.Color(255, 255, 255));
-        PanelAdministradorMenu.setMinimumSize(new java.awt.Dimension(1000, 550));
-        PanelAdministradorMenu.setPreferredSize(new java.awt.Dimension(1000, 550));
-        PanelAdministradorMenu.setRequestFocusEnabled(false);
+        panelCambiante.setBackground(new java.awt.Color(255, 255, 255));
+        panelCambiante.setForeground(new java.awt.Color(255, 255, 255));
+        panelCambiante.setMinimumSize(new java.awt.Dimension(1000, 550));
+        panelCambiante.setPreferredSize(new java.awt.Dimension(1000, 550));
+        panelCambiante.setRequestFocusEnabled(false);
 
-        javax.swing.GroupLayout PanelAdministradorMenuLayout = new javax.swing.GroupLayout(PanelAdministradorMenu);
-        PanelAdministradorMenu.setLayout(PanelAdministradorMenuLayout);
-        PanelAdministradorMenuLayout.setHorizontalGroup(
-            PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelCambianteLayout = new javax.swing.GroupLayout(panelCambiante);
+        panelCambiante.setLayout(panelCambianteLayout);
+        panelCambianteLayout.setHorizontalGroup(
+            panelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1000, Short.MAX_VALUE)
         );
-        PanelAdministradorMenuLayout.setVerticalGroup(
-            PanelAdministradorMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelCambianteLayout.setVerticalGroup(
+            panelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 550, Short.MAX_VALUE)
         );
 
@@ -128,7 +116,7 @@ public class AdministradorMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(PanelAdministradorMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelCambiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(panelSuperior1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
@@ -137,16 +125,15 @@ public class AdministradorMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelSuperior1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(PanelAdministradorMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panelCambiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel PanelAdministradorMenu;
     private javax.swing.JLabel lbl_ID;
     private javax.swing.JLabel lbl_ID1;
+    private javax.swing.JPanel panelCambiante;
     private javax.swing.JPanel panelSuperior;
     private javax.swing.JPanel panelSuperior1;
     // End of variables declaration//GEN-END:variables

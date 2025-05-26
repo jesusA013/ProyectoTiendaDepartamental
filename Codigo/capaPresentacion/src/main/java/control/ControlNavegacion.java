@@ -4,6 +4,8 @@ package control;
  *
  * @author Jesus
  */
+import BOs.ProductoBO;
+import Excepciones.NegocioException;
 import ModuloAdministracion.GestionVendedores.InformacionVendedor;
 import ModuloAdministracion.GestionVendedores.GenerarInforme;
 import ModuloAdministracion.GestionVendedores.RegistrarVendedor;
@@ -18,8 +20,10 @@ import Inicio.MenuPrincipal;
 import Implementaciones.*;
 import Interface.IRegistroVenta;
 import Interfaces.INavegador;
+import Interfaces.IProductoBO;
 import ManejadorVenta.ManejadorVenta;
 import ModuloAdministracion.AdministradorMenu;
+import ModuloAdministracion.GestionProductos.PanelAdministradorMenu;
 import ModuloAlmacen.GestionProveedores.*;
 import ModuloAlmacen.MenuAlmacen;
 import ModuloVenta.FacturaFinalizada;
@@ -27,7 +31,6 @@ import ModuloVenta.VentaFinalizada;
 import RegistroVentaException.RegistroException;
 import java.awt.BorderLayout;
 import javax.swing.*;
-import org.bson.types.ObjectId;
 
 public class ControlNavegacion implements INavegador{
 
@@ -41,7 +44,6 @@ public class ControlNavegacion implements INavegador{
     
     // Gestión Venta
     private final IRegistroVenta manejadorVenta;
-    private BusquedaProducto pantallaBusquedaProducto;
     private SeleccionMetodoPago pantallaSeleccionMetodoPago;
     // Gestión Proveedores
     private final IManejadorProveedor manejadorProveedor;
@@ -54,6 +56,7 @@ public class ControlNavegacion implements INavegador{
     private RegistrarVendedor pantallaRegistraVendedor;
     //productos
     private AdministradorMenu pantallaAdministradorMenu;
+    private final IProductoBO productoNegocio = new ProductoBO();
 
     /**
      * 
@@ -61,9 +64,8 @@ public class ControlNavegacion implements INavegador{
     public ControlNavegacion() {
         this.pantallaMenuPrincipal = new MenuPrincipal();
         // Gestión Venta
-        this.manejadorVenta = new ManejadorVenta();
+        this.manejadorVenta = new ManejadorVenta(productoNegocio);
         manejadorVenta.setNavegador(this);
-        this.pantallaBusquedaProducto = new BusquedaProducto(manejadorVenta);
         this.pantallaSeleccionMetodoPago = new SeleccionMetodoPago(manejadorVenta);
         // Gestión Proveedores
         this.manejadorProveedor = new ManejadorProveedor();
@@ -134,6 +136,7 @@ public class ControlNavegacion implements INavegador{
     }
 
     public void irABusquedaProducto(String busqueda) throws RegistroException {
+        BusquedaProducto pantallaBusquedaProducto = BusquedaProducto.getInstance(manejadorVenta);
         mostrarPantalla(pantallaBusquedaProducto);
     }
     
@@ -165,7 +168,9 @@ public class ControlNavegacion implements INavegador{
         mostrarPantalla(pantallaAlmacen);
     }
     public void mostrarMenuAdministrador() {
-        mostrarPantalla(pantallaAdministradorMenu);
+        AdministradorMenu administradorPantalla = AdministradorMenu.getInstancia();
+        mostrarPanelAdministradorMenu();
+        mostrarPantalla(administradorPantalla );
     }
     
     // Gestión Proveedores
@@ -188,7 +193,6 @@ public class ControlNavegacion implements INavegador{
         ProveedoresPanelListado proveedorPanelListado = ProveedoresPanelListado.getInstance(manejadorProveedor);
         proveedorPanelListado.cargarListaProveedores();
         mostrarPanel(panelCambiante, proveedorPanelListado);
-
     }
     
     /**
@@ -226,6 +230,7 @@ public class ControlNavegacion implements INavegador{
         proveedorPanelDetalles.actualizarDatos(id);
         mostrarPanel(panelCambiante, proveedorPanelDetalles);
     }
+    
 //GestionVendedores
     public void mostrarListadoVendedores(){
         mostrarPantalla(pantallaListadoVendedores);
@@ -240,5 +245,11 @@ public class ControlNavegacion implements INavegador{
         mostrarPantalla(pantallaRegistraVendedor);
     }
     
-
+    public void mostrarPanelAdministradorMenu() {
+        // Panel Listado
+        panelCambiante = AdministradorMenu.getInstancia().getPanelCambiante();
+        PanelAdministradorMenu panelAdministradorMenu = PanelAdministradorMenu.getInstance(panelCambiante, productoNegocio);
+        mostrarPanel(panelCambiante, panelAdministradorMenu);
+    }
+    
 }

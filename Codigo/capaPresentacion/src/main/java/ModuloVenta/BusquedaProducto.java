@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class BusquedaProducto extends javax.swing.JFrame {
 
+    private static BusquedaProducto instancia;
     LinkedList<PanelBusquedaProducto> panelBusquedaProducto;
     List<ProductoDTO> productos;
     IRegistroVenta manejadorVenta;
@@ -37,8 +38,17 @@ public class BusquedaProducto extends javax.swing.JFrame {
 
     }
 
+    public static BusquedaProducto getInstance(IRegistroVenta controlVenta) {
+        if (instancia == null) {
+            instancia = new BusquedaProducto(controlVenta);
+        }
+        return instancia;
+    }
+
     public void busquedaProducto(String busqueda) throws RegistroException {
         productos = manejadorVenta.buscarProductos(busqueda);
+        System.out.println(productos);
+
         lblID.setText("ID: " + InicioSesion.getInstance().getIdCuenta());
 
         // Limpiar antes de agregar nuevos paneles

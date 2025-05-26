@@ -162,7 +162,7 @@ public class PanelListadoProductos extends javax.swing.JPanel {
     }
 
     public void volver() {
-        PanelAdministradorMenu panelMenu = new PanelAdministradorMenu(panelCambiante);
+        PanelAdministradorMenu panelMenu = new PanelAdministradorMenu(panelCambiante, productoBO);
         panelCambiante.setLayout(new BorderLayout());
         panelCambiante.removeAll();
         panelCambiante.add(panelMenu, BorderLayout.CENTER);
